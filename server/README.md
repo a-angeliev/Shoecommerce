@@ -40,4 +40,4 @@
 >> "/brand"  ==> GET | POST /ADMIN/  
 >  "/brand/:id"  ==> GET PUT DELETE  /ADMIN/  
 
-![Database schema](https://pasteboard.co/2xPWkXtzctYH.png)
+![Database schema](https://i.ibb.co/DMZmMtC/Shoecommerce-database-schema.png)
