@@ -39,3 +39,5 @@
 >> ### BRAND
 >> "/brand"  ==> GET | POST /ADMIN/  
 >  "/brand/:id"  ==> GET PUT DELETE  /ADMIN/  
+
+![Database schema](https://pasteboard.co/2xPWkXtzctYH.png)
