@@ -3,6 +3,13 @@ from marshmallow import Schema, fields, validate
 from utils.validators import validate_password
 
 
+class LoginUserRequestSchema(Schema):
+    email = fields.Email(required=True)
+    password = fields.String(
+        required=True,
+    )
+
+
 class RegisterUserDataRequestSchema(Schema):
     f_name = fields.String(required=True, validate=validate.Length(min=2, max=60))
     l_name = fields.String(required=True, validate=validate.Length(min=2, max=60))

@@ -27,3 +27,14 @@ class UserManager:
             else:
                 InternalServerError("Server is unavailable.")
         return user
+
+    @staticmethod
+    def login(requ_user_data):
+        user = UsersModel.query.filter_by(email=requ_user_data['email']).first()
+        if not user:
+            raise BadRequest("Wrong email or password!")
+
+        if not check_password_hash(user.password, requ_user_data['password']):
+            raise BadRequest("Wrong email or password!")
+
+        return user

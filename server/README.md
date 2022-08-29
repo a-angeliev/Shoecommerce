@@ -102,3 +102,41 @@ The REST API to the app is described below.
 >    }
 >}
 >```
+
+>## Login
+>### Request
+>`[POST] "/login"`
+>```json
+>{
+>    "password": "23233223",
+>    "email": "email@abv.bg"
+>}
+>``` 
+>### Response
+> ```json
+>"{\"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjM0LCJleHAiOjE2NzA0Mzg4OTd9.YVu0irTJl3ZOxdharUiMipaNhHQkAFe3RMd3JCD6iyc\", \"user_id\": 34, \"role\": \"user\"}"
+>```
+> Server validations are:
+> - Must have sent all fields(email and password)
+> - Email must be valid email string
+> 
+> Example error massages
+> If email is valid email string:
+> ```json
+> {
+>    "message": "Wrong email or password!"
+> }
+>```
+>If email is not a valid email string or missing some key (email or password), error will be:
+>```json
+>{
+>    "message": {
+>        "email": [
+>            "Not a valid email address."
+>        ],
+>        "password": [
+>            "Missing data for required field."
+>        ]
+>    }
+>}
+>```

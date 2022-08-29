@@ -10,12 +10,12 @@ from managers.users import UserManager
 from flask import request
 
 from models import RoleType
-from schemas.request.users import RegisterUserRequestSchema
+from schemas.request.users import RegisterUserRequestSchema, LoginUserRequestSchema
 from utils.decorators import validate_schema
 
 
-class Users(Resource):
-    pass
+
+
 
 
 class Register(Resource):
