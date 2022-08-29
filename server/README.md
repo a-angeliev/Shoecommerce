@@ -68,15 +68,7 @@ The REST API to the app is described below.
 >### Response
 > 
 > ```json
-> {
->    "email": "some@email.com",
->    "user_data": {
->        "l_name": "firstName",
->        "f_name": "lastName",
->        "phone": 0888429842
->    },
->    "id": 17
-> }
+> "{\"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjM0LCJleHAiOjE2NzA0Mzg4OTd9.YVu0irTJl3ZOxdharUiMipaNhHQkAFe3RMd3JCD6iyc\", \"user_id\": 34, \"role\": \"user\"}"
 >```
 >Server validations are:   
 > - Email must be correct email string.   
