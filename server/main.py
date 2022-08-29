@@ -1,16 +1,36 @@
-# This is a sample Python script.
+from flask import Flask
+from flask_migrate import Migrate
+from flask_restful import Api
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from config import create_app
+from db import db
+from resources.routes import routes
+from decouple import config
+
+app = create_app()
+
+# Comment app=create_app() and uncomment the flowling for migrate (flask db migrate , flask db upgrade)
+
+# app = Flask(__name__)
+# app.config.from_object("config.DevelopmentConfig")
+# db.init_app(app)
+#
+# migrate = Migrate(app, db)
+# api = Api(app)
+# [api.add_resource(*r) for r in routes]
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+@app.before_first_request
+def create_tables():
+    db.init_app(app)
+    db.create_all()
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+@app.after_request
+def close_request(response):
+    db.session.commit()
+    return response
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+if __name__ == "__main__":
+    app.run()

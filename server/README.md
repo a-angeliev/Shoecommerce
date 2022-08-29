@@ -41,3 +41,72 @@
 >  "/brand/:id"  ==> GET PUT DELETE  /ADMIN/  
 
 ![Database schema](https://i.ibb.co/DMZmMtC/Shoecommerce-database-schema.png)
+
+
+# REST API
+
+The REST API to the app is described below.
+
+
+- [Register](#register)
+
+>## Register
+>### Request
+>`[POST] "/register"`
+>
+>```json
+>{
+>    "user_data":{
+>        "f_name": "firstName",
+>        "l_name": "lastName",
+>        "phone": "0888429842"
+>    },
+>    "email": "some@email.com",
+>    "password": "goodpassword1"
+>}
+>```
+>### Response
+> 
+> ```json
+> {
+>    "email": "some@email.com",
+>    "user_data": {
+>        "l_name": "firstName",
+>        "f_name": "lastName",
+>        "phone": 0888429842
+>    },
+>    "id": 17
+> }
+>```
+>Server validations are:   
+> - Email must be correct email string.   
+> - Password must be between 5 and 60 characters.   
+> - Password must have atleast one number.   
+> - First name must be between 2 and 60 characters.
+> - Last name must be between 2 and 60 characters.
+>
+> Example error massages
+>```json
+>{
+>    "message": {
+>        "email": [
+>            "Missing data for required field."
+>        ],
+>        "user_data": {
+>            "l_name": [
+>                "Length must be between 2 and 60."
+>            ],
+>            "f_name": [
+>                "Length must be between 2 and 60."
+>            ],
+>            "phone": [
+>                "Not a valid integer."
+>            ]
+>        },
+>        "password": [
+>            "Length must be between 5 and 60.",
+>            "Password must have atleast one number."
+>        ]
+>    }
+>}
+>```
