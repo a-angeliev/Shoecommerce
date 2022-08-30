@@ -1,3 +1,5 @@
+import { Routes, Route } from 'react-router-dom';
+
 import './App.css';
 
 import { Navbar } from "./components/Navbar/Navbar";
@@ -18,30 +20,33 @@ function App() {
       <Navbar />
 
       {/* <!-- Home --> */}
-      <Home />
+      {/* <Home /> */}
 
       {/* <!-- New Arrival --> */}
 
-      <NewArrival />
+      {/* <NewArrival /> */}
 
       {/* <!-- Products --> */}
 
-      <Products />
+      {/* <Products /> */}
 
       {/* <!-- Products --> */}
-      <Details />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/products/2' element={<Details />} />
+      </Routes>
 
       {/* <!-- Reviews --> */}
 
-      <Reviews />
+      {/* <Reviews /> */}
 
       {/* <!-- Footer --> */}
 
-      <Footer />
+      {/* <Footer /> */}
 
       {/* <!-- Copyright --> */}
 
-      <Copyright />
+      {/* <Copyright /> */}
 
     </div>
   );
