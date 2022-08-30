@@ -37,22 +37,22 @@ export const NewArrival = () => {
                 <div className="swiper wrapper">
                     <SwiperSlide className="swiper-slide box">
                         <img src="/images/982c8911d38400285bc5a426034c360c-removebg-preview.png" alt="" />
-                        <div class="content">
-                            <a href="/#" class="btn">Buy Now</a>
+                        <div className="content">
+                            <a href="/#" className="btn">Buy Now</a>
                         </div>
                     </SwiperSlide>
 
                     <SwiperSlide className="swiper-slide box">
                         <img src="/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png" alt="" />
-                        <div class="content">
-                            <a href="/#" class="btn">Buy Now</a>
+                        <div className="content">
+                            <a href="/#" className="btn">Buy Now</a>
                         </div>
                     </SwiperSlide>
 
                     <SwiperSlide className="swiper-slide box">
                         <img src="/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png" alt="" />
-                        <div class="content">
-                            <a href="/#" class="btn">Buy Now</a>
+                        <div className="content">
+                            <a href="/#" className="btn">Buy Now</a>
                         </div>
                     </SwiperSlide>
                 </div>
