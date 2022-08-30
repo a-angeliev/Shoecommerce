@@ -1,3 +1,11 @@
+section.scn {
+    padding: 0;
+}
+
+.main-details {
+    margin: 120px 0 40px;
+}
+
 .main-wrapper {
     max-width: 1200px;
     margin: 80px auto;
@@ -48,6 +56,12 @@
     justify-content: space-between;
 }
 
+.main-shoe-size {
+    display: flex;
+    gap: rem;
+    margin-right: 40px;
+}
+
 .main-shoe-size label {
     font-size: 1.2rem;
     margin-right: 10px;
@@ -55,9 +69,9 @@
 
 .main-shoe-sizes {
     height: 30px;
-    width: 50px;
     font-size: 1.2rem;
     cursor: pointer;
+    width: 54px;
 }
 
 .main-shoe-color-list {
@@ -121,6 +135,7 @@
     padding: 0;
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
 }
 
 .main-shoe-img-item {
@@ -160,7 +175,7 @@
     content: "";
     top: 50%;
     left: 0;
-    background-color: gray;
+    background-color: var(--gray-color);
     height: 0.1rem;
     width: 40%;
 }
@@ -182,14 +197,12 @@
 
 .main-recommended-list {
     padding: 0;
+    display: flex;
+    gap: 1rem;
 }
 
 .main-recommended-item {
     width: 200px;
-}
-
-.main-recommended-item img {
-    width: 100%;
 }
 
 .main-recommended-item h4 {
