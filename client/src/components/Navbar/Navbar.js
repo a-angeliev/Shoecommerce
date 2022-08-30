@@ -45,7 +45,7 @@ export const Navbar = () => {
         // Navbar
 
         < header>
-            <a href="" className="logo"> <i className='bx bxs-shopping-bag-alt'></i>ShoeCommerce</a>
+            <a href="/#" className="logo"> <i className='bx bxs-shopping-bag-alt'></i>ShoeCommerce</a>
 
             <ul className="navbar" ref={menuRef}>
                 <li><a href="/home">Home</a></li>
