@@ -18,6 +18,7 @@
     --main-color: #cb2469;
     --second-color: #ebeff2;
     --text-color: #02171d;
+    --gray-color: #80807f;
     --bg-color: #fff;
 
     /* Box Shadow */
@@ -85,6 +86,7 @@ header {
     padding: 20px 100px;
     transition: 0.5s linear;
     background: var(--bg-color);
+    box-shadow: 0 0 4px var(--gray-color);
 }
 
 .heading {
