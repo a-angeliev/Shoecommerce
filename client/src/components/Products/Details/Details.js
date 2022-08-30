@@ -2,9 +2,9 @@ import './Details.css';
 
 export const Details = () => {
     return (
-        <main class="main">
+        <main className="main-details">
             <div className="main-wrapper">
-                <section className="main-shoe-content">
+                <section className="main-shoe-content scn">
                     <img className="main-shoe"
                         src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/f999338b-b2e7-40bc-8737-1b3a93dc5706/air-jordan-xxxvi-fs-basketball-shoes-BdpjNf.png"
                         alt="Nike Jordan" />
@@ -25,7 +25,7 @@ export const Details = () => {
                             Air unit in the forefoot, you'll get energy return and elite responsiveness when you need it.
                             Step on the court with the confidence that whatever you do—it's light work.
                         </p>
-                        <section className="main-shoe-colors">
+                        <section className="main-shoe-colors scn">
                             <span className="main-shoe-size">
                                 <label htmlFor="size">Choose a size:</label>
 
@@ -50,7 +50,7 @@ export const Details = () => {
                         </button>
                     </article>
                 </section>
-                <section className="main-shoe-more--images">
+                <section className="main-shoe-more--images scn">
                     <ul className="main-shoe-images-list">
                         <li className="main-shoe-img-item">
                             <img src="https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/b3862d6f-d51b-4a56-b9e9-b3d10f37acce/air-jordan-xxxvi-fs-basketball-shoes-BdpjNf.png"
@@ -78,7 +78,7 @@ export const Details = () => {
                         </li>
                     </ul>
                 </section>
-                <section className="main-shoe-more-info">
+                <section className="main-shoe-more-info scn">
                     <h2 className="main-more-title">
                         It's Light Work
                     </h2>
@@ -93,7 +93,7 @@ export const Details = () => {
                     <img src="https://static.nike.com/a/images/w_1920,c_limit,f_auto,q_auto/6a6f0afc-1bc0-4742-8772-02e4068de99e/image.jpg"
                         alt="Jordan" />
                 </section>
-                <section className="main-shoes-recommended">
+                <section className="main-shoes-recommended scn">
                     <h2 className="main-recommended-title">
                         You may also like
                     </h2>
@@ -178,7 +178,7 @@ export const Details = () => {
                         </li>
                     </ul>
                 </section>
-                <section className="main-shoe-reviews">
+                <section className="main-shoe-reviews scn">
                 </section>
             </div>
         </main>
