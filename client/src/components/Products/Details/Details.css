@@ -1,0 +1,211 @@
+.main-wrapper {
+    max-width: 1200px;
+    margin: 80px auto;
+}
+
+.main-shoe {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+}
+
+.main-shoe-content {
+    display: flex;
+    align-items: flex-start;
+}
+
+.main-shoe-info {
+    width: 700px;
+    padding-left: 100px;
+}
+
+.main-shoe-name {
+    margin: 0px 0px 6px;
+    font-size: 2.2rem;
+}
+
+.main-shoe-second-title {
+    font-weight: normal;
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.main-shoe-price {
+    font-weight: normal;
+    font-size: 1.2rem;
+    margin-top: 35px;
+}
+
+.main-shoe-description {
+    margin-top: 40px;
+    line-height: 1.6;
+}
+
+.main-shoe-colors {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    justify-content: space-between;
+}
+
+.main-shoe-size label {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.main-shoe-sizes {
+    height: 30px;
+    width: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.main-shoe-color-list {
+    display: flex;
+    gap: 1.4rem;
+
+    padding: 0;
+    margin: 30px 0;
+}
+
+.main-shoe-color {
+    color: transparent;
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.main-shoe-color:nth-child(2) {
+    background-color: rgb(222, 60, 60);
+}
+
+.main-shoe-color:nth-child(3) {
+    background-color: rgb(53, 61, 219);
+}
+
+.main-shoe-color:nth-child(4) {
+    background-color: rgb(0, 0, 0);
+}
+
+.main-shoe-button {
+    background-color: rgb(186, 46, 128);
+    color: #fff;
+
+    border: none;
+    clip-path: polygon(14px 0%, 100% 0%, calc(100% - 14px) 100%, 0% 100%);
+
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    margin-top: 30px;
+    padding: 10px 30px;
+
+    cursor: pointer;
+    transition: all ease-in-out 0.25s;
+}
+
+.main-shoe-button:hover {
+    transform: scaleX(1.1);
+}
+
+.main-shoe-more--images {
+    margin: 40px 0;
+}
+
+.main-shoe-images-list {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-shoe-img-item {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    transition: all ease-in-out 0.25s;
+}
+
+.main-shoe-img-item:hover {
+    transform: scale(1.1);
+}
+
+.main-shoe-img-item img {
+    width: 100%;
+    height: 100%;
+}
+
+.main-shoe-more-info {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.main-shoe-more-info img {
+    width: 1200px;
+    height: 220px;
+    object-fit: cover;
+}
+
+.main-more-title {
+    position: relative;
+}
+
+.main-more-title::before,
+.main-more-title::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 0;
+    background-color: gray;
+    height: 0.1rem;
+    width: 40%;
+}
+
+.main-more-title::after {
+    left: unset;
+    right: 0;
+}
+
+.main-more-text-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    word-spacing: 1px;
+}
+
+.main-shoes-recommended {
+    margin: 40px 0;
+}
+
+.main-recommended-list {
+    padding: 0;
+}
+
+.main-recommended-item {
+    width: 200px;
+}
+
+.main-recommended-item img {
+    width: 100%;
+}
+
+.main-recommended-item h4 {
+    font-size: 1.2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.main-recommended-item h5 {
+    font-weight: 1.2rem;
+    margin: 0;
+}
+
+.main-recommended-item button {
+    font-size: 1rem;
+    clip-path: unset;
+    width: 100%;
+}
