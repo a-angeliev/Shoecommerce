@@ -33,7 +33,7 @@ function App() {
       {/* <!-- Products --> */}
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/products/2' element={<Details />} />
+        <Route path='/products/:id' element={<Details />} />
       </Routes>
 
       {/* <!-- Reviews --> */}
