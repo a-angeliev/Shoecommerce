@@ -1,11 +1,46 @@
 import './App.css';
 
+import { Navbar } from "./components/Navbar/Navbar";
+import { Home } from "./components/Home/Home";
+import { NewArrival } from "./components/New Arrival/NewArrival";
+import { Products } from "./components/Products/Products";
+import { Reviews } from "./components/Reviews/Reviews";
+import { Footer } from "./components/Footer/Footer";
+import { Copyright } from "./components/Copyright/Copyright";
+
 function App() {
-    return (
-        <div className="App">
-            <h1>ShoeCommerce</h1>
-        </div>
-    );
+  return (
+    <div className="App">
+
+      {/* Navbar */}
+
+      <Navbar />
+
+      {/* <!-- Home --> */}
+      <Home />
+
+      {/* <!-- New Arrival --> */}
+
+      <NewArrival />
+
+      {/* <!-- Products --> */}
+
+      <Products />
+
+      {/* <!-- Reviews --> */}
+
+      <Reviews />
+
+      {/* <!-- Footer --> */}
+
+      <Footer />
+
+      {/* <!-- Copyright --> */}
+
+      <Copyright />
+
+    </div>
+  );
 }
 
 export default App;
