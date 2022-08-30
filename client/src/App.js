@@ -4,6 +4,7 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Home } from "./components/Home/Home";
 import { NewArrival } from "./components/New Arrival/NewArrival";
 import { Products } from "./components/Products/Products";
+import { Details } from "./components/Products/Details/Details";
 import { Reviews } from "./components/Reviews/Reviews";
 import { Footer } from "./components/Footer/Footer";
 import { Copyright } from "./components/Copyright/Copyright";
@@ -26,6 +27,9 @@ function App() {
       {/* <!-- Products --> */}
 
       <Products />
+
+      {/* <!-- Products --> */}
+      <Details />
 
       {/* <!-- Reviews --> */}
 
