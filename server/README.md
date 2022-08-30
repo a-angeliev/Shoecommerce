@@ -49,6 +49,8 @@ The REST API to the app is described below.
 
 
 - [Register](#register)
+- [Login](#login)
+- [User Info and Edit](#user-info-and-edit)
 
 >## Register
 >### Request
@@ -139,4 +141,67 @@ The REST API to the app is described below.
 >        ]
 >    }
 >}
+>```
+
+>## User Info and Edit
+> 
+>### Request
+>`[GET] "/user/:id_"`   
+>### Response
+> ```json
+>"{\"user_data\": {\"f_name\": \"newName1\", \"l_name\": \"newName1\", \"phone\": 1111111}, \"id\": 35, \"email\": \"zrd@zdr2.com\"}"
+>```
+> Server validations are:
+> - Reuqest must have "x-access-token" Header.
+> - "x-access-token" value must be with the same id after decode.
+> 
+> Example error massages If you try to take other user id data:
+> ```json
+> {
+>    "message": "You dont have permission to this resource!"
+> }
+> ```
+> If token is missing:
+> ```json
+> {
+>    "message": "A valid token is missing!"
+> }
+>```
+>### Request   
+>`[PUT] "/user/:id_"`
+> ```json
+> {
+>    "user_data":{
+>        "f_name": "newName1",
+>        "l_name": "newName1",
+>        "phone": 1111111
+>    },
+>    "email": "zrd@zdr2.com"
+> }
+>```
+>### Response
+>```json
+>"{\"user_data\": {\"f_name\": \"newName1\", \"l_name\": \"newName1\", \"phone\": 1111111}, \"id\": 35, \"email\": \"zrd@zdr3.com\"}" 
+>```
+>Server validations are:
+> - Request must have "x-access-token" Header.
+> - "x-access-token" value must be with the same id after decode.   
+> 
+>Example error massages If don't have "x-access-token":
+> ```json
+> {
+>    "message": "A valid token is missing!"
+> }
+>```
+> If missing field:
+> ```json
+> {
+>    "message": {
+>        "user_data": {
+>            "l_name": [
+>                "Missing data for required field."
+>            ]
+>        }
+>    }
+> }
 >```

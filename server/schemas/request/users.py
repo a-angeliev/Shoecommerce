@@ -1,13 +1,11 @@
 from marshmallow import Schema, fields, validate
 
+from schemas.bases_schemas import BaseUserSchema, BaseUserDataSchema
 from utils.validators import validate_password
 
 
-class LoginUserRequestSchema(Schema):
-    email = fields.Email(required=True)
-    password = fields.String(
-        required=True,
-    )
+class LoginUserRequestSchema(BaseUserSchema):
+    pass
 
 
 class RegisterUserDataRequestSchema(Schema):
@@ -16,10 +14,16 @@ class RegisterUserDataRequestSchema(Schema):
     phone = fields.Integer(required=True)
 
 
-class RegisterUserRequestSchema(Schema):
-    email = fields.Email(required=True)
+class RegisterUserRequestSchema(BaseUserSchema):
     password = fields.String(
         required=True,
         validate=validate.And(validate.Length(min=5, max=60), validate_password),
     )
-    user_data = fields.Nested(RegisterUserDataRequestSchema, required=True)
+    user_data = fields.Nested(BaseUserDataSchema, required=True)
+
+
+class EditUserRequestSchema(BaseUserSchema):
+    user_data = fields.Nested(BaseUserDataSchema, required=True)
+
+    class Meta:
+        exclude = ("password",)
