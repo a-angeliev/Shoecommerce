@@ -36,7 +36,6 @@ function App() {
         <Route path='/products/:id' element={<Details />} />
       </Routes>
 
-      {/* <!-- Reviews --> */}
 
       {/* <Reviews /> */}
 
