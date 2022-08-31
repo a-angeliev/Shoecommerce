@@ -20,7 +20,12 @@ const useLocalStorage = (key, intitialValue) => {
         }
     };
 
-    return [state, setUser];
+    const removeUser = () => {
+        localStorage.removeItem(key);
+        setState(intitialValue);
+    };
+
+    return [state, setUser, removeUser];
 };
 
 export default useLocalStorage;
