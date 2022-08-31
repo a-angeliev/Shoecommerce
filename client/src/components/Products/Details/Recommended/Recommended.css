@@ -1,0 +1,31 @@
+.main-shoes-recommended {
+    margin: 40px 0;
+}
+
+.main-recommended-list {
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.main-recommended-item {
+    width: 200px;
+}
+
+.main-recommended-item h4 {
+    font-size: 1.2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.main-recommended-item h5 {
+    font-weight: 1.2rem;
+    margin: 0;
+}
+
+.main-recommended-item button {
+    font-size: 1rem;
+    clip-path: unset;
+    width: 100%;
+}
