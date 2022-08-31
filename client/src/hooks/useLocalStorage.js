@@ -13,8 +13,8 @@ const useLocalStorage = (key, intitialValue) => {
 
     const setUser = (value) => {
         try {
-            localStorage.setItem(key, JSON.stringify(value));
-            setState(value);
+            localStorage.setItem(key, value);
+            setState(JSON.parse(value));
         } catch (error) {
             console.log(error);
         }
