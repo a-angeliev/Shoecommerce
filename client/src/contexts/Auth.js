@@ -4,12 +4,12 @@ import useLocalStorage from '../hooks/useLocalStorage';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setItem] = useLocalStorage('user', null);
+    const [user, setItem, removeUser] = useLocalStorage('user', null);
 
     const addUser = (user) => setItem(user);
 
     const logout = () => {
-        setItem(null);
+        removeUser();
     };
 
     const isAuthenticated = Boolean(user?.token);
