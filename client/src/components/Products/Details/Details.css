@@ -105,7 +105,7 @@ section.scn {
 }
 
 .main-shoe-button {
-    background-color: rgb(186, 46, 128);
+    background-color: var(--main-color);
     color: #fff;
 
     border: none;
@@ -125,33 +125,6 @@ section.scn {
 
 .main-shoe-button:hover {
     transform: scaleX(1.1);
-}
-
-.main-shoe-more--images {
-    margin: 40px 0;
-}
-
-.main-shoe-images-list {
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-}
-
-.main-shoe-img-item {
-    width: 200px;
-    height: 200px;
-    cursor: pointer;
-    transition: all ease-in-out 0.25s;
-}
-
-.main-shoe-img-item:hover {
-    transform: scale(1.1);
-}
-
-.main-shoe-img-item img {
-    width: 100%;
-    height: 100%;
 }
 
 .main-shoe-more-info {
@@ -189,36 +162,4 @@ section.scn {
     font-size: 1.1rem;
     line-height: 1.6;
     word-spacing: 1px;
-}
-
-.main-shoes-recommended {
-    margin: 40px 0;
-}
-
-.main-recommended-list {
-    padding: 0;
-    display: flex;
-    gap: 1rem;
-}
-
-.main-recommended-item {
-    width: 200px;
-}
-
-.main-recommended-item h4 {
-    font-size: 1.2rem;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-.main-recommended-item h5 {
-    font-weight: 1.2rem;
-    margin: 0;
-}
-
-.main-recommended-item button {
-    font-size: 1rem;
-    clip-path: unset;
-    width: 100%;
 }
