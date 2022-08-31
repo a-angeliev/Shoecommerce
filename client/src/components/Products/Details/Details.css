@@ -105,7 +105,7 @@ section.scn {
 }
 
 .main-shoe-button {
-    background-color: rgb(186, 46, 128);
+    background-color: var(--main-color);
     color: #fff;
 
     border: none;
