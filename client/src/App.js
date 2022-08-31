@@ -41,7 +41,7 @@ function App() {
 
       {/* <!-- Footer --> */}
 
-      {/* <Footer /> */}
+      <Footer />
 
       {/* <!-- Copyright --> */}
 
