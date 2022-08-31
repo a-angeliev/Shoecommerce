@@ -1,3 +1,5 @@
+import { Recommended } from './Recommended/Recommended';
+
 import './Details.css';
 
 export const Details = () => {
@@ -93,7 +95,7 @@ export const Details = () => {
                     <img src="https://static.nike.com/a/images/w_1920,c_limit,f_auto,q_auto/6a6f0afc-1bc0-4742-8772-02e4068de99e/image.jpg"
                         alt="Jordan" />
                 </section>
-                
+                <Recommended />
                 <section className="main-shoe-reviews scn">
                 </section>
             </div>

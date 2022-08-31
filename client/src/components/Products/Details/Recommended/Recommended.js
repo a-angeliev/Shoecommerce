@@ -1,4 +1,6 @@
-const Recommended = () => {
+import './Recommended.css';
+
+export const Recommended = () => {
     return (
         <section className="main-shoes-recommended scn">
             <h2 className="main-recommended-title">
