@@ -194,6 +194,15 @@ section.scn {
         height: 40px;
     }
 
+    .main-more-text-content {
+        padding: 30px;
+    }
+
+    .main-more-title::before,
+    .main-more-title::after {
+        width: 22%;
+    }
+
     .main-shoe-img-item {
         width: 250px;
         height: 250px;
