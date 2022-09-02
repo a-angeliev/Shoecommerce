@@ -2,11 +2,15 @@ import { getUserData } from '../utils/util';
 
 const host = 'http://localhost:5000';
 
-async function request(method, url, data) {
+async function request(method, url, data, abortControllerSignal) {
     const options = {
         method,
         headers: {},
     };
+
+    if (abortControllerSignal !== undefined) {
+        options.signal = abortControllerSignal;
+    }
 
     if (data !== undefined) {
         options.headers['Content-Type'] = 'application/json';
