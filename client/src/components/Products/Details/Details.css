@@ -166,6 +166,7 @@ section.scn {
 
 @media only screen and (max-width: 600px) {
 
+    .main-shoe,
     .main-shoe-info,
     .main-shoe-more-info.scn>img {
         width: 100%;
@@ -175,5 +176,10 @@ section.scn {
     .main-shoe-colors.scn,
     .main-recommended-list {
         flex-direction: column;
+    }
+
+    .main-wrapper,
+    .main-details {
+        margin-top: 0;
     }
 }
