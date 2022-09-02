@@ -1,0 +1,34 @@
+{
+    "product_id": "1",
+    "title": "Air Jordan XXXVI FS",
+    "description": "Next up in the iconic AJ franchise: a wearable expression of the drive and energy that sparked a basketball revolution. Its design is minimal but durable, resulting in one of the lightest Air Jordan game shoes to date. Equipped with a full-length Zoom Air Strobel unit stacked over a Zoom Air unit in the forefoot, you'll get energy return and elite responsiveness when you need it. Step on the court with the confidence that whatever you do—it's light work.",
+    "price": "369",
+    "brand": "Nike",
+    "gender": "male",
+    "category": "shoes",
+    "quantity": 10,
+    "color": [
+        "white",
+        "red",
+        "blue",
+        "green",
+        "black"
+    ],
+    "size": [
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45"
+    ],
+    "images": [
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/f999338b-b2e7-40bc-8737-1b3a93dc5706/air-jordan-xxxvi-fs-basketball-shoes-BdpjNf.png",
+        "https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/b3862d6f-d51b-4a56-b9e9-b3d10f37acce/air-jordan-xxxvi-fs-basketball-shoes-BdpjNf.png",
+        "https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/73a3c686-bcfc-4d35-8c07-f3fef164705d/air-jordan-xxxvi-fs-basketball-shoes-BdpjNf.png",
+        "https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/bdb9a600-174d-428e-a981-f6b7233d7cd1/air-jordan-xxxvi-fs-basketball-shoes-BdpjNf.png",
+        "https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/572ea72c-66d3-4be4-a940-f161fda01e1a/air-jordan-xxxvi-fs-basketball-shoes-BdpjNf.png",
+        "https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/9ee28f6b-be55-400e-af9c-d6419676be5a/air-jordan-xxxvi-fs-basketball-shoes-BdpjNf.png",
+        "https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/a427af8a-b5fa-43c2-964c-743aae124d9c/air-jordan-xxxvi-fs-basketball-shoes-BdpjNf.png"
+    ]
+}
