@@ -168,14 +168,21 @@ section.scn {
 
     .main-shoe,
     .main-shoe-info,
+    .main-shoe-button,
     .main-shoe-more-info.scn>img {
         width: 100%;
     }
 
+    .main-shoe-info {
+        padding: 30px;
+    }
+
     .main-shoe-content.scn,
     .main-shoe-colors.scn,
-    .main-recommended-list {
+    .main-recommended-list,
+    .main-shoe-images-list {
         flex-direction: column;
+        align-items: center;
     }
 
     .main-wrapper,
