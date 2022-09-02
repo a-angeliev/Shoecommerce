@@ -163,3 +163,17 @@ section.scn {
     line-height: 1.6;
     word-spacing: 1px;
 }
+
+@media only screen and (max-width: 600px) {
+
+    .main-shoe-info,
+    .main-shoe-more-info.scn>img {
+        width: 100%;
+    }
+
+    .main-shoe-content.scn,
+    .main-shoe-colors.scn,
+    .main-recommended-list {
+        flex-direction: column;
+    }
+}
