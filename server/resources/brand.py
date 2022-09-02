@@ -10,6 +10,7 @@ from schemas.response.brand import CreateBrandResponseSchema
 from utils.decorators import validate_schema, token_required, permission_required
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 import cloudinary
@@ -17,6 +18,7 @@ import cloudinary.uploader
 import cloudinary.api
 
 config = cloudinary.config(secure=True)
+
 
 class Brand(Resource):
     @validate_schema(CreateBrandRequestSchema)
@@ -31,12 +33,9 @@ class Brand(Resource):
 
         # return jsonify(upload_result)
 
-
         brand = BrandManager.create(request.get_json())
         schema = CreateBrandResponseSchema()
         return schema.dumps(brand)
-
-
 
     def get(self):
         brand_name = request.args.get("brand")
