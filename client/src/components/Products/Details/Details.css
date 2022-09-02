@@ -185,6 +185,29 @@ section.scn {
         align-items: center;
     }
 
+    .main-shoe-colors.scn {
+        height: 100px;
+        margin: 20px 0;
+    }
+
+    .main-shoe-sizes {
+        height: 40px;
+    }
+
+    .main-shoe-img-item {
+        width: 250px;
+        height: 250px;
+    }
+
+    .main-recommended-title {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .main-recommended-item {
+        width: 250px;
+    }
+
     .main-wrapper,
     .main-details {
         margin-top: 0;
