@@ -11,7 +11,6 @@ config = cloudinary.config(secure=True)
 
 
 class Cloudinary:
-
     @staticmethod
     def upload_img(uploaded_file):
         upload_result = cloudinary.uploader.upload(uploaded_file)

@@ -6,7 +6,6 @@ from models import CategoryModel
 
 
 class CategoryManager:
-
     @staticmethod
     def create(category_data):
         new_category = CategoryModel(**category_data)

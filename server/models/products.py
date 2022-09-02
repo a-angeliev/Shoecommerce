@@ -16,6 +16,7 @@ class ProductsModel(db.Model):
     brand_id = db.Column(db.Integer, db.ForeignKey(BrandModel.id), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey(CategoryModel.id), nullable=False)
 
+
 class ProductImages(db.Model):
     __tablename__ = "product_images"
     id = db.Column(db.Integer, primary_key=True)

@@ -9,7 +9,6 @@ from utils.decorators import permission_required, validate_schema
 
 
 class Category(Resource):
-
     @staticmethod
     @permission_required(RoleType.admin)
     @validate_schema(CreateCategoryRequestSchema)
