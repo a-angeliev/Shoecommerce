@@ -2,6 +2,7 @@ from db import db
 from models.enums import GenderType
 from models.brands import BrandModel
 
+
 class ProductsModel(db.Model):
     __tablename__ = "products"
     id = db.Column(db.Integer, primary_key=True)

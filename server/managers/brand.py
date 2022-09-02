@@ -19,3 +19,13 @@ class BrandManager:
             else:
                 InternalServerError("Server is unavailable.")
         return brand
+
+    @staticmethod
+    def get_all():
+        brands = BrandModel.query.all()
+        return brands
+
+    @staticmethod
+    def get_by_name(brand_name):
+        brands = BrandModel.query.filter_by(name=brand_name).one()
+        return brands

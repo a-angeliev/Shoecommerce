@@ -5,7 +5,7 @@ from flask import request, jsonify, make_response
 from werkzeug.exceptions import BadRequest, Forbidden, Unauthorized
 
 from managers.auth import AuthManager
-from models import UsersModel
+from models import UsersModel, RoleType
 
 
 def validate_schema(schema_name):
@@ -45,3 +45,32 @@ def token_required(f):
         return f(current_user, *args, **kwargs)
 
     return decorator
+
+
+def permission_required(permission):
+    def wrapper(fucn):
+        def decorator(*args, **kwargs):
+            token = None
+
+            if "x-access-token" in request.headers:
+                token = request.headers["x-access-token"]
+                print(token)
+            if not token:
+                return make_response(jsonify({"message": "A valid token is missing!"}), 401)
+
+            try:
+
+                user_id = AuthManager.decode_token(token)
+                current_user = UsersModel.query.filter_by(id=user_id).first()
+            except:
+                return make_response(jsonify({"message": "Invalid token!"}), 401)
+
+            if current_user.role != RoleType[permission]:
+                raise Forbidden("You must be admin to have access to this resource")
+
+            return fucn(*args, **kwargs)
+
+        return decorator
+
+    return wrapper
+
