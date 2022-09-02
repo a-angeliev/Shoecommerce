@@ -24,5 +24,5 @@ class Brand(Resource):
                 schema = CreateBrandResponseSchema()
                 return schema.dumps(brands)
             except:
-                raise BadRequest("There is no brand with that name")
+                raise BadRequest("Th    ere is no brand with that name")
         raise BadRequest("You should use query parameters, check the documentation!")
