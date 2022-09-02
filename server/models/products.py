@@ -1,4 +1,5 @@
 from db import db
+from models.category import CategoryModel
 from models.enums import GenderType
 from models.brands import BrandModel
 
@@ -13,7 +14,7 @@ class ProductsModel(db.Model):
     gender = db.Column(db.Enum(GenderType), nullable=False)
     images = db.relationship("ProductImages", backref="product", lazy="select")
     brand_id = db.Column(db.Integer, db.ForeignKey(BrandModel.id), nullable=False)
-
+    category_id = db.Column(db.Integer, db.ForeignKey(CategoryModel.id), nullable=False)
 
 class ProductImages(db.Model):
     __tablename__ = "product_images"
