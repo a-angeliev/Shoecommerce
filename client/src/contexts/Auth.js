@@ -23,6 +23,10 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
+/**
+ *
+ * @returns { { user: {}, addUser: ({ email: string, password: string}) => void, logout: () => void, isAuthenticated: boolean} }
+ */
 export const useAuthContext = () => {
     const authState = useContext(AuthContext);
 

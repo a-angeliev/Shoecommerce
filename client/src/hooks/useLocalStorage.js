@@ -1,5 +1,10 @@
 import { useState } from 'react';
-
+/**
+ * 
+ * @param { string } key 
+ * @param { {} || null } intitialValue 
+ * @returns 
+ */
 const useLocalStorage = (key, intitialValue) => {
     const [state, setState] = useState(() => {
         try {
@@ -13,8 +18,8 @@ const useLocalStorage = (key, intitialValue) => {
 
     const setUser = (value) => {
         try {
-            localStorage.setItem(key, JSON.stringify(value));
-            setState(value);
+            localStorage.setItem(key, value);
+            setState(JSON.parse(value));
         } catch (error) {
             console.log(error);
         }
