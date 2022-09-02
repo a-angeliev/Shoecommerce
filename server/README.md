@@ -3,7 +3,7 @@
 ># ENDPOINTS  
 >
 >> ### USERS
->>"/lgoin"   ==> POST  
+>>"/login"   ==> POST  
 >"/register"  ==> POST  
 >"/user/:id" ==> PUT DELETE GET  
 >"/user/:id/orders" ==> GET  
@@ -51,6 +51,7 @@ The REST API to the app is described below.
 - [Register](#register)
 - [Login](#login)
 - [User Info and Edit](#user-info-and-edit)
+- [Brand](#brand)
 
 >## Register
 >### Request
@@ -116,7 +117,7 @@ The REST API to the app is described below.
 >``` 
 >### Response
 > ```json
->"{\"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjM0LCJleHAiOjE2NzA0Mzg4OTd9.YVu0irTJl3ZOxdharUiMipaNhHQkAFe3RMd3JCD6iyc\", \"user_id\": 34, \"role\": \"user\"}"
+> "{\"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjM0LCJleHAiOjE2NzA0Mzg4OTd9.YVu0irTJl3ZOxdharUiMipaNhHQkAFe3RMd3JCD6iyc\", \"user_id\": 34, \"role\": \"user\"}"
 >```
 > Server validations are:
 > - Must have sent all fields(email and password)
@@ -149,13 +150,13 @@ The REST API to the app is described below.
 >`[GET] "/user/:id_"`   
 >### Response
 > ```json
->"{\"user_data\": {\"f_name\": \"newName1\", \"l_name\": \"newName1\", \"phone\": 1111111}, \"id\": 35, \"email\": \"zrd@zdr2.com\"}"
+> "{\"user_data\": {\"f_name\": \"newName1\", \"l_name\": \"newName1\", \"phone\": 1111111}, \"id\": 35, \"email\": \"zrd@zdr2.com\"}"
 >```
 > Server validations are:
-> - Reuqest must have "x-access-token" Header.
+> - Request must have "x-access-token" Header.
 > - "x-access-token" value must be with the same id after decode.
 > 
-> Example error massages If you try to take other user id data:
+> Example error messages If you try to take other user id data:
 > ```json
 > {
 >    "message": "You dont have permission to this resource!"
@@ -187,7 +188,7 @@ The REST API to the app is described below.
 > - Request must have "x-access-token" Header.
 > - "x-access-token" value must be with the same id after decode.   
 > 
->Example error massages If don't have "x-access-token":
+>Example error messages If don't have "x-access-token":
 > ```json
 > {
 >    "message": "A valid token is missing!"
@@ -203,5 +204,16 @@ The REST API to the app is described below.
 >            ]
 >        }
 >    }
+> }
+>```
+
+>## Brand
+>### Request
+>`[POST] "/brand"`
+> ```json
+> {
+>    "name": "Puma",
+>    "description": "some description",
+>    "logo_url": "https://somesdurl.com"
 > }
 >```

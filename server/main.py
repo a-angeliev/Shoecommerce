@@ -39,7 +39,10 @@ def apply_caching(response):
 
 @app.after_request
 def close_request(response):
-    db.session.commit()
+    try:
+        db.session.commit()
+    except:
+        return response
     return response
 
 

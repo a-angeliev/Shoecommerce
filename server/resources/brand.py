@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, jsonify
 from flask_restful import Resource
 from werkzeug.exceptions import BadRequest
 
@@ -9,14 +9,34 @@ from schemas.request.brand import CreateBrandRequestSchema
 from schemas.response.brand import CreateBrandResponseSchema
 from utils.decorators import validate_schema, token_required, permission_required
 
+from dotenv import load_dotenv
+load_dotenv()
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+config = cloudinary.config(secure=True)
 
 class Brand(Resource):
     @validate_schema(CreateBrandRequestSchema)
     @permission_required(RoleType.admin)
     def post(self):
+        # uploaded_files = request.files.get('file', '')
+        # print(uploaded_files)
+        # a = request
+        # print(a)
+        #
+        # upload_result = cloudinary.uploader.upload(uploaded_files)
+
+        # return jsonify(upload_result)
+
+
         brand = BrandManager.create(request.get_json())
         schema = CreateBrandResponseSchema()
         return schema.dumps(brand)
+
+
 
     def get(self):
         brand_name = request.args.get("brand")

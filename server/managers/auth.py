@@ -23,5 +23,3 @@ class AuthManager:
             raise BadRequest("Token expired")
         except jwt.InvalidTokenError:
             raise BadRequest("Invalid Token")
-
-

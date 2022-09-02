@@ -56,7 +56,9 @@ def permission_required(permission):
                 token = request.headers["x-access-token"]
                 print(token)
             if not token:
-                return make_response(jsonify({"message": "A valid token is missing!"}), 401)
+                return make_response(
+                    jsonify({"message": "A valid token is missing!"}), 401
+                )
 
             try:
 
@@ -73,4 +75,3 @@ def permission_required(permission):
         return decorator
 
     return wrapper
-

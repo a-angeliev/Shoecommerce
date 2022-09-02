@@ -1,5 +1,5 @@
 from psycopg2.errorcodes import UNIQUE_VIOLATION
-from werkzeug.exceptions import BadRequest, InternalServerError
+from werkzeug.exceptions import InternalServerError, BadRequest
 
 from db import db
 from models.brands import BrandModel
@@ -15,7 +15,7 @@ class BrandManager:
             print(brand.products)
         except Exception as ex:
             if ex.orig.pgcode == UNIQUE_VIOLATION:
-                raise BadRequest("Please login")
+                raise BadRequest("Brand with this name already exist.")
             else:
                 InternalServerError("Server is unavailable.")
         return brand
