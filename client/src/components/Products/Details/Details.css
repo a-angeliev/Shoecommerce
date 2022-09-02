@@ -163,3 +163,62 @@ section.scn {
     line-height: 1.6;
     word-spacing: 1px;
 }
+
+@media only screen and (max-width: 600px) {
+
+    .main-shoe,
+    .main-shoe-info,
+    .main-shoe-button,
+    .main-shoe-more-info.scn>img {
+        width: 100%;
+    }
+
+    .main-shoe-info {
+        padding: 30px;
+    }
+
+    .main-shoe-content.scn,
+    .main-shoe-colors.scn,
+    .main-recommended-list,
+    .main-shoe-images-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-shoe-colors.scn {
+        height: 100px;
+        margin: 20px 0;
+    }
+
+    .main-shoe-sizes {
+        height: 40px;
+    }
+
+    .main-more-text-content {
+        padding: 30px;
+    }
+
+    .main-more-title::before,
+    .main-more-title::after {
+        width: 22%;
+    }
+
+    .main-shoe-img-item {
+        width: 250px;
+        height: 250px;
+    }
+
+    .main-recommended-title {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .main-recommended-item {
+        width: 250px;
+    }
+
+    .main-wrapper,
+    .main-details {
+        margin-top: 0;
+    }
+}
