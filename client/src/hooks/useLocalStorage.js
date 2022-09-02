@@ -1,5 +1,10 @@
 import { useState } from 'react';
-
+/**
+ * 
+ * @param { string } key 
+ * @param { {} || null } intitialValue 
+ * @returns 
+ */
 const useLocalStorage = (key, intitialValue) => {
     const [state, setState] = useState(() => {
         try {
