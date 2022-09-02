@@ -1,8 +1,8 @@
 import { useState } from 'react';
 /**
  * 
- * @param {*} key 
- * @param {*} intitialValue 
+ * @param { string } key 
+ * @param { {} || null } intitialValue 
  * @returns 
  */
 const useLocalStorage = (key, intitialValue) => {
