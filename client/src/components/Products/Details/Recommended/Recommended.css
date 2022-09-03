@@ -9,9 +9,10 @@
 .main-recommended-list {
     padding: 0;
     display: flex;
+
     flex-wrap: wrap;
-    gap: 1rem;
     justify-content: flex-start;
+    gap: 1rem;
 }
 
 .main-recommended-item {
@@ -21,6 +22,7 @@
 .main-recommended-item h4 {
     font-size: 1.2rem;
     overflow: hidden;
+
     white-space: nowrap;
     text-overflow: ellipsis;
 }
