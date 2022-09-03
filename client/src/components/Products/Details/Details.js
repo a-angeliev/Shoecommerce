@@ -47,10 +47,10 @@ export const Details = () => {
                                 <li className="main-shoe-color">blue</li>
                                 <li className="main-shoe-color">black</li>
                             </ul>
+                            <button className="main-shoe-button">
+                                Add to Cart
+                            </button>
                         </section>
-                        <button className="main-shoe-button">
-                            Add to Cart
-                        </button>
                     </article>
                 </section>
 
