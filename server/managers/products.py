@@ -1,28 +1,50 @@
+from flask import request
+
 from db import db
-from models.enums import GenderType
+from managers.brand import BrandManager
+from managers.category import CategoryManager
+from models import BrandModel, CategoryModel
+from models.enums import GenderType, RoleType
 from models.products import ProductsModel, ProductImages
+from schemas.request.product import CreateProductRequestSchema
+from utils.decorators import validate_schema
 
 
 class ProductManager:
     @staticmethod
-    def create_product():
-        p = ProductsModel(
-            title="sadsd",
-            description="asdsd",
-            price=10.0,
-            discount=5.0,
-            gender=GenderType["man"],
-        )
-        img1 = ProductImages(img_url="https://someurl1.com")
-        img2 = ProductImages(img_url="https://someurl2.com")
+    def create_product(product_data):
+        images = []
+        for image in product_data["images"]:
+            img = ProductImages(img_url=image)
+            images.append(img)
 
-        p.images = [img2, img1]
-        db.session.add(p)
-        db.session.add(img1)
-        db.session.add(img2)
+        brand_q = BrandManager.get_by_name_query(product_data["brand_name"])
+        category_q = CategoryManager.get_by_title_query(product_data["category_title"])
+        brand = brand_q.first()
+        category = category_q.first()
+        with db.session.no_autoflush:
 
-        db.session.commit()
-        return None
+            product = ProductsModel(
+                title=product_data["title"],
+                description=product_data["description"],
+                price=product_data["price"],
+                discount=product_data["discount"],
+                gender=GenderType[product_data["gender"]],
+            )
+            brand.products.append(product)
+            category.products.append(product)
+
+            for img in images:
+                product.images.append(img)
+
+        try:
+
+            db.session.add_all([product, category, brand])
+            db.session.flush()
+        except:
+            print("error")
+
+        return product
 
     @staticmethod
     def get_one():

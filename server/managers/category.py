@@ -18,3 +18,21 @@ class CategoryManager:
             else:
                 InternalServerError("Server is unavailable.")
         return new_category
+
+    # TODO
+    # Add edit, delete, get products from category and get all categories
+
+    @staticmethod
+    def get_all():
+        categories = CategoryModel.query.all()
+        return categories
+
+    @staticmethod
+    def get_by_name(category_title):
+        category = CategoryModel.query.filter_by(title=category_title).one()
+        return category
+
+    @staticmethod
+    def get_by_title_query(category_title):
+        category = CategoryModel.query.filter_by(title=category_title)
+        return category
