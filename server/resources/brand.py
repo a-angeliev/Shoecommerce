@@ -47,7 +47,7 @@ class Brand(Resource):
                 return schema.dumps(brands, many=True)
             except:
                 raise BadRequest(
-                    "There is problem with server, please excuse us. The problem will be fix as soon as possibl!"
+                    "There is problem with server, please excuse us. The problem will be fix as soon as possible!"
                 )
 
         elif brand_name:
@@ -57,3 +57,6 @@ class Brand(Resource):
             except:
                 raise BadRequest("There is no brand with that name")
         raise BadRequest("You should use query parameters, check the documentation!")
+
+        # TODO
+        # Implement Delete func

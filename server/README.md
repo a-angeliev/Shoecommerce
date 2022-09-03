@@ -1,9 +1,8 @@
 
-
 ># ENDPOINTS  
 >
 >> ### USERS
->>"/login"   ==> POST  
+>>"/login"   ==> POST :white_check_mark:   
 >"/register"  ==> POST  
 >"/user/:id" ==> PUT DELETE GET  
 >"/user/:id/orders" ==> GET  

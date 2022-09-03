@@ -46,7 +46,7 @@ class UserManager:
         try:
             db.session.add(user_data)
             db.session.add(user)
-            # user.user_data = user_data
+            user.user_data = user_data
             db.session.flush()
         except Exception as ex:
             if ex.orig.pgcode == UNIQUE_VIOLATION:
@@ -72,3 +72,6 @@ class UserManager:
         if user is None:
             raise NotFound("There is no user with that id.")
         return user
+
+    # TODO
+    # Create Used delete functionality.
