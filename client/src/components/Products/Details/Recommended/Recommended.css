@@ -2,6 +2,10 @@
     margin: 40px 0;
 }
 
+.main-recommended-title {
+    margin: 20px 0;
+}
+
 .main-recommended-list {
     padding: 0;
     display: flex;
