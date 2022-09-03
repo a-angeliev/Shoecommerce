@@ -10,7 +10,7 @@ class CreateProductRequestSchema(Schema):
     images = fields.List(fields.String())
     brand_name = fields.String(required=True)
     category_title = fields.String(required=True)
-
+    
     @validates_schema
     def validate_numbers(self, data, **kwargs):
         if data["price"] < data["discount"]:
