@@ -1,17 +1,21 @@
 from marshmallow import Schema, fields
 
+
 class ImagesSchemaNested(Schema):
     id = fields.Integer(required=True)
     img_url = fields.String(required=True)
+
 
 class BrandSchemaNested(Schema):
     id = fields.Integer(required=True)
     name = fields.String(required=True)
     logo_url = fields.String(required=True)
 
+
 class CategorySchemaNested(Schema):
     id = fields.Integer(required=True)
     title = fields.String(required=True)
+
 
 class CreateProductResponseSchema(Schema):
     id = fields.Integer(required=True)

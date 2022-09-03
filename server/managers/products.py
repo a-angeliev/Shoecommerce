@@ -12,21 +12,25 @@ from utils.decorators import validate_schema
 
 class ProductManager:
     @staticmethod
-
     def create_product(product_data):
         images = []
-        for image in product_data['images']:
+        for image in product_data["images"]:
             img = ProductImages(img_url=image)
             images.append(img)
 
-
-        brand_q = BrandManager.get_by_name_query(product_data['brand_name'])
-        category_q = CategoryManager.get_by_title_query(product_data['category_title'])
+        brand_q = BrandManager.get_by_name_query(product_data["brand_name"])
+        category_q = CategoryManager.get_by_title_query(product_data["category_title"])
         brand = brand_q.first()
         category = category_q.first()
         with db.session.no_autoflush:
 
-            product = ProductsModel(title= product_data['title'], description=product_data['description'], price=product_data['price'], discount=product_data['discount'], gender=GenderType[product_data['gender']])
+            product = ProductsModel(
+                title=product_data["title"],
+                description=product_data["description"],
+                price=product_data["price"],
+                discount=product_data["discount"],
+                gender=GenderType[product_data["gender"]],
+            )
             brand.products.append(product)
             category.products.append(product)
 
@@ -35,11 +39,10 @@ class ProductManager:
 
         try:
 
-            db.session.add_all([product, category,brand])
+            db.session.add_all([product, category, brand])
             db.session.flush()
         except:
             print("error")
-
 
         return product
 
