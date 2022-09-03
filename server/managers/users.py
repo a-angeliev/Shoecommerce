@@ -72,3 +72,6 @@ class UserManager:
         if user is None:
             raise NotFound("There is no user with that id.")
         return user
+
+    # TODO
+    # Create Used delete functionality.

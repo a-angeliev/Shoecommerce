@@ -16,3 +16,5 @@ class Category(Resource):
         new_category = CategoryManager.create(request.get_json())
         schema = CreateCategoryResponseSchema()
         return schema.dumps(new_category)
+
+

@@ -20,6 +20,9 @@ class BrandManager:
                 InternalServerError("Server is unavailable.")
         return brand
 
+    #TODO
+    #Delete and edit func
+
     @staticmethod
     def get_all():
         brands = BrandModel.query.all()

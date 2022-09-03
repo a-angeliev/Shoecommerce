@@ -18,3 +18,6 @@ class CategoryManager:
             else:
                 InternalServerError("Server is unavailable.")
         return new_category
+
+    # TODO
+    # Add edit, delete, get products from category and get all categories
