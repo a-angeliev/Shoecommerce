@@ -7,24 +7,24 @@ section.scn {
 }
 
 .main-wrapper {
-    max-width: 1200px;
+    max-width: 1240px;
     margin: 80px auto;
+    padding: 20px;
 }
 
 .main-shoe {
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
     object-fit: cover;
 }
 
 .main-shoe-content {
     display: flex;
-    align-items: flex-start;
 }
 
 .main-shoe-info {
-    width: 700px;
-    padding-left: 100px;
+    width: 800px;
+    padding-left: 50px;
 }
 
 .main-shoe-name {
@@ -41,19 +41,22 @@ section.scn {
 .main-shoe-price {
     font-weight: normal;
     font-size: 1.2rem;
-    margin-top: 35px;
+    margin-top: 25px;
+
+    display: flex;
+    justify-content: space-between;
 }
 
 .main-shoe-description {
-    margin-top: 40px;
+    margin-top: 30px;
     line-height: 1.6;
 }
 
 .main-shoe-colors {
     display: flex;
     align-items: center;
-    height: 80px;
     justify-content: space-between;
+    margin-top: 20px;
 }
 
 .main-shoe-size {
@@ -68,10 +71,12 @@ section.scn {
 }
 
 .main-shoe-sizes {
-    height: 30px;
+    width: 54px;
+    height: 34px;
+    margin-left: 5px;
+
     font-size: 1.2rem;
     cursor: pointer;
-    width: 54px;
 }
 
 .main-shoe-color-list {
@@ -79,7 +84,7 @@ section.scn {
     gap: 1.4rem;
 
     padding: 0;
-    margin: 30px 0;
+    margin-left: 10px;
 }
 
 .main-shoe-color {
@@ -116,7 +121,6 @@ section.scn {
     font-weight: bold;
     text-transform: uppercase;
 
-    margin-top: 30px;
     padding: 10px 30px;
 
     cursor: pointer;
@@ -133,7 +137,7 @@ section.scn {
 }
 
 .main-shoe-more-info img {
-    width: 1200px;
+    width: 100%;
     height: 220px;
     object-fit: cover;
 }
@@ -164,6 +168,71 @@ section.scn {
     word-spacing: 1px;
 }
 
+@media only screen and (max-width: 1240px) {
+
+    .main-details,
+    .main-wrapper {
+        margin-top: 0;
+    }
+
+    .main-shoe-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-shoe-content.scn>img {
+        width: 100%;
+        height: 500px;
+
+        background-size: 10px;
+        object-fit: cover;
+    }
+
+    .main-shoe-info {
+        width: 100%;
+        padding: unset;
+    }
+
+    .main-shoe-color-list {
+        margin: 10px 0 10px 20px;
+    }
+
+    .main-shoe-button {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .main-shoe-colors {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .main-more-title::before,
+    .main-more-title::after {
+        width: 34%;
+    }
+
+    .main-recommended-title {
+        text-align: center;
+    }
+
+    .main-shoe-images-list,
+    .main-recommended-list {
+        gap: 3rem;
+        justify-content: center;
+    }
+
+    .main-shoe-img-item,
+    .main-recommended-item {
+        flex-basis: 30%;
+    }
+
+    .main-shoe-img-item {
+        height: 250px;
+    }
+}
+
 @media only screen and (max-width: 600px) {
 
     .main-shoe,
@@ -175,6 +244,11 @@ section.scn {
 
     .main-shoe-info {
         padding: 30px;
+    }
+
+    .main-shoe-price {
+        flex-direction: column;
+        gap: 1rem;
     }
 
     .main-shoe-content.scn,
@@ -204,8 +278,8 @@ section.scn {
     }
 
     .main-shoe-img-item {
-        width: 250px;
-        height: 250px;
+        width: 180px;
+        height: 180px;
     }
 
     .main-recommended-title {

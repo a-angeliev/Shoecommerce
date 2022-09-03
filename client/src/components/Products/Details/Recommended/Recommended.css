@@ -2,19 +2,27 @@
     margin: 40px 0;
 }
 
+.main-recommended-title {
+    margin: 20px 0;
+}
+
 .main-recommended-list {
     padding: 0;
     display: flex;
+
+    flex-wrap: wrap;
+    justify-content: flex-start;
     gap: 1rem;
 }
 
 .main-recommended-item {
-    width: 200px;
+    width: 186px;
 }
 
 .main-recommended-item h4 {
     font-size: 1.2rem;
     overflow: hidden;
+
     white-space: nowrap;
     text-overflow: ellipsis;
 }

@@ -20,15 +20,6 @@ export const Details = () => {
                         </h2>
                         <h3 className="main-shoe-price">
                             $369.99
-                        </h3>
-                        <p className="main-shoe-description">
-                            Next up in the iconic AJ franchise: a wearable expression of the drive and energy that sparked a
-                            basketball revolution. Its design is minimal but durable, resulting in one of the lightest Air
-                            Jordan game shoes to date. Equipped with a full-length Zoom Air Strobel unit stacked over a Zoom
-                            Air unit in the forefoot, you'll get energy return and elite responsiveness when you need it.
-                            Step on the court with the confidence that whatever you do—it's light work.
-                        </p>
-                        <section className="main-shoe-colors scn">
                             <span className="main-shoe-size">
                                 <label htmlFor="size">Choose a size:</label>
 
@@ -41,16 +32,25 @@ export const Details = () => {
                                     <option value="45">45</option>
                                 </select>
                             </span>
+                        </h3>
+                        <p className="main-shoe-description">
+                            Next up in the iconic AJ franchise: a wearable expression of the drive and energy that sparked a
+                            basketball revolution. Its design is minimal but durable, resulting in one of the lightest Air
+                            Jordan game shoes to date. Equipped with a full-length Zoom Air Strobel unit stacked over a Zoom
+                            Air unit in the forefoot, you'll get energy return and elite responsiveness when you need it.
+                            Step on the court with the confidence that whatever you do—it's light work.
+                        </p>
+                        <section className="main-shoe-colors scn">
                             <ul className="main-shoe-color-list">
                                 <li className="main-shoe-color">white</li>
                                 <li className="main-shoe-color">red</li>
                                 <li className="main-shoe-color">blue</li>
                                 <li className="main-shoe-color">black</li>
                             </ul>
+                            <button className="main-shoe-button">
+                                Add to Cart
+                            </button>
                         </section>
-                        <button className="main-shoe-button">
-                            Add to Cart
-                        </button>
                     </article>
                 </section>
 
