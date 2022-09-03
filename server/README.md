@@ -2,14 +2,14 @@
 ># ENDPOINTS  
 >
 >> ### USERS
->>"/login"   ==> POST :white_check_mark:   
->"/register"  ==> POST  
->"/user/:id" ==> PUT DELETE GET  
+>>"/login"   ==> POST   :white_check_mark:   
+>"/register"  ==> POST  :white_check_mark:   
+>"/user/:id" ==> PUT GET    :white_check_mark:   DELETE :heavy_multiplication_x:   
 >"/user/:id/orders" ==> GET  
 > "/user/:id/comments" ==> GET  
 > 
 >> ### PRODUCTS   
->>"/product" ==> POST              (?where:category_title="sport")
+>>"/product" ==> POST   :white_check_mark:      
 >"/product/:id" ==> PUT DELETE GET /PATCH/  
 >
 >>  ### COMMENTS
@@ -32,11 +32,11 @@
 >  "/discount/check" ==> POST  {discount: discount, isValid: true}
 >   
 >> ### CATEGORY 
->> "/category"  ==> GET | POST /ADMIN/  
+>> "/category"  ==> GET | POST /ADMIN/  :white_check_mark:   
 >  "/category/:id"  ==> GET PUT DELETE  /ADMIN/  
 > 
 >> ### BRAND
->> "/brand"  ==> GET | POST /ADMIN/  
+>> "/brand"  ==> GET | POST /ADMIN/    :white_check_mark:   
 >  "/brand/:id"  ==> GET PUT DELETE  /ADMIN/  
 
 ![Database schema](https://i.ibb.co/DMZmMtC/Shoecommerce-database-schema.png)
