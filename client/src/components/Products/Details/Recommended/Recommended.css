@@ -5,11 +5,13 @@
 .main-recommended-list {
     padding: 0;
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
+    justify-content: flex-start;
 }
 
 .main-recommended-item {
-    width: 200px;
+    width: 186px;
 }
 
 .main-recommended-item h4 {
