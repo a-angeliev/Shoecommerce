@@ -4,6 +4,7 @@
 
 .main-shoe-images-list {
     padding: 0;
+
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -12,6 +13,7 @@
 .main-shoe-img-item {
     width: 180px;
     height: 180px;
+    
     cursor: pointer;
     transition: all ease-in-out 0.25s;
 }
