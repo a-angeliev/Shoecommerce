@@ -17,8 +17,13 @@ class CategorySchemaNested(Schema):
     title = fields.String(required=True)
 
 
-# class ProductPairResponseSchema(Schema):
-#
+class ProductPairResponseSchema(Schema):
+    id = fields.Integer(required=True)
+    size = fields.Integer(required=True)
+    color = fields.String(required=True)
+    quantity = fields.Integer(required=True)
+
+
 class CreateProductResponseSchema(Schema):
     id = fields.Integer(required=True)
     title = fields.String(required=True)
@@ -27,6 +32,6 @@ class CreateProductResponseSchema(Schema):
     discount = fields.Float(required=True)
     gender = fields.String(required=True)
     images = fields.Nested(ImagesSchemaNested(), many=True)
-    # product_pair = fields.Nested()
+    pairs = fields.Nested(ProductPairResponseSchema(), required=True, many=True)
     brand = fields.Nested(BrandSchemaNested(), required=True)
     category = fields.Nested(CategorySchemaNested(), required=True)

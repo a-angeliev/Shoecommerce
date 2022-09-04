@@ -18,7 +18,7 @@ class CreateProductRequestSchema(Schema):
     images = fields.List(fields.String())
     brand_name = fields.String(required=True)
     category_title = fields.String(required=True)
-    product_pair = fields.List(fields.Nested(CreatePorductPairRequestSchema(), required=True), required=True)
+    pairs = fields.List(fields.Nested(CreatePorductPairRequestSchema(), required=True))
 
     @validates_schema
     def validate_numbers(self, data, **kwargs):

@@ -19,11 +19,11 @@ class ProductManager:
             images.append(img)
 
         product_pair = []
-        for obj in product_data['product_pair']:
+        for obj in product_data['pairs']:
             pair = ProductPair(**obj)
             product_pair.append(pair)
 
-        print(product_data['product_pair'])
+        print(product_data['pairs'])
         brand_q = BrandManager.get_by_name_query(product_data["brand_name"])
         category_q = CategoryManager.get_by_title_query(product_data["category_title"])
         brand = brand_q.first()
