@@ -31,4 +31,4 @@ class ProductPair(db.Model):
     size = db.Column(db.Integer, nullable=False)
     color = db.Column(db.Enum(PairColor), nullable=False)
     quantity = db.Column(db.Integer, default=0)
-    product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey("products.id"), nullable=False)

@@ -3,11 +3,14 @@ from marshmallow import Schema, fields, validate, ValidationError, validates_sch
 from models import PairColor, GenderType
 
 color_list = PairColor.list()
-gender_list  = GenderType.list()
+gender_list = GenderType.list()
+
+
 class CreatePorductPairRequestSchema(Schema):
     size = fields.Integer(required=True)
     color = fields.Str(validate=validate.OneOf(color_list))
     quantity = fields.Integer(required=True, validate=validate.Range(min=0))
+
 
 class CreateProductRequestSchema(Schema):
     title = fields.String(required=True, validate=validate.Length(max=255))
