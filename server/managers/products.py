@@ -62,3 +62,8 @@ class ProductManager:
             print(x.img_url)
         print(p.images)
         return None
+
+    @staticmethod
+    def get_all():
+        products = ProductsModel.query.all()
+        return products

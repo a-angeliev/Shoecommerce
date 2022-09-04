@@ -7,13 +7,13 @@ class ImagesSchemaNested(Schema):
 
 
 class BrandSchemaNested(Schema):
-    id = fields.Integer(required=True)
+    # id = fields.Integer(required=True)
     name = fields.String(required=True)
     logo_url = fields.String(required=True)
 
 
 class CategorySchemaNested(Schema):
-    id = fields.Integer(required=True)
+    # id = fields.Integer(required=True)
     title = fields.String(required=True)
 
 

@@ -16,3 +16,9 @@ class Products(Resource):
         product = ProductManager.create_product(request.get_json())
         schema = CreateProductResponseSchema()
         return schema.dumps(product)
+
+    @staticmethod
+    def get():
+        products = ProductManager.get_all()
+        schema = CreateProductResponseSchema()
+        return schema.dumps(products, many=True)
