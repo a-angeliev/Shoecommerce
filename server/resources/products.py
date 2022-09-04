@@ -22,3 +22,11 @@ class Products(Resource):
         products = ProductManager.get_all()
         schema = CreateProductResponseSchema()
         return schema.dumps(products, many=True)
+
+
+class Product(Resource):
+    @staticmethod
+    def get(id_):
+        product = ProductManager.get_one(id_)
+        schema = CreateProductResponseSchema()
+        return schema.dumps(product)

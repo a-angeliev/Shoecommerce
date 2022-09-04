@@ -56,12 +56,9 @@ class ProductManager:
         return product
 
     @staticmethod
-    def get_one():
-        p = ProductsModel.query.filter_by(id=1).one()
-        for x in p.images:
-            print(x.img_url)
-        print(p.images)
-        return None
+    def get_one(id):
+        product = ProductsModel.query.filter_by(id=id).first()
+        return product
 
     @staticmethod
     def get_all():
