@@ -17,7 +17,7 @@ class ProductManager:
         for image in product_data["images"]:
             img = ProductImages(img_url=image)
             images.append(img)
-
+        print(product_data['product_pair'])
         brand_q = BrandManager.get_by_name_query(product_data["brand_name"])
         category_q = CategoryManager.get_by_title_query(product_data["category_title"])
         brand = brand_q.first()

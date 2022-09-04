@@ -1,18 +1,22 @@
 import enum
 
+class BaseEnum(str, enum.Enum):
+    @classmethod
+    def list(cls):
+        return list(map(lambda c: c.value, cls))
 
-class RoleType(str, enum.Enum):
+class RoleType(BaseEnum):
     user = "user"
     admin = "admin"
 
 
-class GenderType(str, enum.Enum):
+class GenderType(BaseEnum):
     kid = "kid"
     man = "man"
     woman = "woman"
 
 
-class PairColor(str, enum.Enum):
+class PairColor(BaseEnum):
     black = "black"
     white = 'white'
     green = "green"
@@ -21,4 +25,6 @@ class PairColor(str, enum.Enum):
     gray = "gray"
     blue = "blue"
     pink = "pink"
+
+
 

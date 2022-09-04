@@ -10,7 +10,6 @@ from utils.decorators import validate_schema, permission_required, token_require
 
 class Products(Resource):
     @staticmethod
-    @token_required
     @permission_required(RoleType.admin)
     @validate_schema(CreateProductRequestSchema)
     def post():
