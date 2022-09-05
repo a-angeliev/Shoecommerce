@@ -9,7 +9,7 @@
 > "/user/:id/comments" ==> GET  
 > 
 >> ### PRODUCTS   
->>"/product" ==> POST   :white_check_mark:      
+>>"/products" ==> POST GET  :white_check_mark:      
 >"/product/:id" ==> PUT DELETE GET /PATCH/  
 >
 >>  ### COMMENTS
