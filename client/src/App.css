@@ -26,6 +26,12 @@
 }
 
 /* CSS */
+html,
+body,
+#root,
+.App {
+    height: 100%;
+}
 
 html::-webkit-scrollbar {
     width: 0.5rem;
