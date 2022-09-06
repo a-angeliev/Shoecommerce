@@ -1,6 +1,9 @@
+import { useRef } from "react";
+
+import { Auth } from "../Auth/Auth";
+
 import "./Navbar.css";
 
-import { useRef } from "react";
 export const Navbar = () => {
 
     const menuRef = useRef();
@@ -39,7 +42,6 @@ export const Navbar = () => {
         cartRef.current.classList.remove('active');
         userRef.current.classList.remove('active');
     }
-
 
     return (
         // Navbar
@@ -90,6 +92,7 @@ export const Navbar = () => {
 
             {/* <!-- User --> */}
 
+            <Auth userRef={userRef} />
             <div className="user" ref={userRef}>
                 <h2>Login Now</h2>
                 <input type="email" placeholder="Your Email" />
