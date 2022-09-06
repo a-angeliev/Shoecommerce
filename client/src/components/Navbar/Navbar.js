@@ -11,7 +11,7 @@ export const Navbar = () => {
         setActiveIcon('');
     }
 
-    const handleClick = (icon) => {
+    const handleIconClick = (icon) => {
         if (icon === activeIcon) {
             setActiveIcon('');
         } else {
@@ -36,10 +36,10 @@ export const Navbar = () => {
             {/* <!-- Icons --> */}
 
             <div className="header-icons">
-                <i className='bx bx-menu' id="menu-icon" onClick={() => handleClick('menu')}></i>
-                <i className='bx bx-search' id="search-icon" onClick={() => handleClick('search-box')}></i>
-                <i className='bx bx-cart-alt' id="cart-alt-icon" onClick={() => handleClick('cart')}></i>
-                <i className='bx bxs-user' id="user-icon" onClick={() => handleClick('user')}></i>
+                <i className='bx bx-menu' id="menu-icon" onClick={() => handleIconClick('menu')}></i>
+                <i className='bx bx-search' id="search-icon" onClick={() => handleIconClick('search-box')}></i>
+                <i className='bx bx-cart-alt' id="cart-alt-icon" onClick={() => handleIconClick('cart')}></i>
+                <i className='bx bxs-user' id="user-icon" onClick={() => handleIconClick('user')}></i>
             </div>
 
             {/* <!-- Search Box --> */}
