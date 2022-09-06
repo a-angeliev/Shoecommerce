@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom'
 
+import './Auth.css';
+
 export const Auth = ({ activeIcon }) => {
     const [isSignIn, setIsSignIn] = useState(true);
 
