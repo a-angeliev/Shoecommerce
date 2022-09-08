@@ -1,57 +1,117 @@
+import { Link } from "react-router-dom";
+
 import "./Products.css";
 
 export const Products = () => {
 
     return (
-        <section className="product" id="product">
-            <div className="heading">
-                <h1>Our <span>Products</span></h1>
+        <section class="catalog">
+            <div class="catalog-menu">
+                <div class="catalog-search">
+                    <input type="text" placeholder="Search Here" />
+                </div>
+                <div class="catalog-options">
+                    <ul>
+                        <li><Link to="">Male</Link></li>
+                        <li><Link to="">Female</Link></li>
+                        <li><Link to="">Children</Link></li>
+                    </ul>
+                </div>
             </div>
-            <div className="product-container">
-                <div className="box">
+            <div class="catalog-items-container">
+                <div class="box">
                     <img src="/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png"
                         alt="" />
-                    <div className="content">
-                        <h2>Nike Air Jordan 1 High</h2>
-                        <span>$230</span>
-                        <i className='bx bx-cart-alt'></i>
-                    </div>
                 </div>
-                <div className="box">
-                    <img src="/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png"
-                        alt="" />
-                    <div className="content">
-                        <h2>Nike Air Jordan 1 High</h2>
-                        <span>$230</span>
-                        <i className='bx bx-cart-alt'></i>
-                    </div>
+                <div class="content">
+                    <h1>Nike Air Jordan 1</h1>
+                    <span>$240</span>
+                    <i class='bx bx-info-circle'></i>
+                    <i class='bx bx-cart-alt'></i>
                 </div>
-                <div className="box">
+            </div>
+            <div class="catalog-items-container">
+                <div class="box">
                     <img src="/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png"
                         alt="" />
-                    <div className="content">
-                        <h2>Nike Air Jordan 1 High</h2>
-                        <span>$230</span>
-                        <i className='bx bx-cart-alt'></i>
-                    </div>
                 </div>
-                <div className="box">
-                    <img src="/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png"
-                        alt="" />
-                    <div className="content">
-                        <h2>Nike Air Jordan 1 High</h2>
-                        <span>$230</span>
-                        <i className='bx bx-cart-alt'></i>
-                    </div>
+                <div class="content">
+                    <h1>Nike Air Jordan 1</h1>
+                    <span>$240</span>
+                    <i class='bx bx-info-circle'></i>
+                    <i class='bx bx-cart-alt'></i>
                 </div>
-                <div className="box">
+            </div>
+            <div class="catalog-items-container">
+                <div class="box">
                     <img src="/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png"
                         alt="" />
-                    <div className="content">
-                        <h2>Nike Air Jordan 1 High</h2>
-                        <span>$230</span>
-                        <i className='bx bx-cart-alt'></i>
-                    </div>
+                </div>
+                <div class="content">
+                    <h1>Nike Air Jordan 1</h1>
+                    <span>$240</span>
+                    <i class='bx bx-info-circle'></i>
+                    <i class='bx bx-cart-alt'></i>
+                </div>
+            </div>
+            <div class="catalog-items-container">
+                <div class="box">
+                    <img src="/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png"
+                        alt="" />
+                </div>
+                <div class="content">
+                    <h1>Nike Air Jordan 1</h1>
+                    <span>$240</span>
+                    <i class='bx bx-info-circle'></i>
+                    <i class='bx bx-cart-alt'></i>
+                </div>
+            </div>
+            <div class="catalog-items-container">
+                <div class="box">
+                    <img src="/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png"
+                        alt="" />
+                </div>
+                <div class="content">
+                    <h1>Nike Air Jordan 1</h1>
+                    <span>$240</span>
+                    <i class='bx bx-info-circle'></i>
+                    <i class='bx bx-cart-alt'></i>
+                </div>
+            </div>
+            <div class="catalog-items-container">
+                <div class="box">
+                    <img src="/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png"
+                        alt="" />
+                </div>
+                <div class="content">
+                    <h1>Nike Air Jordan 1</h1>
+                    <span>$240</span>
+                    <i class='bx bx-info-circle'></i>
+                    <i class='bx bx-cart-alt'></i>
+                </div>
+            </div>
+            <div class="catalog-items-container">
+                <div class="box">
+                    <img src="/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png"
+                        alt="" />
+                </div>
+                <div class="content">
+                    <h1>Nike Air Jordan 1</h1>
+                    <span>$240</span>
+                    <i class='bx bx-info-circle'></i>
+                    <i class='bx bx-cart-alt'></i>
+                </div>
+            </div>
+            <div class="catalog-items-container">
+                <div class="box">
+                    <img src="/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png"
+                        alt="" />
+                </div>
+                <div class="content">
+                    <h1>Nike Air Jordan 1</h1>
+                    <span>$240</span>
+                    <i class='bx bx-info-circle'></i>
+                    <i class='bx bx-cart-alt'></i>
                 </div>
             </div>
         </section>
