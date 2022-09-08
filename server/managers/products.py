@@ -111,6 +111,6 @@ class ProductManager:
             product.is_deleted = True
             db.session.flush()
         except:
-            print("err")
+            raise("Problem with server")
 
         return "Product is deleted", 204
