@@ -16,6 +16,7 @@ class ProductsModel(db.Model):
     pairs = db.relationship("ProductPair", backref="product", lazy="select")
     brand_id = db.Column(db.Integer, db.ForeignKey(BrandModel.id), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey(CategoryModel.id), nullable=False)
+    is_deleted = db.Column(db.Boolean, default=False, nullable=False)
 
 
 class ProductImages(db.Model):

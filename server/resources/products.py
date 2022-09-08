@@ -30,3 +30,8 @@ class Product(Resource):
         product = ProductManager.get_one(id_)
         schema = CreateProductResponseSchema()
         return schema.dumps(product)
+
+    @staticmethod
+    def delete(id_):
+        response = ProductManager.delete_product(id_)
+        return response

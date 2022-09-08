@@ -2,7 +2,7 @@ from psycopg2.errorcodes import UNIQUE_VIOLATION
 from werkzeug.exceptions import BadRequest, InternalServerError
 
 from db import db
-from models import CategoryModel
+from models import CategoryModel, ProductsModel
 
 
 class CategoryManager:
@@ -24,8 +24,10 @@ class CategoryManager:
 
     @staticmethod
     def get_all():
-        categories = CategoryModel.query.all()
-        return categories
+        # categories_q = CategoryModel.query.join(CategoryModel.products).filter(ProductsModel.id > 91)
+        categories_q = ProductsModel.query.filter_by(id_deleted=True)
+        print(categories_q)
+        return categories_q.all()
 
     @staticmethod
     def get_by_name(category_title):

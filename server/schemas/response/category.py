@@ -11,6 +11,7 @@ class ProductCategoryResponseSchema(Schema):
     price = fields.Float(required=True)
     discount = fields.Float(required=True)
     images = fields.Nested(ProductImagesCategoryResponse(), many=True)
+    is_deleted = fields.Boolean()
 
 
 class CreateCategoryResponseSchema(Schema):

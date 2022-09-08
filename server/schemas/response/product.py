@@ -35,3 +35,4 @@ class CreateProductResponseSchema(Schema):
     pairs = fields.Nested(ProductPairResponseSchema(), required=True, many=True)
     brand = fields.Nested(BrandSchemaNested(), required=True)
     category = fields.Nested(CategorySchemaNested(), required=True)
+    is_deleted = fields.Boolean()
