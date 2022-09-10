@@ -1,7 +1,13 @@
 from resources.auth import Login
 from resources.brand import Brand
 from resources.category import Category
-from resources.products import Products, Product, ProductImages, ProductPairs
+from resources.products import (
+    Products,
+    Product,
+    ProductImages,
+    ProductPairs,
+    ProductPairEdit,
+)
 from resources.users import Register, User
 
 routes = (
@@ -12,6 +18,7 @@ routes = (
     (Product, "/products/product/<int:id_>"),
     (ProductImages, "/products/product/<int:id_>/images"),
     (ProductPairs, "/products/product/<int:id_>/pairs"),
+    (ProductPairEdit, "/products/product/<int:id_>/pairs/<int:pair_id>"),
     (Brand, "/brand"),
     (Category, "/category"),
 )

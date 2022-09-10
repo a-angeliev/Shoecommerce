@@ -1,7 +1,7 @@
 from flask import request
 from psycopg2.errorcodes import UNIQUE_VIOLATION
 
-from werkzeug.exceptions import NotFound, BadRequest, InternalServerError
+from werkzeug.exceptions import NotFound, BadRequest, InternalServerError, Conflict
 
 from db import db
 from managers.brand import BrandManager
@@ -92,7 +92,8 @@ class ProductManager:
         ).first()
         if not image:
             raise NotFound("There is not image with that id")
-
+        if not product:
+            raise NotFound("There is not product with that id")
         if image not in product.images:
             raise BadRequest(
                 f"Image with id: {image_id['id']} is not attached to product with id: {id}"
@@ -114,6 +115,13 @@ class ProductManager:
         product = ProductsModel.query.filter(
             ProductsModel.id == id, text("is_deleted is FALSE")
         ).first()
+        is_pair = ProductPair.query.filter_by(
+            size=pair_data["size"], color=pair_data["color"], product_id=id
+        ).first()
+        if is_pair:
+            raise Conflict(
+                f"Pair with color: {pair_data['color']} and {pair_data['size']} already attached to product with id: {id}"
+            )
         if not product:
             raise NotFound("There is no product with that id")
         pair = ProductPair(**pair_data, product_id=id)
@@ -137,6 +145,9 @@ class ProductManager:
         if not pair:
             raise NotFound(f"There is not pair with id: {pair_id['id']}")
 
+        if not product:
+            raise NotFound("There is not product with that id")
+
         if pair not in product.pairs:
             raise BadRequest(
                 f"Pair with id: {pair_id['id']} is not attached to product with id: {id}"
@@ -152,6 +163,37 @@ class ProductManager:
                 InternalServerError("Server is unavailable.")
 
         return f"You delete image with id: {pair_id['id']} successfully", 202
+
+    @staticmethod
+    def edit_pair(product_id, pair_id, pair_data):
+        product = ProductsModel.query.filter(
+            ProductsModel.id == product_id, text("is_deleted is FALSE")
+        ).first()
+        pair = ProductPair.query.filter_by(id=pair_id).first()
+        if not pair:
+            raise NotFound(f"There is not pair with that id")
+
+        if not product:
+            raise NotFound("There is not product with that id")
+
+        if pair not in product.pairs:
+            raise BadRequest(
+                f"Pair with id: {pair_id} is not attached to product with id: {product_id}"
+            )
+
+        pair.size = pair_data["size"]
+        pair.color = pair_data["color"]
+        pair.quantity = pair_data["quantity"]
+
+        try:
+            db.session.add(pair)
+            db.session.flush()
+        except Exception as ex:
+            if ex.orig.pgcode == UNIQUE_VIOLATION:
+                raise BadRequest("Please login")
+            else:
+                InternalServerError("Server is unavailable.")
+        return pair
 
     @staticmethod
     def edit_product_base_info(id_, product_data):

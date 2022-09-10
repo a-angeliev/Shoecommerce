@@ -8,12 +8,14 @@ from schemas.request.product import (
     EditProductBaseInformationRequestSchema,
     CreateProductImageRequestSchema,
     DeleteProductImageRequestSchema,
-    CreatePorductPairRequestSchema, DeleteProductPairRequestSchema,
+    CreatePorductPairRequestSchema,
+    DeleteProductPairRequestSchema,
 )
 from schemas.response.product import (
     CreateProductResponseSchema,
     AddImageProductResponseSchema,
     AddProductPairResponseSchema,
+    EditProductPairResponseSchema,
 )
 from utils.decorators import validate_schema, permission_required, token_required
 
@@ -88,3 +90,13 @@ class ProductPairs(Resource):
     def delete(id_):
         response = ProductManager.delete_pair(id_, request.get_json())
         return response
+
+
+class ProductPairEdit(Resource):
+    @staticmethod
+    @permission_required(RoleType.admin)
+    @validate_schema(CreatePorductPairRequestSchema)
+    def put(id_, pair_id):
+        pair = ProductManager.edit_pair(id_, pair_id, request.get_json())
+        schema = EditProductPairResponseSchema()
+        return schema.dumps(pair)

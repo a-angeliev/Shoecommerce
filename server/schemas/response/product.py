@@ -50,3 +50,7 @@ class AddProductPairResponseSchema(Schema):
     color = fields.String(required=True)
     quantity = fields.Integer(required=True)
     product_id = fields.Integer(required=True)
+
+
+class EditProductPairResponseSchema(AddProductPairResponseSchema):
+    pass
