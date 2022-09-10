@@ -111,7 +111,9 @@ class ProductManager:
 
     @staticmethod
     def add_pair(id, pair_data):
-        product = ProductsModel.query.filter(ProductsModel.id == id, text("is_deleted is FALSE")).first()
+        product = ProductsModel.query.filter(
+            ProductsModel.id == id, text("is_deleted is FALSE")
+        ).first()
         if not product:
             raise NotFound("There is no product with that id")
         pair = ProductPair(**pair_data, product_id=id)
@@ -125,6 +127,31 @@ class ProductManager:
                 InternalServerError("Server is unavailable.")
         return pair
 
+    @staticmethod
+    def delete_pair(id, pair_id):
+        product = ProductsModel.query.filter(
+            ProductsModel.id == id, text("is_deleted is FALSE")
+        ).first()
+        pair = ProductPair.query.filter_by(id=pair_id["id"]).first()
+
+        if not pair:
+            raise NotFound(f"There is not pair with id: {pair_id['id']}")
+
+        if pair not in product.pairs:
+            raise BadRequest(
+                f"Pair with id: {pair_id['id']} is not attached to product with id: {id}"
+            )
+
+        try:
+            db.session.delete(pair)
+            db.session.flush()
+        except Exception as ex:
+            if ex.orig.pgcode == UNIQUE_VIOLATION:
+                raise BadRequest("Please login")
+            else:
+                InternalServerError("Server is unavailable.")
+
+        return f"You delete image with id: {pair_id['id']} successfully", 202
 
     @staticmethod
     def edit_product_base_info(id_, product_data):
