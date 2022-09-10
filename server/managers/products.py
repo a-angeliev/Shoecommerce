@@ -7,11 +7,12 @@ from db import db
 from managers.brand import BrandManager
 from managers.category import CategoryManager
 from models import BrandModel, CategoryModel
-from models.enums import GenderType, RoleType
+from models.enums import GenderType
 from models.products import ProductsModel, ProductImages, ProductPair
-from schemas.request.product import CreateProductRequestSchema
-from utils.decorators import validate_schema
-from sqlalchemy.sql.expression import false, true, text
+
+from sqlalchemy.sql.expression import text
+
+from utils.operations import db_add_items
 
 
 def check_pair_or_image_product(item, product, item_id, product_id, item_name="item"):
@@ -69,29 +70,15 @@ class ProductManager:
             for pair in product_pair:
                 product.pairs.append(pair)
 
-        try:
-
-            db.session.add_all([product, category, brand])
-            db.session.flush()
-        except Exception as ex:
-            if ex.orig.pgcode == UNIQUE_VIOLATION:
-                raise BadRequest("Please login")
-            else:
-                InternalServerError("Server is unavailable.")
+        db_add_items(product, category, brand)
 
         return product
 
     @staticmethod
     def add_image(id, image_data):
         image = ProductImages(img_url=image_data["img_url"], product_id=id)
-        try:
-            db.session.add(image)
-            db.session.flush()
-        except Exception as ex:
-            if ex.orig.pgcode == UNIQUE_VIOLATION:
-                raise BadRequest("Please login")
-            else:
-                InternalServerError("Server is unavailable.")
+
+        db_add_items(image)
         return image
 
     @staticmethod
@@ -129,14 +116,7 @@ class ProductManager:
         if not product:
             raise NotFound("There is no product with that id")
         pair = ProductPair(**pair_data, product_id=id)
-        try:
-            db.session.add(pair)
-            db.session.flush()
-        except Exception as ex:
-            if ex.orig.pgcode == UNIQUE_VIOLATION:
-                raise BadRequest("Please login")
-            else:
-                InternalServerError("Server is unavailable.")
+        db_add_items(pair)
         return pair
 
     @staticmethod
@@ -172,14 +152,8 @@ class ProductManager:
         pair.color = pair_data["color"]
         pair.quantity = pair_data["quantity"]
 
-        try:
-            db.session.add(pair)
-            db.session.flush()
-        except Exception as ex:
-            if ex.orig.pgcode == UNIQUE_VIOLATION:
-                raise BadRequest("Please login")
-            else:
-                InternalServerError("Server is unavailable.")
+        db_add_items(pair)
+
         return pair
 
     @staticmethod
@@ -214,17 +188,7 @@ class ProductManager:
                 old_category.products.remove(product)
                 new_category.products.append(product)
 
-        try:
-
-            db.session.add_all(
-                [product, new_category, old_category, new_brand, old_brand]
-            )
-            db.session.flush()
-        except Exception as ex:
-            if ex.orig.pgcode == UNIQUE_VIOLATION:
-                raise BadRequest("Please login")
-            else:
-                InternalServerError("Server is unavailable.")
+        db_add_items(product, new_category, old_category, new_brand, old_brand)
 
         return product
 
@@ -270,13 +234,7 @@ class ProductManager:
 
         if not product:
             raise NotFound("This product does not exist.")
-        try:
-            product.is_deleted = True
-            db.session.flush()
-        except Exception as ex:
-            if ex.orig.pgcode == UNIQUE_VIOLATION:
-                raise BadRequest("Please login")
-            else:
-                InternalServerError("Server is unavailable.")
+        product.is_deleted = True
+        db_add_items()
 
         return "Product is deleted", 202
