@@ -54,7 +54,7 @@ The REST API to the app is described below.
     - [Edit user](#edit-user)
 - [Brand](#brand)
     - [Create brand](#create-brand)
-
+    - [Get brands information](#get-brand-information)
 >## Register
 >### Request
 >`[POST] "/register"`
@@ -252,4 +252,94 @@ The REST API to the app is described below.
 >    }
 > }
 >```
->## Get 
+>## Get brand information
+>### Request
+>`[GET] "/brand"`
+>
+>### Response
+> ```json
+> [
+>    {
+>        "id": 2,
+>        "logo_url": "https://someurl.com",
+>        "name": "nike",
+>        "description": "some text"
+>    },
+>    {
+>        "id": 3,
+>        "logo_url": "https://somesdurl.com",
+>        "name": "some",
+>        "description": "some textsd"
+>    }
+>  ]
+> ```
+>## Sort products by brand
+> To do this you should use url parameters. The endpoint is the same as brand information but at the end you should put the "?brand=". After "=" you can add name of the brand that you want to get products for this brand.   
+> Example "/brand?brand=all" -> That will return information about all brands and there products.   
+> Example2 "/brand?brand=nike" -> That will return information about Nike brand and all products that are in this brand.   
+> Example3 "/brand?brand=brandThatDoesntExist" -> That will return error message.    
+> 
+> ### Request
+> `/brand?brand=nike`
+> ### Response
+> ```json
+> {
+>    "logo_url": "https://somesdurl.com",
+>    "description": "some textsd",
+>    "name": "some",
+>    "id": 3,
+>    "products": [
+>        {
+>            "discount": 11,
+>            "images": [
+>                {
+>                    "img_url": "https://link6.com"
+>                },
+>                {
+>                    "img_url": "https://link5.com"
+>                }
+>            ],
+>            "price": 32,
+>            "title": "so121111121me a1sd",
+>            "id": 92
+>        },
+>        {
+>            "discount": 11,
+>            "images": [
+>                {
+>                    "img_url": "https://link6.com"
+>                },
+>                {
+>                    "img_url": "https://link5.com"
+>                }
+>            ],
+>            "price": 32,
+>            "title": "so121111121me a1sd",
+>            "id": 91
+>        },
+>        {
+>            "discount": 11,
+>            "images": [
+>                {
+>                    "img_url": "https://link6.com"
+>                },
+>                {
+>                    "img_url": "https://link5.com"
+>                }
+>            ],
+>            "price": 32,
+>            "title": "so121111121me a1sd",
+>            "id": 90
+>        }
+>    ]
+>    
+> }
+>```
+> Example if brand doesn't exist:
+> ```json
+> {
+>     "message": "There is not brand with that name"
+> }
+> ```
+> # Category 
+> 

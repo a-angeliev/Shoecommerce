@@ -5,7 +5,7 @@ from werkzeug.exceptions import BadRequest
 from managers.category import CategoryManager
 from models import RoleType
 from schemas.request.category import CreateCategoryRequestSchema
-from schemas.response.category import CreateCategoryResponseSchema
+from schemas.response.category import CreateCategoryResponseSchema, CategoryBaseInfoResponseSchema
 from utils.decorators import permission_required, validate_schema
 
 
@@ -22,20 +22,16 @@ class Category(Resource):
     def get():
         category_title = request.args.get("category")
         schema = CreateCategoryResponseSchema()
-
+        if not category_title:
+            categories = CategoryManager.get_all()
+            category_only_base_info_schema = CategoryBaseInfoResponseSchema()
+            return category_only_base_info_schema.dumps(categories)
         if category_title == "all":
-            try:
-                categories = CategoryManager.get_all()
-                return schema.dumps(categories, many=True)
-            except:
-                raise BadRequest(
-                    "There is problem with server, please excuse us. The problem will be fix as soon as possible!"
-                )
+            categories = CategoryManager.get_all()
+            return schema.dumps(categories, many=True)
 
         elif category_title:
-            try:
-                category = CategoryManager.get_by_name(category_title)
-                return schema.dumps(category)
-            except:
-                raise BadRequest("There is no category with that title")
+            category = CategoryManager.get_by_name(category_title)
+            return schema.dumps(category)
+
         raise BadRequest("You should use query parameters, check the documentation!")
