@@ -13,9 +13,19 @@ from schemas.request.product import CreateProductRequestSchema
 from utils.decorators import validate_schema
 from sqlalchemy.sql.expression import false, true, text
 
-from sqlalchemy.sql import column
-from sqlalchemy.sql.expression import BinaryExpression
-from sqlalchemy.sql import operators
+
+def check_pair_or_image_product(item, product, item_id, product_id, item_name="item"):
+
+    if not item:
+        raise NotFound(f"There is not {item_name} with id: {item_id}")
+
+    if not product:
+        raise NotFound(f"There is not product with id: {product_id}")
+
+    if item not in product.pairs:
+        raise BadRequest(
+            f"{item_name} with id: {item_id} is not attached to product with id: {product_id}"
+        )
 
 
 class ProductManager:
@@ -90,14 +100,8 @@ class ProductManager:
         product = ProductsModel.query.filter(
             ProductsModel.id == id, text("is_deleted is FALSE")
         ).first()
-        if not image:
-            raise NotFound("There is not image with that id")
-        if not product:
-            raise NotFound("There is not product with that id")
-        if image not in product.images:
-            raise BadRequest(
-                f"Image with id: {image_id['id']} is not attached to product with id: {id}"
-            )
+
+        check_pair_or_image_product(image, product, image_id["id"], id, "image")
 
         try:
             db.session.delete(image)
@@ -142,16 +146,7 @@ class ProductManager:
         ).first()
         pair = ProductPair.query.filter_by(id=pair_id["id"]).first()
 
-        if not pair:
-            raise NotFound(f"There is not pair with id: {pair_id['id']}")
-
-        if not product:
-            raise NotFound("There is not product with that id")
-
-        if pair not in product.pairs:
-            raise BadRequest(
-                f"Pair with id: {pair_id['id']} is not attached to product with id: {id}"
-            )
+        check_pair_or_image_product(pair, product, pair_id["id"], id, "pair")
 
         try:
             db.session.delete(pair)
@@ -170,16 +165,8 @@ class ProductManager:
             ProductsModel.id == product_id, text("is_deleted is FALSE")
         ).first()
         pair = ProductPair.query.filter_by(id=pair_id).first()
-        if not pair:
-            raise NotFound(f"There is not pair with that id")
 
-        if not product:
-            raise NotFound("There is not product with that id")
-
-        if pair not in product.pairs:
-            raise BadRequest(
-                f"Pair with id: {pair_id} is not attached to product with id: {product_id}"
-            )
+        check_pair_or_image_product(pair, product, pair_id, product_id, "pair")
 
         pair.size = pair_data["size"]
         pair.color = pair_data["color"]
