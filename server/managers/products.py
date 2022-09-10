@@ -83,6 +83,29 @@ class ProductManager:
             else:
                 InternalServerError("Server is unavailable.")
         return image
+
+    @staticmethod
+    def delete_image(id, image_id):
+        image = ProductImages.query.filter_by(id=image_id['id']).first()
+        product = ProductsModel.query.filter(ProductsModel.id == id, text("is_deleted is FALSE")).first()
+        if not image:
+            raise NotFound("There is not image with that id")
+
+        if image not in product.images:
+            raise BadRequest(f"Image with id: {image_id['id']} is not attached to product with id: {id}")
+
+        try:
+            db.session.delete(image)
+            db.session.flush()
+        except Exception as ex:
+            if ex.orig.pgcode == UNIQUE_VIOLATION:
+                raise BadRequest("Please login")
+            else:
+                InternalServerError("Server is unavailable.")
+
+        return f"You delete image with id: {image_id['id']} successfully", 202
+
+
     @staticmethod
     def edit_product_base_info(id_, product_data):
         product_q = ProductsModel.query.filter(

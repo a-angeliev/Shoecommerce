@@ -5,7 +5,7 @@ from managers.products import ProductManager
 from models import RoleType
 from schemas.request.product import (
     CreateProductRequestSchema,
-    EditProductBaseInformationRequestSchema, CreateProductImageRequestSchema,
+    EditProductBaseInformationRequestSchema, CreateProductImageRequestSchema, DeleteProductImageRequestSchema,
 )
 from schemas.response.product import CreateProductResponseSchema, AddImageProductResponseSchema
 from utils.decorators import validate_schema, permission_required, token_required
@@ -57,3 +57,10 @@ class ProductImages(Resource):
         image = ProductManager.add_image(id_, request.get_json())
         schema = AddImageProductResponseSchema()
         return schema.dumps(image)
+
+    @staticmethod
+    @permission_required(RoleType.admin)
+    @validate_schema(DeleteProductImageRequestSchema)
+    def delete(id_):
+        response = ProductManager.delete_image(id_, request.get_json())
+        return response

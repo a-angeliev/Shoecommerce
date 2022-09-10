@@ -33,5 +33,10 @@ class EditProductBaseInformationRequestSchema(CreateProductRequestSchema):
     class Meta:
         exclude = ("images", "pairs")
 
+
 class CreateProductImageRequestSchema(Schema):
     img_ulr = fields.String(required=True)
+
+
+class DeleteProductImageRequestSchema(Schema):
+    id = fields.Integer(required=True)
