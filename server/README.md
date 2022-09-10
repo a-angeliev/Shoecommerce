@@ -49,8 +49,11 @@ The REST API to the app is described below.
 
 - [Register](#register)
 - [Login](#login)
-- [User Info and Edit](#user-info-and-edit)
+- [User](#user)
+    - [Get information about user](#get-information-about-user)
+    - [Edit user](#edit-user)
 - [Brand](#brand)
+    - [Create brand](#create-brand)
 
 >## Register
 >### Request
@@ -143,8 +146,8 @@ The REST API to the app is described below.
 >}
 >```
 
->## User Info and Edit
-> 
+># User
+>## Get information about user
 >### Request
 >`[GET] "/user/:id_"`   
 >### Response
@@ -167,6 +170,7 @@ The REST API to the app is described below.
 >    "message": "A valid token is missing!"
 > }
 >```
+>## Edit user  
 >### Request   
 >`[PUT] "/user/:id_"`
 > ```json
@@ -206,7 +210,8 @@ The REST API to the app is described below.
 > }
 >```
 
->## Brand
+># Brand
+>## Create brand
 >### Request
 >`[POST] "/brand"`
 > ```json
@@ -216,3 +221,35 @@ The REST API to the app is described below.
 >    "logo_url": "https://somesdurl.com"
 > }
 >```
+>### Response
+> ```json
+> {
+>    "description": "randomBrandDescription", 
+>    "logo_url": "https://randomLogoUrl", 
+>    "id": 15, 
+>    "name": "randomBrandName", 
+>    "products": []
+> }
+> ```
+> Server validations are:
+> - Required admin authorization.
+> - Request must have body with fields - name, description and logo_url.
+> - Logo_url must be string**
+> 
+> Example error massage:
+> ```json
+> {
+>   "message": {
+>        "name": [
+>            "Missing data for required field."
+>        ],
+>        "description": [
+>            "Missing data for required field."
+>        ],
+>        "logo_url": [
+>            "Missing data for required field."
+>        ]
+>    }
+> }
+>```
+>## Get 

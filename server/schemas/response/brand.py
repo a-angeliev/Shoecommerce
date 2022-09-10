@@ -19,3 +19,8 @@ class CreateBrandResponseSchema(Schema):
     description = fields.String(required=True)
     logo_url = fields.String(required=True)
     products = fields.Nested(ProductBrandResponseSchema(), many=True)
+
+
+class BrandNameOnlyResponseSchema(CreateBrandResponseSchema):
+    class Meta:
+        exclude = ("products",)

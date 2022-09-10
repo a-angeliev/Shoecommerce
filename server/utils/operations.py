@@ -15,6 +15,7 @@ def db_add_items(*items):
         else:
             InternalServerError("Server is unavailable.")
 
+
 def db_delete_items(*items):
     try:
         if items:

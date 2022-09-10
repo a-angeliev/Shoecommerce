@@ -1,7 +1,6 @@
 from flask import request
-from psycopg2.errorcodes import UNIQUE_VIOLATION
 
-from werkzeug.exceptions import NotFound, BadRequest, InternalServerError, Conflict
+from werkzeug.exceptions import NotFound, BadRequest, Conflict
 
 from db import db
 from managers.brand import BrandManager
