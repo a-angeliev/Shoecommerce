@@ -22,7 +22,7 @@ def check_pair_or_image_product(item, product, item_id, product_id, item_name="i
     if not product:
         raise NotFound(f"There is not product with id: {product_id}")
 
-    if item not in product.pairs:
+    if item not in product.pairs and item not in product.images:
         raise BadRequest(
             f"{item_name} with id: {item_id} is not attached to product with id: {product_id}"
         )
@@ -87,7 +87,7 @@ class ProductManager:
             ProductsModel.id == id, text("is_deleted is FALSE")
         ).first()
 
-        check_pair_or_image_product(image, product, image_id["id"], id, "image")
+        check_pair_or_image_product(image, product, image_id["id"], id, "images")
 
         db_delete_items(image)
 
@@ -194,6 +194,8 @@ class ProductManager:
 
         category_f = CategoryModel.title == category_title
         brand_f = BrandModel.name == brand_name
+        if gender not in GenderType.list() and gender:
+            raise NotFound("There is not gender with that name")
         gender_f = ProductsModel.gender == gender
 
         if not category_title:

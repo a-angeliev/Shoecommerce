@@ -35,7 +35,7 @@ class EditProductBaseInformationRequestSchema(CreateProductRequestSchema):
 
 
 class CreateProductImageRequestSchema(Schema):
-    img_ulr = fields.String(required=True)
+    img_url = fields.String(required=True)
 
 
 class DeleteProductImageRequestSchema(Schema):

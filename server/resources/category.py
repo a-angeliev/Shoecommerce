@@ -5,7 +5,10 @@ from werkzeug.exceptions import BadRequest
 from managers.category import CategoryManager
 from models import RoleType
 from schemas.request.category import CreateCategoryRequestSchema
-from schemas.response.category import CreateCategoryResponseSchema, CategoryBaseInfoResponseSchema
+from schemas.response.category import (
+    CreateCategoryResponseSchema,
+    CategoryBaseInfoResponseSchema,
+)
 from utils.decorators import permission_required, validate_schema
 
 
@@ -25,7 +28,8 @@ class Category(Resource):
         if not category_title:
             categories = CategoryManager.get_all()
             category_only_base_info_schema = CategoryBaseInfoResponseSchema()
-            return category_only_base_info_schema.dumps(categories)
+            return category_only_base_info_schema.dumps(categories, many=True)
+
         if category_title == "all":
             categories = CategoryManager.get_all()
             return schema.dumps(categories, many=True)

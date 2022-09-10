@@ -6,7 +6,10 @@ from managers.brand import BrandManager
 from models import RoleType
 from models.products import *
 from schemas.request.brand import CreateBrandRequestSchema
-from schemas.response.brand import CreateBrandResponseSchema, BrandNameOnlyResponseSchema
+from schemas.response.brand import (
+    CreateBrandResponseSchema,
+    BrandNameOnlyResponseSchema,
+)
 from utils.decorators import validate_schema, token_required, permission_required
 
 from dotenv import load_dotenv
@@ -43,7 +46,7 @@ class Brand(Resource):
         if not brand_name:
             brands = BrandManager.get_all()
             brand_name_schema = BrandNameOnlyResponseSchema()
-            return brand_name_schema.dump(brands, many = True)
+            return brand_name_schema.dump(brands, many=True)
 
         if brand_name == "all":
             brands = BrandManager.get_all()

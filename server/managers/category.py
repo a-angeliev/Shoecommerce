@@ -20,8 +20,8 @@ class CategoryManager:
     @staticmethod
     def get_all():
         # categories_q = CategoryModel.query.join(CategoryModel.products).filter(ProductsModel.id > 91)
-        categories_q = ProductsModel.query.filter_by(id_deleted=True)
-        return categories_q.all()
+        categories_q = CategoryModel.query.all()
+        return categories_q
 
     @staticmethod
     def get_by_name(category_title):

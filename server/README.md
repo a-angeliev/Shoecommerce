@@ -10,8 +10,11 @@
 > 
 >> ### PRODUCTS   
 >>"/products" ==> POST GET  :white_check_mark:      
->"/product/:id" ==> PUT DELETE GET /PATCH/  
->
+>"/products/product/:id" ==> PUT DELETE GET :white_check_mark:  
+>"/products/product/:id/images" POST DELETE :white_check_mark:   
+>"/products/product/:id/pairs" POST DELETE :white_check_mark:   
+>"/products/product/:product_id/pairs/:pair_id" POST DELETE :white_check_mark:   
+> 
 >>  ### COMMENTS
 >>"/comments/:product_id"  ==> GET POST DELETE PUT  
 > 
@@ -55,6 +58,21 @@ The REST API to the app is described below.
 - [Brand](#brand)
     - [Create brand](#create-brand)
     - [Get brands information](#get-brand-information)
+- [Category](#category)
+  - [Create category](#create-category)
+  - [Get categories information](#get-categories-information)
+- [Products](#products)
+  - [Create product](#create-product)
+  - [Get many products](#get-many-products)
+  - [Product](#product)
+    - [Get product information by id](#get-product-information-by-id)
+    - [Delete product](#delete-product)
+    - [Edit general product information](#edit-general-product-information)
+    - [Add product images](#add-product-images)
+    - [Delete product images](#delete-product-images)
+    - [Add pair to product](#add-pair-to-product)
+    - [Delete pari from product](#delete-pari-from-product)
+    - [Edit pair](#edit-pair)
 >## Register
 >### Request
 >`[POST] "/register"`
@@ -273,73 +291,485 @@ The REST API to the app is described below.
 >    }
 >  ]
 > ```
->## Sort products by brand
-> To do this you should use url parameters. The endpoint is the same as brand information but at the end you should put the "?brand=". After "=" you can add name of the brand that you want to get products for this brand.   
-> Example "/brand?brand=all" -> That will return information about all brands and there products.   
-> Example2 "/brand?brand=nike" -> That will return information about Nike brand and all products that are in this brand.   
-> Example3 "/brand?brand=brandThatDoesntExist" -> That will return error message.    
-> 
+
+> # Category 
+> ## Create category
 > ### Request
-> `/brand?brand=nike`
+> `[POST] /category`
+> ```json
+> {
+>    "title": "sport"
+> }
+>```
 > ### Response
 > ```json
 > {
->    "logo_url": "https://somesdurl.com",
->    "description": "some textsd",
->    "name": "some",
->    "id": 3,
->    "products": [
->        {
->            "discount": 11,
->            "images": [
->                {
->                    "img_url": "https://link6.com"
->                },
->                {
->                    "img_url": "https://link5.com"
->                }
->            ],
->            "price": 32,
->            "title": "so121111121me a1sd",
->            "id": 92
->        },
->        {
->            "discount": 11,
->            "images": [
->                {
->                    "img_url": "https://link6.com"
->                },
->                {
->                    "img_url": "https://link5.com"
->                }
->            ],
->            "price": 32,
->            "title": "so121111121me a1sd",
->            "id": 91
->        },
->        {
->            "discount": 11,
->            "images": [
->                {
->                    "img_url": "https://link6.com"
->                },
->                {
->                    "img_url": "https://link5.com"
->                }
->            ],
->            "price": 32,
->            "title": "so121111121me a1sd",
->            "id": 90
->        }
->    ]
->    
+>   "title": "sport", 
+>   "id": 7, 
+>   "products": []
 > }
 >```
-> Example if brand doesn't exist:
+> ## Get categories information
+>### Request
+>`[GET] "/category"`
+>
+>### Response
+> ```json
+> [
+>    {
+>        "title": "outdoor",
+>        "id": 1
+>    },
+>    {
+>        "title": "indoor",
+>        "id": 3
+>    },
+>    {
+>        "title": "sport",
+>        "id": 7
+>    }
+> ]
+> ```
+
+> # Products
+> ## Create product
+> Before create product you must have created brand and category. To create one product you should provide main information about product like title, price and etc, information about product sizes, colors and etc, product images, and existing brands and category.   
+> ### Request
+>`[POST] '/products' `
 > ```json
 > {
->     "message": "There is not brand with that name"
+>     "title": "nice Shoes",
+>     "description": "random description",
+>     "price": 10.0,
+>     "discount": 5.0,
+>     "gender": "kid",
+>     "brand_name": "nike",
+>     "category_title": "sport",
+>     "images": [ "https://img1.com", "https://img2.com"],
+>     "pairs": [
+>         {"size": 40, "color": "black", "quantity": 3},
+>         {"size": 39, "color": "red", "quantity": 5}
+>     ]
 > }
 > ```
-> # Category 
+> ### Response
+> ```json
+> {
+>     "brand": {
+>         "logo_url": "https://someurl.com",
+>         "name": "nike"
+>     },
+>     "description": "random description",
+>     "images": [
+>         {
+>             "img_url": "https://img1.com",
+>             "id": 87
+>         },
+>         {
+>             "img_url": "https://img2.com",
+>             "id": 88
+>         }
+>     ],
+>     "pairs": [
+>         {
+>             "quantity": 3,
+>             "size": 40,
+>             "id": 26,
+>             "color": "black"
+>         },
+>         {
+>             "quantity": 5,
+>             "size": 39,
+>             "id": 27,
+>             "color": "red"
+>         }
+>     ],
+>     "id": 93,
+>     "category": {
+>         "title": "sport"
+>     },
+>     "is_deleted": false,
+>     "gender": "GenderType.kid",
+>     "title": "nice Shoes",
+>     "price": 10,
+>     "discount": 5
+> }
+> ```
+> Server validations are:
+> - Required admin authorization.
+> - Request must have valid body as request example.
+> - Colors are predefine: black, white, green, red, brown, gray, blue, pink.
+> - Genders are predefine: kid, man, women.
+> - Price must be bigger than discount.
 > 
+> ## Get many products
+> You can take all existed products, but also you can filter products by gender, category, type.   
+> If you want to filter products should use URL params.   
+> "?brand=RandomBrand" -> That will filter products and you will get only that they have brand = RandomBrand.   
+> "?category=RandomCategory" -> Same as brand filtration.   
+> "?gender=kid" -> Same as brand. ** GENDER CAN BE ONLY KID, MAN, WOMAN. If you try with something else you will get error.   
+> 
+> Filters can be stacked. Example:   
+> "?brand=nike&gender=kid" -> That will return those products that brand is nike and gender is for kids.
+>  
+> ### Request
+> `[GET] '/products?brand=nike&gender=kid'`
+> ### Response
+> ```json
+> [
+>     {
+>         "gender": "GenderType.kid",
+>         "is_deleted": false,
+>         "pairs": [],
+>         "title": "some shoes3",
+>         "images": [
+>             {
+>                 "id": 13,
+>                 "img_url": "https://link1.com"
+>             },
+>             {
+>                 "id": 14,
+>                 "img_url": "https://link2.com"
+>             }
+>         ],
+>         "brand": {
+>             "logo_url": "https://someurl.com",
+>             "name": "nike"
+>         },
+>         "description": "description",
+>         "price": 32,
+>         "category": {
+>             "title": "outdoor"
+>         },
+>         "id": 46,
+>         "discount": 11
+>     },
+>     {
+>         "gender": "GenderType.kid",
+>         "is_deleted": false,
+>         "pairs": [],
+>         "title": "some shoes5",
+>         "images": [
+>             {
+>                 "id": 15,
+>                 "img_url": "https://link1.com"
+>             },
+>             {
+>                 "id": 16,
+>                 "img_url": "https://link2.com"
+>             }
+>         ],
+>         "brand": {
+>             "logo_url": "https://someurl.com",
+>             "name": "nike"
+>         },
+>         "description": "description",
+>         "price": 32,
+>         "category": {
+>             "title": "outdoor"
+>         },
+>         "id": 54,
+>         "discount": 11
+>     }
+> ]
+> ```
+> Example errors when gender is invalid:
+> ```json
+> {
+>     "message": "There is not gender with that name"
+> }
+> ```
+> 
+> # Product
+> ## Get product information by id
+> ### Request
+> `[GET] '/products/product/:id'`
+> ### Response
+> ```json
+> {
+>     "gender": "GenderType.man",
+>     "is_deleted": false,
+>     "pairs": [
+>         {
+>             "size": 40,
+>             "id": 25,
+>             "quantity": 13,
+>             "color": "PairColor.green"
+>         }
+>     ],
+>     "title": "newtitle",
+>     "images": [
+>         {
+>             "id": 39,
+>             "img_url": "https://link6.com"
+>         },
+>         {
+>             "id": 40,
+>             "img_url": "https://link5.com"
+>         }
+>     ],
+>     "brand": {
+>         "logo_url": "https://somesdurl.com",
+>         "name": "some"
+>     },
+>     "description": "newdescription",
+>     "price": 10.1,
+>     "category": {
+>         "title": "outdoor"
+>     },
+>     "id": 70,
+>     "discount": 5
+> }
+> ```
+> Example errors when product doesn't exist.
+> ```json
+> {
+>     "message": "This product does not exist."
+> }
+> ```
+> 
+> ## Delete product
+> Products have bool field "is_deleted". If you want to delete product, server set this field on True and this products will be invisible for users.   
+> ### Request
+> `[DELETE] '/products/product/:id'`
+> ### Response
+> ```json
+> {
+>   "message": "Product is deleted"
+> }
+>```
+> Server validation are:
+> - Require admin permissions   
+> 
+> Example error message:
+> ```json
+> {
+>    "message": "This product does not exist."
+> }
+>```
+> 
+> ## Edit general product information
+> To edit the whole product you should access different endpoint. At this endpoint you can edit general information about product like title, description, gender, price, discount, category and brand.   
+> To edit product you should take first current product personal information then you need to change what you want to be changed and send the whole information again.   
+> ### Request
+> `[PUT] '/products/product/:id'`
+> ```json
+> {
+>    "title": "newtitle",
+>    "description": "newdescription",
+>    "price": 10.1,
+>    "discount": 5.0,
+>    "gender": "man",
+>    "brand_name": "some",
+>    "category_title": "outdoor"
+> }
+>```
+> ### Response
+> ```json
+> {
+>     "gender": "man",
+>     "title": "newtitle",
+>     "description": "newdescription",
+>     "discount": 5,
+>     "category": {
+>         "title": "outdoor"
+>     },
+>     "images": [
+>         {
+>             "img_url": "https://link6.com",
+>             "id": 39
+>         },
+>         {
+>             "img_url": "https://link5.com",
+>             "id": 40
+>         }
+>     ],
+>     "brand": {
+>         "logo_url": "https://somesdurl.com",
+>         "name": "some"
+>     },
+>     "is_deleted": false,
+>     "id": 70,
+>     "price": 10.1,
+>     "pairs": [
+>         {
+>             "size": 40,
+>             "quantity": 13,
+>             "id": 25,
+>             "color": "PairColor.green"
+>         }
+>     ]
+> }
+> ```
+> Server validation are:
+> - Admin permissions required
+> - All fields must be in request
+>
+> ## Add product images
+> You are able to add more images to existed product.
+> ### Request
+> `[POST] '/products/product/:id/images'`
+> ```json
+> {
+>   "img_url": "https://img.com"
+> }
+> ```
+> ### Response
+> ```json
+> {
+>    "product_id": 70,
+>    "id": 89,
+>    "img_url": "https://sdk.com"
+> }
+> ```
+> Server validation are:
+> - Admin permissions required
+> - ** You can add same pictures
+> 
+> ## Delete product images
+> You have to send in request body image id and that id must be attached to product that id is in url params.   
+> Example: if you access "/products/product/1/images" and send in body "'id':4", that mean image with id 4 must be attached to product with id 1.   
+> 
+> ### Request
+> `[DELETE] '/products/porduct/:id/images'`
+> ```json
+> {
+>   "id": 4
+> }
+> ```
+> ### Response
+> ```json
+> "You delete image with id: 89 successfully"
+> ```
+> Server validation are:
+> - Admin permissions require
+> - Product id in url should be valid product id
+> - Image id in body should be valid image id
+> - Image should be attached to the product
+> 
+> Example error massages:
+> - if image doesn't exist
+> ```json
+> { 
+>     "message": "There is not images with id: 891"
+> }
+> ```
+> - if product doesn't exist
+> ```json
+> {
+>    "message": "There is not product with id: 702"
+> }
+> ```
+> - if image is not attached to the product
+> ```json
+> {
+>     "message": "images with id: 88 is not attached to product with id: 70"
+> }
+> ```
+> 
+> ## Add pair to product
+>  You can add pairs when you create product. After product is created you can add additional pairs.   
+>  Data provided in body will create pair and that pair will be attached to product with id from url params.   
+> 
+> ### Request
+> `[POST] '/products/product/:id/pairs'`
+> ```json
+> {
+>    "size": 40,
+>    "color": "black",
+>    "quantity": 10
+> }
+> ```
+> ### Response
+> ```json
+> {
+>    "size": 40,
+>    "product_id": 70,
+>    "quantity": 10,
+>    "color": "black",
+>    "id": 28
+> }
+>```
+> Server validation are:
+> - Admin permissions required
+> - Pair is unique for product /Can't be added pair with same size and color twice/   
+> - All fields must persist in request body
+> - Colors must be 
+> Example error messages:
+> ```json
+> {
+>    "message": "Pair with color: black and 40 already attached to product with id: 70"
+> }
+> ```
+> 
+> ## Delete pari from product
+> To delete pair from product you should provide product id as url params and pair id as body.   
+> ### Request
+> `[DELETE] '/products/product/:id/pairs'`
+> ```json
+> {
+>   "id": 28
+> }
+>```
+> ### Response
+> ```json
+>   "You delete image with id: 28 successfully"
+>```
+> Server validation are:
+> - Admin permission required
+> - Product id must be valid id
+> - Pair id must be valid id
+> - Pair with provided id must be attached to product with provided id
+> 
+> Example error messages:
+> ```json
+> {
+>    "message": "pair with id: 23 is not attached to product with id: 70"
+> }
+>```
+> ## Edit pair
+> To edit pair you should provide product id and pair id as url params. Also, you should provide updated information about pairs.   
+> ### Request
+> `[PUT] '/products/product/:product_id/pairs/:pair_id'`
+> ```json
+> {
+>    "size": 40,
+>    "color": "green",
+>    "quantity": 13
+> }
+> ```
+> ### Response
+> ```json
+> {
+>    "size": 40,
+>    "product_id": 70,
+>    "quantity": 13,
+>    "color": "green",
+>    "id": 25
+> }
+> ```
+> Server validation are:
+> - Admin permission required
+> - Product id must be correct
+> - Pair id must be correct
+> - Pair should be attached to the product   
+>
+> Example error messages:
+> - if pair is not attached to the product
+> ```json
+> {
+>    "message": "pair with id: 25 is not attached to product with id: 73"
+> }
+> ```
+> - if pair doesn't exist
+> ```json
+> {
+>     "message": "There is not pair with id: 252"
+> }
+> ```
+> - if product doesn't exist
+> ```json
+> {
+>     "message": "There is not product with id: 732"
+> }
+> ```
