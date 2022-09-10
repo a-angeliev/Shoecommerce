@@ -1,6 +1,7 @@
 from flask import request
+from psycopg2.errorcodes import UNIQUE_VIOLATION
 
-from werkzeug.exceptions import NotFound
+from werkzeug.exceptions import NotFound, BadRequest, InternalServerError
 
 from db import db
 from managers.brand import BrandManager
@@ -35,6 +36,11 @@ class ProductManager:
         category_q = CategoryManager.get_by_title_query(product_data["category_title"])
         brand = brand_q.first()
         category = category_q.first()
+        if not brand:
+            raise NotFound("There is no brand with that name")
+        if not category:
+            raise NotFound("There is no category with that name")
+
         with db.session.no_autoflush:
 
             product = ProductsModel(
@@ -62,6 +68,51 @@ class ProductManager:
 
         return product
 
+    @staticmethod
+    def edit_product_base_info(id_, product_data):
+        product_q = ProductsModel.query.filter(
+            ProductsModel.id == id_, text("is_deleted is FALSE")
+        )
+        product = product_q.first()
+
+        if not product:
+            raise NotFound("This product does not exist.")
+        product_q =ProductsModel.query.filter(
+            ProductsModel.id == id_)
+
+        old_brand = product.brand
+        old_category = product.category
+        new_brand = BrandManager.get_by_name(product_data['brand_name'])
+        new_category = CategoryManager.get_by_name(product_data['category_title'])
+        if not new_brand:
+            raise NotFound("There is no brand with that name")
+        if not new_category:
+            raise NotFound("There is no category with that name")
+
+        product_data.pop('brand_name')
+        product_data.pop('category_title')
+        with db.session.no_autoflush:
+            print(product_data)
+            product_q.update(product_data)
+            if not old_brand.name == new_brand.name:
+                old_brand.products.remove(product)
+                new_brand.products.append(product)
+            if not old_category.title == new_category.title:
+                old_category.products.remove(product)
+                new_category.products.append(product)
+
+
+        try:
+
+            db.session.add_all([product, new_category, old_category, new_brand, old_brand])
+            db.session.flush()
+        except Exception as ex:
+            if ex.orig.pgcode == UNIQUE_VIOLATION:
+                raise BadRequest("Please login")
+            else:
+                InternalServerError("Server is unavailable.")
+
+        return product
     @staticmethod
     def get_one(id_):
         product = ProductsModel.query.filter(

@@ -1,5 +1,5 @@
 from psycopg2.errorcodes import UNIQUE_VIOLATION
-from werkzeug.exceptions import InternalServerError, BadRequest
+from werkzeug.exceptions import InternalServerError, BadRequest, NotFound
 
 from db import db
 from models.brands import BrandModel
@@ -30,8 +30,10 @@ class BrandManager:
 
     @staticmethod
     def get_by_name(brand_name):
-        brands = BrandModel.query.filter_by(name=brand_name).one()
-        return brands
+        brand = BrandModel.query.filter_by(name=brand_name).first()
+        if not brand:
+            raise NotFound("There is not brand with that name")
+        return brand
 
     @staticmethod
     def get_by_name_query(brand_name):

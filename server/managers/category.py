@@ -1,5 +1,5 @@
 from psycopg2.errorcodes import UNIQUE_VIOLATION
-from werkzeug.exceptions import BadRequest, InternalServerError
+from werkzeug.exceptions import BadRequest, InternalServerError, NotFound
 
 from db import db
 from models import CategoryModel, ProductsModel
@@ -31,7 +31,9 @@ class CategoryManager:
 
     @staticmethod
     def get_by_name(category_title):
-        category = CategoryModel.query.filter_by(title=category_title).one()
+        category = CategoryModel.query.filter_by(title=category_title).first()
+        if not category:
+            raise NotFound("There is no category with that title")
         return category
 
     @staticmethod

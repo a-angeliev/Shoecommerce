@@ -27,3 +27,8 @@ class CreateProductRequestSchema(Schema):
     def validate_numbers(self, data, **kwargs):
         if data["price"] < data["discount"]:
             raise ValidationError("price must be greater than discount")
+
+
+class EditProductBaseInformationRequestSchema(CreateProductRequestSchema):
+    class Meta:
+        exclude = ("images","pairs")
