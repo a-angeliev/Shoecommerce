@@ -3,8 +3,11 @@ from flask_restful import Resource
 
 from managers.products import ProductManager
 from models import RoleType
-from schemas.request.product import CreateProductRequestSchema, EditProductBaseInformationRequestSchema
-from schemas.response.product import CreateProductResponseSchema
+from schemas.request.product import (
+    CreateProductRequestSchema,
+    EditProductBaseInformationRequestSchema, CreateProductImageRequestSchema,
+)
+from schemas.response.product import CreateProductResponseSchema, AddImageProductResponseSchema
 from utils.decorators import validate_schema, permission_required, token_required
 
 
@@ -45,3 +48,12 @@ class Product(Resource):
         response = ProductManager.delete_product(id_)
         return response
 
+
+class ProductImages(Resource):
+    @staticmethod
+    @permission_required(RoleType.admin)
+    @validate_schema(CreateProductImageRequestSchema)
+    def post(id_):
+        image = ProductManager.add_image(id_, request.get_json())
+        schema = AddImageProductResponseSchema()
+        return schema.dumps(image)

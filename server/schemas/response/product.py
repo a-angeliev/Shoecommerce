@@ -36,3 +36,9 @@ class CreateProductResponseSchema(Schema):
     brand = fields.Nested(BrandSchemaNested(), required=True)
     category = fields.Nested(CategorySchemaNested(), required=True)
     is_deleted = fields.Boolean()
+
+
+class AddImageProductResponseSchema(Schema):
+    id = fields.Integer(required=True)
+    img_url = fields.String(required=True)
+    product_id = fields.Integer(required=True)

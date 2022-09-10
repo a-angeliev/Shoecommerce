@@ -63,11 +63,26 @@ class ProductManager:
 
             db.session.add_all([product, category, brand])
             db.session.flush()
-        except:
-            print("error")
+        except Exception as ex:
+            if ex.orig.pgcode == UNIQUE_VIOLATION:
+                raise BadRequest("Please login")
+            else:
+                InternalServerError("Server is unavailable.")
 
         return product
 
+    @staticmethod
+    def add_image(id, image_data):
+        image = ProductImages(img_url=image_data['img_url'], product_id=id)
+        try:
+            db.session.add(image)
+            db.session.flush()
+        except Exception as ex:
+            if ex.orig.pgcode == UNIQUE_VIOLATION:
+                raise BadRequest("Please login")
+            else:
+                InternalServerError("Server is unavailable.")
+        return image
     @staticmethod
     def edit_product_base_info(id_, product_data):
         product_q = ProductsModel.query.filter(
@@ -77,20 +92,19 @@ class ProductManager:
 
         if not product:
             raise NotFound("This product does not exist.")
-        product_q =ProductsModel.query.filter(
-            ProductsModel.id == id_)
+        product_q = ProductsModel.query.filter(ProductsModel.id == id_)
 
         old_brand = product.brand
         old_category = product.category
-        new_brand = BrandManager.get_by_name(product_data['brand_name'])
-        new_category = CategoryManager.get_by_name(product_data['category_title'])
+        new_brand = BrandManager.get_by_name(product_data["brand_name"])
+        new_category = CategoryManager.get_by_name(product_data["category_title"])
         if not new_brand:
             raise NotFound("There is no brand with that name")
         if not new_category:
             raise NotFound("There is no category with that name")
 
-        product_data.pop('brand_name')
-        product_data.pop('category_title')
+        product_data.pop("brand_name")
+        product_data.pop("category_title")
         with db.session.no_autoflush:
             print(product_data)
             product_q.update(product_data)
@@ -101,10 +115,11 @@ class ProductManager:
                 old_category.products.remove(product)
                 new_category.products.append(product)
 
-
         try:
 
-            db.session.add_all([product, new_category, old_category, new_brand, old_brand])
+            db.session.add_all(
+                [product, new_category, old_category, new_brand, old_brand]
+            )
             db.session.flush()
         except Exception as ex:
             if ex.orig.pgcode == UNIQUE_VIOLATION:
@@ -113,6 +128,7 @@ class ProductManager:
                 InternalServerError("Server is unavailable.")
 
         return product
+
     @staticmethod
     def get_one(id_):
         product = ProductsModel.query.filter(
@@ -139,8 +155,6 @@ class ProductManager:
         if not gender:
             gender_f = True
 
-        print(ProductsModel.is_deleted)
-
         products = (
             ProductsModel.query.join(ProductsModel.category)
             .join(ProductsModel.brand)
@@ -158,10 +172,12 @@ class ProductManager:
         if not product:
             raise NotFound("This product does not exist.")
         try:
-            print(product.is_deleted)
             product.is_deleted = True
             db.session.flush()
-        except:
-            raise ("Problem with server")
+        except Exception as ex:
+            if ex.orig.pgcode == UNIQUE_VIOLATION:
+                raise BadRequest("Please login")
+            else:
+                InternalServerError("Server is unavailable.")
 
         return "Product is deleted", 202
