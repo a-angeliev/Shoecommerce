@@ -12,7 +12,7 @@ from models.products import ProductsModel, ProductImages, ProductPair
 
 from sqlalchemy.sql.expression import text
 
-from utils.operations import db_add_items
+from utils.operations import db_add_items, db_delete_items
 
 
 def check_pair_or_image_product(item, product, item_id, product_id, item_name="item"):
@@ -90,14 +90,7 @@ class ProductManager:
 
         check_pair_or_image_product(image, product, image_id["id"], id, "image")
 
-        try:
-            db.session.delete(image)
-            db.session.flush()
-        except Exception as ex:
-            if ex.orig.pgcode == UNIQUE_VIOLATION:
-                raise BadRequest("Please login")
-            else:
-                InternalServerError("Server is unavailable.")
+        db_delete_items(image)
 
         return f"You delete image with id: {image_id['id']} successfully", 202
 
@@ -128,14 +121,7 @@ class ProductManager:
 
         check_pair_or_image_product(pair, product, pair_id["id"], id, "pair")
 
-        try:
-            db.session.delete(pair)
-            db.session.flush()
-        except Exception as ex:
-            if ex.orig.pgcode == UNIQUE_VIOLATION:
-                raise BadRequest("Please login")
-            else:
-                InternalServerError("Server is unavailable.")
+        db_delete_items(pair)
 
         return f"You delete image with id: {pair_id['id']} successfully", 202
 

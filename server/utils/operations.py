@@ -14,3 +14,14 @@ def db_add_items(*items):
             raise BadRequest("Item that you try to add already exist")
         else:
             InternalServerError("Server is unavailable.")
+
+def db_delete_items(*items):
+    try:
+        if items:
+            db.session.delete_all(items)
+        db.session.flush()
+    except Exception as ex:
+        if ex.orig.pgcode == UNIQUE_VIOLATION:
+            raise BadRequest("You can't delete the item")
+        else:
+            InternalServerError("Server is unavailable.")
