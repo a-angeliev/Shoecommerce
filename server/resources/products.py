@@ -32,6 +32,7 @@ class Product(Resource):
         return schema.dumps(product)
 
     @staticmethod
+    @permission_required(RoleType.admin)
     def delete(id_):
         response = ProductManager.delete_product(id_)
         return response
