@@ -34,11 +34,11 @@
 >  "/discount/:id"  ==> PUT DELETE GET  /ADMIN/  
 >  "/discount/check" ==> POST  {discount: discount, isValid: true}
 >   
->> ### CATEGORY 
+>> ### CATEGORIES
 >> "/category"  ==> GET | POST /ADMIN/  :white_check_mark:   
 >  "/category/:id"  ==> GET PUT DELETE  /ADMIN/  
 > 
->> ### BRAND
+>> ### BRANDS
 >> "/brand"  ==> GET | POST /ADMIN/    :white_check_mark:   
 >  "/brand/:id"  ==> GET PUT DELETE  /ADMIN/  
 
@@ -71,7 +71,7 @@ The REST API to the app is described below.
     - [Add product images](#add-product-images)
     - [Delete product images](#delete-product-images)
     - [Add pair to product](#add-pair-to-product)
-    - [Delete pari from product](#delete-pari-from-product)
+    - [Delete pair from product](#delete-pari-from-product)
     - [Edit pair](#edit-pair)
 >## Register
 >### Request
@@ -702,7 +702,7 @@ The REST API to the app is described below.
 > }
 > ```
 > 
-> ## Delete pari from product
+> ## Delete pair from product
 > To delete pair from product you should provide product id as url params and pair id as body.   
 > ### Request
 > `[DELETE] '/products/product/:id/pairs'`
