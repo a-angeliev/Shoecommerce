@@ -18,3 +18,8 @@ class CreateCategoryResponseSchema(Schema):
     id = fields.Integer(required=True)
     title = fields.String(required=True)
     products = fields.Nested(ProductCategoryResponseSchema(), many=True)
+
+
+class CategoryBaseInfoResponseSchema(CreateCategoryResponseSchema):
+    class Meta:
+        exclude = ("products",)

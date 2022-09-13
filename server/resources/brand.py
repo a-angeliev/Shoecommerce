@@ -6,7 +6,10 @@ from managers.brand import BrandManager
 from models import RoleType
 from models.products import *
 from schemas.request.brand import CreateBrandRequestSchema
-from schemas.response.brand import CreateBrandResponseSchema
+from schemas.response.brand import (
+    CreateBrandResponseSchema,
+    BrandNameOnlyResponseSchema,
+)
 from utils.decorators import validate_schema, token_required, permission_required
 
 from dotenv import load_dotenv
@@ -40,22 +43,19 @@ class Brand(Resource):
     def get(self):
         brand_name = request.args.get("brand")
         schema = CreateBrandResponseSchema()
+        if not brand_name:
+            brands = BrandManager.get_all()
+            brand_name_schema = BrandNameOnlyResponseSchema()
+            return brand_name_schema.dump(brands, many=True)
 
         if brand_name == "all":
-            try:
-                brands = BrandManager.get_all()
-                return schema.dumps(brands, many=True)
-            except:
-                raise BadRequest(
-                    "There is problem with server, please excuse us. The problem will be fix as soon as possible!"
-                )
+            brands = BrandManager.get_all()
+            return schema.dumps(brands, many=True)
 
         elif brand_name:
-            try:
-                brands = BrandManager.get_by_name(brand_name)
-                return schema.dumps(brands)
-            except:
-                raise BadRequest("There is no brand with that name")
+            brands = BrandManager.get_by_name(brand_name)
+            return schema.dumps(brands)
+
         raise BadRequest("You should use query parameters, check the documentation!")
 
         # TODO

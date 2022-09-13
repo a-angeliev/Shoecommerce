@@ -1,22 +1,17 @@
 from psycopg2.errorcodes import UNIQUE_VIOLATION
-from werkzeug.exceptions import BadRequest, InternalServerError
+from werkzeug.exceptions import BadRequest, InternalServerError, NotFound
 
 from db import db
 from models import CategoryModel, ProductsModel
+from utils.operations import db_add_items
 
 
 class CategoryManager:
     @staticmethod
     def create(category_data):
         new_category = CategoryModel(**category_data)
-        try:
-            db.session.add(new_category)
-            db.session.flush()
-        except Exception as ex:
-            if ex.orig.pgcode == UNIQUE_VIOLATION:
-                raise BadRequest("Category with this name already exist.")
-            else:
-                InternalServerError("Server is unavailable.")
+        db_add_items(new_category)
+
         return new_category
 
     # TODO
@@ -25,13 +20,14 @@ class CategoryManager:
     @staticmethod
     def get_all():
         # categories_q = CategoryModel.query.join(CategoryModel.products).filter(ProductsModel.id > 91)
-        categories_q = ProductsModel.query.filter_by(id_deleted=True)
-        print(categories_q)
-        return categories_q.all()
+        categories_q = CategoryModel.query.all()
+        return categories_q
 
     @staticmethod
     def get_by_name(category_title):
-        category = CategoryModel.query.filter_by(title=category_title).one()
+        category = CategoryModel.query.filter_by(title=category_title).first()
+        if not category:
+            raise NotFound("There is no category with that title")
         return category
 
     @staticmethod

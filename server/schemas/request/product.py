@@ -27,3 +27,20 @@ class CreateProductRequestSchema(Schema):
     def validate_numbers(self, data, **kwargs):
         if data["price"] < data["discount"]:
             raise ValidationError("price must be greater than discount")
+
+
+class EditProductBaseInformationRequestSchema(CreateProductRequestSchema):
+    class Meta:
+        exclude = ("images", "pairs")
+
+
+class CreateProductImageRequestSchema(Schema):
+    img_url = fields.String(required=True)
+
+
+class DeleteProductImageRequestSchema(Schema):
+    id = fields.Integer(required=True)
+
+
+class DeleteProductPairRequestSchema(Schema):
+    id = fields.Integer(required=True)
