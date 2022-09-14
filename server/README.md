@@ -24,7 +24,7 @@
 > "/orders/:user_id"  ==> GET  
 > 
 >> ### WISHES
->> "/wishes/:user_id"  ==>  GET DELETE POST
+>> "/wishes"  ==>  GET DELETE POST :white_check_mark:     
 > 
 >> ### NEWSLETTER
 >> "/newsletter"  ==> POST DELETE | GET  
@@ -73,6 +73,10 @@ The REST API to the app is described below.
     - [Add pair to product](#add-pair-to-product)
     - [Delete pair from product](#delete-pari-from-product)
     - [Edit pair](#edit-pair)
+- [Wish list](#wish-list)
+  - [Add product in wish list](#add-product-in-wish-list)
+  - [Get all wishes for current user](#get-all-wishes-for-current-user)
+  - [Remove product from wish list](#remove-product-from-wish-list)
 >## Register
 >### Request
 >`[POST] "/register"`
@@ -772,4 +776,96 @@ The REST API to the app is described below.
 > {
 >     "message": "There is not product with id: 732"
 > }
+> ```
+
+> # Wish list
+> ## Add product in wish list
+> ### Request
+> `[POST] '/wishes'`   
+> 
+> In request body pass Product id:
+> ```json
+> {
+>     "id": 20 
+> }
+>```
+> 
+> ### Response
+> If you success add product to your wish list you will get back product id else will get error message.
+> ```json
+> { 
+>   "id": 20
+> }
+>```
+> Server require:
+>  - Valid Access token via x-access-token header.(Token is used to provide current user where need to be attached product)
+>  - Valid product id field in body.   
+> 
+> Example errors:
+> - if you don't send valid token/ missing token
+> ```json
+> {
+>   "message": "The token is not valid/missing token"
+> }
+> ```
+> - if you try to add same product twice:
+> ```json
+> {
+>   "message": "The item already exist"
+> }
+>```
+> - **also you will get error message if product or doesn't exist
+>
+> ## Get all wishes for current user
+> Need only to access right endpoint. No needed body or url params. User comes from the token.
+> ### Request
+> `[GET] /wishes`
+> Response will contains list of products objects
+> ### Response
+> ```json
+> [
+>    {
+>        "gender": "GenderType.kid",
+>        "brand": {
+>            "name": "nike",
+>            "logo_url": "https://someurl.com"
+>        },
+>        "images": [
+>            {
+>                "img_url": "https://link1.com",
+>                "id": 13
+>            },
+>            {
+>                "img_url": "https://link2.com",
+>                "id": 14
+>            }
+>        ],
+>        "category": {
+>            "title": "outdoor"
+>        },
+>        "id": 46,
+>        "is_deleted": false,
+>        "title": "some shoes3",
+>        "discount": 11,
+>        "pairs": [],
+>        "description": "description",
+>        "price": 32
+>    }
+> ]
+>```
+> 
+> ## Remove product from wish list
+> ### Request
+> `[DELETE] '/wishes'`
+> ```json
+> {
+>   "id": 20
+> } 
+>```
+> ### Response
+> **Status code 202 ACCEPTED
+>  ```json
+> {
+>   "id": 20
+> } 
 > ```
