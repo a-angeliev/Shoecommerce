@@ -33,6 +33,7 @@ class User(Resource):
     @staticmethod
     @token_required
     def get(user, id_):
+        print(user)
         if user.id == id_:
             schema = UserResponseSchema()
             return schema.dumps(user), 200

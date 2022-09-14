@@ -9,6 +9,7 @@ from resources.products import (
     ProductPairEdit,
 )
 from resources.users import Register, User
+from resources.wishes import Wishes
 
 routes = (
     (Register, "/register"),
@@ -19,6 +20,7 @@ routes = (
     (ProductImages, "/products/product/<int:id_>/images"),
     (ProductPairs, "/products/product/<int:id_>/pairs"),
     (ProductPairEdit, "/products/product/<int:id_>/pairs/<int:pair_id>"),
+    (Wishes, "/wishes"),
     (Brand, "/brand"),
     (Category, "/category"),
 )

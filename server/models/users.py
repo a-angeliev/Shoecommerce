@@ -16,6 +16,13 @@ class UsersModel(db.Model):
     )
 
 
+wishes_relation = db.Table(
+    "wishes",
+    db.Column("user_id", db.Integer, db.ForeignKey("user_data.id"), primary_key=True),
+    db.Column("product_id", db.Integer, db.ForeignKey("products.id"), primary_key=True),
+)
+
+
 class UserData(db.Model):
     __tablename__ = "user_data"
 
@@ -25,3 +32,9 @@ class UserData(db.Model):
     phone = db.Column(db.Integer, nullable=False)
     created_on = db.Column(db.DateTime, server_default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    wishes = db.relationship(
+        "ProductsModel",
+        secondary=wishes_relation,
+        lazy="dynamic",
+        backref=db.backref("users", lazy=True),
+    )
