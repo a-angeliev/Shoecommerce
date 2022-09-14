@@ -37,8 +37,9 @@ def token_required(f):
             # decode the token to obtain user public_id
             #  data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
             user_id = AuthManager.decode_token(token)
-            print(user_id)
             current_user = UsersModel.query.filter_by(id=user_id).first()
+            if not current_user:
+                return make_response(jsonify({"message": "Invalid token!"}), 401)
         except:
             return make_response(jsonify({"message": "Invalid token!"}), 401)
         # Return the user information attached to the token
