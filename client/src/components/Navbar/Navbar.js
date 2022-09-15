@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { Auth } from "../Auth/Auth";
 
@@ -22,15 +23,17 @@ export const Navbar = () => {
         // Navbar
 
         <header>
-            <a href="/#" className="logo"> <i className='bx bxs-shopping-bag-alt'>
+            <Link to="/#" className="logo"> <i className='bx bxs-shopping-bag-alt'>
             </i>
                 ShoeCommerce
-            </a>
+            </Link>
             <ul className={`navbar ${activeIcon === 'menu' && 'active'}`}>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/new">New Arrival</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/reviews">Reviews</a></li>
+                <li><Link to="/home">Home</Link></li>
+                <li><Link to="/new">New Arrival</Link></li>
+                <li><Link to="/products">Products</Link>
+                    <i className='bx bx-chevron-down' />
+                </li>
+                <li><Link to="/reviews">Reviews</Link></li>
             </ul>
 
             {/* <!-- Icons --> */}
@@ -62,7 +65,7 @@ export const Navbar = () => {
                     <i className='bx bxs-trash-alt'></i>
                 </div>
                 <h2>Total: $230</h2>
-                <a href="/" className="btn">Checkout</a>
+                <Link to="/" className="btn">Checkout</Link>
             </div>
 
             {/* <!-- User --> */}
