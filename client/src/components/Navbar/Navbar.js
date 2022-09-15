@@ -20,23 +20,18 @@ export const Navbar = () => {
         }
     }
     return (
-        // Navbar
-
         <header>
             <Link to="/#" className="logo"> <i className='bx bxs-shopping-bag-alt'>
             </i>
                 ShoeCommerce
             </Link>
             <ul className={`navbar ${activeIcon === 'menu' && 'active'}`}>
-                <li><Link to="/home">Home</Link></li>
-                <li><Link to="/new">New Arrival</Link></li>
-                <li><Link to="/products">Products</Link>
-                    <i className='bx bx-chevron-down' />
-                </li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/products?gender=man">Men</Link></li>
+                <li><Link to="/products?gender=woman">Women</Link></li>
+                <li><Link to="/products?gender=kid">Kids</Link></li>
                 <li><Link to="/reviews">Reviews</Link></li>
             </ul>
-
-            {/* <!-- Icons --> */}
 
             <div className="header-icons">
                 <i className='bx bx-menu' id="menu-icon" onClick={() => handleIconClick('menu')}></i>
@@ -45,13 +40,9 @@ export const Navbar = () => {
                 <i className='bx bxs-user' id="user-icon" onClick={() => handleIconClick('user')}></i>
             </div>
 
-            {/* <!-- Search Box --> */}
-
             <div className={`search-box ${activeIcon === 'search-box' && 'active'}`}>
                 <input type="search" name="" id="" placeholder="Search Here" />
             </div>
-
-            {/* <!-- Cart Box --> */}
 
             <div className={`cart ${activeIcon === 'cart' && 'active'}`}>
                 <div className="box">
@@ -67,8 +58,6 @@ export const Navbar = () => {
                 <h2>Total: $230</h2>
                 <Link to="/" className="btn">Checkout</Link>
             </div>
-
-            {/* <!-- User --> */}
 
             <Auth activeIcon={activeIcon} />
         </header>
