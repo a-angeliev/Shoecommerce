@@ -30,6 +30,11 @@
 .navbar>li:nth-child(3) {
     display: flex;
     align-items: center;
+
+}
+
+.navbar>li:hover {
+    color: var(--main-color);
 }
 
 .bx.bx-chevron-down {
