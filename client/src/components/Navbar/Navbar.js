@@ -33,12 +33,36 @@ export const Navbar = () => {
                 <li><Link to="/reviews">Reviews</Link></li>
             </ul>
 
-            <div className="header-icons">
-                <i className='bx bx-menu' id="menu-icon" onClick={() => handleIconClick('menu')}></i>
-                <i className='bx bx-search' id="search-icon" onClick={() => handleIconClick('search-box')}></i>
-                <i className='bx bx-cart-alt' id="cart-alt-icon" onClick={() => handleIconClick('cart')}></i>
-                <i className='bx bxs-user' id="user-icon" onClick={() => handleIconClick('user')}></i>
-            </div>
+            <ul className="header-icons">
+                <li>
+                    <i
+                        className='bx bx-menu'
+                        id="menu-icon"
+                        onClick={() => handleIconClick('menu')}
+                    />
+                </li>
+                <li>
+                    <i
+                        className='bx bx-search'
+                        id="search-icon"
+                        onClick={() => handleIconClick('search-box')}
+                    />
+                </li>
+                <li>
+                    <i
+                        className='bx bx-cart-alt'
+                        id="cart-alt-icon"
+                        onClick={() => handleIconClick('cart')}
+                    />
+                </li>
+                <li>
+                    <i
+                        className='bx bxs-user'
+                        id="user-icon"
+                        onClick={() => handleIconClick('user')}
+                    />
+                </li>
+            </ul>
 
             <div className={`search-box ${activeIcon === 'search-box' && 'active'}`}>
                 <input type="search" name="" id="" placeholder="Search Here" />
