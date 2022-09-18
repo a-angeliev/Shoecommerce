@@ -2,7 +2,7 @@ from werkzeug.exceptions import NotFound, Conflict, Forbidden
 
 from managers.products import ProductManager
 from models.comments import CommentsModel
-from utils.operations import db_add_items
+from utils.operations import db_add_items, db_delete_items
 
 
 class CommentsManager:
@@ -41,3 +41,12 @@ class CommentsManager:
 
         db_add_items(comment)
         return comment
+
+    @staticmethod
+    def delete_comment(user, comment_id):
+        comment = CommentsManager.get_comment(comment_id)
+        if user.user_data is not comment.user:
+            raise Forbidden("You can delete only your comments.")
+
+        db_delete_items(comment)
+        return "You delete the comment successfully!"

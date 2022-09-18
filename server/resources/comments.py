@@ -1,3 +1,5 @@
+import json
+
 from flask import request
 from flask_restful import Resource
 
@@ -37,3 +39,10 @@ class CommentAction(Resource):
         comment = CommentsManager.edit_comment(user, id_, request.get_json())
         schema = GetCommentInfoResponseSchema()
         return schema.dumps(comment)
+
+    @staticmethod
+    @token_required
+    def delete(user, id_):
+        response = CommentsManager.delete_comment(user, id_)
+        return json.dumps({"message": response})
+
