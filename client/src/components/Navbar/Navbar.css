@@ -27,7 +27,22 @@
     color: var(--main-color);
 }
 
+.navbar>li:nth-child(3) {
+    display: flex;
+    align-items: center;
+}
+
+.navbar>li:hover {
+    color: var(--main-color);
+}
+
+.bx.bx-chevron-down {
+    font-size: 1.4rem;
+}
+
 .header-icons {
+    display: flex;
+    gap: 0.4rem;
     font-size: 22px;
     cursor: pointer;
     z-index: 100000;

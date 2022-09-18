@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { Auth } from "../Auth/Auth";
 
@@ -19,36 +20,53 @@ export const Navbar = () => {
         }
     }
     return (
-        // Navbar
-
         <header>
-            <a href="/#" className="logo"> <i className='bx bxs-shopping-bag-alt'>
+            <Link to="/#" className="logo"> <i className='bx bxs-shopping-bag-alt'>
             </i>
                 ShoeCommerce
-            </a>
+            </Link>
             <ul className={`navbar ${activeIcon === 'menu' && 'active'}`}>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/new">New Arrival</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/reviews">Reviews</a></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/products?gender=man">Men</Link></li>
+                <li><Link to="/products?gender=woman">Women</Link></li>
+                <li><Link to="/products?gender=kid">Kids</Link></li>
+                <li><Link to="/reviews">Reviews</Link></li>
             </ul>
 
-            {/* <!-- Icons --> */}
-
-            <div className="header-icons">
-                <i className='bx bx-menu' id="menu-icon" onClick={() => handleIconClick('menu')}></i>
-                <i className='bx bx-search' id="search-icon" onClick={() => handleIconClick('search-box')}></i>
-                <i className='bx bx-cart-alt' id="cart-alt-icon" onClick={() => handleIconClick('cart')}></i>
-                <i className='bx bxs-user' id="user-icon" onClick={() => handleIconClick('user')}></i>
-            </div>
-
-            {/* <!-- Search Box --> */}
+            <ul className="header-icons">
+                <li>
+                    <i
+                        className='bx bx-menu'
+                        id="menu-icon"
+                        onClick={() => handleIconClick('menu')}
+                    />
+                </li>
+                <li>
+                    <i
+                        className='bx bx-search'
+                        id="search-icon"
+                        onClick={() => handleIconClick('search-box')}
+                    />
+                </li>
+                <li>
+                    <i
+                        className='bx bx-cart-alt'
+                        id="cart-alt-icon"
+                        onClick={() => handleIconClick('cart')}
+                    />
+                </li>
+                <li>
+                    <i
+                        className='bx bxs-user'
+                        id="user-icon"
+                        onClick={() => handleIconClick('user')}
+                    />
+                </li>
+            </ul>
 
             <div className={`search-box ${activeIcon === 'search-box' && 'active'}`}>
                 <input type="search" name="" id="" placeholder="Search Here" />
             </div>
-
-            {/* <!-- Cart Box --> */}
 
             <div className={`cart ${activeIcon === 'cart' && 'active'}`}>
                 <div className="box">
@@ -62,10 +80,8 @@ export const Navbar = () => {
                     <i className='bx bxs-trash-alt'></i>
                 </div>
                 <h2>Total: $230</h2>
-                <a href="/" className="btn">Checkout</a>
+                <Link to="/" className="btn">Checkout</Link>
             </div>
-
-            {/* <!-- User --> */}
 
             <Auth activeIcon={activeIcon} />
         </header>
