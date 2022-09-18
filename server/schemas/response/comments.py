@@ -12,7 +12,7 @@ class CreateCommentResponseSchema(Schema):
     rate = fields.Integer()
     user_id = fields.Integer(required=True)
     product_id = fields.Integer(required=True)
-
+    user = fields.Nested(CommentUserNames())
 
 class GetCommentInfoResponseSchema(CreateCommentResponseSchema):
-    user = fields.Nested(CommentUserNames())
+    pass

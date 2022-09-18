@@ -16,7 +16,8 @@
 >"/products/product/:product_id/pairs/:pair_id" POST DELETE :white_check_mark:   
 > 
 >>  ### COMMENTS
->>"/comments/:product_id"  ==> GET POST DELETE PUT  
+>>"/comments ==> POST   :white_check_mark:      
+>"/comments/:product_id"  ==> GET DELETE PUT  :white_check_mark:      
 > 
 >> ### ORDERS
 >>"/orders"  ==> GET /ADMIN/  
@@ -73,6 +74,8 @@ The REST API to the app is described below.
     - [Add pair to product](#add-pair-to-product)
     - [Delete pair from product](#delete-pari-from-product)
     - [Edit pair](#edit-pair)
+- [Comments](#comments)
+  - [Create comment](#create-comment)
 - [Wish list](#wish-list)
   - [Add product in wish list](#add-product-in-wish-list)
   - [Get all wishes for current user](#get-all-wishes-for-current-user)
@@ -777,6 +780,23 @@ The REST API to the app is described below.
 >     "message": "There is not product with id: 732"
 > }
 > ```
+
+> # Comments
+> ## Create comment
+> ### Request
+> `[POST] '/comments'`
+> ```json
+> {
+>    "product_id": 79,
+>    "comment": "Random comment",
+>    "rate": 3
+> }
+> ```
+> 
+> ### Response
+> ```json
+
+```
 
 > # Wish list
 > ## Add product in wish list
