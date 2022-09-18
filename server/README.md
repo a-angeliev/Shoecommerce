@@ -6,7 +6,7 @@
 >"/register"  ==> POST  :white_check_mark:   
 >"/user/:id" ==> PUT GET    :white_check_mark:   DELETE :heavy_multiplication_x:   
 >"/user/:id/orders" ==> GET  
-> "/user/:id/comments" ==> GET  
+> "/user/:id/comments" ==> GET   :white_check_mark:   
 > 
 >> ### PRODUCTS   
 >>"/products" ==> POST GET  :white_check_mark:      
@@ -56,6 +56,7 @@ The REST API to the app is described below.
 - [User](#user)
     - [Get information about user](#get-information-about-user)
     - [Edit user](#edit-user)
+    - [Get user comments](#get-user-comments)
 - [Brand](#brand)
     - [Create brand](#create-brand)
     - [Get brands information](#get-brand-information)
@@ -72,7 +73,7 @@ The REST API to the app is described below.
     - [Add product images](#add-product-images)
     - [Delete product images](#delete-product-images)
     - [Add pair to product](#add-pair-to-product)
-    - [Delete pair from product](#delete-pari-from-product)
+    - [Delete pair from product](#delete-pair-from-product)
     - [Edit pair](#edit-pair)
 - [Comments](#comments)
   - [Create comment](#create-comment)
@@ -237,6 +238,37 @@ The REST API to the app is described below.
 >    }
 > }
 >```
+> 
+> ## Get user comments
+> ### Request
+> `[GET] '/user/:id/comments'`
+> ### Response
+> ```json
+> [
+>     {
+>         "user_id": 1,
+>         "id": 1,
+>         "product_id": 70,
+>         "product": {
+>             "title": "newtitle",
+>             "price": 10.1
+>         },
+>         "comment": "abv",
+>         "rate": 3
+>     },
+>     {
+>         "user_id": 1,
+>         "id": 2,
+>         "product_id": 71,
+>         "product": {
+>             "title": "product",
+>             "price": 5
+>         },
+>         "comment": "111",
+>         "rate": 5
+>     }
+> ]
+> ```
 
 ># Brand
 >## Create brand

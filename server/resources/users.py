@@ -49,3 +49,10 @@ class User(Resource):
             schema = UserResponseSchema()
             return schema.dumps(user), 201
         raise Forbidden("You dont have permission to this resource!")
+
+
+class UserComments(Resource):
+    @staticmethod
+    def get(id_):
+        comments = UserManager.get_comments(id_)
+        return comments

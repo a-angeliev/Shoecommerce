@@ -5,6 +5,8 @@ from db import db
 from models import UsersModel, UserData
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from schemas.response.comments import GetUserCommentsResponseSchema
+
 
 class UserManager:
     @staticmethod
@@ -72,6 +74,13 @@ class UserManager:
         if user is None:
             raise NotFound("There is no user with that id.")
         return user
+
+    @staticmethod
+    def get_comments(id_):
+        user = UserManager.get_by_id(id_)
+        comments = user.user_data.comments
+        schema = GetUserCommentsResponseSchema()
+        return schema.dumps(comments, many=True)
 
     # TODO
     # Create Used delete functionality.
