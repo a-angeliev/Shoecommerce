@@ -14,5 +14,6 @@ class CreateCommentResponseSchema(Schema):
     product_id = fields.Integer(required=True)
     user = fields.Nested(CommentUserNames())
 
+
 class GetCommentInfoResponseSchema(CreateCommentResponseSchema):
     pass

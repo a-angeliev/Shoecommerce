@@ -45,4 +45,3 @@ class CommentAction(Resource):
     def delete(user, id_):
         response = CommentsManager.delete_comment(user, id_)
         return json.dumps({"message": response})
-
