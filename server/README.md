@@ -819,7 +819,7 @@ The REST API to the app is described below.
 > ## Get all wishes for current user
 > Need only to access right endpoint. No needed body or url params. User comes from the token.
 > ### Request
-> `[GET] /wishes`
+> `[GET] /wishes`   
 > Response will contains list of products objects
 > ### Response
 > ```json

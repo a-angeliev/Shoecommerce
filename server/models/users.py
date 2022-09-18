@@ -1,6 +1,6 @@
 from sqlalchemy import func, ForeignKey
 from sqlalchemy.orm import relationship, declared_attr
-
+from models.comments import CommentsModel
 from db import db
 from models.enums import RoleType
 
@@ -38,3 +38,4 @@ class UserData(db.Model):
         lazy="dynamic",
         backref=db.backref("users", lazy=True),
     )
+    comments = db.relationship("CommentsModel", backref="users", lazy="select")
