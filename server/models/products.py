@@ -1,5 +1,6 @@
 from db import db
 from models.category import CategoryModel
+from models.comments import CommentsModel
 from models.enums import GenderType, PairColor
 from models.brands import BrandModel
 
@@ -17,6 +18,7 @@ class ProductsModel(db.Model):
     brand_id = db.Column(db.Integer, db.ForeignKey(BrandModel.id), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey(CategoryModel.id), nullable=False)
     is_deleted = db.Column(db.Boolean, default=False, nullable=False)
+    comments = db.relationship("CommentsModel", backref="product", lazy="select")
 
 
 class ProductImages(db.Model):

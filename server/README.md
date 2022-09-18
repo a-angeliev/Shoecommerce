@@ -16,7 +16,8 @@
 >"/products/product/:product_id/pairs/:pair_id" POST DELETE :white_check_mark:   
 > 
 >>  ### COMMENTS
->>"/comments/:product_id"  ==> GET POST DELETE PUT  
+>>"/comments ==> POST   :white_check_mark:      
+>"/comments/:product_id"  ==> GET DELETE PUT  :white_check_mark:      
 > 
 >> ### ORDERS
 >>"/orders"  ==> GET /ADMIN/  
@@ -73,6 +74,11 @@ The REST API to the app is described below.
     - [Add pair to product](#add-pair-to-product)
     - [Delete pair from product](#delete-pari-from-product)
     - [Edit pair](#edit-pair)
+- [Comments](#comments)
+  - [Create comment](#create-comment)
+  - [Get comment by id](#get-comment-by-id)
+  - [Edit comment](#edit-comment)
+  - [Delete comment](#delete-comment)
 - [Wish list](#wish-list)
   - [Add product in wish list](#add-product-in-wish-list)
   - [Get all wishes for current user](#get-all-wishes-for-current-user)
@@ -778,6 +784,100 @@ The REST API to the app is described below.
 > }
 > ```
 
+> # Comments
+> ## Create comment
+> ### Request
+> `[POST] '/comments'`
+> ```json
+> {
+>    "product_id": 79,
+>    "comment": "Random comment",
+>    "rate": 3
+> }
+> ```
+> 
+> ### Response
+> ```json
+> {
+>     "product_id": 79,
+>     "user": {
+>         "f_name": "Gosho",
+>         "l_name": "Goshev"
+>     },
+>     "user_id": 1,
+>     "id": 12,
+>     "rate": 3,
+>     "comment": "Random comment"
+> }
+> ```
+> Server validations are:
+> - Token require in header
+> - Valid product id
+> - Rate must be 0, 1, 2 ,3 ,4, 5 or missing in request.
+> - *Comment is not required
+> - **Rate is not required
+>
+> ## Get comment by id
+> ### Request
+> `[GET] '/comments/:id'`
+> ### Response
+> ```json
+> {
+>     "product_id": 59,
+>     "user": {
+>         "f_name": "Gosho",
+>         "l_name": "Goshev"
+>     },
+>     "user_id": 1,
+>     "id": 12,
+>     "rate": 2,
+>     "comment": "32244"
+> }
+> ```
+> 
+> ## Edit comment
+> ### Request
+> `[PUT] '/comments/:id'`
+> ```json
+> {
+>    "comment": "comment",
+>    "rate": 5
+> }
+> ```
+> ### Response
+> ```json
+> {
+>     "product_id": 79,
+>     "user": {
+>         "f_name": "Gosho",
+>         "l_name": "Goshev"
+>     },
+>     "user_id": 1,
+>     "id": 12,
+>     "rate": 5,
+>     "comment": "comment"
+> }
+> ```
+> Server validations are:
+> - Require valid token
+> - Comment must be created from user with current token
+> - Request body can contain comment filed and/or rate field.(Can contain one or both fields.)
+> - Rate must be one of 0, 1, 2, 3, 4 or 5
+> 
+> ## Delete comment
+> ### Request
+> `[DELETE] '/comments/:id'`
+> ### Response 
+> ```json
+> {
+>   "message": "You delete the comment successfully!"
+> }
+> ```
+> Server validations are:
+> - Required valid token
+> - Comment must be created from user with current token
+> 
+
 > # Wish list
 > ## Add product in wish list
 > ### Request
@@ -819,7 +919,7 @@ The REST API to the app is described below.
 > ## Get all wishes for current user
 > Need only to access right endpoint. No needed body or url params. User comes from the token.
 > ### Request
-> `[GET] /wishes`
+> `[GET] /wishes`   
 > Response will contains list of products objects
 > ### Response
 > ```json
