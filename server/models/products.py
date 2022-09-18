@@ -20,6 +20,7 @@ class ProductsModel(db.Model):
     is_deleted = db.Column(db.Boolean, default=False, nullable=False)
     comments = db.relationship("CommentsModel", backref="product", lazy="select")
 
+
 class ProductImages(db.Model):
     __tablename__ = "product_images"
     id = db.Column(db.Integer, primary_key=True)

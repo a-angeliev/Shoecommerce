@@ -38,4 +38,4 @@ class UserData(db.Model):
         lazy="dynamic",
         backref=db.backref("users", lazy=True),
     )
-    comments = db.relationship("CommentsModel", backref="users", lazy="select")
+    comments = db.relationship("CommentsModel", backref="user", lazy="select")
