@@ -150,7 +150,7 @@ The REST API to the app is described below.
 > "{\"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjM0LCJleHAiOjE2NzA0Mzg4OTd9.YVu0irTJl3ZOxdharUiMipaNhHQkAFe3RMd3JCD6iyc\", \"user_id\": 34, \"role\": \"user\"}"
 >```
 > Server validations are:
-> - Must have sent all fields(email and password)
+> - All fields must be sent(email and password)
 > - Email must be valid email string
 > 
 > Example error massages
@@ -160,7 +160,7 @@ The REST API to the app is described below.
 >    "message": "Wrong email or password!"
 > }
 >```
->If email is not a valid email string or missing some key (email or password), error will be:
+>If the email is not a valid email string or is missing some key (email or password),the error will be:
 >```json
 >{
 >    "message": {
@@ -219,7 +219,7 @@ The REST API to the app is described below.
 > - Request must have "x-access-token" Header.
 > - "x-access-token" value must be with the same id after decode.   
 > 
->Example error messages If don't have "x-access-token":
+>Example error messages If there is not "x-access-token":
 > ```json
 > {
 >    "message": "A valid token is missing!"
@@ -343,7 +343,7 @@ The REST API to the app is described below.
 
 > # Products
 > ## Create product
-> Before create product you must have created brand and category. To create one product you should provide main information about product like title, price and etc, information about product sizes, colors and etc, product images, and existing brands and category.   
+> Before createing product you must have created brand and category. To create one product you should provide the main information about product such as title, price and etc, information about product sizes, colors and etc, product images, and existing brand and category.   
 > ### Request
 >`[POST] '/products' `
 > ```json
@@ -406,21 +406,21 @@ The REST API to the app is described below.
 > }
 > ```
 > Server validations are:
-> - Required admin authorization.
+> - Requires admin authorization.
 > - Request must have valid body as request example.
 > - Colors are predefine: black, white, green, red, brown, gray, blue, pink.
 > - Genders are predefine: kid, man, women.
-> - Price must be bigger than discount.
+> - Price must be higher than the discount.
 > 
 > ## Get many products
 > You can take all existed products, but also you can filter products by gender, category, type.   
 > If you want to filter products should use URL params.   
-> "?brand=RandomBrand" -> That will filter products and you will get only that they have brand = RandomBrand.   
+> "?brand=RandomBrand" -> This will filter the products with the selected brand = RandomBrand.   
 > "?category=RandomCategory" -> Same as brand filtration.   
-> "?gender=kid" -> Same as brand. ** GENDER CAN BE ONLY KID, MAN, WOMAN. If you try with something else you will get error.   
+> "?gender=kid" -> Same as brand. ** GENDER CAN BE ONLY KID, MAN, WOMAN. If you try something else you will get error.   
 > 
 > Filters can be stacked. Example:   
-> "?brand=nike&gender=kid" -> That will return those products that brand is nike and gender is for kids.
+> "?brand=nike&gender=kid" -> This will return those products which brand is nike and gender is for kids.
 >  
 > ### Request
 > `[GET] '/products?brand=nike&gender=kid'`
@@ -560,7 +560,7 @@ The REST API to the app is described below.
 > 
 > ## Edit general product information
 > To edit the whole product you should access different endpoint. At this endpoint you can edit general information about product like title, description, gender, price, discount, category and brand.   
-> To edit product you should take first current product personal information then you need to change what you want to be changed and send the whole information again.   
+> To edit product first you should take the personal infromation of current product, then you make the change and send the whole information again.   
 > ### Request
 > `[PUT] '/products/product/:id'`
 > ```json
@@ -616,7 +616,7 @@ The REST API to the app is described below.
 > - All fields must be in request
 >
 > ## Add product images
-> You are able to add more images to existed product.
+> You are able to add more images to existing product.
 > ### Request
 > `[POST] '/products/product/:id/images'`
 > ```json
@@ -637,7 +637,7 @@ The REST API to the app is described below.
 > - ** You can add same pictures
 > 
 > ## Delete product images
-> You have to send in request body image id and that id must be attached to product that id is in url params.   
+> You have to send image id in request body and that id must be attached to product, which id is in url params.   
 > Example: if you access "/products/product/1/images" and send in body "'id':4", that mean image with id 4 must be attached to product with id 1.   
 > 
 > ### Request
@@ -704,7 +704,8 @@ The REST API to the app is described below.
 > - Admin permissions required
 > - Pair is unique for product /Can't be added pair with same size and color twice/   
 > - All fields must persist in request body
-> - Colors must be 
+> - Colors must be from the predifined colors
+>
 > Example error messages:
 > ```json
 > {
@@ -811,7 +812,7 @@ The REST API to the app is described below.
 > }
 > ```
 > Server validations are:
-> - Token require in header
+> - Token required in header
 > - Valid product id
 > - Rate must be 0, 1, 2 ,3 ,4, 5 or missing in request.
 > - *Comment is not required
@@ -861,7 +862,7 @@ The REST API to the app is described below.
 > Server validations are:
 > - Require valid token
 > - Comment must be created from user with current token
-> - Request body can contain comment filed and/or rate field.(Can contain one or both fields.)
+> - Request body can contain comment filed and/or rate field
 > - Rate must be one of 0, 1, 2, 3, 4 or 5
 > 
 > ## Delete comment
@@ -883,7 +884,7 @@ The REST API to the app is described below.
 > ### Request
 > `[POST] '/wishes'`   
 > 
-> In request body pass Product id:
+> In request body put Product id:
 > ```json
 > {
 >     "id": 20 
@@ -891,13 +892,13 @@ The REST API to the app is described below.
 >```
 > 
 > ### Response
-> If you success add product to your wish list you will get back product id else will get error message.
+> If you successfully add product to your wish list, you will get back product id else will get error message.
 > ```json
 > { 
 >   "id": 20
 > }
 >```
-> Server require:
+> Server validations are:
 >  - Valid Access token via x-access-token header.(Token is used to provide current user where need to be attached product)
 >  - Valid product id field in body.   
 > 
@@ -914,13 +915,13 @@ The REST API to the app is described below.
 >   "message": "The item already exist"
 > }
 >```
-> - **also you will get error message if product or doesn't exist
+> - **also you will get error message if product doesn't exist
 >
 > ## Get all wishes for current user
 > Need only to access right endpoint. No needed body or url params. User comes from the token.
 > ### Request
 > `[GET] /wishes`   
-> Response will contains list of products objects
+> Response will contain list of objects (products)
 > ### Response
 > ```json
 > [
