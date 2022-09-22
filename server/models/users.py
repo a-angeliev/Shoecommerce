@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship, declared_attr
 from models.comments import CommentsModel
 from db import db
 from models.enums import RoleType
+from models.orders import OrdersModel
 
 
 class UsersModel(db.Model):
@@ -39,3 +40,4 @@ class UserData(db.Model):
         backref=db.backref("users", lazy=True),
     )
     comments = db.relationship("CommentsModel", backref="user", lazy="select")
+    orders = db.relationship("OrdersModel", backref="user", lazy="select")

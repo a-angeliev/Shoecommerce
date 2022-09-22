@@ -3,6 +3,7 @@ from models.category import CategoryModel
 from models.comments import CommentsModel
 from models.enums import GenderType, PairColor
 from models.brands import BrandModel
+from models.orders import OrderItemModel
 
 
 class ProductsModel(db.Model):
@@ -19,6 +20,7 @@ class ProductsModel(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey(CategoryModel.id), nullable=False)
     is_deleted = db.Column(db.Boolean, default=False, nullable=False)
     comments = db.relationship("CommentsModel", backref="product", lazy="select")
+    order_items = db.relationship("OrderItemModel", backref="product", lazy="select")
 
 
 class ProductImages(db.Model):

@@ -1,0 +1,27 @@
+from sqlalchemy import func
+
+from db import db
+from models.enums import PairColor
+
+
+class OrdersModel(db.Model):
+    __tablename__ = "orders"
+    id = db.Column(db.Integer, primary_key=True)
+    created_on = db.Column(db.DateTime, server_default=func.now())
+    total_price = db.Column(db.Float, nullable=False)
+    comment = db.Column(db.Text, nullable=True)
+    order_items = db.relationship("OrderItemModel", backref="order", lazy="select")
+    user_id = db.Column(db.Integer, db.ForeignKey("user_data.id"), nullable=False)
+
+
+class OrderItemModel(db.Model):
+    __tablename__ = "order_item"
+    id = db.Column(db.Integer, primary_key=True)
+    price = db.Column(db.Float, nullable=False)
+    title = db.Column(db.Text, nullable=False)
+    pair_size = db.Column(db.Integer, nullable=False)
+    pair_color = db.Column(
+        db.Enum(PairColor, name="pair_color", create_type=False), nullable=False
+    )
+    order_id = db.Column(db.Integer, db.ForeignKey("orders.id"), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey("products.id"), nullable=False)
