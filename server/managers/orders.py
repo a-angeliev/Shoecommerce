@@ -11,6 +11,7 @@ class OrdersManager:
     def create_order(user, data):
         order_items = []
         total_price = 0
+        pairs = []
 
         for order_item_info in data["order_items"]:
             product = ProductManager.get_one(order_item_info["product_id"])
@@ -18,6 +19,7 @@ class OrdersManager:
             if not pair:
                 raise NotFound("It not available some of products in your order.")
             pair = pair[0]
+            pairs.append(pair)
 
             price = product.price - product.discount
 
@@ -37,6 +39,8 @@ class OrdersManager:
         map(lambda x: order.order_items.append(x), order_items)
         user.user_data.orders.append(order)
 
+        ProductManager.sell_pair(pairs)
 
         db_add_items(order, user)
+
         return order
