@@ -146,8 +146,7 @@ class ProductManager:
         for pair in pairs:
             pair.quantity -= 1
 
-        db_add_items(*pairs)
-
+        return pairs
 
     @staticmethod
     def edit_product_base_info(id_, product_data):

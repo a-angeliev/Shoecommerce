@@ -1,7 +1,7 @@
 from sqlalchemy import func
 
 from db import db
-from models.enums import PairColor
+from models.enums import PairColor, IsShipped
 
 
 class OrdersModel(db.Model):
@@ -12,6 +12,8 @@ class OrdersModel(db.Model):
     comment = db.Column(db.Text, nullable=True)
     order_items = db.relationship("OrderItemModel", backref="order", lazy="select")
     user_id = db.Column(db.Integer, db.ForeignKey("user_data.id"), nullable=False)
+    is_shipped = db.Column(db.Enum(IsShipped, name = "is_shipped", create_type=False), default=IsShipped.pending, nullable=False)
+    shipped_on = db.Column(db.DateTime, nullable=True)
 
 
 class OrderItemModel(db.Model):

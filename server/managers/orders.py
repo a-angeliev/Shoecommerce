@@ -1,6 +1,5 @@
 from werkzeug.exceptions import NotFound
 
-from db import db
 from managers.products import ProductManager
 from models.orders import OrderItemModel, OrdersModel
 from utils.operations import db_add_items
@@ -15,7 +14,11 @@ class OrdersManager:
 
         for order_item_info in data["order_items"]:
             product = ProductManager.get_one(order_item_info["product_id"])
-            pair = [x for x in product.pairs if x.id == order_item_info["pair_id"] and x.quantity is not 0]
+            pair = [
+                x
+                for x in product.pairs
+                if x.id == order_item_info["pair_id"] and x.quantity is not 0
+            ]
             if not pair:
                 raise NotFound("It not available some of products in your order.")
             pair = pair[0]
@@ -35,12 +38,10 @@ class OrdersManager:
             total_price += price
 
         order = OrdersModel(total_price=total_price, comment=data["comment"])
-
-        map(lambda x: order.order_items.append(x), order_items)
+        [order.order_items.append(x) for x in order_items]
         user.user_data.orders.append(order)
 
-        ProductManager.sell_pair(pairs)
-
-        db_add_items(order, user)
+        pairs = ProductManager.sell_pair(pairs)
+        db_add_items(order, user, *pairs)
 
         return order

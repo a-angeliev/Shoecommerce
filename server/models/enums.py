@@ -27,3 +27,9 @@ class PairColor(BaseEnum):
     gray = "gray"
     blue = "blue"
     pink = "pink"
+
+
+class IsShipped(BaseEnum):
+    rejected = "rejected"
+    pending = "pending"
+    shipped = "shipped"
