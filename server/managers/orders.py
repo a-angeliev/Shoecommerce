@@ -45,3 +45,10 @@ class OrdersManager:
         db_add_items(order, user, *pairs)
 
         return order
+
+    @staticmethod
+    def get_all():
+        orders = OrdersModel.query.all()
+        return orders
+
+

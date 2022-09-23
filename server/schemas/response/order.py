@@ -19,3 +19,7 @@ class CreateOrderResponseSchema(Schema):
     order_items = fields.Nested(CreateOrderItemsResponseSchema(), many=True)
     is_shipped = fields.String(required=True)
     shipped_on = fields.DateTime(required=True)
+
+
+class GetAllOrdersResponseSchema(CreateOrderResponseSchema):
+    pass
