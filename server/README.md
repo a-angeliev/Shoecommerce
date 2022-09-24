@@ -30,9 +30,9 @@
 >> "/newsletter"  ==> POST DELETE | GET  
 >  
 >> ### DISCOUNT
->> "/discount"  ==> POST GET  /ADMIN/   
->  "/discount/:id"  ==> PUT DELETE GET  /ADMIN/  
->  "/discount/check" ==> POST  {discount: discount, isValid: true}
+>> "/discounts"  ==> POST GET  /ADMIN/  :white_check_mark:   
+>  "/discounts/:id" ==> DELETE /ADMIN/   :white_check_mark:     
+>  "/discount/validate" ==> POST  :white_check_mark:    
 >   
 >> ### CATEGORIES
 >> "/category"  ==> GET | POST /ADMIN/  :white_check_mark:   
@@ -88,6 +88,11 @@ The REST API to the app is described below.
   - [Add product in wish list](#add-product-in-wish-list)
   - [Get all wishes for current user](#get-all-wishes-for-current-user)
   - [Remove product from wish list](#remove-product-from-wish-list)
+- [Discounts](#discounts)
+  - [Create discount](#create-discount)
+  - [Get all discounts](#get-all-discounts)
+  - [Delete discount](#delete-discount)
+  - [Check discount is valid](#check-discount-is-valid)
 >## Register
 >### Request
 >`[POST] "/register"`
@@ -1204,4 +1209,86 @@ The REST API to the app is described below.
 > {
 >   "id": 20
 > } 
+> ```
+> 
+
+> # Discounts
+> ## Create discount
+> ### Request
+> `[POST] '/discounts'`
+> ```json
+> {
+>    "code": "123asd",
+>    "discount": 10,
+>    "started_on": "2022-09-04T21:00:00.000Z",
+>    "ended_on": "2022-09-04T21:00:00.000Z"
+> }
+> ```
+> ### Response
+> ```json
+> {
+>    "code": "123asd",
+>    "id": 2,
+>    "discount": 10,
+>    "ended_on": "2022-09-04T21:00:00",
+>    "started_on": "2022-09-04T21:00:00"
+> }
+> ```
+> Server validations are:
+> - Admin permissions required
+> - code must be at least 5 char
+> - discount is in % between 0 and 100
+>
+> Here you can see how you can do DateTime input. ![LINK](https://github.com/a-angeliev/React-Riddles-client/blob/main/src/components/AdminPanel/AdminDiscounts/AdminAddDiscount/AdminAddDiscount.js)
+>
+> ## Get all discounts
+> ### Request
+> `[GET] '/discounts'`
+> ### Response
+> ```json
+> [
+>    {
+>        "started_on": "2022-09-04T21:00:00",
+>        "ended_on": "2022-09-04T21:00:00",
+>        "id": 2,
+>        "discount": 10,
+>        "code": "123asd"
+>    }
+> ]
+> ```
+> Server validations are:
+> - Admin permissions required
+> 
+> ## Delete discount
+> ### Request
+> `[DELETE] '/discounts/:id'`
+> ### Response
+> ```json
+> {
+>    "massage": "You successfully delete the discount"
+> }
+> ```
+> Server validations are:
+> - Admin permissions required
+>
+> ## Check discount is valid
+> ### Request
+> `[POST] '/discounts/validate'`
+> ```json
+> {
+>    "code": "somecode"
+> }
+> ```
+> ### Response
+> ```json
+> {
+>   "is_valid": true,
+>   "discount": 10
+> }
+> ```
+> Example error massage:
+> ```json
+> {
+>   "is_valid": false
+> }
 > ```

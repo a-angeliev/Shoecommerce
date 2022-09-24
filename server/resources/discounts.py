@@ -38,7 +38,7 @@ class Discounts(Resource):
     def get():
         discounts = DiscountsManager.get_all()
         schema = GetAllDiscountsResponseSchema()
-        return schema.dumps(discounts)
+        return schema.dumps(discounts, many=True)
 
 
 class DiscountsOperations(Resource):
