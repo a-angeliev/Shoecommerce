@@ -2,7 +2,7 @@ from resources.auth import Login
 from resources.brand import Brand
 from resources.category import Category
 from resources.comments import Comments, CommentAction
-from resources.orders import Orders
+from resources.orders import Orders, ChangeOrder
 from resources.products import (
     Products,
     Product,
@@ -24,6 +24,7 @@ routes = (
     (ProductPairs, "/products/product/<int:id_>/pairs"),
     (ProductPairEdit, "/products/product/<int:id_>/pairs/<int:pair_id>"),
     (Orders, "/orders"),
+    (ChangeOrder, "/orders/<int:id_>"),
     (Comments, "/comments"),
     (CommentAction, "/comments/<int:id_>"),
     (Wishes, "/wishes"),

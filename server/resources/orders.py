@@ -3,7 +3,7 @@ from flask_restful import Resource
 
 from managers.orders import OrdersManager
 from models import RoleType
-from schemas.request.order import CreateOrderRequestSchema
+from schemas.request.order import CreateOrderRequestSchema, ChangeOrderStatusRequestSchema
 from schemas.response.order import CreateOrderResponseSchema, GetAllOrdersResponseSchema
 from utils.decorators import token_required, validate_schema, permission_required
 
@@ -23,3 +23,13 @@ class Orders(Resource):
         orders = OrdersManager.get_all()
         schema = GetAllOrdersResponseSchema()
         return schema.dumps(orders, many=True)
+
+
+class ChangeOrder(Resource):
+    @staticmethod
+    @permission_required(RoleType.admin)
+    @validate_schema(ChangeOrderStatusRequestSchema)
+    def post(id_):
+        order = OrdersManager.edit_order_status(id_, request.get_json())
+        schema = GetAllOrdersResponseSchema()
+        return schema.dumps(order)

@@ -20,9 +20,8 @@
 >"/comments/:product_id"  ==> GET DELETE PUT  :white_check_mark:      
 > 
 >> ### ORDERS
->>"/orders"  ==> GET /ADMIN/  
-> "/orders/:id" ==> PUT /ADMIN/
-> "/orders/:user_id"  ==> GET  
+>>"/orders"  ==> GET /ADMIN/, POST  :white_check_mark:   
+> "/orders/:id" ==> PUT /ADMIN/   :white_check_mark:   
 > 
 >> ### WISHES
 >> "/wishes"  ==>  GET DELETE POST :white_check_mark:     
@@ -80,6 +79,10 @@ The REST API to the app is described below.
   - [Get comment by id](#get-comment-by-id)
   - [Edit comment](#edit-comment)
   - [Delete comment](#delete-comment)
+- [Orders](#orders)
+  - [Create order](#create-order)
+  - [Get all orders](#get-all-orders)
+  - [Change order status](#change-order-status)
 - [Wish list](#wish-list)
   - [Add product in wish list](#add-product-in-wish-list)
   - [Get all wishes for current user](#get-all-wishes-for-current-user)
@@ -909,6 +912,139 @@ The REST API to the app is described below.
 > - Required valid token
 > - Comment must be created from user with current token
 > 
+
+> # Orders
+> ## Create order
+> ### Request
+> `[POST] '/orders'`
+> ```json
+> {
+>    "order_items": [
+>                     {"product_id": 64, "pair_id": 29},
+>                      {"product_id": 64, "pair_id": 30}
+>                   ],
+>    "comment": "123"
+> }
+> ```
+> ### Response
+> ```json
+>   {
+>     "order_items": [
+>         {
+>             "pair_color": "PairColor.black",
+>             "pair_size": 40,
+>             "price": 21,
+>             "title": "some 141",
+>             "id": 12,
+>             "product_id": 64
+>         },
+>         {
+>             "pair_color": "PairColor.blue",
+>             "pair_size": 43,
+>             "price": 21,
+>             "title": "some 141",
+>             "id": 13,
+>             "product_id": 64
+>         }
+>     ],
+>     "user_id": 1,
+>     "comment": "123",
+>     "created_on": "2022-09-24T12:34:02.014696",
+>     "id": 18,
+>     "is_shipped": "IsShipped.pending",
+>     "shipped_on": null,
+>     "total_price": 42
+> }
+> ```
+> Server validation are:
+> - Required token in header
+> - Comment can be empty string
+> - Product and pair must be attached
+> - "order_items" must have at least one item
+>
+> ## Get all orders
+> ### Request
+> `[GET] '/orders'`
+> ### Response
+> ```json
+> [
+>   {
+>     "order_items": [
+>       {
+>         "pair_color": "PairColor.black",
+>         "pair_size": 40,
+>         "price": 21,
+>         "title": "some 141",
+>         "id": 8,
+>         "product_id": 64
+>       },
+>       {
+>         "pair_color": "PairColor.blue",
+>         "pair_size": 43,
+>         "price": 21,
+>         "title": "some 141",
+>         "id": 9,
+>         "product_id": 64
+>       }
+>     ],
+>     "user_id": 1,
+>     "comment": "123",
+>     "created_on": "2022-09-22T23:24:51.506802",
+>     "id": 16,
+>     "is_shipped": "IsShipped.pending",
+>     "shipped_on": null,
+>     "total_price": 42
+>   }
+> ]
+> ```
+> Server validations are:
+> - Requires admin permissions
+>
+> ## Change order status
+> ### Request
+> `[POST] '/orders/:id'`
+> ```json
+> {
+>   "status": "shipped"
+> }
+> ```
+> ### Response
+> ```json
+>   {
+>     "order_items": [
+>       {
+>         "pair_color": "PairColor.black",
+>         "pair_size": 40,
+>         "price": 21,
+>         "title": "some 141",
+>         "id": 8,
+>         "product_id": 64
+>       },
+>       {
+>         "pair_color": "PairColor.blue",
+>         "pair_size": 43,
+>         "price": 21,
+>         "title": "some 141",
+>         "id": 9,
+>         "product_id": 64
+>       }
+>     ],
+>     "user_id": 1,
+>     "comment": "123",
+>     "created_on": "2022-09-22T23:24:51.506802",
+>     "id": 16,
+>     "is_shipped": "IsShipped.shipped",
+>     "shipped_on": "2022-09-24T23:24:51.506802",
+>     "total_price": 42
+>   }
+> ```
+> Server validations are:
+> - Requires admin permissions
+> - status must be pending, shipped or rejected
+
+
+
+
 
 > # Wish list
 > ## Add product in wish list

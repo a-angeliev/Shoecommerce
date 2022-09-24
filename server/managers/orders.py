@@ -1,6 +1,8 @@
+from flask import request
 from werkzeug.exceptions import NotFound
 
 from managers.products import ProductManager
+from models.enums import IsShipped
 from models.orders import OrderItemModel, OrdersModel
 from utils.operations import db_add_items
 
@@ -50,5 +52,15 @@ class OrdersManager:
     def get_all():
         orders = OrdersModel.query.all()
         return orders
+
+    @staticmethod
+    def edit_order_status(order_id, data):
+        order = OrdersModel.query.filter_by(id=order_id).first()
+        if not order:
+            raise NotFound("There is not order with that id.")
+
+        order.is_shipped = IsShipped[data["status"]]
+        db_add_items(order)
+        return order
 
 
