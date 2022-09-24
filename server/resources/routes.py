@@ -10,13 +10,14 @@ from resources.products import (
     ProductPairs,
     ProductPairEdit,
 )
-from resources.users import Register, User, UserComments
+from resources.users import Register, User, UserComments, UserOrders
 from resources.wishes import Wishes
 
 routes = (
     (Register, "/register"),
     (Login, "/login"),
     (User, "/user/<int:id_>"),
+    (UserOrders, "/user/<int:id_>/orders"),
     (UserComments, "/user/<int:id_>/comments"),
     (Products, "/products"),
     (Product, "/products/product/<int:id_>"),

@@ -3,7 +3,10 @@ from flask_restful import Resource
 
 from managers.orders import OrdersManager
 from models import RoleType
-from schemas.request.order import CreateOrderRequestSchema, ChangeOrderStatusRequestSchema
+from schemas.request.order import (
+    CreateOrderRequestSchema,
+    ChangeOrderStatusRequestSchema,
+)
 from schemas.response.order import CreateOrderResponseSchema, GetAllOrdersResponseSchema
 from utils.decorators import token_required, validate_schema, permission_required
 

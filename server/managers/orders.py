@@ -62,5 +62,3 @@ class OrdersManager:
         order.is_shipped = IsShipped[data["status"]]
         db_add_items(order)
         return order
-
-

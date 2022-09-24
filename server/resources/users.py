@@ -17,6 +17,8 @@ from schemas.request.users import (
     EditUserRequestSchema,
 )
 from schemas.response.auth import UserResponseSchema
+from schemas.response.comments import GetUserCommentsResponseSchema
+from schemas.response.order import GetUserOrdersResponseSchema
 from utils.decorators import validate_schema, token_required
 
 
@@ -55,4 +57,16 @@ class UserComments(Resource):
     @staticmethod
     def get(id_):
         comments = UserManager.get_comments(id_)
-        return comments
+        schema = GetUserCommentsResponseSchema()
+        return schema.dumps(comments, many=True)
+
+
+class UserOrders(Resource):
+    @staticmethod
+    @token_required
+    def get(user, id_):
+        if user.id != id_:
+            raise Forbidden("You dont have permission to this resource!")
+        orders = UserManager.get_orders(id_)
+        schema = GetUserOrdersResponseSchema()
+        return schema.dumps(orders, many=True)

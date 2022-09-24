@@ -5,7 +5,7 @@
 >>"/login"   ==> POST   :white_check_mark:   
 >"/register"  ==> POST  :white_check_mark:   
 >"/user/:id" ==> PUT GET    :white_check_mark:   DELETE :heavy_multiplication_x:   
->"/user/:id/orders" ==> GET  
+>"/user/:id/orders" ==> GET  :white_check_mark:     
 > "/user/:id/comments" ==> GET   :white_check_mark:   
 > 
 >> ### PRODUCTS   
@@ -56,6 +56,7 @@ The REST API to the app is described below.
     - [Get information about user](#get-information-about-user)
     - [Edit user](#edit-user)
     - [Get user comments](#get-user-comments)
+    - [Get user orders](#get-user-orders)
 - [Brand](#brand)
     - [Create brand](#create-brand)
     - [Get brands information](#get-brand-information)
@@ -272,6 +273,73 @@ The REST API to the app is described below.
 >     }
 > ]
 > ```
+> 
+> ## Get user orders
+> ### Request
+> `[GET] '/user/:id/orders'`
+> ### Response
+> ```json
+> [
+>     {
+>         "order_items": [
+>             {
+>                 "pair_size": 40,
+>                 "pair_color": "PairColor.black",
+>                 "product_id": 64,
+>                 "id": 8,
+>                 "price": 21,
+>                 "title": "some 141"
+>             },
+>             {
+>                 "pair_size": 43,
+>                 "pair_color": "PairColor.blue",
+>                 "product_id": 64,
+>                 "id": 9,
+>                 "price": 21,
+>                 "title": "some 141"
+>             }
+>         ],
+>         "is_shipped": "IsShipped.pending",
+>         "user_id": 1,
+>         "total_price": 42,
+>         "created_on": "2022-09-22T23:24:51.506802",
+>         "shipped_on": null,
+>         "id": 16,
+>         "comment": "123"
+>     },
+>     {
+>         "order_items": [
+>             {
+>                 "pair_size": 40,
+>                 "pair_color": "PairColor.black",
+>                 "product_id": 64,
+>                 "id": 10,
+>                 "price": 21,
+>                 "title": "some 141"
+>             },
+>             {
+>                 "pair_size": 43,
+>                 "pair_color": "PairColor.blue",
+>                 "product_id": 64,
+>                 "id": 11,
+>                 "price": 21,
+>                 "title": "some 141"
+>             }
+>         ],
+>         "is_shipped": "IsShipped.pending",
+>         "user_id": 1,
+>         "total_price": 42,
+>         "created_on": "2022-09-22T23:27:14.190322",
+>         "shipped_on": null,
+>         "id": 17,
+>         "comment": "123"
+>     }
+> ]
+> ```
+> Server validations are:
+> - Requires valid token
+> - token must be at the same user as url id
+
 
 ># Brand
 >## Create brand

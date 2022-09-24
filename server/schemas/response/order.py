@@ -23,3 +23,7 @@ class CreateOrderResponseSchema(Schema):
 
 class GetAllOrdersResponseSchema(CreateOrderResponseSchema):
     pass
+
+
+class GetUserOrdersResponseSchema(CreateOrderResponseSchema):
+    pass
