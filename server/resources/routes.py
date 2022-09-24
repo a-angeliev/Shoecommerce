@@ -2,6 +2,7 @@ from resources.auth import Login
 from resources.brand import Brand
 from resources.category import Category
 from resources.comments import Comments, CommentAction
+from resources.discounts import Discounts, DiscountsOperations, DiscountValidation
 from resources.orders import Orders, ChangeOrder
 from resources.products import (
     Products,
@@ -31,4 +32,7 @@ routes = (
     (Wishes, "/wishes"),
     (Brand, "/brand"),
     (Category, "/category"),
+    (Discounts, "/discounts"),
+    (DiscountsOperations, "/discounts/<int:id_>"),
+    (DiscountValidation, "/discounts/validate"),
 )
