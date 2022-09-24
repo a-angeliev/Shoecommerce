@@ -142,6 +142,13 @@ class ProductManager:
         return pair
 
     @staticmethod
+    def sell_pair(pairs):
+        for pair in pairs:
+            pair.quantity -= 1
+
+        return pairs
+
+    @staticmethod
     def edit_product_base_info(id_, product_data):
         product_q = ProductsModel.query.filter(
             ProductsModel.id == id_, text("is_deleted is FALSE")

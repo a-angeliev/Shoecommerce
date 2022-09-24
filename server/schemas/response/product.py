@@ -1,5 +1,7 @@
 from marshmallow import Schema, fields
 
+from schemas.utils_schemas import CustomEnumField
+
 
 class ImagesSchemaNested(Schema):
     id = fields.Integer(required=True)
@@ -19,8 +21,8 @@ class CategorySchemaNested(Schema):
 
 class ProductPairResponseSchema(Schema):
     id = fields.Integer(required=True)
-    size = fields.Integer(required=True)
-    color = fields.String(required=True)
+    size = CustomEnumField(required=True)
+    color = CustomEnumField(required=True)
     quantity = fields.Integer(required=True)
 
 
@@ -30,7 +32,7 @@ class CreateProductResponseSchema(Schema):
     description = fields.String(required=True)
     price = fields.Float(required=True)
     discount = fields.Float(required=True)
-    gender = fields.String(required=True)
+    gender = CustomEnumField(required=True)
     images = fields.Nested(ImagesSchemaNested(), many=True)
     pairs = fields.Nested(ProductPairResponseSchema(), required=True, many=True)
     brand = fields.Nested(BrandSchemaNested(), required=True)
@@ -46,8 +48,8 @@ class AddImageProductResponseSchema(Schema):
 
 class AddProductPairResponseSchema(Schema):
     id = fields.Integer(required=True)
-    size = fields.Integer(required=True)
-    color = fields.String(required=True)
+    size = CustomEnumField(required=True)
+    color = CustomEnumField(required=True)
     quantity = fields.Integer(required=True)
     product_id = fields.Integer(required=True)
 

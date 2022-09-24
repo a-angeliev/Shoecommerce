@@ -3,6 +3,7 @@ from marshmallow import Schema, fields, validate
 from schemas.response.product import CreateProductResponseSchema
 
 
+
 class ProductIdResponseSchema(Schema):
     id = fields.Integer(required=True)
 

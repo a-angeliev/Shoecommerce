@@ -5,8 +5,8 @@
 >>"/login"   ==> POST   :white_check_mark:   
 >"/register"  ==> POST  :white_check_mark:   
 >"/user/:id" ==> PUT GET    :white_check_mark:   DELETE :heavy_multiplication_x:   
->"/user/:id/orders" ==> GET  
-> "/user/:id/comments" ==> GET  
+>"/user/:id/orders" ==> GET  :white_check_mark:     
+> "/user/:id/comments" ==> GET   :white_check_mark:   
 > 
 >> ### PRODUCTS   
 >>"/products" ==> POST GET  :white_check_mark:      
@@ -20,20 +20,19 @@
 >"/comments/:product_id"  ==> GET DELETE PUT  :white_check_mark:      
 > 
 >> ### ORDERS
->>"/orders"  ==> GET /ADMIN/  
-> "/orders/:id" ==> PUT /ADMIN/
-> "/orders/:user_id"  ==> GET  
+>>"/orders"  ==> GET /ADMIN/, POST  :white_check_mark:   
+> "/orders/:id" ==> PUT /ADMIN/   :white_check_mark:   
 > 
 >> ### WISHES
 >> "/wishes"  ==>  GET DELETE POST :white_check_mark:     
 > 
 >> ### NEWSLETTER
->> "/newsletter"  ==> POST DELETE | GET  
+>> "/newsletter"  ==> POST DELETE :white_check_mark:    
 >  
 >> ### DISCOUNT
->> "/discount"  ==> POST GET  /ADMIN/   
->  "/discount/:id"  ==> PUT DELETE GET  /ADMIN/  
->  "/discount/check" ==> POST  {discount: discount, isValid: true}
+>> "/discounts"  ==> POST GET  /ADMIN/  :white_check_mark:   
+>  "/discounts/:id" ==> DELETE /ADMIN/   :white_check_mark:     
+>  "/discount/validate" ==> POST  :white_check_mark:    
 >   
 >> ### CATEGORIES
 >> "/category"  ==> GET | POST /ADMIN/  :white_check_mark:   
@@ -56,6 +55,8 @@ The REST API to the app is described below.
 - [User](#user)
     - [Get information about user](#get-information-about-user)
     - [Edit user](#edit-user)
+    - [Get user comments](#get-user-comments)
+    - [Get user orders](#get-user-orders)
 - [Brand](#brand)
     - [Create brand](#create-brand)
     - [Get brands information](#get-brand-information)
@@ -72,17 +73,29 @@ The REST API to the app is described below.
     - [Add product images](#add-product-images)
     - [Delete product images](#delete-product-images)
     - [Add pair to product](#add-pair-to-product)
-    - [Delete pair from product](#delete-pari-from-product)
+    - [Delete pair from product](#delete-pair-from-product)
     - [Edit pair](#edit-pair)
 - [Comments](#comments)
   - [Create comment](#create-comment)
   - [Get comment by id](#get-comment-by-id)
   - [Edit comment](#edit-comment)
   - [Delete comment](#delete-comment)
+- [Orders](#orders)
+  - [Create order](#create-order)
+  - [Get all orders](#get-all-orders)
+  - [Change order status](#change-order-status)
 - [Wish list](#wish-list)
   - [Add product in wish list](#add-product-in-wish-list)
   - [Get all wishes for current user](#get-all-wishes-for-current-user)
   - [Remove product from wish list](#remove-product-from-wish-list)
+- [Discounts](#discounts)
+  - [Create discount](#create-discount)
+  - [Get all discounts](#get-all-discounts)
+  - [Delete discount](#delete-discount)
+  - [Check discount is valid](#check-discount-is-valid)
+- [Newsletter](#newsletter)
+  - [Subscribe](#subscribe)
+  - [Unsubscribe](#unsubscribe)
 >## Register
 >### Request
 >`[POST] "/register"`
@@ -237,6 +250,104 @@ The REST API to the app is described below.
 >    }
 > }
 >```
+> 
+> ## Get user comments
+> ### Request
+> `[GET] '/user/:id/comments'`
+> ### Response
+> ```json
+> [
+>     {
+>         "user_id": 1,
+>         "id": 1,
+>         "product_id": 70,
+>         "product": {
+>             "title": "newtitle",
+>             "price": 10.1
+>         },
+>         "comment": "abv",
+>         "rate": 3
+>     },
+>     {
+>         "user_id": 1,
+>         "id": 2,
+>         "product_id": 71,
+>         "product": {
+>             "title": "product",
+>             "price": 5
+>         },
+>         "comment": "111",
+>         "rate": 5
+>     }
+> ]
+> ```
+> 
+> ## Get user orders
+> ### Request
+> `[GET] '/user/:id/orders'`
+> ### Response
+> ```json
+> [
+>     {
+>         "order_items": [
+>             {
+>                 "pair_size": 40,
+>                 "pair_color": "black",
+>                 "product_id": 64,
+>                 "id": 8,
+>                 "price": 21,
+>                 "title": "some 141"
+>             },
+>             {
+>                 "pair_size": 43,
+>                 "pair_color": "blue",
+>                 "product_id": 64,
+>                 "id": 9,
+>                 "price": 21,
+>                 "title": "some 141"
+>             }
+>         ],
+>         "is_shipped": "pending",
+>         "user_id": 1,
+>         "total_price": 42,
+>         "created_on": "2022-09-22T23:24:51.506802",
+>         "shipped_on": null,
+>         "id": 16,
+>         "comment": "123"
+>     },
+>     {
+>         "order_items": [
+>             {
+>                 "pair_size": 40,
+>                 "pair_color": "black",
+>                 "product_id": 64,
+>                 "id": 10,
+>                 "price": 21,
+>                 "title": "some 141"
+>             },
+>             {
+>                 "pair_size": 43,
+>                 "pair_color": "blue",
+>                 "product_id": 64,
+>                 "id": 11,
+>                 "price": 21,
+>                 "title": "some 141"
+>             }
+>         ],
+>         "is_shipped": "pending",
+>         "user_id": 1,
+>         "total_price": 42,
+>         "created_on": "2022-09-22T23:27:14.190322",
+>         "shipped_on": null,
+>         "id": 17,
+>         "comment": "123"
+>     }
+> ]
+> ```
+> Server validations are:
+> - Requires valid token
+> - token must be at the same user as url id
+
 
 ># Brand
 >## Create brand
@@ -343,7 +454,7 @@ The REST API to the app is described below.
 
 > # Products
 > ## Create product
-> Before createing product you must have created brand and category. To create one product you should provide the main information about product such as title, price and etc, information about product sizes, colors and etc, product images, and existing brand and category.   
+> Before createing product you must have created brand and category. To create one product you should provide the main information about product such as title, price and etc, information about product sizes, colors and etc, product images, and existing brand and category.    
 > ### Request
 >`[POST] '/products' `
 > ```json
@@ -399,7 +510,7 @@ The REST API to the app is described below.
 >         "title": "sport"
 >     },
 >     "is_deleted": false,
->     "gender": "GenderType.kid",
+>     "gender": "kid",
 >     "title": "nice Shoes",
 >     "price": 10,
 >     "discount": 5
@@ -415,6 +526,7 @@ The REST API to the app is described below.
 > ## Get many products
 > You can take all existed products, but also you can filter products by gender, category, type.   
 > If you want to filter products should use URL params.   
+>   
 > "?brand=RandomBrand" -> This will filter the products with the selected brand = RandomBrand.   
 > "?category=RandomCategory" -> Same as brand filtration.   
 > "?gender=kid" -> Same as brand. ** GENDER CAN BE ONLY KID, MAN, WOMAN. If you try something else you will get error.   
@@ -428,7 +540,7 @@ The REST API to the app is described below.
 > ```json
 > [
 >     {
->         "gender": "GenderType.kid",
+>         "gender": "kid",
 >         "is_deleted": false,
 >         "pairs": [],
 >         "title": "some shoes3",
@@ -455,7 +567,7 @@ The REST API to the app is described below.
 >         "discount": 11
 >     },
 >     {
->         "gender": "GenderType.kid",
+>         "gender": "kid",
 >         "is_deleted": false,
 >         "pairs": [],
 >         "title": "some shoes5",
@@ -497,14 +609,14 @@ The REST API to the app is described below.
 > ### Response
 > ```json
 > {
->     "gender": "GenderType.man",
+>     "gender": "man",
 >     "is_deleted": false,
 >     "pairs": [
 >         {
 >             "size": 40,
 >             "id": 25,
 >             "quantity": 13,
->             "color": "PairColor.green"
+>             "color": "green"
 >         }
 >     ],
 >     "title": "newtitle",
@@ -606,7 +718,7 @@ The REST API to the app is described below.
 >             "size": 40,
 >             "quantity": 13,
 >             "id": 25,
->             "color": "PairColor.green"
+>             "color": "green"
 >         }
 >     ]
 > }
@@ -879,6 +991,141 @@ The REST API to the app is described below.
 > - Comment must be created from user with current token
 > 
 
+> # Orders
+> ## Create order
+> ### Request
+> `[POST] '/orders'`
+> ```json
+> {
+>    "order_items": [
+>                     {"product_id": 64, "pair_id": 29},
+>                      {"product_id": 64, "pair_id": 30}
+>                   ],
+>    "comment": "123",
+>    "discount_code": "somecode"
+> }
+> ```
+> ### Response
+> ```json
+>   {
+>     "order_items": [
+>         {
+>             "pair_color": "black",
+>             "pair_size": 40,
+>             "price": 21,
+>             "title": "some 141",
+>             "id": 12,
+>             "product_id": 64
+>         },
+>         {
+>             "pair_color": "blue",
+>             "pair_size": 43,
+>             "price": 21,
+>             "title": "some 141",
+>             "id": 13,
+>             "product_id": 64
+>         }
+>     ],
+>     "user_id": 1,
+>     "comment": "123",
+>     "created_on": "2022-09-24T12:34:02.014696",
+>     "id": 18,
+>     "is_shipped": "pending",
+>     "shipped_on": null,
+>     "total_price": 42
+> }
+> ```
+> Server validation are:
+> - Required token in header
+> - Comment can be empty string
+> - Product and pair must be attached
+> - "order_items" must have at least one item
+> - "discount_code" can be empty string
+>
+> ## Get all orders
+> ### Request
+> `[GET] '/orders'`
+> ### Response
+> ```json
+> [
+>   {
+>     "order_items": [
+>       {
+>         "pair_color": "black",
+>         "pair_size": 40,
+>         "price": 21,
+>         "title": "some 141",
+>         "id": 8,
+>         "product_id": 64
+>       },
+>       {
+>         "pair_color": "blue",
+>         "pair_size": 43,
+>         "price": 21,
+>         "title": "some 141",
+>         "id": 9,
+>         "product_id": 64
+>       }
+>     ],
+>     "user_id": 1,
+>     "comment": "123",
+>     "created_on": "2022-09-22T23:24:51.506802",
+>     "id": 16,
+>     "is_shipped": "pending",
+>     "shipped_on": null,
+>     "total_price": 42
+>   }
+> ]
+> ```
+> Server validations are:
+> - Requires admin permissions
+>
+> ## Change order status
+> ### Request
+> `[POST] '/orders/:id'`
+> ```json
+> {
+>   "status": "shipped"
+> }
+> ```
+> ### Response
+> ```json
+>   {
+>     "order_items": [
+>       {
+>         "pair_color": "black",
+>         "pair_size": 40,
+>         "price": 21,
+>         "title": "some 141",
+>         "id": 8,
+>         "product_id": 64
+>       },
+>       {
+>         "pair_color": "blue",
+>         "pair_size": 43,
+>         "price": 21,
+>         "title": "some 141",
+>         "id": 9,
+>         "product_id": 64
+>       }
+>     ],
+>     "user_id": 1,
+>     "comment": "123",
+>     "created_on": "2022-09-22T23:24:51.506802",
+>     "id": 16,
+>     "is_shipped": "shipped",
+>     "shipped_on": "2022-09-24T23:24:51.506802",
+>     "total_price": 42
+>   }
+> ```
+> Server validations are:
+> - Requires admin permissions
+> - status must be pending, shipped or rejected
+
+
+
+
+
 > # Wish list
 > ## Add product in wish list
 > ### Request
@@ -926,7 +1173,7 @@ The REST API to the app is described below.
 > ```json
 > [
 >    {
->        "gender": "GenderType.kid",
+>        "gender": "kid",
 >        "brand": {
 >            "name": "nike",
 >            "logo_url": "https://someurl.com"
@@ -969,4 +1216,108 @@ The REST API to the app is described below.
 > {
 >   "id": 20
 > } 
+> ```
+> 
+
+> # Discounts
+> ## Create discount
+> ### Request
+> `[POST] '/discounts'`
+> ```json
+> {
+>    "code": "123asd",
+>    "discount": 10,
+>    "started_on": "2022-09-04T21:00:00.000Z",
+>    "ended_on": "2022-09-04T21:00:00.000Z"
+> }
+> ```
+> ### Response
+> ```json
+> {
+>    "code": "123asd",
+>    "id": 2,
+>    "discount": 10,
+>    "ended_on": "2022-09-04T21:00:00",
+>    "started_on": "2022-09-04T21:00:00"
+> }
+> ```
+> Server validations are:
+> - Admin permissions required
+> - code must be at least 5 char
+> - discount is in % between 0 and 100
+>
+> Here you can see how you can do DateTime input. ![LINK](https://github.com/a-angeliev/React-Riddles-client/blob/main/src/components/AdminPanel/AdminDiscounts/AdminAddDiscount/AdminAddDiscount.js)
+>
+> ## Get all discounts
+> ### Request
+> `[GET] '/discounts'`
+> ### Response
+> ```json
+> [
+>    {
+>        "started_on": "2022-09-04T21:00:00",
+>        "ended_on": "2022-09-04T21:00:00",
+>        "id": 2,
+>        "discount": 10,
+>        "code": "123asd"
+>    }
+> ]
+> ```
+> Server validations are:
+> - Admin permissions required
+> 
+> ## Delete discount
+> ### Request
+> `[DELETE] '/discounts/:id'`
+> ### Response
+> ```json
+> {
+>    "massage": "You successfully delete the discount"
+> }
+> ```
+> Server validations are:
+> - Admin permissions required
+>
+> ## Check discount is valid
+> ### Request
+> `[POST] '/discounts/validate'`
+> ```json
+> {
+>    "code": "somecode"
+> }
+> ```
+> ### Response
+> ```json
+> {
+>   "is_valid": true,
+>   "discount": 10
+> }
+> ```
+> Example error massage:
+> ```json
+> {
+>   "is_valid": false
+> }
+> ```
+> 
+
+> # Newsletter
+> ## Subscribe
+> ### Request
+> `[POST] '/newsletter'`
+> ```json
+> {
+>   "email": "someemail@gmail.com",
+>   "name": "gosho"
+> }
+> ```
+> ### Response
+> ```json
+> {"message": "You successfully subscribe for our newsletter."}
+> ```
+> ## Unsubscribe
+> ### Request
+> `[DELETE] '/newsletter'`
+> ```json
+> {"email": "someemail@gmail.com"}
 > ```
