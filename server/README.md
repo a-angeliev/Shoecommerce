@@ -27,7 +27,7 @@
 >> "/wishes"  ==>  GET DELETE POST :white_check_mark:     
 > 
 >> ### NEWSLETTER
->> "/newsletter"  ==> POST DELETE | GET  
+>> "/newsletter"  ==> POST DELETE :white_check_mark:    
 >  
 >> ### DISCOUNT
 >> "/discounts"  ==> POST GET  /ADMIN/  :white_check_mark:   
@@ -93,6 +93,9 @@ The REST API to the app is described below.
   - [Get all discounts](#get-all-discounts)
   - [Delete discount](#delete-discount)
   - [Check discount is valid](#check-discount-is-valid)
+- [Newsletter](#newsletter)
+  - [Subscribe](#subscribe)
+  - [Unsubscribe](#unsubscribe)
 >## Register
 >### Request
 >`[POST] "/register"`
@@ -1293,4 +1296,26 @@ The REST API to the app is described below.
 > {
 >   "is_valid": false
 > }
+> ```
+> 
+
+> # Newsletter
+> ## Subscribe
+> ### Request
+> `[POST] '/newsletter'`
+> ```json
+> {
+>   "email": "someemail@gmail.com",
+>   "name": "gosho"
+> }
+> ```
+> ### Response
+> ```json
+> {"message": "You successfully subscribe for our newsletter."}
+> ```
+> ## Unsubscribe
+> ### Request
+> `[DELETE] '/newsletter'`
+> ```json
+> {"email": "someemail@gmail.com"}
 > ```
