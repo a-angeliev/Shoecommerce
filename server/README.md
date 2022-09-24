@@ -292,7 +292,7 @@ The REST API to the app is described below.
 >         "order_items": [
 >             {
 >                 "pair_size": 40,
->                 "pair_color": "PairColor.black",
+>                 "pair_color": "black",
 >                 "product_id": 64,
 >                 "id": 8,
 >                 "price": 21,
@@ -300,14 +300,14 @@ The REST API to the app is described below.
 >             },
 >             {
 >                 "pair_size": 43,
->                 "pair_color": "PairColor.blue",
+>                 "pair_color": "blue",
 >                 "product_id": 64,
 >                 "id": 9,
 >                 "price": 21,
 >                 "title": "some 141"
 >             }
 >         ],
->         "is_shipped": "IsShipped.pending",
+>         "is_shipped": "pending",
 >         "user_id": 1,
 >         "total_price": 42,
 >         "created_on": "2022-09-22T23:24:51.506802",
@@ -319,7 +319,7 @@ The REST API to the app is described below.
 >         "order_items": [
 >             {
 >                 "pair_size": 40,
->                 "pair_color": "PairColor.black",
+>                 "pair_color": "black",
 >                 "product_id": 64,
 >                 "id": 10,
 >                 "price": 21,
@@ -327,14 +327,14 @@ The REST API to the app is described below.
 >             },
 >             {
 >                 "pair_size": 43,
->                 "pair_color": "PairColor.blue",
+>                 "pair_color": "blue",
 >                 "product_id": 64,
 >                 "id": 11,
 >                 "price": 21,
 >                 "title": "some 141"
 >             }
 >         ],
->         "is_shipped": "IsShipped.pending",
+>         "is_shipped": "pending",
 >         "user_id": 1,
 >         "total_price": 42,
 >         "created_on": "2022-09-22T23:27:14.190322",
@@ -510,7 +510,7 @@ The REST API to the app is described below.
 >         "title": "sport"
 >     },
 >     "is_deleted": false,
->     "gender": "GenderType.kid",
+>     "gender": "kid",
 >     "title": "nice Shoes",
 >     "price": 10,
 >     "discount": 5
@@ -539,7 +539,7 @@ The REST API to the app is described below.
 > ```json
 > [
 >     {
->         "gender": "GenderType.kid",
+>         "gender": "kid",
 >         "is_deleted": false,
 >         "pairs": [],
 >         "title": "some shoes3",
@@ -566,7 +566,7 @@ The REST API to the app is described below.
 >         "discount": 11
 >     },
 >     {
->         "gender": "GenderType.kid",
+>         "gender": "kid",
 >         "is_deleted": false,
 >         "pairs": [],
 >         "title": "some shoes5",
@@ -608,14 +608,14 @@ The REST API to the app is described below.
 > ### Response
 > ```json
 > {
->     "gender": "GenderType.man",
+>     "gender": "man",
 >     "is_deleted": false,
 >     "pairs": [
 >         {
 >             "size": 40,
 >             "id": 25,
 >             "quantity": 13,
->             "color": "PairColor.green"
+>             "color": "green"
 >         }
 >     ],
 >     "title": "newtitle",
@@ -717,7 +717,7 @@ The REST API to the app is described below.
 >             "size": 40,
 >             "quantity": 13,
 >             "id": 25,
->             "color": "PairColor.green"
+>             "color": "green"
 >         }
 >     ]
 > }
@@ -1008,7 +1008,7 @@ The REST API to the app is described below.
 >   {
 >     "order_items": [
 >         {
->             "pair_color": "PairColor.black",
+>             "pair_color": "black",
 >             "pair_size": 40,
 >             "price": 21,
 >             "title": "some 141",
@@ -1016,7 +1016,7 @@ The REST API to the app is described below.
 >             "product_id": 64
 >         },
 >         {
->             "pair_color": "PairColor.blue",
+>             "pair_color": "blue",
 >             "pair_size": 43,
 >             "price": 21,
 >             "title": "some 141",
@@ -1028,7 +1028,7 @@ The REST API to the app is described below.
 >     "comment": "123",
 >     "created_on": "2022-09-24T12:34:02.014696",
 >     "id": 18,
->     "is_shipped": "IsShipped.pending",
+>     "is_shipped": "pending",
 >     "shipped_on": null,
 >     "total_price": 42
 > }
@@ -1049,7 +1049,7 @@ The REST API to the app is described below.
 >   {
 >     "order_items": [
 >       {
->         "pair_color": "PairColor.black",
+>         "pair_color": "black",
 >         "pair_size": 40,
 >         "price": 21,
 >         "title": "some 141",
@@ -1057,7 +1057,7 @@ The REST API to the app is described below.
 >         "product_id": 64
 >       },
 >       {
->         "pair_color": "PairColor.blue",
+>         "pair_color": "blue",
 >         "pair_size": 43,
 >         "price": 21,
 >         "title": "some 141",
@@ -1069,7 +1069,7 @@ The REST API to the app is described below.
 >     "comment": "123",
 >     "created_on": "2022-09-22T23:24:51.506802",
 >     "id": 16,
->     "is_shipped": "IsShipped.pending",
+>     "is_shipped": "pending",
 >     "shipped_on": null,
 >     "total_price": 42
 >   }
@@ -1091,7 +1091,7 @@ The REST API to the app is described below.
 >   {
 >     "order_items": [
 >       {
->         "pair_color": "PairColor.black",
+>         "pair_color": "black",
 >         "pair_size": 40,
 >         "price": 21,
 >         "title": "some 141",
@@ -1099,7 +1099,7 @@ The REST API to the app is described below.
 >         "product_id": 64
 >       },
 >       {
->         "pair_color": "PairColor.blue",
+>         "pair_color": "blue",
 >         "pair_size": 43,
 >         "price": 21,
 >         "title": "some 141",
@@ -1111,7 +1111,7 @@ The REST API to the app is described below.
 >     "comment": "123",
 >     "created_on": "2022-09-22T23:24:51.506802",
 >     "id": 16,
->     "is_shipped": "IsShipped.shipped",
+>     "is_shipped": "shipped",
 >     "shipped_on": "2022-09-24T23:24:51.506802",
 >     "total_price": 42
 >   }
@@ -1171,7 +1171,7 @@ The REST API to the app is described below.
 > ```json
 > [
 >    {
->        "gender": "GenderType.kid",
+>        "gender": "kid",
 >        "brand": {
 >            "name": "nike",
 >            "logo_url": "https://someurl.com"
