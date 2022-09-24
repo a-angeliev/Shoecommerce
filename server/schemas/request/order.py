@@ -13,6 +13,7 @@ class CreateOrderInfoRequestSchema(Schema):
 class CreateOrderRequestSchema(Schema):
     comment = fields.String(required=True)
     order_items = fields.List(fields.Nested(CreateOrderInfoRequestSchema()), many=True)
+    discount_code = fields.String(required=True)
 
 
 class ChangeOrderStatusRequestSchema(Schema):

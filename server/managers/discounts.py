@@ -24,7 +24,7 @@ class DiscountsManager:
 
     @staticmethod
     def is_valid(discount_data):
-        discount = DiscountsModel.query.filter_by(code=discount_data["code"]).first()
+        discount = DiscountsModel.query.filter_by(code=discount_data["discount_code"]).first()
         if discount:
             if (
                 datetime.utcnow() > discount.started_on

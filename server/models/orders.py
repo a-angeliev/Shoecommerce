@@ -18,6 +18,7 @@ class OrdersModel(db.Model):
         nullable=False,
     )
     shipped_on = db.Column(db.DateTime, nullable=True)
+    discount_code = db.Column(db.String, nullable=True)
 
 
 class OrderItemModel(db.Model):

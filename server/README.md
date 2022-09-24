@@ -451,7 +451,7 @@ The REST API to the app is described below.
 
 > # Products
 > ## Create product
-> Before create product you must have created brand and category. To create one product you should provide main information about product like title, price and etc, information about product sizes, colors and etc, product images, and existing brands and category.   
+> Before create product you must have created brand and category. To create one product you should provide main information about product like title, price, etc, information about product sizes, colors, etc, product images, and existing brands and category.   
 > ### Request
 >`[POST] '/products' `
 > ```json
@@ -523,7 +523,7 @@ The REST API to the app is described below.
 > ## Get many products
 > You can take all existed products, but also you can filter products by gender, category, type.   
 > If you want to filter products should use URL params.   
-> "?brand=RandomBrand" -> That will filter products and you will get only that they have brand = RandomBrand.   
+> "?brand=RandomBrand" -> That will filter products and, you will get only that they have brand = RandomBrand.   
 > "?category=RandomCategory" -> Same as brand filtration.   
 > "?gender=kid" -> Same as brand. ** GENDER CAN BE ONLY KID, MAN, WOMAN. If you try with something else you will get error.   
 > 
@@ -996,7 +996,8 @@ The REST API to the app is described below.
 >                     {"product_id": 64, "pair_id": 29},
 >                      {"product_id": 64, "pair_id": 30}
 >                   ],
->    "comment": "123"
+>    "comment": "123",
+>    "discount_code": "somecode"
 > }
 > ```
 > ### Response
@@ -1034,6 +1035,7 @@ The REST API to the app is described below.
 > - Comment can be empty string
 > - Product and pair must be attached
 > - "order_items" must have at least one item
+> - "discount_code" can be empty string
 >
 > ## Get all orders
 > ### Request
@@ -1161,7 +1163,7 @@ The REST API to the app is described below.
 > Need only to access right endpoint. No needed body or url params. User comes from the token.
 > ### Request
 > `[GET] /wishes`   
-> Response will contains list of products objects
+> Response will contain list of products objects
 > ### Response
 > ```json
 > [

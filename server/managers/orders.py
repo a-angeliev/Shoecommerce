@@ -1,6 +1,7 @@
 from flask import request
 from werkzeug.exceptions import NotFound
 
+from managers.discounts import DiscountsManager
 from managers.products import ProductManager
 from models.enums import IsShipped
 from models.orders import OrderItemModel, OrdersModel
@@ -13,7 +14,7 @@ class OrdersManager:
         order_items = []
         total_price = 0
         pairs = []
-
+        discount_is_valid = DiscountsManager.is_valid(data)
         for order_item_info in data["order_items"]:
             product = ProductManager.get_one(order_item_info["product_id"])
             pair = [
@@ -39,7 +40,10 @@ class OrdersManager:
             order_items.append(order_i)
             total_price += price
 
-        order = OrdersModel(total_price=total_price, comment=data["comment"])
+        if discount_is_valid["is_valid"]:
+            total_price = total_price - (total_price*discount_is_valid["discount"]/100)
+
+        order = OrdersModel(total_price=total_price, comment=data["comment"], discount_code=data['discount_code'])
         [order.order_items.append(x) for x in order_items]
         user.user_data.orders.append(order)
 
