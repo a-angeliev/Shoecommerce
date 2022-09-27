@@ -20,7 +20,7 @@ export const Auth = ({ activeIcon }) => {
             {!isSignIn &&
                 <input type="password" name="" id="" placeholder="Repeat Password" />
             }
-            <input type="submit" value="Login" className="login-btn" />
+            <input type="submit" value={isSignIn ? 'Login' : 'Register'} className="login-btn" />
             <p>Forget Password <a href="/#">Reset Now</a></p>
             <p className="user-auth-question">
                 {isSignIn ? 'Don\'t have an account?' : 'Already have an account?'}
