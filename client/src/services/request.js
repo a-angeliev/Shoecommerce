@@ -1,6 +1,6 @@
 import { getUserData } from '../utils/util';
 
-const host = 'http://localhost:5000';
+const host = 'http://127.0.0.1:5000';
 
 async function request(method, url, data) {
     const options = {
@@ -39,7 +39,7 @@ async function request(method, url, data) {
         if (response.status === 204) {
             return response;
         } else {
-            return response.json();
+            return await response.json();
         }
     } catch (error) {
         throw error;

@@ -1,8 +1,8 @@
 import * as request from './request';
 
 const endpoints = {
-    PRODUCTS: `/products/`,
-    GET_PRODUCT_BY_ID: (productId) => `/products/${productId}`,
+    PRODUCTS: `/products`,
+    GET_PRODUCT_BY_ID: (productId) => `/products/product/${productId}`,
     PRODUCT_COMMENTS: (productId) => `/comments/${productId}`,
 };
 
