@@ -6,10 +6,12 @@ import { MorePhotos } from './MorePhotos/MorePhotos';
 import { Recommended } from './Recommended/Recommended';
 import * as productService from "./../../../services/product"
 import './Details.css';
+import { useLocalStorage } from '../../../hooks/useLocalStorage';
 
 export const Details = () => {
     const param = useParams()
-  
+    const [cart, setCart] = useLocalStorage("cart", [])
+
     const [product, setProduct] = useState("")
     const [state , setState] = useState("loading")
     const [color, setColor] = useState("")
@@ -34,7 +36,24 @@ export const Details = () => {
     const chosenSize = (e) => {
         setSize(e.target.value)
     }
-
+    
+    const addToCart = (e) => {
+        e.preventDefault()
+        let shoe = {}
+        shoe["title"] = product.title
+        shoe["image"] = product.images[0].img_url
+        shoe["price"] = product.price
+        shoe['color'] = color
+        shoe["size"] = size
+        shoe["id"] = param.id
+        if(!color){
+            alert("You should pick color and size!")
+        }else{
+            alert("Successful add shoe to the cart.")
+            setCart([...cart, shoe])
+            console.log(shoe)
+        }
+    }
 
     if (state == "loading"){
         return <div></div>
@@ -80,12 +99,8 @@ export const Details = () => {
                         <section className="main-shoe-colors scn">
                             <ul className="main-shoe-color-list">
                                 {Object.keys(colorDict).map((c) => <li onClick = {activeColor} key={c} name ={c} className = {'main-shoe-color '+ (c) + " "+ (color===c ? "active": '')} ></li>)}
-                                {/* <li onClick = {activeColor} key="2" name = "pesho" className={'main-shoe-color ' + (color==="pesho" ? "active": '') }>white</li>
-                                <li onClick = {activeColor} key="2" name = "gosho" className={'main-shoe-color ' + (color==="gosho" ? "active": '')}>red</li>
-                                <li onClick = {activeColor} key="2" name = "t" className={'main-shoe-color ' + (color==="t" ? "active": '')}>blue</li>
-                                <li onClick = {activeColor} key="2" name = "a" className={'main-shoe-color ' + (color==="a" ? "active": '')}>black</li> */}
                             </ul>
-                            <button className="main-shoe-button">
+                            <button onClick={addToCart} className="main-shoe-button">
                                 Add to Cart
                             </button>
                         </section>
@@ -105,7 +120,7 @@ export const Details = () => {
                         Zoom Air unit in the forefoot, providing a sensation of energy return and elite responsiveness. Step
                         on the court with the confidence that whatever you do—it's light work.
                     </p>
-                    <img class="brand-logo"src={product.brand.logo_url}
+                    <img className="brand-logo"src={product.brand.logo_url}
                         alt="Jordan" />
                 </section>
 
