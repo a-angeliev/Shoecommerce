@@ -99,7 +99,7 @@ section.scn {
     cursor: pointer;
 }
 
-.active{
+.activeColorPicker{
     padding: 2px;
     border: 4px solid #1c6de5;
     outline: 5px solid #cfeeff;

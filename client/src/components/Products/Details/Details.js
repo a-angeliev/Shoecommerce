@@ -55,7 +55,6 @@ export const Details = () => {
         }else{
             alert("Successful")
             // localStorage.setItem("cart", [...cart, shoe])
-            console.log(shoe,"aaaa")
             addToCart(shoe)
             // setCartState(cartState!== [] ? [...cartState, shoe]: [shoe])
         }
@@ -104,7 +103,7 @@ export const Details = () => {
                         </p>
                         <section className="main-shoe-colors scn">
                             <ul className="main-shoe-color-list">
-                                {Object.keys(colorDict).map((c) => <li onClick = {activeColor} key={c} name ={c} className = {'main-shoe-color '+ (c) + " "+ (color===c ? "active": '')} ></li>)}
+                                {Object.keys(colorDict).map((c) => <li onClick = {activeColor} key={c} name ={c} className = {'main-shoe-color '+ (c) + " "+ (color===c ? "activeColorPicker": '')} ></li>)}
                             </ul>
                             <button onClick={addToCartFunc} className="main-shoe-button">
                                 Add to Cart
