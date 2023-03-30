@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../contexts/cartContext";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 import { Auth } from "../Auth/Auth";
 
@@ -7,11 +9,16 @@ import "./Navbar.css";
 
 export const Navbar = () => {
     const [activeIcon, setActiveIcon] = useState('');
-
+    const {cartState, removeFromCart} = useContext(CartContext)
+    // const [cart, setToCart] = useLocalStorage("cart", [])
     window.onscroll = () => {
         setActiveIcon('');
     }
+    // let cart = JSON.parse(localStorage.getItem("cart"))
 
+    // const refresh = () => {
+    //     const [cart, setToCart] = useLocalStorage("cart", [])
+    // }
     const handleIconClick = (icon) => {
         if (icon === activeIcon) {
             setActiveIcon('');
@@ -19,6 +26,31 @@ export const Navbar = () => {
             setActiveIcon(icon);
         }
     }
+
+    const remove = (e, index) => {
+        e.preventDefault()
+        // let cart = JSON.parse(localStorage.getItem("cart"))
+        // index = index.toString()
+        // cart.pop(index)
+        // localStorage.setItem('cart', JSON.stringify(cart))
+        removeFromCart(index)
+    }
+    const item =  (shoe, index) => {
+        console.log(shoe, index);
+    return (  
+    <div className="box">
+        <img src= {shoe[1]['image']}
+            alt="" />
+        <div className="text">
+            <h3>{shoe[1]["title"]}</h3>
+            <span>$ {shoe[1]['price']}</span>
+            <span> {shoe[1]["color"]}, {shoe[1]["size"]}</span>
+        </div>
+        <i onClick={(e)=>remove(e, index)} className='bx bxs-trash-alt'></i>
+    </div>
+    )
+    }
+
     return (
         <header>
             <Link to="/#" className="logo"> <i className='bx bxs-shopping-bag-alt'>
@@ -69,17 +101,8 @@ export const Navbar = () => {
             </div>
 
             <div className={`cart ${activeIcon === 'cart' && 'active'}`}>
-                <div className="box">
-                    <img src="/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png"
-                        alt="" />
-                    <div className="text">
-                        <h3>Sneaker 12B</h3>
-                        <span>$230</span>
-                        <span>x1</span>
-                    </div>
-                    <i className='bx bxs-trash-alt'></i>
-                </div>
-                <h2>Total: $230</h2>
+                {cartState ? Object.entries(cartState).map((x,y)=> item(x,y)): ""}
+                
                 <Link to="/" className="btn">Checkout</Link>
             </div>
 

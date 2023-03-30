@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import Spinner from '../../common/Spinner/Spinner';
 import { MorePhotos } from './MorePhotos/MorePhotos';
@@ -7,15 +7,19 @@ import { Recommended } from './Recommended/Recommended';
 import * as productService from "./../../../services/product"
 import './Details.css';
 import { useLocalStorage } from '../../../hooks/useLocalStorage';
+import { CartContext } from '../../../contexts/cartContext';
+
 
 export const Details = () => {
     const param = useParams()
-    const [cart, setCart] = useLocalStorage("cart", [])
 
+    // const [cart, setCart] = useLocalStorage("cart", '')
     const [product, setProduct] = useState("")
     const [state , setState] = useState("loading")
     const [color, setColor] = useState("")
     const [size, setSize] = useState("")
+
+    const {cartState, setCartState, removeFromCart, addToCart} = useContext(CartContext)
 
     useEffect(()=>{
         productService.getProductById(param.id).then((result) => {
@@ -37,7 +41,7 @@ export const Details = () => {
         setSize(e.target.value)
     }
     
-    const addToCart = (e) => {
+    const addToCartFunc = (e) => {
         e.preventDefault()
         let shoe = {}
         shoe["title"] = product.title
@@ -49,9 +53,11 @@ export const Details = () => {
         if(!color){
             alert("You should pick color and size!")
         }else{
-            alert("Successful add shoe to the cart.")
-            setCart([...cart, shoe])
-            console.log(shoe)
+            alert("Successful")
+            // localStorage.setItem("cart", [...cart, shoe])
+            console.log(shoe,"aaaa")
+            addToCart(shoe)
+            // setCartState(cartState!== [] ? [...cartState, shoe]: [shoe])
         }
     }
 
@@ -100,7 +106,7 @@ export const Details = () => {
                             <ul className="main-shoe-color-list">
                                 {Object.keys(colorDict).map((c) => <li onClick = {activeColor} key={c} name ={c} className = {'main-shoe-color '+ (c) + " "+ (color===c ? "active": '')} ></li>)}
                             </ul>
-                            <button onClick={addToCart} className="main-shoe-button">
+                            <button onClick={addToCartFunc} className="main-shoe-button">
                                 Add to Cart
                             </button>
                         </section>

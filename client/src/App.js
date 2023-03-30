@@ -10,21 +10,24 @@ import { Footer } from './components/Footer/Footer';
 import { Copyright } from './components/Copyright/Copyright';
 
 import './App.css';
+import { CartProvider } from './contexts/cartContext';
 
 function App() {
     return (
         <AuthProvider>
             <ProductProvider>
-                <div className="App">
-                    <Navbar />
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/products" element={<Products />} />
-                        <Route path="/products/:id" element={<Details />} />
-                    </Routes>
-                    <Footer />
-                    <Copyright />
-                </div>
+                <CartProvider>
+                    <div className="App">
+                        <Navbar />
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/products" element={<Products />} />
+                            <Route path="/products/:id" element={<Details/>} />
+                        </Routes>
+                        <Footer />
+                        <Copyright />
+                    </div>
+                </CartProvider>
             </ProductProvider>
         </AuthProvider>
     );
