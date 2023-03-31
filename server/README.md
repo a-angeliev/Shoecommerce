@@ -632,7 +632,8 @@ The REST API to the app is described below.
 >     ],
 >     "brand": {
 >         "logo_url": "https://somesdurl.com",
->         "name": "some"
+>         "name": "some",
+>         "description": "some brand description"
 >     },
 >     "description": "newdescription",
 >     "price": 10.1,
