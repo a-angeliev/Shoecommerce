@@ -10,15 +10,11 @@ import "./Navbar.css";
 export const Navbar = () => {
     const [activeIcon, setActiveIcon] = useState('');
     const {cartState, removeFromCart} = useContext(CartContext)
-    // const [cart, setToCart] = useLocalStorage("cart", [])
+ 
     window.onscroll = () => {
         setActiveIcon('');
     }
-    // let cart = JSON.parse(localStorage.getItem("cart"))
 
-    // const refresh = () => {
-    //     const [cart, setToCart] = useLocalStorage("cart", [])
-    // }
     const handleIconClick = (icon) => {
         if (icon === activeIcon) {
             setActiveIcon('');
@@ -29,25 +25,22 @@ export const Navbar = () => {
 
     const remove = (e, index) => {
         e.preventDefault()
-        // let cart = JSON.parse(localStorage.getItem("cart"))
-        // index = index.toString()
-        // cart.pop(index)
-        // localStorage.setItem('cart', JSON.stringify(cart))
         removeFromCart(index)
     }
+
     const item =  (shoe, index) => {
-        console.log(shoe, index);
-    return (  
-    <div className="box">
-        <img src= {shoe[1]['image']}
-            alt="" />
-        <div className="text">
-            <h3>{shoe[1]["title"]}</h3>
-            <span>$ {shoe[1]['price']}</span>
-            <span> {shoe[1]["color"]}, {shoe[1]["size"]}</span>
-        </div>
-        <i onClick={(e)=>remove(e, index)} className='bx bxs-trash-alt'></i>
-    </div>
+
+        return (  
+            <div className="box">
+                <img src= {shoe[1]['image']}
+                    alt="" />
+                <div className="text">
+                    <h3>{shoe[1]["title"]}</h3>
+                    <span>$ {shoe[1]['price']}</span>
+                    <span> {shoe[1]["color"]}, {shoe[1]["size"]}</span>
+                </div>
+                <i onClick={(e)=>remove(e, index)} className='bx bxs-trash-alt'></i>
+            </div>
     )
     }
 
@@ -58,36 +51,35 @@ export const Navbar = () => {
                 ShoeCommerce
             </Link>
             <ul className={`navbar ${activeIcon === 'menu' && 'active'}`}>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/products?gender=man">Men</Link></li>
-                <li><Link to="/products?gender=woman">Women</Link></li>
-                <li><Link to="/products?gender=kid">Kids</Link></li>
-                <li><Link to="/reviews">Reviews</Link></li>
+                <li key = "home"><Link to="/">Home</Link></li>
+                <li key = "Men" ><Link to="/products?gender=man">Men</Link></li>
+                <li key = "Women"><Link to="/products?gender=woman">Women</Link></li>
+                <li key = "Kids"><Link to="/products?gender=kid">Kids</Link></li>
             </ul>
 
             <ul className="header-icons">
-                <li>
+                <li key = "menu">
                     <i
                         className='bx bx-menu'
                         id="menu-icon"
                         onClick={() => handleIconClick('menu')}
                     />
                 </li>
-                <li>
+                <li key = "search">
                     <i
                         className='bx bx-search'
                         id="search-icon"
                         onClick={() => handleIconClick('search-box')}
                     />
                 </li>
-                <li>
+                <li key = "cart">
                     <i
                         className='bx bx-cart-alt'
                         id="cart-alt-icon"
                         onClick={() => handleIconClick('cart')}
                     />
                 </li>
-                <li>
+                <li key = "user">
                     <i
                         className='bx bxs-user'
                         id="user-icon"

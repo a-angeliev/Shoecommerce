@@ -112,18 +112,13 @@ export const Details = () => {
                     </article>
                 </section>
 
-                <MorePhotos />
+                <MorePhotos product={product} />
                 <section className="main-shoe-more-info scn">
                     <h2 className="main-more-title">
                         {product.brand.name}
                     </h2>
                     <p className="main-more-text-content">
-                        The Air Jordan XXXVI isn't just the next up in the iconic franchise; it's an expression of the drive
-                        and energy that sparked a basketball revolution. It's one of the lightest Air Jordan game shoes to
-                        date, featuring a minimal but durable Leno-Weave upper reinforced with a TPU ribbon. It also comes
-                        equipped with a full-length Zoom Air Strobel unit stitched directly to the upper, stacked over a
-                        Zoom Air unit in the forefoot, providing a sensation of energy return and elite responsiveness. Step
-                        on the court with the confidence that whatever you do—it's light work.
+                        {product.brand.description}
                     </p>
                     <img className="brand-logo"src={product.brand.logo_url}
                         alt="Jordan" />
