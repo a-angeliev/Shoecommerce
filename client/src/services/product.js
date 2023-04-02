@@ -1,4 +1,4 @@
-import * as request from './request';
+import * as request from "./request";
 
 const endpoints = {
     PRODUCTS: `/products`,

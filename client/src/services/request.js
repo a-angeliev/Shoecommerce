@@ -1,6 +1,6 @@
-import { getUserData } from '../utils/util';
+import { getUserData } from "../utils/util";
 
-const host = 'http://127.0.0.1:5000';
+const host = "http://127.0.0.1:5000";
 
 async function request(method, url, data) {
     const options = {
@@ -9,14 +9,14 @@ async function request(method, url, data) {
     };
 
     if (data !== undefined) {
-        options.headers['Content-Type'] = 'application/json';
+        options.headers["Content-Type"] = "application/json";
         options.body = JSON.stringify(data);
     }
 
     const user = getUserData();
 
     if (user) {
-        options.headers['x-access-token'] = user.token;
+        options.headers["x-access-token"] = user.token;
     }
 
     try {
@@ -24,7 +24,7 @@ async function request(method, url, data) {
 
         if (response.ok === false) {
             if (response.status === 403) {
-                localStorage.removeItem('user');
+                localStorage.removeItem("user");
             }
 
             const err = await response.json();
@@ -37,6 +37,7 @@ async function request(method, url, data) {
         }
 
         if (response.status === 204) {
+            console.log(response.status, "Status code");
             return response;
         } else {
             return await response.json();
@@ -46,10 +47,10 @@ async function request(method, url, data) {
     }
 }
 
-const get = request.bind(null, 'GET');
-const post = request.bind(null, 'POST');
-const put = request.bind(null, 'PUT');
-const patch = request.bind(null, 'PATCH');
-const del = request.bind(null, 'DELETE');
+const get = request.bind(null, "GET");
+const post = request.bind(null, "POST");
+const put = request.bind(null, "PUT");
+const patch = request.bind(null, "PATCH");
+const del = request.bind(null, "DELETE");
 
 export { get, post, put, patch, del };
