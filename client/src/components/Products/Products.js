@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { FilterContext } from "../../contexts/filterContext";
 import { ProductContext } from "../../contexts/productContext";
 
 import "./Products.css";
@@ -15,6 +16,8 @@ export const Products = () => {
     const [filteredProductsForDisplay, setFilteredProductsForDisplay] = useState([]);
     const [isFilter, setIsFilter] = useState(false);
     const navigate = useNavigate();
+    
+    const {brandFilterCtx, categoryFilterCtx, genderCtx, setBrandFilterCtx, setCategoryFilterCtx, setGenderCtx} = useContext(FilterContext)
 
     useEffect(() => {
         if (products) {
@@ -25,16 +28,25 @@ export const Products = () => {
             setAvailableBrands(availableBrands);
             setAvailableCategories(availableCategories);
         }
-        setBrandFilter([]);
-        setCategoryFilter([]);
+        if(gender == genderCtx){
+            setBrandFilter(brandFilterCtx);
+            setCategoryFilter(categoryFilterCtx);
+        }else{
+            setBrandFilter([])
+            setCategoryFilter([])
+            setGenderCtx(gender)
+            setBrandFilterCtx([])
+            setCategoryFilterCtx([])
+        }
+        console.log(gender,123)
     }, [gender]);
 
 
 
     useEffect(() => {
         const products = [...filteredProductsByGender];
-        const filteredProductsByBrands = products.filter((product) => filterProductByCategoryAndBrand(product));
-        setFilteredProductsForDisplay(filteredProductsByBrands);
+        const filteredProductsByBrandsAndCategory = products.filter((product) => filterProductByCategoryAndBrand(product));
+        setFilteredProductsForDisplay(filteredProductsByBrandsAndCategory);
         setIsFilter(brandFilter.length == 0 && categoryFilter.length == 0 ? false : true);
     }, [brandFilter, categoryFilter]);
 
@@ -59,24 +71,28 @@ export const Products = () => {
             return product;
         }
     };
-    
+
     const handleBrandChanges = (brand) => {
         if (!brandFilter.includes(brand)) {
             setBrandFilter([...brandFilter, brand]);
+            setBrandFilterCtx([...brandFilter, brand])
         } else {
             const brands = [...brandFilter];
             brands.splice(brands.indexOf(brand), 1);
             setBrandFilter(brands);
+            setBrandFilterCtx(brands)
         }
     };
 
     const handleCategoryChanges = (category) => {
         if (!categoryFilter.includes(category)) {
             setCategoryFilter([...categoryFilter, category]);
+            setCategoryFilterCtx([...categoryFilter, category]);
         } else {
             const categories = [...categoryFilter];
             categories.splice(categories.indexOf(category), 1);
             setCategoryFilter(categories);
+            setCategoryFilterCtx(categories);
         }
     };
 
