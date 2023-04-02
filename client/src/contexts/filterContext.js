@@ -1,16 +1,26 @@
-import {useState, useEffect, createContext}  from "react";
-
+import { useState, useEffect, createContext } from "react";
 
 export const FilterContext = createContext();
 
-export const FilterProvider = ({children}) => {
-    const [brandFilterCtx, setBrandFilterCtx] = useState([])
-    const [categoryFilterCtx, setCategoryFilterCtx] = useState([])
-    const [genderCtx, setGenderCtx] = useState("")
+export const FilterProvider = ({ children }) => {
+    const [brandFilterCtx, setBrandFilterCtx] = useState([]);
+    const [categoryFilterCtx, setCategoryFilterCtx] = useState([]);
+    const [priceFilterCtx, setPriceFilterCtx] = useState([]);
+    const [genderCtx, setGenderCtx] = useState("");
 
-
-    return(
-        <FilterContext.Provider value={{brandFilterCtx, categoryFilterCtx, genderCtx, setBrandFilterCtx, setCategoryFilterCtx, setGenderCtx}}>
+    return (
+        <FilterContext.Provider
+            value={{
+                brandFilterCtx,
+                categoryFilterCtx,
+                genderCtx,
+                priceFilterCtx,
+                setBrandFilterCtx,
+                setCategoryFilterCtx,
+                setGenderCtx,
+                setPriceFilterCtx,
+            }}>
             {children}
-        </FilterContext.Provider>)
-}
+        </FilterContext.Provider>
+    );
+};

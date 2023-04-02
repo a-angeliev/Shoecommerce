@@ -13,11 +13,21 @@ export const Products = () => {
     const [availableCategories, setAvailableCategories] = useState([]);
     const [brandFilter, setBrandFilter] = useState([]);
     const [categoryFilter, setCategoryFilter] = useState([]);
+    const [priceFilter, setPriceFilter] = useState([]);
     const [filteredProductsForDisplay, setFilteredProductsForDisplay] = useState([]);
     const [isFilter, setIsFilter] = useState(false);
     const navigate = useNavigate();
-    
-    const {brandFilterCtx, categoryFilterCtx, genderCtx, setBrandFilterCtx, setCategoryFilterCtx, setGenderCtx} = useContext(FilterContext)
+
+    const {
+        brandFilterCtx,
+        categoryFilterCtx,
+        genderCtx,
+        priceFilterCtx,
+        setBrandFilterCtx,
+        setCategoryFilterCtx,
+        setGenderCtx,
+        setPriceFilterCtx,
+    } = useContext(FilterContext);
 
     useEffect(() => {
         if (products) {
@@ -28,40 +38,72 @@ export const Products = () => {
             setAvailableBrands(availableBrands);
             setAvailableCategories(availableCategories);
         }
-        if(gender == genderCtx){
+        if (gender == genderCtx) {
             setBrandFilter(brandFilterCtx);
             setCategoryFilter(categoryFilterCtx);
-        }else{
-            setBrandFilter([])
-            setCategoryFilter([])
-            setGenderCtx(gender)
-            setBrandFilterCtx([])
-            setCategoryFilterCtx([])
+            setPriceFilter(priceFilterCtx);
+        } else {
+            setBrandFilter([]);
+            setCategoryFilter([]);
+            setPriceFilter([]);
+            setGenderCtx(gender);
+            setBrandFilterCtx([]);
+            setCategoryFilterCtx([]);
+            setPriceFilterCtx([]);
         }
-        console.log(gender,123)
     }, [gender]);
-
-
 
     useEffect(() => {
         const products = [...filteredProductsByGender];
-        const filteredProductsByBrandsAndCategory = products.filter((product) => filterProductByCategoryAndBrand(product));
+        const filteredProductsByBrandsAndCategory = products.filter((product) =>
+            filterProductByCategoryAndBrand(product)
+        );
         setFilteredProductsForDisplay(filteredProductsByBrandsAndCategory);
-        setIsFilter(brandFilter.length == 0 && categoryFilter.length == 0 ? false : true);
-    }, [brandFilter, categoryFilter]);
+        setIsFilter(brandFilter.length == 0 && categoryFilter.length == 0 && priceFilter.length == 0 ? false : true);
+    }, [brandFilter, categoryFilter, priceFilter]);
 
     const goToShoeDetailPage = (id) => {
         let path = "/product/" + id;
         navigate(path);
     };
 
+    const filterProductByPrice = (product) => {
+        const priceSections = {
+            1: (price) => {
+                return price < 99.99 ? true : false;
+            },
+            2: (price) => {
+                return 100 < price && price < 199.99 ? true : false;
+            },
+            3: (price) => {
+                return 200 < price && price < 299.99 ? true : false;
+            },
+            4: (price) => {
+                return price > 300 ? true : false;
+            },
+        };
+
+        if (priceFilter.length == 0) {
+            return true;
+        } else {
+            for (let i = 0; i < priceFilter.length; i++) {
+                const result = priceSections[priceFilter[i]](product.price);
+                if (result === true) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    };
     const filterProductByCategoryAndBrand = (product) => {
         let flag = true;
-        if (brandFilter.length == 0 && categoryFilter.length == 0) {
+        if (brandFilter.length == 0 && categoryFilter.length == 0 && priceFilter.length == 0) {
             return product;
         }
 
-        if (brandFilter.length != 0) {
+        flag = filterProductByPrice(product);
+
+        if (brandFilter.length != 0 && flag) {
             flag = brandFilter.includes(product.brand.name);
         }
         if (categoryFilter.length != 0 && flag) {
@@ -75,12 +117,12 @@ export const Products = () => {
     const handleBrandChanges = (brand) => {
         if (!brandFilter.includes(brand)) {
             setBrandFilter([...brandFilter, brand]);
-            setBrandFilterCtx([...brandFilter, brand])
+            setBrandFilterCtx([...brandFilter, brand]);
         } else {
             const brands = [...brandFilter];
             brands.splice(brands.indexOf(brand), 1);
             setBrandFilter(brands);
-            setBrandFilterCtx(brands)
+            setBrandFilterCtx(brands);
         }
     };
 
@@ -93,6 +135,18 @@ export const Products = () => {
             categories.splice(categories.indexOf(category), 1);
             setCategoryFilter(categories);
             setCategoryFilterCtx(categories);
+        }
+    };
+
+    const handlePriceChanges = (prop) => {
+        const copyPriceFilter = [...priceFilter];
+        if (copyPriceFilter.includes(prop)) {
+            copyPriceFilter.splice(copyPriceFilter.indexOf(prop), 1);
+            setPriceFilter(copyPriceFilter);
+            setPriceFilterCtx(copyPriceFilter);
+        } else {
+            setPriceFilter([...copyPriceFilter, prop]);
+            setPriceFilterCtx([...copyPriceFilter, prop]);
         }
     };
 
@@ -150,12 +204,59 @@ export const Products = () => {
                                     key={idx}></input>
                             </div>
                         ))}
+
+                        {filteredProductsForDisplay ? (
+                            <div>
+                                <h3>Price</h3>
+                                <div>
+                                    <label htmlFor='under-50'>Under 99.99 USD</label>
+                                    <input
+                                        checked={priceFilter.includes("1") ? true : false}
+                                        onChange={() => {
+                                            handlePriceChanges("1");
+                                        }}
+                                        type='checkbox'
+                                        name='under100'></input>
+                                </div>
+                                <div>
+                                    <label htmlFor='100-200'>99.99 USD - 199.99 USD</label>
+                                    <input
+                                        checked={priceFilter.includes("2") ? true : false}
+                                        onChange={() => {
+                                            handlePriceChanges("2");
+                                        }}
+                                        type='checkbox'
+                                        name='100-200'></input>
+                                </div>
+                                <div>
+                                    <label htmlFor='200-300'>199.99 USD - 299.99 USD</label>
+                                    <input
+                                        checked={priceFilter.includes("3") ? true : false}
+                                        onChange={() => {
+                                            handlePriceChanges("3");
+                                        }}
+                                        type='checkbox'
+                                        name='200-300'></input>
+                                </div>
+                                <div>
+                                    <label htmlFor='over-300'>Over 299.99 USD</label>
+                                    <input
+                                        checked={priceFilter.includes("4") ? true : false}
+                                        onChange={() => {
+                                            handlePriceChanges("4");
+                                        }}
+                                        type='checkbox'
+                                        name='over-300'></input>
+                                </div>
+                            </div>
+                        ) : null}
                     </ul>
                 </div>
             </div>
             {isFilter
                 ? filteredProductsForDisplay.map((product) => displayProduct(product))
                 : filteredProductsByGender.map((product) => displayProduct(product))}
+
             <div className='catalog-items-container'>
                 <div className='box'>
                     <img
