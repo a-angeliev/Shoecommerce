@@ -7,23 +7,48 @@ import "./Products.css";
 export const Products = () => {
     const { gender } = useParams();
     const { products } = useContext(ProductContext);
-    const [filteredProducts, setFilteredProducts] = useState([]);
-	const [availableBrands, setAvailableBrands] = useState([])
+    const [filteredProductsByGender, setFilteredProductsByGender] = useState([]);
+    const [availableBrands, setAvailableBrands] = useState([]);
+	const [brandFilter, setBrandFilter] = useState([])
+	const [filteredProductsForDisplay, setFilteredProductsForDisplay] = useState([])
+
     const navigate = useNavigate();
+
 
     useEffect(() => {
         if (products) {
-            setFilteredProducts(
-                products.filter((product) => product.gender === gender)
+            const filteredProducts = products.filter(
+                (product) => product.gender === gender
             );
+            const availableBrands = [...new Set(filteredProducts.map(product => product.brand.name))]
+            setFilteredProductsByGender(filteredProducts);
+            setAvailableBrands(availableBrands);
         }
+		setBrandFilter([])
     }, [gender]);
+
+	useEffect(() => {
+		const products = [...filteredProductsByGender]
+		const filteredProductsByBrands = products.filter(product => brandFilter.includes(product.brand.name)? product : null)
+		setFilteredProductsForDisplay(filteredProductsByBrands)
+		console.log(filteredProductsByBrands,123)
+	}, [brandFilter])
 
     const goToShoeDetailPage = (id) => {
         let path = "/product/" + id;
         navigate(path);
     };
 
+	const handleBrandChanges = (brand) => {
+		if(!brandFilter.includes(brand)){
+			setBrandFilter([...brandFilter, brand])
+		}else{
+			const brands = [...brandFilter]
+			brands.splice(brands.indexOf(brand),1)
+			setBrandFilter(brands)
+		}
+	}
+	
     const displayProduct = (product) => {
         return (
             <div className='catalog-items-container'>
@@ -43,7 +68,7 @@ export const Products = () => {
         );
     };
 
-    if (!filteredProducts) {
+    if (!filteredProductsByGender) {
         return <div></div>;
     }
 
@@ -51,14 +76,21 @@ export const Products = () => {
         <section className='catalog'>
             <div className='catalog-menu'>
                 <div className='catalog-options'>
-                    {/* <ul>
-							<li><Link to="">Male</Link></li>
+                    <ul>
+                        {/* <li><Link to="">Male</Link></li>
 							<li><Link to="">Female</Link></li>
-							<li><Link to="">Children</Link></li>
-						</ul> */}
+							<li><Link to="">Children</Link></li> */}
+						{availableBrands ? <h3 className = "brand-title">Brands</h3> : null}
+                        {availableBrands.map((brand, idx) => (
+							<div>
+								<label htmlFor={brand}>{brand}</label>
+								<input checked={brandFilter.includes(brand) ? true : false} onChange = {()=> handleBrandChanges(brand)} type="checkbox" name={brand} key={idx}></input>
+							</div>
+                        ))}
+                    </ul>
                 </div>
             </div>
-            {filteredProducts.map((product) => displayProduct(product))}
+            {filteredProductsForDisplay.length != 0? filteredProductsForDisplay.map((product) => displayProduct(product)): filteredProductsByGender.map((product) => displayProduct(product))}
             <div className='catalog-items-container'>
                 <div className='box'>
                     <img
