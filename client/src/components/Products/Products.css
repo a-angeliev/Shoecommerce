@@ -227,7 +227,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, auto));
     gap: 1rem;
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
 }
 
 .catalog-menu {
@@ -326,10 +326,50 @@
     accent-color:  var(--main-color);
 }
 .filter-label:hover{
-    scale: 1.5;
     cursor: pointer;
     opacity: 0.5;
-    /* transform: scaleX(1.1); */
+}
+
+.sort-section{
+    position:absolute;
+    display:flex;
+    width: 9rem;
+    height: 9rem;
+    padding:auto;
+    right: 0px;
+    z-index: 1;
+    display: none;
+    justify-content: left;
+    
+}
+.sort-section ul{
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    height: 100%;
+
+}
+.sort-section ul li:hover{
+    opacity: 0.5;
+}
+
+
+.catalog-sort{
+    position: relative;
+}
+.catalog-sort-div{
+    position: absolute;
+    margin-top: 50px;
+    right: 200px;
+    z-index: 1;
+   
+}
+.catalog-sort-div:hover .sort-section{
+    background-color: white;
+    border-radius: 1rem;
+    display:block;
 }
 .clear-filter-button {
     background-color: var(--main-color);

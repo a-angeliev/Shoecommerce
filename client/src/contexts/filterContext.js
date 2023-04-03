@@ -6,6 +6,7 @@ export const FilterProvider = ({ children }) => {
     const [brandFilterCtx, setBrandFilterCtx] = useState([]);
     const [categoryFilterCtx, setCategoryFilterCtx] = useState([]);
     const [priceFilterCtx, setPriceFilterCtx] = useState([]);
+    const [sortedByCtx, setSortedByCtx] = useState("");
     const [genderCtx, setGenderCtx] = useState("");
 
     return (
@@ -15,10 +16,12 @@ export const FilterProvider = ({ children }) => {
                 categoryFilterCtx,
                 genderCtx,
                 priceFilterCtx,
+                sortedByCtx,
                 setBrandFilterCtx,
                 setCategoryFilterCtx,
                 setGenderCtx,
                 setPriceFilterCtx,
+                setSortedByCtx,
             }}>
             {children}
         </FilterContext.Provider>
