@@ -1,13 +1,55 @@
 import "./NewArrival.css";
-import { Swiper, SwiperSlide } from "swiper/react"
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useContext, useEffect, useState } from "react";
+import { ProductContext } from "../../contexts/productContext";
+import { useNavigate } from "react-router-dom";
 
 export const NewArrival = () => {
+    const { products } = useContext(ProductContext);
+    const [newArrival, setNewArrival] = useState([]);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (products) {
+            products.sort((product1, product2) => product2.id - product1.id);
+        }
+        setNewArrival(products.slice(0, 6));
+    }, [products]);
 
+    const goToShoeDetailPage = (id) => {
+        let path = "/product/" + id;
+        navigate(path);
+    };
 
+    const listNewProduct = (product) => {
+        return (
+            <SwiperSlide className='swiper-slide box'>
+                <img src={product.images[0].img_url} alt='' />
+                <div className='content'>
+                    <a onClick={() => goToShoeDetailPage(product.id)} className='btn'>
+                        Buy Now
+                    </a>
+                </div>
+            </SwiperSlide>
+        );
+    };
+    const dummyShoes = () => {
+        return (
+            <SwiperSlide className='swiper-slide box'>
+                <img src='/images/982c8911d38400285bc5a426034c360c-removebg-preview.png' alt='' />
+                <div className='content'>
+                    <a href='/#' className='btn'>
+                        Buy Now
+                    </a>
+                </div>
+            </SwiperSlide>
+        );
+    };
     return (
-        <section className="new" id="new">
-            <div className="heading">
-                <h1>New <span>Arrival</span></h1>
+        <section className='new' id='new'>
+            <div className='heading'>
+                <h1>
+                    New <span>Arrival</span>
+                </h1>
             </div>
 
             <Swiper
@@ -33,31 +75,12 @@ export const NewArrival = () => {
                     },
                 }}
                 className='swiper new-arrival'>
-
-                <div className="swiper wrapper">
-                    <SwiperSlide className="swiper-slide box">
-                        <img src="/images/982c8911d38400285bc5a426034c360c-removebg-preview.png" alt="" />
-                        <div className="content">
-                            <a href="/#" className="btn">Buy Now</a>
-                        </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide className="swiper-slide box">
-                        <img src="/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png" alt="" />
-                        <div className="content">
-                            <a href="/#" className="btn">Buy Now</a>
-                        </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide className="swiper-slide box">
-                        <img src="/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png" alt="" />
-                        <div className="content">
-                            <a href="/#" className="btn">Buy Now</a>
-                        </div>
-                    </SwiperSlide>
+                <div className='swiper wrapper'>
+                    {newArrival.length !== 0
+                        ? newArrival.map((product) => listNewProduct(product))
+                        : Array.from({ length: 3 }, () => dummyShoes())}
                 </div>
-
             </Swiper>
         </section>
-    )
-}
+    );
+};
