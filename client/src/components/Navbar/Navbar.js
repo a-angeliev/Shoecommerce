@@ -62,7 +62,7 @@ export const Navbar = () => {
                     <Link to='/products/man'>Men</Link>
                 </li>
                 <li key='Women'>
-                    <Link to='/products/women'>Women</Link>
+                    <Link to='/products/woman'>Women</Link>
                 </li>
                 <li key='Kids'>
                     <Link to='/products/kid'>Kids</Link>

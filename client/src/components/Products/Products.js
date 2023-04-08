@@ -17,6 +17,7 @@ export const Products = () => {
     const [filteredProductsForDisplay, setFilteredProductsForDisplay] = useState([]);
     const [isFilter, setIsFilter] = useState(false);
     const [sortedBy, setSortedBy] = useState("");
+    const [pageLoader, setPageLoader] = useState(7);
     const navigate = useNavigate();
 
     const {
@@ -25,11 +26,13 @@ export const Products = () => {
         genderCtx,
         priceFilterCtx,
         sortedByCtx,
+        pageLoaderCtx,
         setBrandFilterCtx,
         setCategoryFilterCtx,
         setGenderCtx,
         setPriceFilterCtx,
         setSortedByCtx,
+        setPageLoaderCtx,
     } = useContext(FilterContext);
 
     const sortProducts = () => {
@@ -37,34 +40,27 @@ export const Products = () => {
 
         if (sortedBy === "Price: High-Low") {
             let sortedArray = [...filteredProductsForDisplay];
-            sortedArray.sort((product1, product2) => (product1.price < product2.price ? 1 : -1));
-            console.log(sortedArray,123);
+            sortedArray.sort((product1, product2) => (product1.price <= product2.price ? 1 : -1));
+            console.log(sortedArray, 123);
 
-            return sortedArray
+            return sortedArray;
         } else if (sortedByCtx === "Price: Low-High") {
-            
             let sortedArray = [...filteredProductsForDisplay];
-            sortedArray.sort((product1, product2) => (product1.price > product2.price ? 1 : -1));
-            console.log(sortedArray,321);
+            sortedArray.sort((product1, product2) => (product1.price >= product2.price ? 1 : -1));
+            console.log(sortedArray, 321);
 
             return sortedArray;
         }
-        return filteredProductsForDisplay
+        return filteredProductsForDisplay;
     };
 
     useEffect(() => {
-        const sortedProducts = sortProducts()
-        if(JSON.stringify(sortedProducts) !== JSON.stringify(filteredProductsForDisplay)){
-            setFilteredProductsForDisplay(sortedProducts)
+        const sortedProducts = sortProducts();
+        if (JSON.stringify(sortedProducts) !== JSON.stringify(filteredProductsForDisplay)) {
+            setFilteredProductsForDisplay(sortedProducts);
         }
     }, [sortedBy, filteredProductsForDisplay]);
 
-    // async function filterProducts() {
-    //     return products.filter((product) => product.gender === gender);
-    // }
-    // async function filter() {
-    //     return await filterProducts().then((result) => result)
-    // }
     useEffect(() => {
         if (products) {
             const filteredProducts = products.filter((product) => product.gender === gender);
@@ -78,6 +74,7 @@ export const Products = () => {
             setBrandFilter(brandFilterCtx);
             setCategoryFilter(categoryFilterCtx);
             setPriceFilter(priceFilterCtx);
+            setPageLoader(pageLoaderCtx);
             if (sortedByCtx != "") {
                 setSortedBy(sortedByCtx);
             }
@@ -91,9 +88,9 @@ export const Products = () => {
             setCategoryFilterCtx([]);
             setPriceFilterCtx([]);
             setSortedByCtx("");
+            setPageLoader(7);
+            setPageLoaderCtx(7);
         }
-        // sortProducts();
-
     }, [gender]);
 
     useEffect(() => {
@@ -204,7 +201,7 @@ export const Products = () => {
 
     const handelSortedBy = (by) => {
         setSortedBy(by);
-        setSortedByCtx(by)
+        setSortedByCtx(by);
     };
 
     const displayProduct = (product) => {
@@ -224,6 +221,11 @@ export const Products = () => {
         );
     };
 
+    const loadMoreProducts = () => {
+        setPageLoaderCtx(pageLoader + 4);
+        setPageLoader(pageLoader + 4);
+    };
+
     if (!filteredProductsByGender) {
         return <div></div>;
     }
@@ -239,7 +241,6 @@ export const Products = () => {
                                 Price: High-Low
                             </li>
                             <li onClick={() => handelSortedBy("Price: Low-High")}>Price: Low-High</li>
-                            {/* <li onClick={() => handelSortedBy("Newest")}>Newest</li> */}
                         </ul>
                     </div>
                 </div>
@@ -377,11 +378,15 @@ export const Products = () => {
                         </ul>
                     </div>
                 </div>
-                {isFilter
+                {/* {isFilter
                     ? filteredProductsForDisplay.map((product) => displayProduct(product))
-                    : filteredProductsForDisplay.map((product) => displayProduct(product))}
+                    : filteredProductsForDisplay.map((product) => displayProduct(product))} */}
+                {filteredProductsForDisplay.slice(0, pageLoaderCtx).map((product) => displayProduct(product))}
+                {filteredProductsForDisplay.length < 4
+                    ? Array.from({ length: 5 }, () => <div className='catalog-items-container'></div>)
+                    : null}
 
-                <div className='catalog-items-container'>
+                {/* <div className='catalog-items-container'>
                     <div className='box'>
                         <img
                             src='/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png'
@@ -493,8 +498,16 @@ export const Products = () => {
                         <i className='bx bx-info-circle'></i>
                         <i className='bx bx-cart-alt'></i>
                     </div>
-                </div>
+                </div> */}
             </section>
+            {filteredProductsForDisplay.length > pageLoaderCtx ? (
+                <div className='load-more-div'>
+                    <button onClick={loadMoreProducts} className='load-more-button'>
+                        Load More
+                    </button>
+                </div>
+            ) : null}
+            <div></div>
         </section>
     );
 };

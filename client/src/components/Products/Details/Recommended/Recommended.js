@@ -1,6 +1,9 @@
 import './Recommended.css';
 
-export const Recommended = () => {
+export const Recommended = (props) => {
+    const gender = props
+    console.log(gender.gender)
+
     return (
         <section className="main-shoes-recommended scn">
             <h2 className="main-recommended-title">
