@@ -17,7 +17,7 @@ export const Details = () => {
     const [state, setState] = useState("loading");
     const [color, setColor] = useState("");
     const [size, setSize] = useState("");
-
+    const [colorDict, setColorDict] = useState("")
     const { cartState, setCartState, removeFromCart, addToCart } = useContext(CartContext);
 
     useEffect(() => {
@@ -27,6 +27,22 @@ export const Details = () => {
             setState("success");
         });
     }, [param.id]);
+
+    useEffect(() => {
+        let colorList = {};
+        if(product !== ""){
+
+            product.pairs.map((pair) => {
+                if (pair.color in colorList === false) {
+                    colorList[pair.color] = [pair.size];
+                } else {
+                    colorList[pair.color].push(pair.size);
+                }
+            });
+            setColorDict(colorList)
+        }
+    },[product])
+
 
     const activeColor = (e) => {
         setColor(e.target.attributes[0].nodeValue);
@@ -60,15 +76,7 @@ export const Details = () => {
         return <div></div>;
     }
 
-    let colorDict = {};
-
-    product.pairs.map((pair) => {
-        if (pair.color in colorDict === false) {
-            colorDict[pair.color] = [pair.size];
-        } else {
-            colorDict[pair.color].push(pair.size);
-        }
-    });
+   
 
     return (
         <main className='main-details'>
