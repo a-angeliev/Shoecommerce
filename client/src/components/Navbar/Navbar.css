@@ -84,6 +84,14 @@
     padding: 20px;
     border-radius: 0.5rem;
     box-shadow: var(--box-shadow);
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+
+.cart::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    /* make scrollbar transparent */
 }
 
 .cart img {
