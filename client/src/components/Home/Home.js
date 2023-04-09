@@ -1,9 +1,12 @@
+import { useContext } from 'react';
+import { ProductContext } from '../../contexts/productContext';
 import { NewArrival } from '../New Arrival/NewArrival';
 import { Products } from '../Products/Products';
 import { Reviews } from '../Reviews/Reviews';
 import './Home.css';
 
 export const Home = () => {
+    
     return (
         <>
             <section className="home" id="home">

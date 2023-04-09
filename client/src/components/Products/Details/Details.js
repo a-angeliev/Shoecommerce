@@ -17,7 +17,7 @@ export const Details = () => {
     const [state, setState] = useState("loading");
     const [color, setColor] = useState("");
     const [size, setSize] = useState("");
-    const [colorDict, setColorDict] = useState("");
+    const [colorDict, setColorDict] = useState("")
     const { cartState, setCartState, removeFromCart, addToCart } = useContext(CartContext);
 
     useEffect(() => {
@@ -30,7 +30,8 @@ export const Details = () => {
 
     useEffect(() => {
         let colorList = {};
-        if (product !== "") {
+        if(product !== ""){
+
             product.pairs.map((pair) => {
                 if (pair.color in colorList === false) {
                     colorList[pair.color] = [pair.size];
@@ -38,9 +39,10 @@ export const Details = () => {
                     colorList[pair.color].push(pair.size);
                 }
             });
-            setColorDict(colorList);
+            setColorDict(colorList)
         }
-    }, [product]);
+    },[product])
+
 
     const activeColor = (e) => {
         setColor(e.target.attributes[0].nodeValue);
@@ -48,7 +50,7 @@ export const Details = () => {
     };
 
     const chosenSize = (e) => {
-        setSize(e.target.value); 
+        setSize(e.target.value);
     };
 
     const addToCartFunc = (e) => {
@@ -73,6 +75,8 @@ export const Details = () => {
     if (state == "loading") {
         return <div></div>;
     }
+
+   
 
     return (
         <main className='main-details'>
