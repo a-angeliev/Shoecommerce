@@ -40,9 +40,7 @@ export const Navbar = () => {
                         {shoe[1]["color"]}, {shoe[1]["size"]}
                     </span>
                 </div>
-                <i
-                    onClick={(e) => remove(e, index)}
-                    className='bx bxs-trash-alt'></i>
+                <i onClick={(e) => remove(e, index)} className='bx bxs-trash-alt'></i>
             </div>
         );
     };
@@ -71,50 +69,32 @@ export const Navbar = () => {
 
             <ul className='header-icons'>
                 <li key='menu'>
-                    <i
-                        className='bx bx-menu'
-                        id='menu-icon'
-                        onClick={() => handleIconClick("menu")}
-                    />
+                    <i className='bx bx-menu' id='menu-icon' onClick={() => handleIconClick("menu")} />
                 </li>
                 <li key='search'>
-                    <i
-                        className='bx bx-search'
-                        id='search-icon'
-                        onClick={() => handleIconClick("search-box")}
-                    />
+                    <i className='bx bx-search' id='search-icon' onClick={() => handleIconClick("search-box")} />
                 </li>
                 <li key='cart'>
-                    <i
-                        className='bx bx-cart-alt'
-                        id='cart-alt-icon'
-                        onClick={() => handleIconClick("cart")}
-                    />
+                    <i className='bx bx-cart-alt' id='cart-alt-icon' onClick={() => handleIconClick("cart")} />
                 </li>
                 <li key='user'>
-                    <i
-                        className='bx bxs-user'
-                        id='user-icon'
-                        onClick={() => handleIconClick("user")}
-                    />
+                    <i className='bx bxs-user' id='user-icon' onClick={() => handleIconClick("user")} />
                 </li>
             </ul>
 
-            <div
-                className={`search-box ${
-                    activeIcon === "search-box" && "active"
-                }`}>
+            <div className={`search-box ${activeIcon === "search-box" && "active"}`}>
                 <input type='search' name='' id='' placeholder='Search Here' />
             </div>
 
             <div className={`cart ${activeIcon === "cart" && "active"}`}>
-                {cartState
-                    ? Object.entries(cartState).map((x, y) => item(x, y))
-                    : ""}
-
-                <Link to='/' className='btn'>
-                    Checkout
-                </Link>
+                {cartState ? Object.entries(cartState).map((x, y) => item(x, y)) : ""}
+                {cartState.length !== 0 ? (
+                    <Link to='/' className='btn'>
+                        Checkout
+                    </Link>
+                ) : (
+                    <div>Empty cart</div>
+                )}
             </div>
 
             <Auth activeIcon={activeIcon} />
