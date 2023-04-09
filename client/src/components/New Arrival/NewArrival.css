@@ -1,3 +1,7 @@
+.new{
+    position: flex;
+    /* margin-bottom: 1000000px; */
+}
 .new-arrival {
     margin-top: 2rem;
 }

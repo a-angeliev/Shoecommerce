@@ -1,8 +1,15 @@
+.foot{
+    display:flex;
+    flex-direction: column;
+    position: relative;
+    
+}
 .footer {
-    display: grid;
+    position:relative;
     grid-template-columns: repeat(auto-fit, minmax(240px, auto));
     gap: 1rem;
-
+    width: 100%;
+    margin: auto;
     color: var(--text-color);
     padding: 20px;
 

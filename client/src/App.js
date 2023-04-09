@@ -27,7 +27,7 @@ function App() {
                                 <Route path='/product/:id' element={<Details />} />
                             </Routes>
                             <Footer />
-                            <Copyright />
+                            {/* <Copyright /> */}
                         </div>
                     </FilterProvider>
                 </CartProvider>

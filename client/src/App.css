@@ -30,6 +30,9 @@ html,
 body,
 #root,
 .App {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100%;
 }
 

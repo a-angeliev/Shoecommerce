@@ -3,13 +3,14 @@ section.scn {
 }
 
 .main-details {
-    margin: 120px 0 40px;
-    min-height: 100vh;
+    margin: 120px 0 20px;
+    /* min-height: 100vh; */
 }
 
 .main-wrapper {
     max-width: 1240px;
     margin: 80px auto;
+    bottom: 10vh;
     padding: 20px;
 }
 
