@@ -93,7 +93,7 @@ export const Details = () => {
                                 <label htmlFor='size'>Choose a size:</label>
 
                                 <select onChange={chosenSize} className='main-shoe-sizes' name='size' id='size'>
-                                    {color
+                                    {colorDict[color]
                                         ? colorDict[color].map((x) => (
                                               <option key={x} value={x}>
                                                   {x}
