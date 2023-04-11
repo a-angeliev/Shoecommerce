@@ -85,7 +85,8 @@ export const Details = () => {
                     <article className='main-shoe-info'>
                         <h1 className='main-shoe-name'>{product.title}</h1>
                         <h2 className='main-shoe-second-title'>
-                            {product.gender}'s {product.category.title} Shoes
+                            {product.gender.charAt(0).toUpperCase() + product.gender.slice(1)}'s{" "}
+                            {product.category.title} Shoes
                         </h2>
                         <h3 className='main-shoe-price'>
                             {product.price} USD
