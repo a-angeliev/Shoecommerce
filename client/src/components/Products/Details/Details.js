@@ -14,7 +14,6 @@ import { AlertContext } from "../../../contexts/alertContext";
 export const Details = () => {
     const param = useParams();
 
-    // const [cart, setCart] = useLocalStorage("cart", '')
     const [product, setProduct] = useState("");
     const [state, setState] = useState("loading");
     const [color, setColor] = useState("");
@@ -67,12 +66,8 @@ export const Details = () => {
         if (!color) {
             alert("You should pick color and size!");
         } else {
-            // setAddInCartPopUp(true);
             setGreenAlertBool(true);
-            // alert("Successful");
-            // localStorage.setItem("cart", [...cart, shoe])
             addToCart(shoe);
-            // setCartState(cartState!== [] ? [...cartState, shoe]: [shoe])
         }
     };
 
