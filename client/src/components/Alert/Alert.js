@@ -4,10 +4,10 @@ import "./Alert.css";
 import React, { useState, useEffect, useContext } from "react";
 
 export const Alert = (props) => {
-    const { greenAlertBool, setGreenAlertBool } = useContext(AlertContext);
+    const { alert, setAlert } = useContext(AlertContext);
     const text = {
-        addInCart: "Product added to cart successfully",
-        chooseColor: "Pick a color first",
+        addInCart: "Product added to cart successfully!",
+        chooseColor: "You should pick color and size!",
     };
     const color = {
         green: "color-green",
@@ -15,19 +15,19 @@ export const Alert = (props) => {
     };
     useEffect(() => {
         // Show popup and hide after 1.5 seconds
-        if (greenAlertBool) {
+        if (alert) {
             setTimeout(() => {
-                setGreenAlertBool(false);
+                setAlert(false);
             }, 1500);
         }
-    }, [greenAlertBool]);
+    }, [alert]);
 
     return (
         <div
-            className={`popup-container ${greenAlertBool ? "show" : "hide"} 
-                ${props.colored ? color[props.colored] : null}
-                `}>
-            <div className='popup-text'>{text[props.text]}</div>
+            className={`popup-container ${alert !== false ? "show" : "hide"} 
+            ${alert !== false ? color[alert.color] : ""}
+            `}>
+            <div className='popup-text'>{text[alert.text]}</div>
         </div>
     );
 };

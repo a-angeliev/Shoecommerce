@@ -21,7 +21,7 @@ export const Details = () => {
     const [colorDict, setColorDict] = useState("");
     const [addInCartPopUp, setAddInCartPopUp] = useState(false);
     const { cartState, setCartState, removeFromCart, addToCart } = useContext(CartContext);
-    const { greenAlertBool, setGreenAlertBool } = useContext(AlertContext);
+    const { alert, setAlert } = useContext(AlertContext);
 
     useEffect(() => {
         productService.getProductById(param.id).then((result) => {
@@ -64,9 +64,9 @@ export const Details = () => {
         shoe["size"] = size;
         shoe["id"] = param.id;
         if (!color) {
-            alert("You should pick color and size!");
+            setAlert({ color: "red", text: "chooseColor" });
         } else {
-            setGreenAlertBool(true);
+            setAlert({ color: "green", text: "addInCart" });
             addToCart(shoe);
         }
     };
@@ -77,7 +77,8 @@ export const Details = () => {
 
     return (
         <main className='main-details'>
-            <Alert text={"addInCart"} colored={"green"}></Alert>
+            <Alert></Alert>
+
             <div className='main-wrapper'>
                 <section className='main-shoe-content scn'>
                     <img className='main-shoe' src={product ? product.images[0].img_url : null} alt={product.title} />

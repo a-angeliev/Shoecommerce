@@ -19,7 +19,7 @@
   border-radius: 5px;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.1s ease-in-out;
+  transition: opacity .5s ease-in-out;
 }
 
 .popup-container.show {
@@ -27,7 +27,7 @@
   visibility: visible;
 }
 
-.popup-container.hide {
+.popup-container.hidee {
   opacity: 0;
   visibility: visible;
   transition: opacity 0.4s ease-in-out;
