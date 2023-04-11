@@ -12,6 +12,7 @@ import { Copyright } from "./components/Copyright/Copyright";
 import "./App.css";
 import { CartProvider } from "./contexts/cartContext";
 import { FilterProvider } from "./contexts/filterContext";
+import { AlertProvider } from "./contexts/alertContext";
 
 function App() {
     return (
@@ -19,16 +20,18 @@ function App() {
             <ProductProvider>
                 <CartProvider>
                     <FilterProvider>
-                        <div className='App'>
-                            <Navbar />
-                            <Routes>
-                                <Route path='/' element={<Home />} />
-                                <Route path='/products/:gender' element={<Products />} />
-                                <Route path='/product/:id' element={<Details />} />
-                            </Routes>
-                            <Footer />
-                            {/* <Copyright /> */}
-                        </div>
+                        <AlertProvider>
+                            <div className='App'>
+                                <Navbar />
+                                <Routes>
+                                    <Route path='/' element={<Home />} />
+                                    <Route path='/products/:gender' element={<Products />} />
+                                    <Route path='/product/:id' element={<Details />} />
+                                </Routes>
+                                <Footer />
+                                {/* <Copyright /> */}
+                            </div>
+                        </AlertProvider>
                     </FilterProvider>
                 </CartProvider>
             </ProductProvider>

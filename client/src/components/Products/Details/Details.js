@@ -8,6 +8,8 @@ import * as productService from "./../../../services/product";
 import "./Details.css";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { CartContext } from "../../../contexts/cartContext";
+import { Alert } from "../../Alert/Alert";
+import { AlertContext } from "../../../contexts/alertContext";
 
 export const Details = () => {
     const param = useParams();
@@ -17,8 +19,10 @@ export const Details = () => {
     const [state, setState] = useState("loading");
     const [color, setColor] = useState("");
     const [size, setSize] = useState("");
-    const [colorDict, setColorDict] = useState("")
+    const [colorDict, setColorDict] = useState("");
+    const [addInCartPopUp, setAddInCartPopUp] = useState(false);
     const { cartState, setCartState, removeFromCart, addToCart } = useContext(CartContext);
+    const { greenAlertBool, setGreenAlertBool } = useContext(AlertContext);
 
     useEffect(() => {
         productService.getProductById(param.id).then((result) => {
@@ -30,8 +34,7 @@ export const Details = () => {
 
     useEffect(() => {
         let colorList = {};
-        if(product !== ""){
-
+        if (product !== "") {
             product.pairs.map((pair) => {
                 if (pair.color in colorList === false) {
                     colorList[pair.color] = [pair.size];
@@ -39,10 +42,9 @@ export const Details = () => {
                     colorList[pair.color].push(pair.size);
                 }
             });
-            setColorDict(colorList)
+            setColorDict(colorList);
         }
-    },[product])
-
+    }, [product]);
 
     const activeColor = (e) => {
         setColor(e.target.attributes[0].nodeValue);
@@ -65,7 +67,9 @@ export const Details = () => {
         if (!color) {
             alert("You should pick color and size!");
         } else {
-            alert("Successful");
+            // setAddInCartPopUp(true);
+            setGreenAlertBool(true);
+            // alert("Successful");
             // localStorage.setItem("cart", [...cart, shoe])
             addToCart(shoe);
             // setCartState(cartState!== [] ? [...cartState, shoe]: [shoe])
@@ -76,10 +80,9 @@ export const Details = () => {
         return <div></div>;
     }
 
-   
-
     return (
         <main className='main-details'>
+            <Alert text={"addInCart"} colored={"green"}></Alert>
             <div className='main-wrapper'>
                 <section className='main-shoe-content scn'>
                     <img className='main-shoe' src={product ? product.images[0].img_url : null} alt={product.title} />
