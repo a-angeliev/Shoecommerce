@@ -232,7 +232,7 @@ export const Products = () => {
 
     return (
         <section className='catalog-sort'>
-            {filteredProductsForDisplay ? (
+            {filteredProductsForDisplay.length !== 0 ? (
                 <div className='catalog-sort-div'>
                     <i>Sort By{sortedBy ? ":" + " " + sortedBy : null}</i>
                     <div className='sort-section'>

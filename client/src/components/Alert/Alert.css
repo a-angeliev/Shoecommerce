@@ -1,15 +1,3 @@
-/* .alert-wrapper {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    border: 1px solid #c1e3ca;
-    border-radius: 1rem;
-    background-color: rgba(234, 247, 238, 1);
-    z-index: 1;
-    padding: 10px;
-} */
-
-/* GreenAlertPopup.css */
 .popup-container {
   position: fixed;
   top: 80px;
@@ -27,7 +15,7 @@
   visibility: visible;
 }
 
-.popup-container.hidee {
+.popup-container.hide {
   opacity: 0;
   visibility: visible;
   transition: opacity 0.4s ease-in-out;
