@@ -4,6 +4,7 @@ import * as authService from "../../services/user";
 import "./Auth.css";
 import { AuthContext } from "../../contexts/Auth";
 import { useNavigate } from "react-router-dom";
+import { ProfileMenu } from "./ProfileMenu/ProfileMenu";
 
 export const Auth = ({ activeIcon }) => {
     const [isSignIn, setIsSignIn] = useState(true);
@@ -59,7 +60,9 @@ export const Auth = ({ activeIcon }) => {
     };
     return (
         <div className={`user ${localActiveIcon === "user" && "active"}`}>
-            {isAuthenticated ? null : (
+            {isAuthenticated ? (
+                <ProfileMenu />
+            ) : (
                 <>
                     <h2>{isSignIn ? "Login Now" : "Register Now"}</h2>
 

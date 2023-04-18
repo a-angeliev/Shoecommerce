@@ -1,0 +1,12 @@
+.profile-menu {
+    font-size: 1.25rem;
+    margin: 1rem;
+}
+
+.profile-menu-list li {
+    cursor: pointer;
+}
+
+.profile-menu-list li:hover {
+    scale: 1.1;
+}
