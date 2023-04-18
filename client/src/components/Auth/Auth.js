@@ -84,7 +84,7 @@ export const Auth = ({ activeIcon }) => {
                         />
                     )}
                     <input type='submit' onClick={onSubmit} value='Login' className='login-btn' />
-                    {loginError ? loginError : null}
+                    {loginError ? <p className='error-message'>{loginError}</p> : null}
                     <p>
                         Forget Password <a href='/#'>Reset Now</a>
                     </p>
