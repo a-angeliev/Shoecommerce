@@ -78,7 +78,6 @@ export const Details = () => {
     return (
         <main className='main-details'>
             <Alert></Alert>
-
             <div className='main-wrapper'>
                 <section className='main-shoe-content scn'>
                     <img className='main-shoe' src={product ? product.images[0].img_url : null} alt={product.title} />
