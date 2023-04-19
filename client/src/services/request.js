@@ -28,7 +28,7 @@ async function request(method, url, data) {
             }
 
             const err = await response.json();
-            console.dir(err);
+            // console.dir(err);
             throw err;
         }
 

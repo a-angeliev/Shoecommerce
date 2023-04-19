@@ -15,7 +15,7 @@ export const Auth = ({ activeIcon }) => {
     const [lname, setLname] = useState("");
     const [phone, setPhone] = useState("");
 
-    const [loginError, setLoginError] = useState("");
+    const [loginError, setLoginError] = useState([]);
     const [localActiveIcon, setLocalActiveIcon] = useState("");
     const { userLogin, isAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -26,6 +26,7 @@ export const Auth = ({ activeIcon }) => {
 
     const handleSwitchMode = () => {
         setIsSignIn((prevState) => !prevState);
+        setLoginError([]);
     };
 
     const inputHandler = (e) => {
@@ -40,89 +41,115 @@ export const Auth = ({ activeIcon }) => {
         if (Object.keys(input).includes(e.target.name)) {
             input[e.target.name]();
         }
-        // if (e.target.name === "email") {
-        //     setEmail(e.target.value);
-        // } else if (e.target.name === "password1") {
-        //     setPassword1(e.target.value);
-        // } else if (e.target.name === "password2") {
-        //     setPassword2(e.target.value);
-        // } else if (e.target.name === "fname") {
-        //     setFname(e.target.value);
-        // } else if (e.target.name === "lname") {
-        //     setLname(e.target.value);
-        // } else if (e.target.name === "phone") {
-        //     setPhone(e.target.value);
-        // }
     };
 
-    function isValidEmail(email) {
+    const errors = [];
+    const collectErrors = (err) => {
+        Object.values(err).forEach((element) => {
+            if (typeof element === "object") {
+                return collectErrors(element);
+            } else {
+                if (element.slice(0, 1) == "L") {
+                    element = "Name " + element;
+                }
+                errors.push(element);
+            }
+            if (errors !== loginError) {
+                setLoginError(errors);
+            }
+        });
+    };
+
+    const isFilledFields = (operation) => {
+        if (operation === "login") {
+            if (email && password1) {
+                return true;
+            }
+            setLoginError(["Fill email and password first"]);
+            return false;
+        } else if (operation === "register") {
+            if (email && password1 && password2 && fname && lname && phone) {
+                return true;
+            }
+            setLoginError(["Fill all fields first"]);
+            return false;
+        }
+    };
+
+    const isValidEmail = () => {
         const result = /\S+@\S+\.\S+/.test(email);
-        return !result;
-    }
+        if (!result) {
+            setLoginError(["Wrong email or password!"]);
+        }
+        return result;
+    };
+
+    const isSamePasswords = () => {
+        if (password1 === password2) {
+            return true;
+        }
+        setLoginError(["Both passwords should be same"]);
+        return false;
+    };
+
+    const login = (e) => {
+        if (isFilledFields("login") && isValidEmail()) {
+            authService
+                .login({ email: email, password: password1 })
+                .then((authData) => {
+                    const result = JSON.parse(authData);
+                    if (result.token) {
+                        userLogin(authData);
+                        setLocalActiveIcon("");
+                        navigate("/");
+                    } else {
+                        alert(JSON.stringify(authData["message"]));
+                    }
+                })
+                .catch((err) => {
+                    collectErrors(err);
+                });
+        }
+    };
+
+    const register = (e) => {
+        if (isFilledFields("register") && isSamePasswords()) {
+            authService
+                .register({
+                    email: email,
+                    password: password1,
+                    user_data: { f_name: fname, l_name: lname, phone: phone },
+                })
+                .then((authData) => {
+                    const result = JSON.parse(authData);
+                    if (result.token) {
+                        userLogin(authData);
+                        setLocalActiveIcon("");
+                        navigate("/");
+                    } else {
+                        alert(JSON.stringify(authData["message"]));
+                    }
+                })
+                .catch((err) => {
+                    collectErrors(err);
+                });
+        }
+    };
 
     const onSubmit = (e) => {
         if (isSignIn) {
-            if (email && password1) {
-                if (!isValidEmail(email)) {
-                    authService
-                        .login({ email: email, password: password1 })
-                        .then((authData) => {
-                            const result = JSON.parse(authData);
-                            if (result.token) {
-                                userLogin(authData);
-                                setLocalActiveIcon("");
-                                navigate("/");
-                            } else {
-                                alert(JSON.stringify(authData["message"]));
-                            }
-                        })
-                        .catch((err) => {
-                            console.dir(err.message);
-                            // setLoginError(err.message);
-                        });
-                } else {
-                    setLoginError("Wrong email or password!");
-                }
-            } else {
-                setLoginError("Fill email and password first");
-            }
+            login(e);
         } else {
-            if (email && password1 && password2 && fname && lname && phone) {
-                if (isValidEmail(email)) {
-                    setLoginError("Is not a valid email.");
-                } else if (fname.length < 2 || fname.length > 60) {
-                    setLoginError("First name length must be between 2 and 60.");
-                } else if (lname.length < 2 || lname.length > 60) {
-                    setLoginError("Last name length must be between 2 and 60.");
-                } else if (password1 === password2) {
-                    authService
-                        .register({
-                            email: email,
-                            password: password1,
-                            user_data: { f_name: fname, l_name: lname, phone: phone },
-                        })
-                        .then((authData) => {
-                            const result = JSON.parse(authData);
-                            if (result.token) {
-                                userLogin(authData);
-                                setLocalActiveIcon("");
-                                navigate("/");
-                            } else {
-                                alert(JSON.stringify(authData["message"]));
-                            }
-                        })
-                        .catch((err) => {
-                            console.dir(err);
-                            setLoginError(err.message);
-                        });
-                } else {
-                    setLoginError("Both passwords should be same");
-                }
-            } else {
-                setLoginError("Fill all fields first");
-            }
+            register(e);
         }
     };
+
+    const displayErrors = () => {
+        const errors = [];
+        loginError.forEach((err) => errors.push(<p className='error-message'>{err}</p>));
+        return <>{errors}</>;
+    };
+
     return (
         <div className={`user ${localActiveIcon === "user" && "active"}`}>
             {isAuthenticated ? (
@@ -176,7 +203,7 @@ export const Auth = ({ activeIcon }) => {
                     ) : (
                         <input type='submit' onClick={onSubmit} value='Register' className='login-btn' />
                     )}
-                    {loginError ? <p className='error-message'>{loginError}</p> : null}
+                    {loginError.length !== 0 ? displayErrors() : null}
                     <p>
                         Forget Password <a href='/#'>Reset Now</a>
                     </p>
