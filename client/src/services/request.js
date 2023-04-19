@@ -28,7 +28,8 @@ async function request(method, url, data) {
             }
 
             const err = await response.json();
-            throw new Error(err.message);
+            console.dir(err);
+            throw err;
         }
 
         if (response.status === 400) {
