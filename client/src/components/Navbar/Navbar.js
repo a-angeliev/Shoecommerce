@@ -90,7 +90,7 @@ export const Navbar = () => {
             <div className={`cart ${activeIcon === "cart" && "active"}`}>
                 {cartState ? Object.entries(cartState).map((x, y) => item(x, y)) : ""}
                 {cartState.length !== 0 ? (
-                    <Link to='/' className='btn'>
+                    <Link to='/checkout' className='btn'>
                         Checkout
                     </Link>
                 ) : (

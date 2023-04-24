@@ -60,6 +60,7 @@ export const Details = () => {
         shoe["title"] = product.title;
         shoe["image"] = product.images[0].img_url;
         shoe["price"] = product.price;
+        shoe["gender"] = product.gender;
         shoe["color"] = color;
         shoe["size"] = size;
         shoe["id"] = param.id;

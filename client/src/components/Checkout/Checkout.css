@@ -1,0 +1,166 @@
+.checkout {
+    display: flex;
+    position: relative;
+    /* background-color: aquamarine; */
+    width: 60%;
+    margin: 10rem auto auto;
+}
+
+.bag {
+    position: relative;
+    /* background-color: red; */
+    width: 70%;
+
+}
+
+
+.title {
+    margin-left: 1rem;
+    font-size: 1.5rem;
+}
+
+.number-of-items {
+    font-size: 1rem;
+    display: none;
+}
+
+.summary {
+    width: 30%;
+    position: relative;
+}
+
+.summary>p {
+    font-size: 1.5rem;
+
+}
+
+.shoe {
+    display: flex;
+    /* background-color: aliceblue; */
+    margin: 1rem;
+}
+
+.img {
+    width: 10rem;
+    height: 10rem;
+}
+
+.shoe-info {
+
+    margin-left: 2rem;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.title-price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gray-f {
+    color: gray;
+}
+
+.divider {
+    margin: 0rem 1rem;
+    border: 1px solid #e5e5e5;
+}
+
+.divider-co {
+    margin: 1rem 0rem;
+    border: 1px solid #e5e5e5;
+}
+
+.total-price {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.delivery {
+    display: flex;
+    justify-content: space-between;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-co {
+    text-align: center;
+    margin-left: auto;
+}
+
+.bin {
+    margin-top: 1rem;
+}
+
+.bx {
+    font-size: 24px;
+}
+
+.bx:hover {
+    transform: scale(1.1);
+    color: var(--main-color);
+}
+
+@media only screen and (max-width: 1240px) {
+    .checkout {
+        width: 80%;
+    }
+
+
+}
+
+@media only screen and (max-width: 900px) {
+    .checkout {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 6rem;
+    }
+
+    .number-of-items {
+        display: block;
+    }
+
+    .bag {
+        width: 100%;
+        /* text-align: center; */
+    }
+
+    .title {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .summary {
+        width: 100%;
+        padding: 1rem;
+        /* margin: 1rem 1rem 1rem 1rem; */
+    }
+
+    /* .btn-co {
+        position: relative;
+    } */
+
+    .btn-co {
+        z-index: 1;
+        width: 100%;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+    }
+
+    .btn-1 {
+        width: 100%;
+        clip-path: none;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .img {
+        width: 7rem;
+        height: 7rem;
+    }
+}

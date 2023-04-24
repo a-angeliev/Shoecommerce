@@ -13,6 +13,7 @@ import "./App.css";
 import { CartProvider } from "./contexts/cartContext";
 import { FilterProvider } from "./contexts/filterContext";
 import { AlertProvider } from "./contexts/alertContext";
+import { Checkout } from "./components/Checkout/Checkout";
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                                     <Route path='/' element={<Home />} />
                                     <Route path='/products/:gender' element={<Products />} />
                                     <Route path='/product/:id' element={<Details />} />
+                                    <Route path='/checkout' element={<Checkout />} />
                                 </Routes>
                                 <Footer />
                                 {/* <Copyright /> */}
