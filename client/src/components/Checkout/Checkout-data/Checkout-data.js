@@ -1,5 +1,5 @@
 import { Summary } from "../summary/Summary";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../../contexts/cartContext";
 import "./Checkout-data.css";
 
@@ -7,6 +7,105 @@ export const CheckoutData = () => {
     const { cartState } = useContext(CartContext);
     const [toggleButton, setToggleButton] = useState("");
     const [toggleButtonClass, setToggleButtonClass] = useState("");
+    const [termsCheckbox, setTermsCheckbox] = useState(false);
+    const [termsValidation, setTermsValidation] = useState("incorrect");
+    const [termsShaking, setTermsShaking] = useState("");
+
+    const [formData, setFormData] = useState({
+        fName: "",
+        lName: "",
+        address1: "",
+        address2: "",
+        pCode: "",
+        city: "",
+        country: "",
+        email: "",
+        phone: "",
+    });
+
+    const [formValidation, setFormValidation] = useState({
+        fName: "incorrect",
+        lName: "incorrect",
+        address1: "incorrect",
+        pCode: "incorrect",
+        city: "incorrect",
+        country: "incorrect",
+        email: "incorrect",
+        phone: "incorrect",
+    });
+
+    useEffect(() => {
+        setTimeout(setTermsShaking, 1000, "");
+    }, [termsShaking]);
+
+    const setCorrectValidation = (e) => {
+        let newFormValidation = { ...formValidation };
+        newFormValidation[e.target.name] = "";
+        setFormValidation(newFormValidation);
+    };
+
+    const setIncorrectValidation = (e) => {
+        let newFormValidation = { ...formValidation };
+        newFormValidation[e.target.name] = "incorrect";
+        setFormValidation(newFormValidation);
+    };
+
+    const isValidEmail = (e) => {
+        if (
+            String(e.target.value)
+                .toLowerCase()
+                .match(
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                )
+        ) {
+            setCorrectValidation(e);
+        } else {
+            setIncorrectValidation(e);
+        }
+    };
+
+    const isValidPhone = (e) => {
+        if (e.target.value.length >= 8) {
+            setCorrectValidation(e);
+        } else {
+            setIncorrectValidation(e);
+        }
+    };
+
+    const validateFiled = (e) => {
+        console.log(e.target.name);
+        if (e.target.name == "address2") {
+            return;
+        } else {
+            if (e.target.name == "email") {
+                isValidEmail(e);
+            } else if (e.target.name == "phone") {
+                isValidPhone(e);
+            } else {
+                if (e.target.value.length >= 2) {
+                    setCorrectValidation(e);
+                } else {
+                    setIncorrectValidation(e);
+                }
+            }
+        }
+    };
+
+    const fillFormData = (e) => {
+        let newData = { ...formData };
+        newData[e.target.name] = e.target.value;
+        setFormData(newData);
+        validateFiled(e);
+    };
+
+    const toggleTermsCheckbox = (e) => {
+        setTermsCheckbox(e.target.checked);
+        if (e.target.checked == true) {
+            setTermsValidation("");
+        } else {
+            setTermsValidation("incorrect");
+        }
+    };
 
     const showList = () => {
         if (toggleButton == "toggle-list") {
@@ -15,6 +114,14 @@ export const CheckoutData = () => {
         } else {
             setToggleButton("toggle-list");
             setToggleButtonClass("active-button");
+        }
+    };
+
+    const makePurchase = () => {
+        if (termsValidation == "incorrect") {
+            setTermsShaking("horizontal-shake");
+        } else if (!Object.values(formValidation).includes("incorrect")) {
+            console.log(123);
         }
     };
 
@@ -40,7 +147,6 @@ export const CheckoutData = () => {
         return (
             <>
                 <div className='shoe'>
-                    {console.dir(shoe)}
                     <div className='image'>
                         <img className='img' src={shoe[1]["image"]}></img>
                     </div>
@@ -94,31 +200,99 @@ export const CheckoutData = () => {
                 <div className='name-form'>
                     <p className='title'>Enter your name and address:</p>
 
-                    <input type='text' placeholder='First Name'></input>
-                    <input type='text' placeholder='Last Name'></input>
-                    <input type='text' placeholder='Address Line 1'></input>
-                    <input type='text' placeholder='Address Line 2'></input>
+                    <input
+                        className={formValidation["fName"]}
+                        name='fName'
+                        type='text'
+                        placeholder='First Name'
+                        onChange={fillFormData}
+                        value={formData["fName"]}
+                    />
+                    <input
+                        className={formValidation["lName"]}
+                        name='lName'
+                        type='text'
+                        placeholder='Last Name'
+                        onChange={fillFormData}
+                        value={formData["lName"]}
+                    />
+                    <input
+                        className={formValidation["address1"]}
+                        name='address1'
+                        type='text'
+                        placeholder='Address Line 1'
+                        onChange={fillFormData}
+                        value={formData["address1"]}
+                    />
+                    <input
+                        name='address2'
+                        type='text'
+                        placeholder='Address Line 2'
+                        onChange={fillFormData}
+                        value={formData["address2"]}
+                    />
                     <div className='city-input'>
-                        <input type='text' placeholder='Postal Code'></input>
-                        <input type='text' placeholder='City'></input>
+                        <input
+                            className={formValidation["pCode"]}
+                            name='pCode'
+                            type='text'
+                            placeholder='Postal Code'
+                            onChange={fillFormData}
+                            value={formData["pCode"]}
+                        />
+                        <input
+                            className={formValidation["city"]}
+                            name='city'
+                            type='text'
+                            placeholder='City'
+                            onChange={fillFormData}
+                            value={formData["city"]}
+                        />
                     </div>
-                    <input type='text' placeholder='Country'></input>
+                    <input
+                        className={formValidation["country"]}
+                        name='country'
+                        type='text'
+                        placeholder='Country'
+                        onChange={fillFormData}
+                        value={formData["country"]}
+                    />
                 </div>
                 <div className='contact-info'>
                     <p className='title'>What's your contact information?</p>
 
-                    <input type='text' name='email' placeholder='Email'></input>
+                    <input
+                        className={formValidation["email"]}
+                        name='email'
+                        type='text'
+                        placeholder='Email'
+                        onChange={fillFormData}
+                        value={formData["email"]}
+                    />
                     <label for='email' className='note'>
                         A confirmation email will be sent after checkout.
                     </label>
 
-                    <input type='text' name='pnumber' placeholder='Phone Number'></input>
-                    <label for='pnumber' className='note'>
+                    <input
+                        className={formValidation["phone"]}
+                        name='phone'
+                        type='number'
+                        placeholder='Phone Number'
+                        onChange={fillFormData}
+                        value={formData["phone"]}
+                    />
+                    <label for='phone' className='note'>
                         A carrier might contact you to confirm delivery.
                     </label>
                 </div>
                 <div className='terms'>
-                    <input type='checkbox' className='checkbox-terms'></input>
+                    <input
+                        name='terms'
+                        type='checkbox'
+                        className={"checkbox-terms" + " " + termsShaking + " " + termsValidation}
+                        onChange={toggleTermsCheckbox}
+                        value={termsCheckbox}
+                    />
                     <p>
                         I have read and consent to eShopWorld processing my information in accordance with the
                         <span>
@@ -136,7 +310,9 @@ export const CheckoutData = () => {
                         {""}. eShopWorld is a trusted ShoeCommerce partner.{" "}
                     </p>
                 </div>
-                <div className='btn purchase-btn'>Purchase</div>
+                <div className='btn purchase-btn' onClick={makePurchase}>
+                    Purchase
+                </div>
             </div>
             <div className='summary bottom-summary'>
                 <Summary></Summary>
