@@ -13,10 +13,6 @@
 
 }
 
-/* .form>.purchase-btn {
-    text-align: center;
-} */
-
 .title {
     font-size: 1.25rem;
     margin-left: 0;
@@ -77,7 +73,7 @@
     margin-top: 2rem;
 }
 
-input {
+.name-form>input, .city-input>input, .contact-info>input {
     height: 3rem;
     margin-top: 1.25rem;
     border: 1px solid rgba(0, 0, 0, 0.3);
@@ -127,4 +123,8 @@ input {
     margin: 30px auto;
     text-align: center;
     width: 40%;
+}
+
+.delivery-date>p {
+    font-weight: bold;
 }

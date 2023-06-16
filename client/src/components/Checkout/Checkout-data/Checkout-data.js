@@ -1,7 +1,60 @@
 import { Summary } from "../summary/Summary";
+import { useContext } from "react";
+import { CartContext } from "../../../contexts/cartContext";
 import "./Checkout-data.css";
 
 export const CheckoutData = () => {
+    const { cartState } = useContext(CartContext);
+
+    const delivery = () => {
+        let firstDate = new Date();
+        let secondDate = new Date();
+        let todayDay = firstDate.getDate();
+        firstDate.setDate(todayDay + 3);
+        secondDate.setDate(todayDay + 6);
+
+        let fDay = firstDate.getDate();
+        let fMonth = firstDate.getMonth();
+        let fYear = firstDate.getFullYear();
+
+        let sDay = secondDate.getDate();
+        let sMonth = secondDate.getMonth();
+        let sYear = secondDate.getFullYear();
+        let delivery = `Estimated delivery ${fDay}/${fMonth}/${fYear} - ${sDay}/${sMonth}/${sYear}  `;
+        return delivery;
+    };
+
+    const shoeList = (shoe, index) => {
+        return (
+            <>
+                <div className='shoe'>
+                    {console.dir(shoe)}
+                    <div className='image'>
+                        <img className='img' src={shoe[1]["image"]}></img>
+                    </div>
+                    <div className='shoe-info'>
+                        <div className='title-price'>
+                            <p>{shoe[1]["title"]}</p>
+                            {/* <p>$ {shoe[1]["price"]}</p> */}
+                        </div>
+                        <div className='gender-title'>
+                            <p className='gray-f'>
+                                {shoe[1]["gender"].charAt(0).toUpperCase() + shoe[1]["gender"].slice(1)}'s Shoes
+                            </p>
+                        </div>
+                        <div className='color'>
+                            <p className='gray-f'>{shoe[1]["color"]}</p>
+                        </div>
+                        <div className='size'>
+                            <p className='gray-f'>Size {shoe[1]["size"]}</p>
+                        </div>
+                    </div>
+                </div>
+                <div className='divider'></div>
+            </>
+        );
+    };
+
     return (
         <div className='checkout-data'>
             <div className='form'>
@@ -63,6 +116,12 @@ export const CheckoutData = () => {
             </div>
             <div className='summary'>
                 <Summary></Summary>
+                <div className='delivery-date'>
+                    <p>{delivery()}</p>
+                </div>
+                <div className='shoes-list'>
+                    {cartState ? Object.entries(cartState).map((x, y) => shoeList(x, y)) : ""}
+                </div>
             </div>
         </div>
     );
