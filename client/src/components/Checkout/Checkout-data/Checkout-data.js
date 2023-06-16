@@ -1,10 +1,22 @@
 import { Summary } from "../summary/Summary";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../../contexts/cartContext";
 import "./Checkout-data.css";
 
 export const CheckoutData = () => {
     const { cartState } = useContext(CartContext);
+    const [toggleButton, setToggleButton] = useState("");
+    const [toggleButtonClass, setToggleButtonClass] = useState("");
+
+    const showList = () => {
+        if (toggleButton == "toggle-list") {
+            setToggleButton("");
+            setToggleButtonClass("");
+        } else {
+            setToggleButton("toggle-list");
+            setToggleButtonClass("active-button");
+        }
+    };
 
     const delivery = () => {
         let firstDate = new Date();
@@ -58,6 +70,18 @@ export const CheckoutData = () => {
     return (
         <div className='checkout-data'>
             <div className='form'>
+                <div className='summary top-summary'>
+                    <Summary></Summary>
+                    <div className='delivery-date'>
+                        <p>{delivery()}</p>
+                    </div>
+                    <button className={"item-btn" + " " + toggleButtonClass} onClick={showList}>
+                        Items
+                    </button>
+                    <div className={toggleButton + " " + "shoes-list"}>
+                        {cartState ? Object.entries(cartState).map((x, y) => shoeList(x, y)) : ""}
+                    </div>
+                </div>
                 <div className='delivery-options'>
                     <p className='title'>How would you like to get your order?</p>
                     <div className='deliver-btn'>
@@ -114,7 +138,7 @@ export const CheckoutData = () => {
                 </div>
                 <div className='btn purchase-btn'>Purchase</div>
             </div>
-            <div className='summary'>
+            <div className='summary bottom-summary'>
                 <Summary></Summary>
                 <div className='delivery-date'>
                     <p>{delivery()}</p>

@@ -23,6 +23,10 @@
     width: 40%;
 }
 
+.top-summary {
+    display: none;
+}
+
 .deliver-btn {
     cursor: pointer;
     font-size: 1rem;
@@ -127,4 +131,84 @@
 
 .delivery-date>p {
     font-weight: bold;
+}
+
+
+@media only screen and (max-width: 1240px) {
+    .checkout-data {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .checkout-data {
+        flex-direction: column;
+        width: 80%;
+        margin: 2rem auto 4rem auto;
+
+    }
+
+    .form {
+        margin-top: 3rem;
+        width: 100%;
+    }
+
+    .purchase-btn {
+        z-index: 1;
+        width: 100%;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        clip-path: none;
+        margin: auto;
+    }
+
+    .summary {
+        width: 100%;
+    }
+
+    .top-summary {
+        display: block;
+    }
+
+    .bottom-summary {
+        display: none;
+    }
+
+    .item-btn {
+        margin-top: 1rem;
+        width: 100%;
+        height: 3rem;
+        text-align: left;
+        padding-left: 1rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid gray;
+        background-color: white;
+    }
+
+    .item-btn:after {
+        content: '\02795';
+        /* Unicode character for "plus" sign (+) */
+        font-size: 13px;
+        color: white;
+        float: right;
+        margin-right: 10px;
+        margin: auto 10px auto 10px;
+    }
+
+    .active-button:after {
+        content: "\2796";
+        /* Unicode character for "minus" sign (-) */
+    }
+
+    .shoes-list {
+        height: 0;
+        overflow: hidden;
+        transition: all 0.5s ease;
+    }
+
+    .toggle-list {
+        height: 100%;
+    }
 }
