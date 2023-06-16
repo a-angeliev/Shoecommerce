@@ -1,0 +1,130 @@
+.checkout-data {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: 8rem auto;
+}
+
+.form {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+/* .form>.purchase-btn {
+    text-align: center;
+} */
+
+.title {
+    font-size: 1.25rem;
+    margin-left: 0;
+    margin-top: 3rem;
+}
+
+.summary {
+    width: 40%;
+}
+
+.deliver-btn {
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border-radius: 12px;
+    border-style: solid;
+    width: 100%;
+    min-height: 82px;
+    font-weight: 500;
+    color: #111;
+    border-color: #111;
+    border-width: 2px;
+    padding: 19px;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+
+}
+
+.deliver-btn>img {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 2rem;
+}
+
+.login-btn {
+    font-size: 1rem;
+    line-height: 1.75rem;
+    border-radius: 30px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    letter-spacing: .031rem;
+    color: #111;
+    background-color: #fff;
+    border: 1px solid #cccccc;
+    margin-left: 11px;
+    padding: 7px 26px;
+    margin-top: 8px;
+    cursor: pointer;
+    display: block;
+}
+
+.name-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+input {
+    height: 3rem;
+    margin-top: 1.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding-left: 1rem;
+}
+
+.city-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+.city-input>input {
+    width: 48%;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.terms {
+    display: flex;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.terms>input {
+    position: relative;
+    top: -0.5rem;
+    margin-top: 0;
+    scale: 1.50;
+    accent-color: black;
+}
+
+.terms>p {
+    font-size: 0.70rem;
+    margin-left: 1rem;
+    color: gray
+}
+
+.terms>p>span>a {
+    text-decoration: underline;
+}
+
+.purchase-btn {
+    margin: 30px auto;
+    text-align: center;
+    width: 40%;
+}

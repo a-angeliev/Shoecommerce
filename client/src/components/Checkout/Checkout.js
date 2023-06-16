@@ -1,6 +1,8 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import "./Checkout.css";
 import { CartContext } from "../../contexts/cartContext";
+import { Summary } from "./summary/Summary";
 
 export const Checkout = () => {
     const { cartState, removeFromCart } = useContext(CartContext);
@@ -56,32 +58,12 @@ export const Checkout = () => {
             </div>
 
             <div className='summary'>
-                <p>Summary</p>
-                <div className='total-price'>
-                    <p>Subtotal</p>
-                    <p>
-                        BGN{" "}
-                        {cartState
-                            ? Object.entries(cartState).map((x, y) => {
-                                  //   console.dir(x[1].price);
-                                  sum += x[1]["price"];
-                              })
-                            : null}
-                        {sum}
-                    </p>
-                </div>
-                <div className='delivery'>
-                    <p>Delivery</p>
-                    <p>Free</p>
-                </div>
-                <div className='divider-co'></div>
-                <div className='total'>
-                    <p>Total</p>
-                    <p>BGN {sum}</p>
-                </div>
-                <div className='divider-co'></div>
+                <Summary />
                 <div className='btn-co'>
-                    <div className='btn btn-1'>Checkout</div>
+                    <Link to='/checkout-data' className='btn btn-1'>
+                        Checkout
+                    </Link>
+                    {/* <div className='btn btn-1'>Checkout</div> */}
                 </div>
             </div>
         </div>

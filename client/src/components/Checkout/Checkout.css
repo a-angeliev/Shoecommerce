@@ -71,21 +71,21 @@
     border: 1px solid #e5e5e5;
 }
 
-.total-price {
+/* .total-price {
     margin-top: 2rem;
     display: flex;
     justify-content: space-between;
-}
+} */
 
-.delivery {
+/* .delivery {
     display: flex;
     justify-content: space-between;
-}
+} */
 
-.total {
+/* .total {
     display: flex;
     justify-content: space-between;
-}
+} */
 
 .btn-co {
     text-align: center;

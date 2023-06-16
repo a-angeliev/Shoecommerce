@@ -14,6 +14,7 @@ import { CartProvider } from "./contexts/cartContext";
 import { FilterProvider } from "./contexts/filterContext";
 import { AlertProvider } from "./contexts/alertContext";
 import { Checkout } from "./components/Checkout/Checkout";
+import { CheckoutData } from "./components/Checkout/Checkout-data/Checkout-data";
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
                                     <Route path='/products/:gender' element={<Products />} />
                                     <Route path='/product/:id' element={<Details />} />
                                     <Route path='/checkout' element={<Checkout />} />
+                                    <Route path='/checkout-data' element={<CheckoutData />} />
                                 </Routes>
                                 <Footer />
                                 {/* <Copyright /> */}

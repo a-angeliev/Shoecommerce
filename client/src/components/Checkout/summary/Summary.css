@@ -1,0 +1,20 @@
+.divider-co {
+    margin: 1rem 0rem;
+    border: 1px solid #e5e5e5;
+}
+
+.total-price {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.delivery {
+    display: flex;
+    justify-content: space-between;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+}
