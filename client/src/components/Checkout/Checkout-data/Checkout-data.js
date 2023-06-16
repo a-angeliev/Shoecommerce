@@ -35,6 +35,9 @@ export const CheckoutData = () => {
     });
 
     useEffect(() => {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            console.log(position);
+        });
         setTimeout(setTermsShaking, 1000, "");
     }, [termsShaking]);
 
