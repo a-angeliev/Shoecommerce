@@ -25,6 +25,10 @@ export const Navbar = () => {
         }
     };
 
+    const removeCartIcon = () => {
+        setActiveIcon("");
+    };
+
     const remove = (e, index) => {
         e.preventDefault();
         removeFromCart(index);
@@ -92,7 +96,7 @@ export const Navbar = () => {
             <div className={`cart ${activeIcon === "cart" && "active"}`}>
                 {cartState ? Object.entries(cartState).map((x, y) => item(x, y)) : ""}
                 {cartState.length !== 0 ? (
-                    <Link to='/checkout' className='btn'>
+                    <Link to='/checkout' onClick={removeCartIcon} className='btn'>
                         Checkout
                     </Link>
                 ) : (
