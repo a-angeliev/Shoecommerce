@@ -61,7 +61,7 @@ input::-webkit-inner-spin-button {
     margin-right: 2rem;
 }
 
-.login-btn {
+/* .login-btn {
     font-size: 1rem;
     line-height: 1.75rem;
     border-radius: 30px;
@@ -76,7 +76,7 @@ input::-webkit-inner-spin-button {
     margin-top: 8px;
     cursor: pointer;
     display: block;
-}
+} */
 
 .name-form {
     display: flex;

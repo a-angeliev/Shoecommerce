@@ -198,7 +198,7 @@ export const CheckoutData = () => {
                         Deliver It
                         <icon></icon>
                     </div>
-                    <button className='login-btn'>Login</button>
+                    {/* <button className='login-btn'>Login</button> */}
                 </div>
                 <div className='name-form'>
                     <p className='title'>Enter your name and address:</p>
