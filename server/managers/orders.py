@@ -4,7 +4,7 @@ from werkzeug.exceptions import NotFound
 from managers.discounts import DiscountsManager
 from managers.products import ProductManager
 from models.enums import IsShipped
-from models.orders import OrderItemModel, OrdersModel
+from models.orders import OrderItemModel, OrdersModel, OrderAddressModel
 from utils.operations import db_add_items
 
 
@@ -40,15 +40,21 @@ class OrdersManager:
             order_items.append(order_i)
             total_price += price
 
-        if discount_is_valid["is_valid"]:
-            total_price = total_price - (total_price*discount_is_valid["discount"]/100)
 
-        order = OrdersModel(total_price=total_price, comment=data["comment"], discount_code=data['discount_code'])
+        if discount_is_valid["is_valid"]:
+            final_price = total_price - (total_price*discount_is_valid["discount"]/100)
+        else:
+            final_price = total_price
+
+
+        order_address = OrderAddressModel(**data["address"])
+        order = OrdersModel(total_price=total_price, final_price=final_price, comment=data["comment"], discount_code=data['discount_code'], order_address=[order_address])
+
         [order.order_items.append(x) for x in order_items]
         user.user_data.orders.append(order)
 
         pairs = ProductManager.sell_pair(pairs)
-        db_add_items(order, user, *pairs)
+        db_add_items(order, user,order_address, *pairs)
 
         return order
 

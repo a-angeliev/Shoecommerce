@@ -12,6 +12,18 @@ class CreateOrderItemsResponseSchema(Schema):
     product_id = fields.Integer(required=True)
 
 
+class CreateOrderAddressResponseSchema(Schema):
+    first_name = fields.String(required=True)
+    last_name = fields.String(required=True)
+    address_1 = fields.String(required=True)
+    address_2 = fields.String(required=False)
+    post_code = fields.Integer(required=True)
+    city = fields.String(required=True)
+    country = fields.String(required=True)
+    email = fields.Email(required=True)
+    phone = fields.Integer(required=True)
+
+
 class CreateOrderResponseSchema(Schema):
     id = fields.Integer(required=True)
     created_on = fields.DateTime(required=True)
@@ -21,6 +33,8 @@ class CreateOrderResponseSchema(Schema):
     order_items = fields.Nested(CreateOrderItemsResponseSchema(), many=True)
     is_shipped = CustomEnumField(required=True)
     shipped_on = fields.DateTime(required=True)
+    final_price = fields.Float(required=True)
+    order_address = fields.Nested(CreateOrderAddressResponseSchema(), many=True)
 
 
 class GetAllOrdersResponseSchema(CreateOrderResponseSchema):

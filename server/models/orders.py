@@ -9,6 +9,7 @@ class OrdersModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_on = db.Column(db.DateTime, server_default=func.now())
     total_price = db.Column(db.Float, nullable=False)
+    final_price = db.Column(db.Float, nullable=False)
     comment = db.Column(db.Text, nullable=True)
     order_items = db.relationship("OrderItemModel", backref="order", lazy="select")
     order_address = db.relationship("OrderAddressModel", backref="order", lazy="select")
