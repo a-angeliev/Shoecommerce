@@ -15,6 +15,7 @@ import { FilterProvider } from "./contexts/filterContext";
 import { AlertProvider } from "./contexts/alertContext";
 import { Checkout } from "./components/Checkout/Checkout";
 import { CheckoutData } from "./components/Checkout/Checkout-data/Checkout-data";
+import { ActiveIconProvider } from "./contexts/activeIconContext";
 
 function App() {
     return (
@@ -23,18 +24,20 @@ function App() {
                 <CartProvider>
                     <FilterProvider>
                         <AlertProvider>
-                            <div className='App'>
-                                <Navbar />
-                                <Routes>
-                                    <Route path='/' element={<Home />} />
-                                    <Route path='/products/:gender' element={<Products />} />
-                                    <Route path='/product/:id' element={<Details />} />
-                                    <Route path='/checkout' element={<Checkout />} />
-                                    <Route path='/checkout-data' element={<CheckoutData />} />
-                                </Routes>
-                                <Footer />
-                                {/* <Copyright /> */}
-                            </div>
+                            <ActiveIconProvider>
+                                <div className='App'>
+                                    <Navbar />
+                                    <Routes>
+                                        <Route path='/' element={<Home />} />
+                                        <Route path='/products/:gender' element={<Products />} />
+                                        <Route path='/product/:id' element={<Details />} />
+                                        <Route path='/checkout' element={<Checkout />} />
+                                        <Route path='/checkout-data' element={<CheckoutData />} />
+                                    </Routes>
+                                    <Footer />
+                                    {/* <Copyright /> */}
+                                </div>
+                            </ActiveIconProvider>
                         </AlertProvider>
                     </FilterProvider>
                 </CartProvider>

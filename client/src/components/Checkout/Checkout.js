@@ -1,15 +1,38 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Checkout.css";
 import { CartContext } from "../../contexts/cartContext";
 import { Summary } from "./summary/Summary";
+import { AuthContext } from "../../contexts/Auth";
+import { ActiveIconContext } from "../../contexts/activeIconContext";
 
 export const Checkout = () => {
     const { cartState, removeFromCart } = useContext(CartContext);
+    const { isAuthenticated } = useContext(AuthContext);
+    const { setActiveIcon } = useContext(ActiveIconContext);
+
+    const [checkoutShaking, setCheckoutShaking] = useState("");
+
+    const navigator = useNavigate();
+
+    useEffect(() => {
+        setTimeout(setCheckoutShaking, 1000, "");
+    }, [checkoutShaking]);
 
     const remove = (e, index) => {
         e.preventDefault();
         removeFromCart(index);
+    };
+
+    const checkForLogin = (e) => {
+        e.preventDefault();
+        setActiveIcon("");
+        if (isAuthenticated) {
+            navigator("/checkout-data");
+        } else {
+            setCheckoutShaking("horizontal-shake");
+            setActiveIcon("user");
+        }
     };
 
     const shoeList = (shoe, index) => {
@@ -45,7 +68,9 @@ export const Checkout = () => {
             </>
         );
     };
+
     let sum = 0;
+
     return (
         <div className='checkout'>
             <div className='bag'>
@@ -60,7 +85,8 @@ export const Checkout = () => {
             <div className='summary'>
                 <Summary />
                 <div className='btn-co'>
-                    <Link to='/checkout-data' className='btn btn-1'>
+                    <Link to='/checkout-data' onClick={checkForLogin} className={"btn btn-1" + " " + checkoutShaking}>
+                        {/* <Link className='btn btn-1'> */}
                         Checkout
                     </Link>
                     {/* <div className='btn btn-1'>Checkout</div> */}

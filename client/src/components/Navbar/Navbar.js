@@ -6,9 +6,11 @@ import { Alert } from "../Alert/Alert";
 import { Auth } from "../Auth/Auth";
 
 import "./Navbar.css";
+import { ActiveIconContext } from "../../contexts/activeIconContext";
 
 export const Navbar = () => {
-    const [activeIcon, setActiveIcon] = useState("");
+    const { activeIcon, setActiveIcon } = useContext(ActiveIconContext);
+    // const [activeIcon, setActiveIcon] = useState("");
     const { cartState, removeFromCart } = useContext(CartContext);
 
     window.onscroll = () => {
