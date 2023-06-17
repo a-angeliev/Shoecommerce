@@ -1003,7 +1003,19 @@ The REST API to the app is described below.
 >                      {"product_id": 64, "pair_id": 30}
 >                   ],
 >    "comment": "123",
->    "discount_code": "somecode"
+>    "discount_code": "somecode",
+>    "address": [
+>                 {"first_name": "Atanas",
+>                   "last_name": "Angeliev",
+>                   "address_1": "1234",
+>                   "post_code": 1234,
+>                   "city": "Sofia",
+>                   "country": "Bulgaria",
+>                   "email": "abvs@abv.bg",
+>                   "phone": 12345566789
+>                   }
+>               ]
+> 
 > }
 > ```
 > ### Response
@@ -1033,7 +1045,19 @@ The REST API to the app is described below.
 >     "id": 18,
 >     "is_shipped": "pending",
 >     "shipped_on": null,
->     "total_price": 42
+>     "total_price": 42,
+>     "final_price": 42,
+>     "address": [
+>                   {"first_name": "Atanas",
+>                   "last_name": "Angeliev",
+>                   "address_1": "1234",
+>                   "post_code": 1234,
+>                   "city": "Sofia",
+>                   "country": "Bulgaria",
+>                   "email": "abvs@abv.bg",
+>                   "phone": 12345566789
+>                   }    
+>                ]              
 > }
 > ```
 > Server validation are:
