@@ -35,10 +35,12 @@ export const Details = () => {
         let colorList = {};
         if (product !== "") {
             product.pairs.map((pair) => {
-                if (pair.color in colorList === false) {
-                    colorList[pair.color] = [pair.size];
-                } else {
-                    colorList[pair.color].push(pair.size);
+                if (pair.quantity != 0) {
+                    if (pair.color in colorList === false) {
+                        colorList[pair.color] = [pair.size];
+                    } else {
+                        colorList[pair.color].push(pair.size);
+                    }
                 }
             });
             setColorDict(colorList);
