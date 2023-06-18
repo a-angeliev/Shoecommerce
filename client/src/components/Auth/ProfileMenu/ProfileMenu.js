@@ -2,9 +2,11 @@ import { useContext } from "react";
 import "./ProfileMenu.css";
 import { AuthContext } from "../../../contexts/Auth";
 import { useNavigate } from "react-router-dom";
+import { ActiveIconContext } from "../../../contexts/activeIconContext";
 
 export const ProfileMenu = () => {
     const { userLogout } = useContext(AuthContext);
+    const { setActiveIcon } = useContext(ActiveIconContext);
     const navigate = useNavigate();
     const logout = () => {
         userLogout();
@@ -16,6 +18,7 @@ export const ProfileMenu = () => {
                 <li
                     onClick={() => {
                         navigate("/user/orders");
+                        setActiveIcon("");
                     }}>
                     Orders
                 </li>
