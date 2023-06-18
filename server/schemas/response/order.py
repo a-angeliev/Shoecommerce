@@ -10,6 +10,7 @@ class CreateOrderItemsResponseSchema(Schema):
     pair_size = fields.Integer(required=True)
     pair_color = fields.String(required=True)
     product_id = fields.Integer(required=True)
+    img = fields.String(required=True)
 
 
 class CreateOrderAddressResponseSchema(Schema):

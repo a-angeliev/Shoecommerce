@@ -68,5 +68,6 @@ class UserOrders(Resource):
         if user.id != id_:
             raise Forbidden("You dont have permission to this resource!")
         orders = UserManager.get_orders(id_)
+        print(orders[0])
         schema = GetUserOrdersResponseSchema()
         return schema.dumps(orders, many=True)

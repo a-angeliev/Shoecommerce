@@ -17,6 +17,7 @@ class OrdersManager:
         discount_is_valid = DiscountsManager.is_valid(data)
         for order_item_info in data["order_items"]:
             product = ProductManager.get_one(order_item_info["product_id"])
+            print(product.images[0].img_url)
             pair = [
                 x
                 for x in product.pairs
@@ -36,7 +37,7 @@ class OrdersManager:
                 "pair_color": pair.color,
                 "product_id": product.id,
             }
-            order_i = OrderItemModel(**order_i_data)
+            order_i = OrderItemModel(img=product.images[0].img_url, **order_i_data)
             order_items.append(order_i)
             total_price += price
 

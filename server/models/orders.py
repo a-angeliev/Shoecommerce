@@ -23,12 +23,14 @@ class OrdersModel(db.Model):
     discount_code = db.Column(db.String, nullable=True)
 
 
+
 class OrderItemModel(db.Model):
     __tablename__ = "order_item"
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Float, nullable=False)
     title = db.Column(db.Text, nullable=False)
     pair_size = db.Column(db.Integer, nullable=False)
+    img = db.Column(db.Text, nullable=False)
     pair_color = db.Column(
         db.Enum(PairColor, name="pair_color", create_type=False), nullable=False
     )
