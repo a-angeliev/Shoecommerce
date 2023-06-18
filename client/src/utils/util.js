@@ -1,7 +1,7 @@
 export function getUserData() {
-    return JSON.parse(localStorage.getItem('user'));
+    return JSON.parse(localStorage.getItem("auth"));
 }
 
 export function setUserData(user) {
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem("auth", JSON.stringify(user));
 }

@@ -1,4 +1,5 @@
 import { getUserData } from "../utils/util";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const host = "http://127.0.0.1:5000";
 
@@ -10,16 +11,22 @@ async function request(method, url, data) {
 
     if (data !== undefined) {
         options.headers["Content-Type"] = "application/json";
+        // options.headers["mode"] = "no-cors";
         options.body = JSON.stringify(data);
     }
 
     const user = getUserData();
+    console.log(user);
+    // const user = useLocalStorage("auth");
 
     if (user) {
         options.headers["x-access-token"] = user.token;
+        console.log(user.token);
     }
 
     try {
+        console.log(host + url);
+        console.log(options);
         const response = await fetch(host + url, options);
 
         if (response.ok === false) {

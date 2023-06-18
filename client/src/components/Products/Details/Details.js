@@ -64,6 +64,7 @@ export const Details = () => {
         shoe["color"] = color;
         shoe["size"] = size;
         shoe["id"] = param.id;
+        shoe["pair_id"] = product.pairs.filter((pair) => pair.color == color && pair.size == size)[0].id;
         if (!color) {
             setAlert({ color: "red", text: "chooseColor" });
         } else {

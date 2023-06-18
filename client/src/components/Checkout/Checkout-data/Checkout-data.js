@@ -1,7 +1,9 @@
 import { Summary } from "../summary/Summary";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../../contexts/cartContext";
+import * as ordersRequest from "../../../services/orders.js";
 import "./Checkout-data.css";
+import { useNavigate } from "react-router-dom";
 
 export const CheckoutData = () => {
     const { cartState } = useContext(CartContext);
@@ -33,6 +35,8 @@ export const CheckoutData = () => {
         email: "incorrect",
         phone: "incorrect",
     });
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         setTimeout(setTermsShaking, 1000, "");
@@ -121,7 +125,38 @@ export const CheckoutData = () => {
         if (termsValidation == "incorrect") {
             setTermsShaking("horizontal-shake");
         } else if (!Object.values(formValidation).includes("incorrect")) {
-            console.log(123);
+            let cartOrderData = cartState.map((shoe) => ({
+                product_id: JSON.parse(shoe.id),
+                pair_id: JSON.parse(shoe.pair_id),
+            }));
+            const data = {
+                order_items: cartOrderData,
+                comment: "",
+                discount_code: "",
+                address: {
+                    address_1: formData.address1,
+                    address_2: formData.address2,
+                    first_name: formData.fName,
+                    last_name: formData.lName,
+                    post_code: formData.pCode,
+                    city: formData.city,
+                    country: formData.country,
+                    email: formData.email,
+                    phone: formData.phone,
+                },
+            };
+            try {
+                ordersRequest
+                    .createOrder(data)
+                    .then((res) => {
+                        res.json();
+                        navigate("/");
+                    })
+                    .catch((res) => console.log(res));
+                // navigate("/");
+            } catch (err) {
+                console.log(err);
+            }
         }
     };
 
