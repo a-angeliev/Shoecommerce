@@ -153,7 +153,7 @@ export const CheckoutData = () => {
                     .createOrder(data)
                     .then((res) => {
                         emptyCart();
-                        navigate("/");
+                        navigate("/user/orders");
                     })
                     .catch((res) => {
                         console.log(res);

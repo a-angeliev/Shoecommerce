@@ -7,6 +7,7 @@ import { Home } from "./components/Home/Home";
 import { Products } from "./components/Products/Products";
 import { Details } from "./components/Products/Details/Details";
 import { Footer } from "./components/Footer/Footer";
+import { ProfileOrders } from "./components/Auth/ProfileOrders/ProfileOrders";
 import { Copyright } from "./components/Copyright/Copyright";
 
 import "./App.css";
@@ -33,6 +34,7 @@ function App() {
                                         <Route path='/product/:id' element={<Details />} />
                                         <Route path='/checkout' element={<Checkout />} />
                                         <Route path='/checkout-data' element={<CheckoutData />} />
+                                        <Route path='/user/orders' element={<ProfileOrders />} />
                                     </Routes>
                                     <Footer />
                                     {/* <Copyright /> */}
