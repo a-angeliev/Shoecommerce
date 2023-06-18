@@ -31,8 +31,10 @@ def apply_caching(response):
     response.headers["Access-Control-Allow-Credentials"] = "true"
     response.headers[
         "Access-Control-Allow-Methods"
-    ] = "GET,HEAD,OPTIONS,POST,PUT,DELETE"
-    response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+    ] = "GET,HEAD,POST,OPTIONS,PUT,DELETE"
+    # response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+    # response.headers["Access-Control-Allow-Headers"] = "Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization"
+    response.headers["Access-Control-Allow-Headers"] = "*"
     response.headers["Access-Control-Allow-Origin"] = "*"
     return response
 
