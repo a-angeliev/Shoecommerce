@@ -36,18 +36,14 @@ export const Products = () => {
     } = useContext(FilterContext);
 
     const sortProducts = () => {
-        console.log(sortedByCtx, "sorted by");
-
         if (sortedBy === "Price: High-Low") {
             let sortedArray = [...filteredProductsForDisplay];
             sortedArray.sort((product1, product2) => (product1.price <= product2.price ? 1 : -1));
-            console.log(sortedArray, 123);
 
             return sortedArray;
         } else if (sortedByCtx === "Price: Low-High") {
             let sortedArray = [...filteredProductsForDisplay];
             sortedArray.sort((product1, product2) => (product1.price >= product2.price ? 1 : -1));
-            console.log(sortedArray, 321);
 
             return sortedArray;
         }

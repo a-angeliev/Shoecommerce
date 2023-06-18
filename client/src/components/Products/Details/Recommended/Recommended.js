@@ -12,7 +12,6 @@ export const Recommended = (props) => {
 
     useEffect(() => {
         if (typeof products !== "string") {
-            console.log(gender);
             const filteredProducts = products.filter((product) => product.gender === gender);
             filteredProducts.sort(() => Math.random() - 0.5);
             setRecommenderProducts(filteredProducts.slice(0, 6));

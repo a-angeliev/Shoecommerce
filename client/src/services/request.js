@@ -16,17 +16,13 @@ async function request(method, url, data) {
     }
 
     const user = getUserData();
-    console.log(user);
     // const user = useLocalStorage("auth");
 
     if (user) {
         options.headers["x-access-token"] = user.token;
-        console.log(user.token);
     }
 
     try {
-        console.log(host + url);
-        console.log(options);
         const response = await fetch(host + url, options);
 
         if (response.ok === false) {
@@ -45,7 +41,6 @@ async function request(method, url, data) {
         }
 
         if (response.status === 204) {
-            console.log(response.status, "Status code");
             return response;
         } else {
             return await response.json();

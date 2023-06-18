@@ -81,7 +81,6 @@ export const CheckoutData = () => {
     };
 
     const validateFiled = (e) => {
-        console.log(e.target.name);
         if (e.target.name == "address2") {
             return;
         } else {
@@ -157,7 +156,6 @@ export const CheckoutData = () => {
                         navigate("/");
                     })
                     .catch((res) => {
-                        console.log(res);
                         setAlert({ color: "red", text: "notAvailable" });
                     });
                 // navigate("/");
