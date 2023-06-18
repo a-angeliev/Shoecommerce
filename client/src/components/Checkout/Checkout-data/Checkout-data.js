@@ -4,9 +4,13 @@ import { CartContext } from "../../../contexts/cartContext";
 import * as ordersRequest from "../../../services/orders.js";
 import "./Checkout-data.css";
 import { useNavigate } from "react-router-dom";
+import { Alert } from "../../Alert/Alert";
+import { AlertContext } from "../../../contexts/alertContext";
 
 export const CheckoutData = () => {
     const { cartState } = useContext(CartContext);
+    const { setAlert } = useContext(AlertContext);
+
     const [toggleButton, setToggleButton] = useState("");
     const [toggleButtonClass, setToggleButtonClass] = useState("");
     const [termsCheckbox, setTermsCheckbox] = useState(false);
@@ -152,7 +156,10 @@ export const CheckoutData = () => {
                         res.json();
                         navigate("/");
                     })
-                    .catch((res) => console.log(res));
+                    .catch((res) => {
+                        console.log(res);
+                        setAlert({ color: "red", text: "notAvailable" });
+                    });
                 // navigate("/");
             } catch (err) {
                 console.log(err);
@@ -358,6 +365,7 @@ export const CheckoutData = () => {
                     {cartState ? Object.entries(cartState).map((x, y) => shoeList(x, y)) : ""}
                 </div>
             </div>
+            <Alert></Alert>
         </div>
     );
 };

@@ -8,6 +8,7 @@ export const Alert = (props) => {
     const text = {
         addInCart: "Product added to cart successfully!",
         chooseColor: "You should pick color and size!",
+        notAvailable: "It not available some of products in your order!",
     };
     const color = {
         green: "color-green",
