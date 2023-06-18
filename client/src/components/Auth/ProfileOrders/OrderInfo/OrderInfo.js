@@ -10,6 +10,12 @@ export const OrderInfo = ({ children, order }) => {
         setSignChange((prev) => !prev);
     };
 
+    const statusClasses = {
+        pending: "pending",
+        rejected: "rejected",
+        shipped: "shipped",
+    };
+
     const listEachItem = (item) => {
         return (
             <>
@@ -17,8 +23,10 @@ export const OrderInfo = ({ children, order }) => {
                     <div className='item-image'>
                         <img
                             className='shoe-image'
+                            alt='someimg'
                             src={
-                                "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/b0afba18-946f-4509-b75c-87b9c8a6f656/force-1-lv8-younger-shoes-sqhH8p.png"
+                                // "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/b0afba18-946f-4509-b75c-87b9c8a6f656/force-1-lv8-younger-shoes-sqhH8p.png"
+                                item.img
                             }></img>
                     </div>
                     <div className='item-name'>{item.title}</div>
@@ -33,19 +41,39 @@ export const OrderInfo = ({ children, order }) => {
 
     return (
         <>
-            <div className={`order ${expanded ? "expandedCard" : ""}`} onClick={expandOrder}>
+            <div className={`order high-resolution-order ${expanded ? "expandedCard" : ""}`} onClick={expandOrder}>
                 <div className='order-info'>
                     <div className='order-id'>Order ID: {children.id}</div>
                     <div className='order-price'>Price: {children.total_price}$</div>
-                    <div className='order-status'>{children.is_shipped}</div>
+                    <div className='order-status'>
+                        <div className={statusClasses[children.is_shipped]}></div>
+                        <div>{children.is_shipped}</div>
+                    </div>
                     <div className={`sign ${signChange ? "signChange" : ""}`}></div>
                 </div>
 
                 {children.order_items.map((item) => listEachItem(item))}
-                <div className='total-price'>Total price: {children.total_price}$</div>
+                <div className='total-price-order'>Total price: {children.total_price}$</div>
                 {/* <div className='delivery'></div> */}
             </div>
-            <div className='divider'></div>
+            <div className='divider-big high-resolution-order'></div>
+
+            <div className={`order low-resolution-order ${expanded ? "expandedCard" : ""}`} onClick={expandOrder}>
+                <div className='order-info'>
+                    <div className='order-id'>ID: {children.id}</div>
+                    <div className='order-price'>{children.total_price}$</div>
+                    <div className='order-status'>
+                        <div className={statusClasses[children.is_shipped]}></div>
+                        <div>{children.is_shipped}</div>
+                    </div>
+                    <div className={`sign ${signChange ? "signChange" : ""}`}></div>
+                </div>
+
+                {children.order_items.map((item) => listEachItem(item))}
+                <div className='total-price-order'>Total price: {children.total_price}$</div>
+                {/* <div className='delivery'></div> */}
+            </div>
+            <div className='divider-big low-resolution-order'></div>
         </>
     );
 };

@@ -1,6 +1,7 @@
 .order {
     width: 100%;
     max-height: 50px;
+
     /* border: 1px solid red; */
     overflow: hidden;
     transition: max-height 0.5s ease-in-out;
@@ -41,16 +42,17 @@
     height: 60px;
 }
 
-.divider {
+.divider-big {
+    /* display: block; */
     width: 100%;
-    margin-left: 0;
-    /* height: 1px; */
     border: 1px solid gray;
+    margin-left: 0;
+    /* margin-bottom: 100px; */
 }
 
 .small-divider {
     width: 100%;
-    justify-content: center;
+    /* justify-content: center; */
     border: 1px solid rgba(239, 239, 240, 1);
     margin-bottom: 0.5rem;
 }
@@ -76,7 +78,64 @@
     align-items: center;
 }
 
-.total-price {
+.total-price-order {
+    /* display: block; */
     justify-content: right;
+    align-items: right;
+    text-align: right;
     margin-bottom: 1rem;
+}
+
+.order-status {
+    display: flex;
+    align-items: center;
+}
+
+.pending {
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+    border-radius: 15px;
+    margin-right: 1rem;
+}
+
+.rejected {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 15px;
+    margin-right: 1rem;
+}
+
+.shipped {
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    border-radius: 15px;
+    margin-right: 1rem;
+}
+
+.low-resolution-order {
+    display: none;
+}
+
+.high-resolution-order {
+    display: block;
+}
+
+@media only screen and (max-width: 1200px) {
+    .order-item {
+        grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+    .low-resolution-order {
+        display: block;
+    }
+
+    .high-resolution-order {
+        display: none;
+    }
 }
