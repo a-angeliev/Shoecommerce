@@ -8,7 +8,7 @@ import { Alert } from "../../Alert/Alert";
 import { AlertContext } from "../../../contexts/alertContext";
 
 export const CheckoutData = () => {
-    const { cartState } = useContext(CartContext);
+    const { cartState, emptyCart } = useContext(CartContext);
     const { setAlert } = useContext(AlertContext);
 
     const [toggleButton, setToggleButton] = useState("");
@@ -152,10 +152,11 @@ export const CheckoutData = () => {
                 ordersRequest
                     .createOrder(data)
                     .then((res) => {
-                        res.json();
+                        emptyCart();
                         navigate("/");
                     })
                     .catch((res) => {
+                        console.log(res);
                         setAlert({ color: "red", text: "notAvailable" });
                     });
                 // navigate("/");
