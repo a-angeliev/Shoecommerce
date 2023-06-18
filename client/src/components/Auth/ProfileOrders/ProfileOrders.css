@@ -1,5 +1,8 @@
-.test {
-    width: 500px;
-    height: 500px;
-    background-color: aqua;
+.orders {
+    display: flex;
+    /* border: 1px solid black; */
+    flex-direction: column;
+    margin: 10rem auto 5rem auto;
+    width: 60%;
+    /* height: 10000px; */
 }
