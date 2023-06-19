@@ -276,7 +276,7 @@ export const CheckoutData = () => {
                         <input
                             className={formValidation["pCode"]}
                             name='pCode'
-                            type='text'
+                            type='number'
                             placeholder='Postal Code'
                             onChange={fillFormData}
                             value={formData["pCode"]}
