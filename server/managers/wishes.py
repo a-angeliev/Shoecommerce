@@ -17,7 +17,8 @@ class WishesManager:
         product = ProductManager.get_one(json.loads(product_data["id"]))
         user.user_data.wishes.append(product)
         db_add_items(user)
-        return {"id": product.id}
+        # return {"id": product.id}
+        return product
 
     @staticmethod
     def delete_wish(user, product_data):

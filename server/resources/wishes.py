@@ -12,9 +12,10 @@ class Wishes(Resource):
     @staticmethod
     @token_required
     def post(user):
-        product_id = WishesManager.create_wish(user, request.get_json())
-        schema = ProductIdResponseSchema()
-        return schema.dumps(product_id), 200
+        product = WishesManager.create_wish(user, request.get_json())
+        # schema = ProductIdResponseSchema()
+        schema = CreateProductResponseSchema()
+        return schema.dumps(product), 200
 
     @staticmethod
     @token_required
