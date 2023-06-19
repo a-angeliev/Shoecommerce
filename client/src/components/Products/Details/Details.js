@@ -11,6 +11,9 @@ import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { CartContext } from "../../../contexts/cartContext";
 import { Alert } from "../../Alert/Alert";
 import { AlertContext } from "../../../contexts/alertContext";
+import { WishlistContext } from "../../../contexts/wishlistContext";
+import { AuthContext } from "../../../contexts/Auth";
+import { ActiveIconContext } from "../../../contexts/activeIconContext";
 
 export const Details = () => {
     const param = useParams();
@@ -23,7 +26,10 @@ export const Details = () => {
     const [addInCartPopUp, setAddInCartPopUp] = useState(false);
     const { cartState, setCartState, removeFromCart, addToCart } = useContext(CartContext);
     const { alert, setAlert } = useContext(AlertContext);
+    const { isAuthenticated } = useContext(AuthContext);
+    const { setActiveIcon } = useContext(ActiveIconContext);
     const [wishlist, setWishlist] = useState(false);
+    const { addWishlistCtx, removeWishlistCtx, wishlistIds } = useContext(WishlistContext);
 
     useEffect(() => {
         productService.getProductById(param.id).then((result) => {
@@ -31,6 +37,10 @@ export const Details = () => {
             setProduct(res);
             setState("success");
         });
+        console.log(wishlistIds, param.id);
+        if (wishlistIds.includes(Number(param.id))) {
+            setWishlist(true);
+        }
     }, [param.id]);
 
     useEffect(() => {
@@ -78,22 +88,34 @@ export const Details = () => {
     };
 
     const wishEvent = () => {
-        if (wishlist) {
-            wishService
-                .removeWish({ id: param.id })
-                .then((res) => {
-                    setAlert({ color: "green", text: "removeWish" });
-                    setWishlist((prev) => !prev);
-                })
-                .catch((err) => setAlert({ color: "red", text: "wishProblem" }));
+        if (!isAuthenticated) {
+            setActiveIcon("user");
         } else {
-            wishService
-                .addWish({ id: param.id })
-                .then((res) => {
-                    setAlert({ color: "green", text: "addWish" });
-                    setWishlist((prev) => !prev);
-                })
-                .catch((err) => setAlert({ color: "red", text: "wishProblem" }));
+            if (wishlist) {
+                wishService
+                    .removeWish({ id: param.id })
+                    .then((res) => {
+                        setAlert({ color: "green", text: "removeWish" });
+                        setWishlist((prev) => !prev);
+                        removeWishlistCtx(JSON.parse(res).id);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        setAlert({ color: "red", text: "wishProblem" });
+                    });
+            } else {
+                wishService
+                    .addWish({ id: param.id })
+                    .then((res) => {
+                        setAlert({ color: "green", text: "addWish" });
+                        setWishlist((prev) => !prev);
+                        addWishlistCtx(JSON.parse(res));
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        setAlert({ color: "red", text: "wishProblem" });
+                    });
+            }
         }
     };
 

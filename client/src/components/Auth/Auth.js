@@ -5,6 +5,7 @@ import "./Auth.css";
 import { AuthContext } from "../../contexts/Auth";
 import { useNavigate } from "react-router-dom";
 import { ProfileMenu } from "./ProfileMenu/ProfileMenu";
+import { WishlistContext } from "../../contexts/wishlistContext";
 
 export const Auth = ({ activeIcon }) => {
     const [isSignIn, setIsSignIn] = useState(true);
@@ -18,6 +19,7 @@ export const Auth = ({ activeIcon }) => {
     const [loginError, setLoginError] = useState([]);
     const [localActiveIcon, setLocalActiveIcon] = useState("");
     const { userLogin, isAuthenticated } = useContext(AuthContext);
+
     const navigate = useNavigate();
 
     useEffect(() => {

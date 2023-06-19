@@ -7,11 +7,17 @@ import { Auth } from "../Auth/Auth";
 
 import "./Navbar.css";
 import { ActiveIconContext } from "../../contexts/activeIconContext";
+import { WishlistContext } from "../../contexts/wishlistContext";
+
+import * as wishlistService from "../../services/wishlist";
+import { AuthContext } from "../../contexts/Auth";
 
 export const Navbar = () => {
     const { activeIcon, setActiveIcon } = useContext(ActiveIconContext);
     // const [activeIcon, setActiveIcon] = useState("");
     const { cartState, removeFromCart } = useContext(CartContext);
+    const { wishlistIds, wishlist, removeWishlistCtx } = useContext(WishlistContext);
+    const { isAuthenticated } = useContext(AuthContext);
 
     window.onscroll = () => {
         setActiveIcon("");
@@ -34,6 +40,17 @@ export const Navbar = () => {
         removeFromCart(index);
     };
 
+    const removeFromWishlist = (shoeId) => {
+        wishlistService
+            .removeWish({ id: shoeId })
+            .then((res) => {
+                removeWishlistCtx(shoeId);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     const item = (shoe, index) => {
         return (
             <div className='box'>
@@ -46,9 +63,36 @@ export const Navbar = () => {
                         {shoe[1]["color"]}, {shoe[1]["size"]}
                     </span>
                 </div>
+
                 <i onClick={(e) => remove(e, index)} className='bx bxs-trash-alt'></i>
             </div>
         );
+    };
+
+    const wishlistItem = (shoe) => {
+        console.log(shoe);
+        return (
+            <div className='box'>
+                <img src={shoe.images[0].img_url} alt='' />
+                <div className='text'>
+                    <h3>{shoe["title"]}</h3>
+                    <span>$ {shoe["price"]}</span>
+                </div>
+                <i
+                    className='bx bxs-heart wishlist-remove-icon'
+                    id='heart-icon'
+                    onClick={() => removeFromWishlist(shoe.id)}
+                />
+            </div>
+        );
+    };
+
+    const openWishlist = () => {
+        if (isAuthenticated) {
+            handleIconClick("wishlist");
+        } else {
+            handleIconClick("user");
+        }
     };
 
     return (
@@ -79,7 +123,7 @@ export const Navbar = () => {
                     <i className='bx bx-menu' id='menu-icon' onClick={() => handleIconClick("menu")} />
                 </li>
                 <li key='search'>
-                    <i className='bx bxs-heart' id='heart-icon' onClick={() => handleIconClick("wishlist")} />
+                    <i className='bx bx-heart' id='heart-icon' onClick={() => openWishlist()} />
                 </li>
                 <li key='cart'>
                     <i className='bx bx-cart-alt' id='cart-alt-icon' onClick={() => handleIconClick("cart")} />
@@ -90,7 +134,7 @@ export const Navbar = () => {
             </ul>
 
             <div className={`wishlist ${activeIcon === "wishlist" && "active"}`}>
-                <input type='search' name='' id='' placeholder='Search Here' />
+                {wishlist.length != 0 ? wishlist.map((shoe) => wishlistItem(shoe)) : <div>Empty wishlist</div>}
             </div>
 
             <div className={`cart ${activeIcon === "cart" && "active"}`}>

@@ -14,6 +14,7 @@ import "./App.css";
 import { CartProvider } from "./contexts/cartContext";
 import { FilterProvider } from "./contexts/filterContext";
 import { AlertProvider } from "./contexts/alertContext";
+import { WishlistProvider } from "./contexts/wishlistContext";
 import { Checkout } from "./components/Checkout/Checkout";
 import { CheckoutData } from "./components/Checkout/Checkout-data/Checkout-data";
 import { ActiveIconProvider } from "./contexts/activeIconContext";
@@ -27,20 +28,22 @@ function App() {
                     <FilterProvider>
                         <AlertProvider>
                             <ActiveIconProvider>
-                                <div className='App'>
-                                    <Navbar />
-                                    <Routes>
-                                        <Route path='/' element={<Home />} />
-                                        <Route path='/products/:gender' element={<Products />} />
-                                        <Route path='/product/:id' element={<Details />} />
-                                        <Route path='/checkout' element={<Checkout />} />
-                                        <Route path='/checkout-data' element={<CheckoutData />} />
-                                        <Route path='/user/orders' element={<ProfileOrders />} />
-                                        <Route path='/user/details' element={<ProfileDetails />}></Route>
-                                    </Routes>
-                                    <Footer />
-                                    {/* <Copyright /> */}
-                                </div>
+                                <WishlistProvider>
+                                    <div className='App'>
+                                        <Navbar />
+                                        <Routes>
+                                            <Route path='/' element={<Home />} />
+                                            <Route path='/products/:gender' element={<Products />} />
+                                            <Route path='/product/:id' element={<Details />} />
+                                            <Route path='/checkout' element={<Checkout />} />
+                                            <Route path='/checkout-data' element={<CheckoutData />} />
+                                            <Route path='/user/orders' element={<ProfileOrders />} />
+                                            <Route path='/user/details' element={<ProfileDetails />}></Route>
+                                        </Routes>
+                                        <Footer />
+                                        {/* <Copyright /> */}
+                                    </div>
+                                </WishlistProvider>
                             </ActiveIconProvider>
                         </AlertProvider>
                     </FilterProvider>
