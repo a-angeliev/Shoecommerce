@@ -1,8 +1,8 @@
-import * as request from './request';
+import * as request from "./request";
 
 const endpoints = {
-    LOGIN: '/login',
-    REGISTER: '/register',
+    LOGIN: "/login",
+    REGISTER: "/register",
     USER: (userId) => `/user/${userId}`,
     USER_ORDERS: (userId) => `/user/${userId}/orders`,
     USER_COMMENTS: (userId) => `/user/${userId}/comments`,
@@ -20,8 +20,8 @@ export async function getUser(userId) {
     return request.get(endpoints.USER(userId));
 }
 
-export async function updateUser(userId) {
-    return request.put(endpoints.USER(userId));
+export async function updateUser(userId, userData) {
+    return request.put(endpoints.USER(userId), userData);
 }
 
 export async function deleteUser(userId) {

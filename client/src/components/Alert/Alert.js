@@ -9,6 +9,9 @@ export const Alert = (props) => {
         addInCart: "Product added to cart successfully!",
         chooseColor: "You should pick color and size!",
         notAvailable: "It not available some of products in your order!",
+        tokenMissing: "A valid token is missing!",
+        userUpdated: "Updated user info successfully!",
+        inputInvalid: "You should fill with valid data all fields!",
     };
     const color = {
         green: "color-green",

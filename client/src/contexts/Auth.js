@@ -33,7 +33,7 @@
 //     return authState;
 // };
 
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { useLocalStorage } from "./../hooks/useLocalStorage";
 
 export const AuthContext = createContext();

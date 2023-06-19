@@ -1,0 +1,21 @@
+.detail-form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 10rem auto auto auto;
+}
+
+.detail-form>input {
+    height: 50px;
+    margin-top: 1rem;
+    border-radius: 5px;
+    padding-left: 1rem;
+}
+
+.edit-btn {
+    margin: 2rem auto;
+    text-align: center;
+    width: 30%;
+    border: solid 1px gray;
+    cursor: pointer;
+}
