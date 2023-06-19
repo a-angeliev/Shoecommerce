@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../contexts/cartContext";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Alert } from "../Alert/Alert";
@@ -18,7 +18,7 @@ export const Navbar = () => {
     const { cartState, removeFromCart } = useContext(CartContext);
     const { wishlistIds, wishlist, removeWishlistCtx } = useContext(WishlistContext);
     const { isAuthenticated } = useContext(AuthContext);
-
+    const navigate = useNavigate();
     window.onscroll = () => {
         setActiveIcon("");
     };
@@ -54,8 +54,18 @@ export const Navbar = () => {
     const item = (shoe, index) => {
         return (
             <div className='box'>
-                <img src={shoe[1]["image"]} alt='' />
-                <div className='text'>
+                <img
+                    src={shoe[1]["image"]}
+                    alt=''
+                    onClick={() => {
+                        navigate(`/product/${shoe[1]["id"]}`);
+                    }}
+                />
+                <div
+                    className='text'
+                    onClick={() => {
+                        navigate(`/product/${shoe[1]["id"]}`);
+                    }}>
                     <h3>{shoe[1]["title"]}</h3>
                     <span>$ {shoe[1]["price"]}</span>
                     <span>
@@ -73,8 +83,18 @@ export const Navbar = () => {
         console.log(shoe);
         return (
             <div className='box'>
-                <img src={shoe.images[0].img_url} alt='' />
-                <div className='text'>
+                <img
+                    src={shoe.images[0].img_url}
+                    alt=''
+                    onClick={() => {
+                        navigate(`/product/${shoe.id}`);
+                    }}
+                />
+                <div
+                    className='text'
+                    onClick={() => {
+                        navigate(`/product/${shoe.id}`);
+                    }}>
                     <h3>{shoe["title"]}</h3>
                     <span>$ {shoe["price"]}</span>
                 </div>

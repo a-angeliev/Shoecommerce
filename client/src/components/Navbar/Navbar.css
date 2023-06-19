@@ -106,9 +106,15 @@
     /* make scrollbar transparent */
 }
 
+.cart .text, .wishlist .text {
+    cursor: pointer;
+
+}
 
 .cart img, .wishlist img {
     width: 100px;
+    cursor: pointer;
+
 }
 
 
