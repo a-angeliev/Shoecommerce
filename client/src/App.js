@@ -17,6 +17,7 @@ import { AlertProvider } from "./contexts/alertContext";
 import { Checkout } from "./components/Checkout/Checkout";
 import { CheckoutData } from "./components/Checkout/Checkout-data/Checkout-data";
 import { ActiveIconProvider } from "./contexts/activeIconContext";
+import { ProfileDetails } from "./components/Auth/ProfileDetails/ProfileDetails";
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
                                         <Route path='/checkout' element={<Checkout />} />
                                         <Route path='/checkout-data' element={<CheckoutData />} />
                                         <Route path='/user/orders' element={<ProfileOrders />} />
+                                        <Route path='/user/details' element={<ProfileDetails />}></Route>
                                     </Routes>
                                     <Footer />
                                     {/* <Copyright /> */}

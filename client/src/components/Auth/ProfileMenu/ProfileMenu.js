@@ -14,11 +14,17 @@ export const ProfileMenu = () => {
     return (
         <div className='profile-menu'>
             <ul className='profile-menu-list'>
-                <li>Profile</li>
                 <li
                     onClick={() => {
-                        navigate("/user/orders");
                         setActiveIcon("");
+                        navigate("/user/details");
+                    }}>
+                    Profile
+                </li>
+                <li
+                    onClick={() => {
+                        setActiveIcon("");
+                        navigate("/user/orders");
                     }}>
                     Orders
                 </li>
