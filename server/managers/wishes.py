@@ -1,3 +1,5 @@
+import json
+
 from werkzeug.exceptions import NotFound
 
 from managers.products import ProductManager
@@ -7,7 +9,12 @@ from utils.operations import db_add_items
 class WishesManager:
     @staticmethod
     def create_wish(user, product_data):
-        product = ProductManager.get_one(product_data["id"])
+        # a = json.loads(product_data)
+        # print(type(a))
+        # print(a)
+        #
+        # print(type(json.loads(product_data)))
+        product = ProductManager.get_one(json.loads(product_data["id"]))
         user.user_data.wishes.append(product)
         db_add_items(user)
         return {"id": product.id}
