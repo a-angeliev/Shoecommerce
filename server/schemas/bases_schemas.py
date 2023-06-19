@@ -13,6 +13,7 @@ class BaseUserDataSchema(Schema):
     l_name = fields.String(required=True, validate=validate.Length(min=2, max=60))
     phone = fields.Integer(required=True)
     wishes = fields.Nested(ProductIdResponseSchema(), many=True)
+    created_on = fields.String(required=True)
 
     class Meta:
         include_relationships = True

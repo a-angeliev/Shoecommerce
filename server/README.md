@@ -193,7 +193,7 @@ The REST API to the app is described below.
 >`[GET] "/user/:id_"`   
 >### Response
 > ```json
-> "{\"user_data\": {\"f_name\": \"newName1\", \"l_name\": \"newName1\", \"phone\": 1111111}, \"id\": 35, \"email\": \"zrd@zdr2.com\"}"
+>  "{\"user_data\": {\"l_name\": \"gosho\", \"created_on\": \"2023-04-18 20:01:17.238328\", \"phone\": 92332112, \"f_name\": \"pesho\", \"wishes\": []}, \"email\": \"test123@abv.bg\", \"id\": 4}"
 >```
 > Server validations are:
 > - Request must have "x-access-token" Header.
