@@ -5,6 +5,7 @@ import Spinner from "../../common/Spinner/Spinner";
 import { MorePhotos } from "./MorePhotos/MorePhotos";
 import { Recommended } from "./Recommended/Recommended";
 import * as productService from "./../../../services/product";
+import * as wishService from "../../../services/wishlist";
 import "./Details.css";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { CartContext } from "../../../contexts/cartContext";
@@ -22,6 +23,7 @@ export const Details = () => {
     const [addInCartPopUp, setAddInCartPopUp] = useState(false);
     const { cartState, setCartState, removeFromCart, addToCart } = useContext(CartContext);
     const { alert, setAlert } = useContext(AlertContext);
+    const [wishlist, setWishlist] = useState(false);
 
     useEffect(() => {
         productService.getProductById(param.id).then((result) => {
@@ -75,6 +77,26 @@ export const Details = () => {
         }
     };
 
+    const wishEvent = () => {
+        if (wishlist) {
+            wishService
+                .removeWish({ id: param.id })
+                .then((res) => {
+                    setAlert({ color: "green", text: "removeWish" });
+                    setWishlist((prev) => !prev);
+                })
+                .catch((err) => setAlert({ color: "red", text: "wishProblem" }));
+        } else {
+            wishService
+                .addWish({ id: param.id })
+                .then((res) => {
+                    setAlert({ color: "green", text: "addWish" });
+                    setWishlist((prev) => !prev);
+                })
+                .catch((err) => setAlert({ color: "red", text: "wishProblem" }));
+        }
+    };
+
     if (state == "loading") {
         return <div></div>;
     }
@@ -86,7 +108,18 @@ export const Details = () => {
                 <section className='main-shoe-content scn'>
                     <img className='main-shoe' src={product ? product.images[0].img_url : null} alt={product.title} />
                     <article className='main-shoe-info'>
-                        <h1 className='main-shoe-name'>{product.title}</h1>
+                        <div className='wishlist-icon'>
+                            <h1 className='main-shoe-name'>{product.title}</h1>
+                            <i
+                                className={
+                                    wishlist
+                                        ? "bx bxs-heart wishlist-shoe-icon-active"
+                                        : "bx bx-heart wishlist-shoe-icon"
+                                }
+                                id='heart-icon'
+                                onClick={wishEvent}
+                            />
+                        </div>
                         <h2 className='main-shoe-second-title'>
                             {product.gender.charAt(0).toUpperCase() + product.gender.slice(1)}'s{" "}
                             {product.category.title} Shoes

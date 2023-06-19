@@ -60,6 +60,23 @@ section.scn {
     margin-top: 20px;
 }
 
+.wishlist-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wishlist-shoe-icon {
+    margin-right: 1rem;
+    scale: 1.6
+}
+
+.wishlist-shoe-icon-active {
+    margin-right: 1rem;
+    scale: 1.6;
+    color: var(--main-color);
+}
+
 .main-shoe-size {
     display: flex;
     gap: rem;
@@ -93,13 +110,13 @@ section.scn {
     color: transparent;
     width: 45px;
     height: 45px;
-    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1) ;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1);
     border-radius: 18%;
-	background: content-box;
+    background: content-box;
     cursor: pointer;
 }
 
-.activeColorPicker{
+.activeColorPicker {
     padding: 2px;
     border: 4px solid #1c6de5;
     outline: 5px solid #cfeeff;
@@ -108,24 +125,31 @@ section.scn {
 .red {
     background-color: black;
 }
+
 .green {
     background-color: green;
 }
+
 .red {
     background-color: red;
 }
+
 .brown {
     background-color: brown;
 }
+
 .gray {
     background-color: gray;
 }
+
 .blue {
     background-color: blue;
 }
+
 .pink {
     background-color: pink;
 }
+
 /* .main-shoe-color:nth-child(2) {
     background-color: rgb(222, 60, 60);
 }
@@ -197,7 +221,7 @@ section.scn {
     word-spacing: 1px;
 }
 
-.brand-logo{
+.brand-logo {
     width: 100px;
     height: 100px;
 }

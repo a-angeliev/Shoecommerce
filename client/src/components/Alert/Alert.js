@@ -12,6 +12,9 @@ export const Alert = (props) => {
         tokenMissing: "A valid token is missing!",
         userUpdated: "Updated user info successfully!",
         inputInvalid: "You should fill with valid data all fields!",
+        removeWish: "You successful remove the shoe from the Wishlist!",
+        addWish: "You successful add the shoe into the Wishlist!",
+        wishProblem: "There is problem with Add/Remove.Try to reload!",
     };
     const color = {
         green: "color-green",

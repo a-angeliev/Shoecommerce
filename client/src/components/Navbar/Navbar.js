@@ -79,7 +79,7 @@ export const Navbar = () => {
                     <i className='bx bx-menu' id='menu-icon' onClick={() => handleIconClick("menu")} />
                 </li>
                 <li key='search'>
-                    <i className='bx bx-search' id='search-icon' onClick={() => handleIconClick("search-box")} />
+                    <i className='bx bxs-heart' id='heart-icon' onClick={() => handleIconClick("wishlist")} />
                 </li>
                 <li key='cart'>
                     <i className='bx bx-cart-alt' id='cart-alt-icon' onClick={() => handleIconClick("cart")} />
@@ -89,7 +89,7 @@ export const Navbar = () => {
                 </li>
             </ul>
 
-            <div className={`search-box ${activeIcon === "search-box" && "active"}`}>
+            <div className={`wishlist ${activeIcon === "wishlist" && "active"}`}>
                 <input type='search' name='' id='' placeholder='Search Here' />
             </div>
 
