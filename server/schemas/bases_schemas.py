@@ -20,6 +20,10 @@ class BaseUserDataSchema(Schema):
         load_instance = True
         include_fk = True
 
+class EditBaseUserDataSchema(BaseUserDataSchema):
+    class Meta:
+        exclude = ("created_on",)
+
 
 class BaseUserSchema(Schema):
     email = fields.Email(required=True)
