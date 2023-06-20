@@ -1,0 +1,57 @@
+.frame-education {
+    width: 100%;
+    display: none
+}
+
+.education-popup {
+    max-width: 60%;
+    max-height: 50%;
+    position: fixed;
+    z-index: 10000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    text-align: center;
+    box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65);
+    border-radius: 10px;
+}
+
+.education-popup .title {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.education-popup>p {
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-top: 1rem;
+}
+
+.education-popup .p-1 {
+    margin-top: 3rem;
+}
+
+.education-popup .p-1>span {
+    color: var(--main-color)
+}
+
+
+.education-popup>div {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.show-education-popup {
+    display: block;
+}
+
+@media only screen and (max-width: 1240px) {
+    .education-popup {
+        max-width: 80%;
+        max-height: 70%;
+        width: 80%;
+        overflow: scroll;
+    }
+}

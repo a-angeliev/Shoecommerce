@@ -15,41 +15,46 @@ import { CartProvider } from "./contexts/cartContext";
 import { FilterProvider } from "./contexts/filterContext";
 import { AlertProvider } from "./contexts/alertContext";
 import { WishlistProvider } from "./contexts/wishlistContext";
+import { EducationalPopupProvider } from "./contexts/educationalPopupContext";
 import { Checkout } from "./components/Checkout/Checkout";
 import { CheckoutData } from "./components/Checkout/Checkout-data/Checkout-data";
 import { ActiveIconProvider } from "./contexts/activeIconContext";
 import { ProfileDetails } from "./components/Auth/ProfileDetails/ProfileDetails";
+import { EducationInfo } from "./components/EducationInfo/EducationInfo";
 
 function App() {
     return (
-        <AuthProvider>
-            <ProductProvider>
-                <CartProvider>
-                    <FilterProvider>
-                        <AlertProvider>
-                            <ActiveIconProvider>
-                                <WishlistProvider>
-                                    <div className='App'>
-                                        <Navbar />
-                                        <Routes>
-                                            <Route path='/' element={<Home />} />
-                                            <Route path='/products/:gender' element={<Products />} />
-                                            <Route path='/product/:id' element={<Details />} />
-                                            <Route path='/checkout' element={<Checkout />} />
-                                            <Route path='/checkout-data' element={<CheckoutData />} />
-                                            <Route path='/user/orders' element={<ProfileOrders />} />
-                                            <Route path='/user/details' element={<ProfileDetails />}></Route>
-                                        </Routes>
-                                        <Footer />
-                                        {/* <Copyright /> */}
-                                    </div>
-                                </WishlistProvider>
-                            </ActiveIconProvider>
-                        </AlertProvider>
-                    </FilterProvider>
-                </CartProvider>
-            </ProductProvider>
-        </AuthProvider>
+        <EducationalPopupProvider>
+            <AuthProvider>
+                <ProductProvider>
+                    <CartProvider>
+                        <FilterProvider>
+                            <AlertProvider>
+                                <ActiveIconProvider>
+                                    <WishlistProvider>
+                                        <div className='App'>
+                                            <EducationInfo />
+                                            <Navbar />
+                                            <Routes>
+                                                <Route path='/' element={<Home />} />
+                                                <Route path='/products/:gender' element={<Products />} />
+                                                <Route path='/product/:id' element={<Details />} />
+                                                <Route path='/checkout' element={<Checkout />} />
+                                                <Route path='/checkout-data' element={<CheckoutData />} />
+                                                <Route path='/user/orders' element={<ProfileOrders />} />
+                                                <Route path='/user/details' element={<ProfileDetails />}></Route>
+                                            </Routes>
+                                            <Footer />
+                                            {/* <Copyright /> */}
+                                        </div>
+                                    </WishlistProvider>
+                                </ActiveIconProvider>
+                            </AlertProvider>
+                        </FilterProvider>
+                    </CartProvider>
+                </ProductProvider>
+            </AuthProvider>
+        </EducationalPopupProvider>
     );
 }
 
