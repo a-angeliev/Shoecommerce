@@ -106,13 +106,13 @@ export const Products = () => {
     const filterProductByPrice = (product) => {
         const priceSections = {
             1: (price) => {
-                return price < 99.99 ? true : false;
+                return price <= 99.99 ? true : false;
             },
             2: (price) => {
-                return 100 < price && price < 199.99 ? true : false;
+                return 100 < price && price <= 199.99 ? true : false;
             },
             3: (price) => {
-                return 200 < price && price < 299.99 ? true : false;
+                return 200 < price && price <= 299.99 ? true : false;
             },
             4: (price) => {
                 return price > 300 ? true : false;
