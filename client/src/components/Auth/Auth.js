@@ -102,8 +102,8 @@ export const Auth = ({ activeIcon }) => {
                     const result = JSON.parse(authData);
                     if (result.token) {
                         userLogin(authData);
-                        setLocalActiveIcon("");
-                        navigate("/");
+                        // setLocalActiveIcon("");
+                        // navigate("/");
                     } else {
                         alert(JSON.stringify(authData["message"]));
                     }

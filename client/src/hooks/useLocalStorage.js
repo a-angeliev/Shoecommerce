@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from "react";
+import { ActiveIconContext } from "../contexts/activeIconContext";
 // /**
-//  * 
-//  * @param { string } key 
-//  * @param { {} || null } intitialValue 
-//  * @returns 
+//  *
+//  * @param { string } key
+//  * @param { {} || null } intitialValue
+//  * @returns
 //  */
 // const useLocalStorage = (key, intitialValue) => {
 //     const [state, setState] = useState(() => {

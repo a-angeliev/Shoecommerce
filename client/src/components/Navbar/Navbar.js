@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CartContext } from "../../contexts/cartContext";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Alert } from "../Alert/Alert";
@@ -11,6 +11,7 @@ import { WishlistContext } from "../../contexts/wishlistContext";
 
 import * as wishlistService from "../../services/wishlist";
 import { AuthContext } from "../../contexts/Auth";
+import { useNav } from "../../hooks/useNavigation";
 
 export const Navbar = () => {
     const { activeIcon, setActiveIcon } = useContext(ActiveIconContext);
@@ -18,7 +19,7 @@ export const Navbar = () => {
     const { cartState, removeFromCart } = useContext(CartContext);
     const { wishlistIds, wishlist, removeWishlistCtx } = useContext(WishlistContext);
     const { isAuthenticated } = useContext(AuthContext);
-    const navigate = useNavigate();
+    const navTo = useNav();
     window.onscroll = () => {
         setActiveIcon("");
     };
@@ -58,13 +59,13 @@ export const Navbar = () => {
                     src={shoe[1]["image"]}
                     alt=''
                     onClick={() => {
-                        navigate(`/product/${shoe[1]["id"]}`);
+                        navTo(`/product/${shoe[1]["id"]}`);
                     }}
                 />
                 <div
                     className='text'
                     onClick={() => {
-                        navigate(`/product/${shoe[1]["id"]}`);
+                        navTo(`/product/${shoe[1]["id"]}`);
                     }}>
                     <h3>{shoe[1]["title"]}</h3>
                     <span>$ {shoe[1]["price"]}</span>
@@ -87,13 +88,13 @@ export const Navbar = () => {
                     src={shoe.images[0].img_url}
                     alt=''
                     onClick={() => {
-                        navigate(`/product/${shoe.id}`);
+                        navTo(`/product/${shoe.id}`);
                     }}
                 />
                 <div
                     className='text'
                     onClick={() => {
-                        navigate(`/product/${shoe.id}`);
+                        navTo(`/product/${shoe.id}`);
                     }}>
                     <h3>{shoe["title"]}</h3>
                     <span>$ {shoe["price"]}</span>
