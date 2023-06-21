@@ -131,17 +131,20 @@ export const Navbar = () => {
                 </li>
                 <li key='Men'>
                     <Link to='/products/man' onClick={() => setActiveIcon(false)}>
-                        Men
+                        {/* Men */}
+                        Man
                     </Link>
                 </li>
                 <li key='Women'>
                     <Link to='/products/woman' onClick={() => setActiveIcon(false)}>
-                        Women
+                        {/* Women */}
+                        Woman
                     </Link>
                 </li>
                 <li key='Kids'>
                     <Link to='/products/kid' onClick={() => setActiveIcon(false)}>
-                        Kids
+                        {/* Kids */}
+                        Kid
                     </Link>
                 </li>
             </ul>
