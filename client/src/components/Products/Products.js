@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { FilterContext } from "../../contexts/filterContext";
 import { ProductContext } from "../../contexts/productContext";
-
+import { useNav } from "../../hooks/useNavigation";
 import "./Products.css";
 
 export const Products = () => {
@@ -18,7 +18,7 @@ export const Products = () => {
     const [isFilter, setIsFilter] = useState(false);
     const [sortedBy, setSortedBy] = useState("");
     const [pageLoader, setPageLoader] = useState(7);
-    const navigate = useNavigate();
+    const navTo = useNav();
 
     const {
         brandFilterCtx,
@@ -100,7 +100,7 @@ export const Products = () => {
 
     const goToShoeDetailPage = (id) => {
         let path = "/product/" + id;
-        navigate(path);
+        navTo(path);
     };
 
     const filterProductByPrice = (product) => {
@@ -131,6 +131,7 @@ export const Products = () => {
             return false;
         }
     };
+
     const filterProductByCategoryAndBrand = (product) => {
         let flag = true;
         if (brandFilter.length == 0 && categoryFilter.length == 0 && priceFilter.length == 0) {
@@ -203,10 +204,18 @@ export const Products = () => {
     const displayProduct = (product) => {
         return (
             <div className='catalog-items-container'>
-                <div className='box'>
+                <div
+                    className='box'
+                    onClick={() => {
+                        navTo(`/product/${product.id}`);
+                    }}>
                     <img src={product.images[0].img_url} alt='' />
                 </div>
-                <div className='content'>
+                <div
+                    className='content'
+                    onClick={() => {
+                        navTo(`/product/${product.id}`);
+                    }}>
                     <h1>{product.title}</h1>
                     <div className='priceB'>
                         <span>{product.price} USD</span>
