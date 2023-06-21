@@ -227,8 +227,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, auto));
     gap: 3rem;
-    /* margin: 1rem; */
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 
@@ -376,6 +375,9 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    border: 1px solid var(--main-color);
+    /* background-color: rgba(240, 240, 240, 1); */
+    border-radius: 10px;
 }
 
 .sort-section ul li:hover {
@@ -384,11 +386,17 @@
 
 .catalog-sort {
     position: relative;
+    margin-top: 5rem;
+}
+
+.catalog-sort-title {
+    color: var(--main-color);
+    text-align: center;
 }
 
 .catalog-sort-div {
     position: absolute;
-    margin-top: 50px;
+    margin-top: 2rem;
     right: 200px;
     z-index: 1;
 }
@@ -397,6 +405,10 @@
     background-color: white;
     border-radius: 1rem;
     display: block;
+}
+
+#catalog-sort-div-bottom {
+    display: none;
 }
 
 .clear-filter-button {
@@ -462,7 +474,6 @@
     display: inline;
 }
 
-/* Making Responsive */
 @media (max-width: 1058px) {
     header {
         padding: 18px 60px;
@@ -500,6 +511,14 @@
         display: initial;
     }
 
+    #catalog-sort-div-bottom {
+        display: block;
+    }
+
+    #catalog-sort-div-top {
+        display: none;
+    }
+
     header .navbar {
         position: absolute;
         width: 240px;
@@ -522,6 +541,19 @@
 
     .home-text h1 {
         font-size: 2rem;
+    }
+
+    .catalog {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .catalog-sort-div {
+        text-align: right;
+        position: relative;
+        margin-top: 0rem;
+        right: 0px;
+        z-index: 1;
     }
 }
 

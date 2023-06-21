@@ -236,162 +236,176 @@ export const Products = () => {
     }
 
     return (
-        <section className='catalog-sort'>
-            {filteredProductsForDisplay.length !== 0 ? (
-                <div className='catalog-sort-div'>
-                    <i>Sort By{sortedBy ? ":" + " " + sortedBy : null}</i>
-                    <div className='sort-section'>
-                        <ul>
-                            <li className='abc' onClick={() => handelSortedBy("Price: High-Low")}>
-                                Price: High-Low
-                            </li>
-                            <li onClick={() => handelSortedBy("Price: Low-High")}>Price: Low-High</li>
-                        </ul>
+        <>
+            <section className='catalog-sort'>
+                <h1 className='catalog-sort-title'> {gender.slice(0, 1).toUpperCase() + gender.slice(1)}</h1>
+
+                {filteredProductsForDisplay.length !== 0 ? (
+                    <div className='catalog-sort-div' id='catalog-sort-div-top'>
+                        <i>Sort By{sortedBy ? ":" + " " + sortedBy : null}</i>
+                        <div className='sort-section'>
+                            <ul>
+                                <li className='abc' onClick={() => handelSortedBy("Price: High-Low")}>
+                                    Price: High-Low
+                                </li>
+                                <li onClick={() => handelSortedBy("Price: Low-High")}>Price: Low-High</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            ) : null}
-            <section className='catalog'>
-                <div className='catalog-menu'>
-                    <div className='catalog-options'>
-                        <ul>
-                            <div>
-                                {availableBrands ? <h3 className='brand-title'>Brands</h3> : null}
-                                {availableBrands.map((brand, idx) => (
-                                    <div>
-                                        <input
-                                            className='filter-input'
-                                            checked={brandFilter.includes(brand) ? true : false}
-                                            onChange={() => handleBrandChanges(brand)}
-                                            type='checkbox'
-                                            name={brand}
-                                            key={idx}></input>
-                                        <label
-                                            onClick={() => handleBrandChanges(brand)}
-                                            className='filter-label'
-                                            htmlFor={brand}>
-                                            {brand}
-                                        </label>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {availableCategories ? <div className='filter-divider'></div> : null}
-                            <div>
-                                {availableCategories ? <h3 className='category-title'>Categories</h3> : null}
-                                {availableCategories.map((category, idx) => (
-                                    <div>
-                                        <input
-                                            className='filter-input'
-                                            checked={categoryFilter.includes(category) ? true : false}
-                                            onChange={() => handleCategoryChanges(category)}
-                                            type='checkbox'
-                                            name={category}
-                                            key={idx}></input>
-                                        <label
-                                            onClick={() => handleCategoryChanges(category)}
-                                            className='filter-label'
-                                            htmlFor={category}>
-                                            {category}
-                                        </label>
-                                    </div>
-                                ))}
-                            </div>
-                            {filteredProductsForDisplay ? <div className='filter-divider'></div> : null}
-
-                            {filteredProductsForDisplay ? (
+                ) : null}
+                <section className='catalog'>
+                    <div className='catalog-menu'>
+                        <div className='catalog-options'>
+                            <ul>
                                 <div>
-                                    <h3>Shoe by price</h3>
-                                    <div>
-                                        <input
-                                            className='filter-input'
-                                            checked={priceFilter.includes("1") ? true : false}
-                                            onChange={() => {
-                                                handlePriceChanges("1");
-                                            }}
-                                            type='checkbox'
-                                            name='under100'></input>
-                                        <label
-                                            className='filter-label'
-                                            onClick={() => {
-                                                handlePriceChanges("1");
-                                            }}
-                                            htmlFor='under-50'>
-                                            Under 99.99 USD
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            className='filter-input'
-                                            checked={priceFilter.includes("2") ? true : false}
-                                            onChange={() => {
-                                                handlePriceChanges("2");
-                                            }}
-                                            type='checkbox'
-                                            name='100-200'></input>
-                                        <label
-                                            className='filter-label'
-                                            onClick={() => {
-                                                handlePriceChanges("2");
-                                            }}
-                                            htmlFor='100-200'>
-                                            99.99 USD - 199.99 USD
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            className='filter-input'
-                                            checked={priceFilter.includes("3") ? true : false}
-                                            onChange={() => {
-                                                handlePriceChanges("3");
-                                            }}
-                                            type='checkbox'
-                                            name='200-300'></input>
-                                        <label
-                                            onClick={() => {
-                                                handlePriceChanges("3");
-                                            }}
-                                            className='filter-label'
-                                            htmlFor='200-300'>
-                                            199.99 USD - 299.99 USD
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            className='filter-input'
-                                            checked={priceFilter.includes("4") ? true : false}
-                                            onChange={() => {
-                                                handlePriceChanges("4");
-                                            }}
-                                            type='checkbox'
-                                            name='over-300'></input>
-                                        <label
-                                            onClick={() => {
-                                                handlePriceChanges("4");
-                                            }}
-                                            className='filter-label'
-                                            htmlFor='over-300'>
-                                            Over 299.99 USD
-                                        </label>
-                                    </div>
+                                    {availableBrands ? <h3 className='brand-title'>Brands</h3> : null}
+                                    {availableBrands.map((brand, idx) => (
+                                        <div>
+                                            <input
+                                                className='filter-input'
+                                                checked={brandFilter.includes(brand) ? true : false}
+                                                onChange={() => handleBrandChanges(brand)}
+                                                type='checkbox'
+                                                name={brand}
+                                                key={idx}></input>
+                                            <label
+                                                onClick={() => handleBrandChanges(brand)}
+                                                className='filter-label'
+                                                htmlFor={brand}>
+                                                {brand}
+                                            </label>
+                                        </div>
+                                    ))}
                                 </div>
-                            ) : null}
-                            {availableBrands || availableCategories ? (
-                                <button onClick={clearFilters} className='clear-filter-button'>
-                                    Clear
-                                </button>
-                            ) : null}
-                        </ul>
+
+                                {availableCategories ? <div className='filter-divider'></div> : null}
+                                <div>
+                                    {availableCategories ? <h3 className='category-title'>Categories</h3> : null}
+                                    {availableCategories.map((category, idx) => (
+                                        <div>
+                                            <input
+                                                className='filter-input'
+                                                checked={categoryFilter.includes(category) ? true : false}
+                                                onChange={() => handleCategoryChanges(category)}
+                                                type='checkbox'
+                                                name={category}
+                                                key={idx}></input>
+                                            <label
+                                                onClick={() => handleCategoryChanges(category)}
+                                                className='filter-label'
+                                                htmlFor={category}>
+                                                {category}
+                                            </label>
+                                        </div>
+                                    ))}
+                                </div>
+                                {filteredProductsForDisplay ? <div className='filter-divider'></div> : null}
+
+                                {filteredProductsForDisplay ? (
+                                    <div>
+                                        <h3>Shoe by price</h3>
+                                        <div>
+                                            <input
+                                                className='filter-input'
+                                                checked={priceFilter.includes("1") ? true : false}
+                                                onChange={() => {
+                                                    handlePriceChanges("1");
+                                                }}
+                                                type='checkbox'
+                                                name='under100'></input>
+                                            <label
+                                                className='filter-label'
+                                                onClick={() => {
+                                                    handlePriceChanges("1");
+                                                }}
+                                                htmlFor='under-50'>
+                                                Under 99.99 USD
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <input
+                                                className='filter-input'
+                                                checked={priceFilter.includes("2") ? true : false}
+                                                onChange={() => {
+                                                    handlePriceChanges("2");
+                                                }}
+                                                type='checkbox'
+                                                name='100-200'></input>
+                                            <label
+                                                className='filter-label'
+                                                onClick={() => {
+                                                    handlePriceChanges("2");
+                                                }}
+                                                htmlFor='100-200'>
+                                                99.99 USD - 199.99 USD
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <input
+                                                className='filter-input'
+                                                checked={priceFilter.includes("3") ? true : false}
+                                                onChange={() => {
+                                                    handlePriceChanges("3");
+                                                }}
+                                                type='checkbox'
+                                                name='200-300'></input>
+                                            <label
+                                                onClick={() => {
+                                                    handlePriceChanges("3");
+                                                }}
+                                                className='filter-label'
+                                                htmlFor='200-300'>
+                                                199.99 USD - 299.99 USD
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <input
+                                                className='filter-input'
+                                                checked={priceFilter.includes("4") ? true : false}
+                                                onChange={() => {
+                                                    handlePriceChanges("4");
+                                                }}
+                                                type='checkbox'
+                                                name='over-300'></input>
+                                            <label
+                                                onClick={() => {
+                                                    handlePriceChanges("4");
+                                                }}
+                                                className='filter-label'
+                                                htmlFor='over-300'>
+                                                Over 299.99 USD
+                                            </label>
+                                        </div>
+                                    </div>
+                                ) : null}
+                                {availableBrands || availableCategories ? (
+                                    <button onClick={clearFilters} className='clear-filter-button'>
+                                        Clear
+                                    </button>
+                                ) : null}
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                {/* {isFilter
+                    <div className='catalog-sort-div' id='catalog-sort-div-bottom'>
+                        <i>Sort By{sortedBy ? ":" + " " + sortedBy : null}</i>
+                        <div className='sort-section'>
+                            <ul>
+                                <li className='abc' onClick={() => handelSortedBy("Price: High-Low")}>
+                                    Price: High-Low
+                                </li>
+                                <li onClick={() => handelSortedBy("Price: Low-High")}>Price: Low-High</li>
+                            </ul>
+                        </div>
+                    </div>
+                    {/* {isFilter
                     ? filteredProductsForDisplay.map((product) => displayProduct(product))
                     : filteredProductsForDisplay.map((product) => displayProduct(product))} */}
-                {filteredProductsForDisplay.slice(0, pageLoaderCtx).map((product) => displayProduct(product))}
-                {filteredProductsForDisplay.length < 4
-                    ? Array.from({ length: 5 }, () => <div className='catalog-items-container'></div>)
-                    : null}
+                    {filteredProductsForDisplay.slice(0, pageLoaderCtx).map((product) => displayProduct(product))}
+                    {filteredProductsForDisplay.length < 4
+                        ? Array.from({ length: 5 }, () => <div className='catalog-items-container'></div>)
+                        : null}
 
-                {/* <div className='catalog-items-container'>
+                    {/* <div className='catalog-items-container'>
                     <div className='box'>
                         <img
                             src='/images/Air-Jordan-1-High-85-Neutral-Grey-BQ4422-100-Release-Date-Price-4-removebg-preview.png'
@@ -504,15 +518,16 @@ export const Products = () => {
                         <i className='bx bx-cart-alt'></i>
                     </div>
                 </div> */}
+                </section>
+                {filteredProductsForDisplay.length > pageLoaderCtx ? (
+                    <div className='load-more-div'>
+                        <button onClick={loadMoreProducts} className='load-more-button'>
+                            Load More
+                        </button>
+                    </div>
+                ) : null}
+                <div></div>
             </section>
-            {filteredProductsForDisplay.length > pageLoaderCtx ? (
-                <div className='load-more-div'>
-                    <button onClick={loadMoreProducts} className='load-more-button'>
-                        Load More
-                    </button>
-                </div>
-            ) : null}
-            <div></div>
-        </section>
+        </>
     );
 };
