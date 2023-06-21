@@ -10,10 +10,12 @@ export const Home = () => {
         <>
             <section className='home' id='home'>
                 <div className='home-text'>
-                    <span>Shop Now</span>
-                    <h1>
-                        New Arrival of <br /> Fresh Products
+                    <span>Step into Style</span>
+                    <h1 className='home-title'>
+                        {/* New Arrival of <br /> Fresh Products */}
+                        New Arrival of
                     </h1>
+                    <h1 className='home-title-2'>Fresh Products</h1>
                     <a href='#new' className='btn'>
                         Shop Now
                     </a>

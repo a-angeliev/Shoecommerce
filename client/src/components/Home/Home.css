@@ -17,3 +17,83 @@
     font-size: 3.4rem;
     margin-bottom: 1rem;
 }
+
+
+
+.home-title-2 {
+    position: relative;
+    color: black;
+    overflow: hidden;
+    border-right: 2px solid hsl(0, 0%, 80%);
+    white-space: nowrap;
+    animation: typewriter 4s steps(44) 4s 1 normal both,
+        blinkTextCursor 500ms infinite,
+        removeTextCursor 9s infinite 9s;
+}
+
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 420px;
+    }
+}
+
+@keyframes blinkTextCursor {
+    from {
+        border-right-color: hsl(0, 0%, 80%);
+    }
+
+    to {
+        border-right-color: transparent;
+    }
+}
+
+@keyframes removeTextCursor {
+    from {
+        border-right: inherit;
+    }
+
+    to {
+        border-right: none;
+    }
+}
+
+
+@media only screen and (max-width: 1058px) {
+    @keyframes typewriter {
+        from {
+            width: 0;
+        }
+
+        to {
+            width: 375px;
+        }
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    @keyframes typewriter {
+        from {
+            width: 0;
+        }
+
+        to {
+            width: 300px;
+        }
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    @keyframes typewriter {
+        from {
+            width: 0;
+        }
+
+        to {
+            width: 215px;
+        }
+    }
+}
