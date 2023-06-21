@@ -118,23 +118,31 @@ export const Navbar = () => {
     return (
         <header>
             <Alert></Alert>
-            <Link to='/#' className='logo'>
+            <Link to='/#' className='logo' onClick={() => setActiveIcon(false)}>
                 {" "}
                 <i className='bx bxs-shopping-bag-alt'></i>
                 ShoeCommerce
             </Link>
             <ul className={`navbar ${activeIcon === "menu" && "active"}`}>
                 <li key='home'>
-                    <Link to='/'>Home</Link>
+                    <Link to='/' onClick={() => setActiveIcon(false)}>
+                        Home
+                    </Link>
                 </li>
                 <li key='Men'>
-                    <Link to='/products/man'>Men</Link>
+                    <Link to='/products/man' onClick={() => setActiveIcon(false)}>
+                        Men
+                    </Link>
                 </li>
                 <li key='Women'>
-                    <Link to='/products/woman'>Women</Link>
+                    <Link to='/products/woman' onClick={() => setActiveIcon(false)}>
+                        Women
+                    </Link>
                 </li>
                 <li key='Kids'>
-                    <Link to='/products/kid'>Kids</Link>
+                    <Link to='/products/kid' onClick={() => setActiveIcon(false)}>
+                        Kids
+                    </Link>
                 </li>
             </ul>
 
