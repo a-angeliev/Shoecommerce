@@ -28,7 +28,7 @@
 .nav-section-title{
     display:flex;
     align-items: center;
-    padding: 0.7rem 0rem 0.7rem 0rem;
+    padding: 0.7rem 0rem 0.7rem 1rem;
     cursor: pointer;
 }
 
