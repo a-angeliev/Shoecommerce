@@ -37,7 +37,7 @@ export const Details = () => {
             setProduct(res);
             setState("success");
         });
-        console.log(wishlistIds, param.id);
+        // console.log(wishlistIds, param.id);
         if (wishlistIds.includes(Number(param.id))) {
             setWishlist(true);
         }
@@ -71,18 +71,19 @@ export const Details = () => {
     const addToCartFunc = (e) => {
         e.preventDefault();
         let shoe = {};
-        shoe["title"] = product.title;
-        shoe["image"] = product.images[0].img_url;
-        shoe["price"] = product.price;
-        shoe["gender"] = product.gender;
-        shoe["color"] = color;
-        shoe["size"] = size;
-        shoe["id"] = param.id;
-        shoe["pair_id"] = product.pairs.filter((pair) => pair.color == color && pair.size == size)[0].id;
+
         if (!color) {
             setAlert({ color: "red", text: "chooseColor" });
         } else {
             setAlert({ color: "green", text: "addInCart" });
+            shoe["title"] = product.title;
+            shoe["image"] = product.images[0].img_url;
+            shoe["price"] = product.price;
+            shoe["gender"] = product.gender;
+            shoe["color"] = color;
+            shoe["size"] = size;
+            shoe["id"] = param.id;
+            shoe["pair_id"] = product.pairs.filter((pair) => pair.color == color && pair.size == size)[0].id;
             addToCart(shoe);
         }
     };

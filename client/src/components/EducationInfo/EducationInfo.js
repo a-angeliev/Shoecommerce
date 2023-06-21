@@ -4,7 +4,6 @@ import { EducationalPopupContext } from "../../contexts/educationalPopupContext"
 
 export const EducationInfo = () => {
     const { educationPopup, setEducationPopup } = useContext(EducationalPopupContext);
-    console.log(educationPopup);
     const hideEducationPopup = () => {
         setEducationPopup(false);
     };

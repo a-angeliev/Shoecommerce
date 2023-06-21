@@ -19,7 +19,6 @@ export const ProfileDetails = () => {
             .getUser(user.user_id)
             .then((res) => {
                 setUserData(JSON.parse(res));
-                console.log(res);
             })
             .catch((err) => {
                 console.log(err);

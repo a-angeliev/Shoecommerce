@@ -81,7 +81,6 @@ export const Navbar = () => {
     };
 
     const wishlistItem = (shoe) => {
-        console.log(shoe);
         return (
             <div className='box'>
                 <img
