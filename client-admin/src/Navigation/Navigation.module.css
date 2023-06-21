@@ -1,0 +1,21 @@
+.nav{
+    width: 250px;
+    height: 100%;
+    background-color:beige;
+    padding: 2rem;
+    background-color:#1C2434;
+}
+
+.logo{
+    text-align: center;
+    margin: 1rem 0rem 2rem 0rem;
+    font-size: 1.6rem;
+    color: white;
+}
+
+.group-title {
+    font-size: 1rem;
+    margin: 1rem 0 1rem 0;
+    color:#DEE4EE;
+}
+
