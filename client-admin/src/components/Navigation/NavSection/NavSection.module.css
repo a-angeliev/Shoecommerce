@@ -1,14 +1,14 @@
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/calculator.css');
 
-.nav{
+.nav {
     width: 250px;
     height: 100%;
-    background-color:beige;
+    background-color: beige;
     padding: 2rem;
-    background-color:#1C2434;
+    background-color: #1C2434;
 }
 
-.logo{
+.logo {
     text-align: center;
     margin: 1rem 0rem 2rem 0rem;
     font-size: 1.6rem;
@@ -18,52 +18,53 @@
 .group-title {
     font-size: 1.4rem;
     margin: 1rem 0 1rem 0;
-    color:#DEE4EE;
+    color: #DEE4EE;
 }
 
-.nav-section{
+.nav-section {
     color: #DEE4EE;
     margin-bottom: 0.75rem;
 }
-.nav-section-title{
-    display:flex;
+
+.nav-section-title {
+    display: flex;
     align-items: center;
     padding: 0.7rem 0rem 0.7rem 1rem;
     cursor: pointer;
 }
 
-.nav-section-title > span{
+.nav-section-title>span {
     margin-left: 0.5rem;
 }
 
-.nav-section-title > i{
+.nav-section-title>i {
     width: 35px;
 }
 
-.nav-section-links{
+.nav-section-links {
     max-height: 0px;
     overflow: hidden;
     transition: 0.5s max-height ease-in-out;
 }
 
-.nav-section-links > p{
+.nav-section-links>p {
     margin-left: 2rem;
     margin-top: 0.5rem;
     font-family: 'Open Sans', sans-serif;
     cursor: pointer;
 }
 
-.title-expanded, .nav-section-title:hover{
+.title-expanded, .nav-section-title:hover {
     background-color: #333A48;
     border-radius: 3px;
 }
 
-.expanded{
+.expanded {
     max-height: 100px;
-    transition: 0.5s  max-height;
+    transition: 0.5s max-height;
 }
 
-.arrow-container{
+.arrow-container {
     width: 100%;
     text-align: right;
     padding-right: 1rem;
@@ -75,7 +76,7 @@
     display: inline-block;
     padding: 3px;
 }
-  
+
 .up {
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
@@ -85,4 +86,3 @@
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
 }
-

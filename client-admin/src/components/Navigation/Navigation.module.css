@@ -1,12 +1,13 @@
-.nav{
+.nav {
+    display: block;
     width: 250px;
-    height: 100%;
-    background-color:beige;
+    min-height: 100% !important;
+    background-color: beige;
     padding: 2rem;
-    background-color:#1C2434;
+    background-color: #1C2434;
 }
 
-.logo{
+.logo {
     text-align: center;
     margin: 1rem 0rem 2rem 0rem;
     font-size: 1.6rem;
@@ -16,6 +17,5 @@
 .group-title {
     font-size: 1rem;
     margin: 1rem 0 1rem 0;
-    color:#DEE4EE;
+    color: #DEE4EE;
 }
-

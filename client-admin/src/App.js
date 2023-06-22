@@ -7,23 +7,27 @@ import { Login } from "./components/Auth/Login/Login";
 import { Ass } from "./components/Ass/Ass";
 
 import { AuthProvider } from "./contexts/AuthContext";
+import { UserBar } from "./components/UserBar/UserBar";
 
 function App() {
     return (
         <AuthProvider>
             <div className='app'>
-                <NavigationBar></NavigationBar>
-                <Routes>
-                    <Route path='/login' element={<Login />} />
-                    <Route
-                        path='/'
-                        element={
-                            <PrivateRoute>
-                                <Ass />
-                            </PrivateRoute>
-                        }
-                    />
-                </Routes>
+                <NavigationBar />
+                <div className='content'>
+                    <UserBar />
+                    <Routes>
+                        <Route path='/login' element={<Login />} />
+                        <Route
+                            path='/'
+                            element={
+                                <PrivateRoute>
+                                    <Ass />
+                                </PrivateRoute>
+                            }
+                        />
+                    </Routes>
+                </div>
             </div>
         </AuthProvider>
     );

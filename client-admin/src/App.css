@@ -4,6 +4,7 @@
   --main-dark-gray: #333A48;
   --main-blue: #2F55D2;
   --main-green: #13c297;
+  --main-gray-border: #E1E8F0;
 
 }
 
@@ -14,15 +15,27 @@
 }
 
 body, html {
-  height: 100%;
   font-family: 'Open Sans', sans-serif;
   background-color: #F1F5F9;
 }
 
-#root {
+html {
   height: 100%;
 }
 
+body {
+  min-height: 100%;
+}
+
+#root {
+  min-height: 100vh;
+}
+
 .app {
-  height: 100%;
+  display: flex;
+  min-height: 100vh;
+}
+
+.content {
+  width: 100%;
 }
