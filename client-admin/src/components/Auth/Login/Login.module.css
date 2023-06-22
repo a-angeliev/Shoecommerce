@@ -3,8 +3,6 @@
     height: 100vh;
     background-color: var(--main-dark);
     display: flex;
-    /* align-items: center;
-    justify-content: center; */
 }
 
 .login-form {
@@ -48,15 +46,41 @@
     margin-top: 1rem;
     font-size: 1rem;
     background-color: transparent;
-    color: var(--main-blue);
-    border: 1px solid var(--main-blue);
+    color: var(--main-green);
+    border: 1px solid var(--main-green);
     border-radius: 5px;
     height: 2rem;
     width: 80%;
 }
 
 #login-btn:hover {
-    background-color: var(--main-blue);
+    background-color: var(--main-green);
     color: var(--main-gray);
     border: 1px solid transparent;
+}
+
+.horizontal-shake {
+    animation: horizontal-shaking 0.35s ease-in-out;
+}
+
+@keyframes horizontal-shaking {
+    0% {
+        transform: translateX(0)
+    }
+
+    25% {
+        transform: translateX(5px)
+    }
+
+    50% {
+        transform: translateX(-5px)
+    }
+
+    75% {
+        transform: translateX(5px)
+    }
+
+    100% {
+        transform: translateX(0)
+    }
 }

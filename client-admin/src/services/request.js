@@ -1,4 +1,4 @@
-import { getUserData } from "../utils/util";
+import { getUserData } from "../utils/utils";
 
 const host = "http://127.0.0.1:5000";
 
