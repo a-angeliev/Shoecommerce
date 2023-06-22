@@ -1,5 +1,6 @@
 import style from "./NavSection.module.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const NavSection = (props) => {
     const [expandMenu, setExpandMenu] = useState(false);
@@ -26,10 +27,13 @@ export const NavSection = (props) => {
             </div>
             <div className={`${style["nav-section-links"]} ${expandMenu ? style["expanded"] : ""}`}>
                 {links.map((link) => (
-                    <p key={link[0]}>
+                    // <p key={link[0]}>
+                    //     {link[0]}
+                    //     {/* - {link[1]} */}
+                    // </p>
+                    <Link className={style.link} to={link[1]}>
                         {link[0]}
-                        {/* - {link[1]} */}
-                    </p>
+                    </Link>
                 ))}
             </div>
         </div>

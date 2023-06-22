@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import style from "./UserBar.module.css";
 
 export const UserBar = () => {
