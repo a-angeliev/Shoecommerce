@@ -8,6 +8,11 @@ class ProductIdResponseSchema(Schema):
     id = fields.Integer(required=True)
 
 
+class BaseUserRegisterSchema(Schema):
+    f_name = fields.String(required=True, validate=validate.Length(min=2, max=60))
+    l_name = fields.String(required=True, validate=validate.Length(min=2, max=60))
+    phone = fields.Integer(required=True)
+
 class BaseUserDataSchema(Schema):
     f_name = fields.String(required=True, validate=validate.Length(min=2, max=60))
     l_name = fields.String(required=True, validate=validate.Length(min=2, max=60))
