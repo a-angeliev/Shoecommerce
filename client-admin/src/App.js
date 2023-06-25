@@ -23,8 +23,7 @@ function App() {
                             path='/brand/information'
                             element={
                                 <PrivateRoute>
-                                    {" "}
-                                    <BrandInfo />{" "}
+                                    <BrandInfo />
                                 </PrivateRoute>
                             }
                         />

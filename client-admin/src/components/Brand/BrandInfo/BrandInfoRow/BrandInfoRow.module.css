@@ -1,0 +1,38 @@
+.table>table>tr {
+    width: 100%;
+    background-color: white;
+    border: 1px solid var(--main-gray-border);
+}
+
+
+.brand-logo {
+    margin: 1rem 0 1rem 0;
+    width: 40px;
+    height: 40px;
+}
+
+
+.brand-description {
+    max-width: 1000px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.cl-1 {
+    width: 5%;
+
+}
+
+.cl-2 {
+    width: 10%;
+}
+
+.cl-3 {
+    width: 65%;
+}
+
+.cl-4 {
+    width: 10%;
+}
