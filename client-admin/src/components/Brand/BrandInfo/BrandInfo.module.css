@@ -1,12 +1,10 @@
 ::-webkit-input-placeholder {
-
     color: var(--main-gray)
 }
 
 .content {
     margin-top: 5rem;
     width: 90%;
-    border: 1px solid var(--main-gray-border)
 }
 
 .title {
@@ -98,6 +96,43 @@
 .link {
     cursor: pointer;
 }
+
+.pag {
+    width: 100%;
+    height: 4rem;
+    border: 1px solid var(--main-gray-border);
+    background-color: white;
+}
+
+/* .pagination-list {}
+
+.pagination-list>li {
+    display: inline;
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.pagination-list>li:not(.non-hover) {
+    cursor: pointer;
+
+}
+
+.pagination-list>li:hover:not(.active):not(.non-hover) {
+    background-color: var(--main-gray-border);
+}
+
+
+.active {
+    background-color: var(--main-blue)
+}
+
+.pagImg {
+    width: 13px;
+    height: 13px;
+} */
 
 .cl-1 {
     width: 5%;
