@@ -90,6 +90,14 @@
     text-align: left;
 }
 
+.sort-icon {
+    width: 12px;
+    height: 12px;
+}
+
+.link {
+    cursor: pointer;
+}
 
 .cl-1 {
     width: 5%;

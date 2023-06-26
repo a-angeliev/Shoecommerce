@@ -9,6 +9,7 @@ export const BrandInfo = () => {
     const [filter, setFilter] = useState("");
     const [filteredBrands, setFilteredBrands] = useState("");
     const [orderById, setOrderById] = useState(true);
+    const [orderByName, setOrderByName] = useState(true);
 
     useEffect(() => {
         brandService
@@ -38,6 +39,23 @@ export const BrandInfo = () => {
         setFilteredBrands(br);
     }, [orderById]);
 
+    useEffect(() => {
+        const br = [...brands];
+        if (orderByName) {
+            br.sort((br1, br2) => {
+                const textA = br1.name.toUpperCase();
+                const textB = br2.name.toUpperCase();
+                return textA < textB ? -1 : textA > textB ? 1 : 0;
+            });
+        } else {
+            br.sort((br1, br2) => {
+                const textA = br1.name.toUpperCase();
+                const textB = br2.name.toUpperCase();
+                return textA > textB ? -1 : textA < textB ? 1 : 0;
+            });
+        }
+        setFilteredBrands(br);
+    }, [orderByName]);
     if (filteredBrands !== "") {
         return (
             <div className={style.content}>
@@ -60,10 +78,16 @@ export const BrandInfo = () => {
                     <div className={style.table}>
                         <table>
                             <tr className={style["tr-title"]}>
-                                <th className={style["cl-1"]} onClick={() => setOrderById((prev) => !prev)}>
-                                    Id
+                                <th
+                                    className={`${style["cl-1"]} ${style.link}`}
+                                    onClick={() => setOrderById((prev) => !prev)}>
+                                    Id <img className={style["sort-icon"]} src='../images/sort.png'></img>
                                 </th>
-                                <th className={style["cl-2"]}>Name</th>
+                                <th
+                                    className={`${style["cl-2"]} ${style.link}`}
+                                    onClick={() => setOrderByName((prev) => !prev)}>
+                                    Name <img className={style["sort-icon"]} src='../images/sort.png'></img>
+                                </th>
                                 <th className={style["cl-3"]}>Description</th>
                                 <th className={style["cl-4"]}>Logo</th>
                             </tr>
