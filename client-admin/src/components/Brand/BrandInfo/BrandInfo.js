@@ -107,43 +107,6 @@ export const BrandInfo = () => {
                                 setCurrentPage={setCurrentPage}
                                 currentPage={currentPage}
                                 numberOfPages={numberOfPages}></Pagination>
-                            {/* <ul className={style["pagination-list"]}>
-                                <li onClick={prevPage} className={currentPage === 1 ? style["non-hover"] : ""}>
-                                    <img className={style.pagImg} src='../images/left-arrow.png'></img>
-                                </li>
-
-                                {currentPage === 1 ? (
-                                    <>
-                                        <li onClick={(e) => changePage(e)} className={style.active}>
-                                            1
-                                        </li>
-                                        <li onClick={(e) => changePage(e)}>2</li>
-                                        <li onClick={(e) => changePage(e)}>3</li>
-                                    </>
-                                ) : currentPage === numberOfPages ? (
-                                    <>
-                                        <li onClick={(e) => changePage(e)}>{numberOfPages - 2}</li>
-                                        <li onClick={(e) => changePage(e)}>{numberOfPages - 1}</li>
-                                        <li onClick={(e) => changePage(e)} className={style.active}>
-                                            {numberOfPages}
-                                        </li>
-                                    </>
-                                ) : (
-                                    <>
-                                        <li onClick={(e) => changePage(e)}>{currentPage - 1}</li>
-                                        <li onClick={(e) => changePage(e)} className={style.active}>
-                                            {currentPage}
-                                        </li>
-                                        <li onClick={(e) => changePage(e)}>{currentPage + 1}</li>
-                                    </>
-                                )}
-
-                                <li
-                                    onClick={nextPage}
-                                    className={currentPage === numberOfPages ? style["non-hover"] : ""}>
-                                    <img className={style.pagImg} src='../images/right-arrow.png'></img>
-                                </li>
-                            </ul> */}
                         </div>
                     </div>
                 </div>
