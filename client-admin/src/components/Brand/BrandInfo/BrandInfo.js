@@ -14,12 +14,14 @@ export const BrandInfo = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [numberOfPages, setNumberOfPages] = useState(8);
     const [itemPerPage, setItemPerPage] = useState(10);
+    const [numberOfBrands, setNumberOfBrands] = useState(0);
 
     useEffect(() => {
         brandService
             .getAllBrands()
             .then((res) => {
                 setBrands(res);
+                setNumberOfBrands(res.length);
                 setFilteredBrands(res);
             })
             .catch((err) => console.log(err));
@@ -61,6 +63,10 @@ export const BrandInfo = () => {
         setFilteredBrands(br);
     }, [orderByName]);
 
+    useEffect(() => {
+        setCurrentPage(1);
+        setNumberOfPages(Math.ceil(numberOfBrands / itemPerPage));
+    }, [itemPerPage]);
     if (filteredBrands !== "") {
         return (
             <div className={style.content}>
@@ -122,7 +128,14 @@ export const BrandInfo = () => {
                                 currentPage={currentPage}
                                 numberOfPages={numberOfPages}></Pagination>
                         </div>
-                        <div className={style["item-info"]}>Showing 1 to 10 of 18 entries</div>
+                        <div className={style["item-info"]}>
+                            Showing{" "}
+                            {currentPage * itemPerPage - Number(itemPerPage) == 0
+                                ? 1
+                                : currentPage * itemPerPage - Number(itemPerPage)}{" "}
+                            to {currentPage * itemPerPage > numberOfBrands ? numberOfBrands : currentPage * itemPerPage}{" "}
+                            of {numberOfBrands} entries
+                        </div>
                     </div>
                 </div>
             </div>

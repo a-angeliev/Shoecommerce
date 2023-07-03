@@ -22,31 +22,41 @@ export const Pagination = (props) => {
             <li onClick={prevPage} className={props.currentPage === 1 ? style["non-hover"] : ""}>
                 <img className={style.pagImg} src='../images/left-arrow.png'></img>
             </li>
-
-            {props.currentPage === 1 ? (
-                <>
-                    <li onClick={(e) => changePage(e)} className={style.active}>
-                        1
-                    </li>
-                    <li onClick={(e) => changePage(e)}>2</li>
-                    <li onClick={(e) => changePage(e)}>3</li>
-                </>
-            ) : props.currentPage === props.numberOfPages ? (
-                <>
-                    <li onClick={(e) => changePage(e)}>{props.numberOfPages - 2}</li>
-                    <li onClick={(e) => changePage(e)}>{props.numberOfPages - 1}</li>
-                    <li onClick={(e) => changePage(e)} className={style.active}>
-                        {props.numberOfPages}
-                    </li>
-                </>
+            {props.numberOfPages > 3 ? (
+                props.currentPage === 1 ? (
+                    <>
+                        <li onClick={(e) => changePage(e)} className={style.active}>
+                            1
+                        </li>
+                        <li onClick={(e) => changePage(e)}>2</li>
+                        <li onClick={(e) => changePage(e)}>3</li>
+                    </>
+                ) : props.currentPage === props.numberOfPages ? (
+                    <>
+                        <li onClick={(e) => changePage(e)}>{props.numberOfPages - 2}</li>
+                        <li onClick={(e) => changePage(e)}>{props.numberOfPages - 1}</li>
+                        <li onClick={(e) => changePage(e)} className={style.active}>
+                            {props.numberOfPages}
+                        </li>
+                    </>
+                ) : (
+                    <>
+                        <li onClick={(e) => changePage(e)}>{props.currentPage - 1}</li>
+                        <li onClick={(e) => changePage(e)} className={style.active}>
+                            {props.currentPage}
+                        </li>
+                        <li onClick={(e) => changePage(e)}>{props.currentPage + 1}</li>
+                    </>
+                )
             ) : (
-                <>
-                    <li onClick={(e) => changePage(e)}>{props.currentPage - 1}</li>
-                    <li onClick={(e) => changePage(e)} className={style.active}>
-                        {props.currentPage}
+                [...Array(props.numberOfPages)].map((x, i) => (
+                    <li
+                        onClick={(e) => changePage(e)}
+                        className={props.currentPage == i + 1 ? style.active : ""}
+                        key={i + 1}>
+                        {i + 1}
                     </li>
-                    <li onClick={(e) => changePage(e)}>{props.currentPage + 1}</li>
-                </>
+                ))
             )}
 
             <li onClick={nextPage} className={props.currentPage === props.numberOfPages ? style["non-hover"] : ""}>

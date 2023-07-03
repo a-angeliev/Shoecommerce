@@ -98,6 +98,10 @@
     cursor: pointer;
 }
 
+.pagination {
+    margin-left: 1rem;
+}
+
 .pag {
     display: flex;
     justify-content: space-between;

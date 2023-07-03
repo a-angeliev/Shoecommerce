@@ -21,12 +21,7 @@ export const BrandInfoRow = (props) => {
                 <img className={style["brand-logo"]} src={brand.logo_url}></img>
             </td>
             <td className={style["cl-5"]}>
-                <div
-                    className={`${style["dots"]}  ${activeDots ? style.active : ""}`}
-                    // onClick={() => {
-                    //     expandDots();
-                    // }}
-                >
+                <div className={`${style["dots"]}  ${activeDots ? style.active : ""}`}>
                     <div className={style.dot}></div>
                     <div className={style.dot}></div>
                     <div className={`${style.shadow} ${style.cut}`}></div>
