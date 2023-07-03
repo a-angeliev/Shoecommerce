@@ -10,6 +10,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { UserBar } from "./components/UserBar/UserBar";
 import { BrandInfo } from "./components/Brand/BrandInfo/BrandInfo";
 import { BrandEdit } from "./components/Brand/BrandEdit/BrandEdit";
+import { BrandCreate } from "./components/Brand/BrandCreate/BrandCreate";
 
 function App() {
     return (
@@ -41,6 +42,14 @@ function App() {
                             element={
                                 <PrivateRoute>
                                     <BrandEdit></BrandEdit>
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path='/brand/create'
+                            element={
+                                <PrivateRoute>
+                                    <BrandCreate />
                                 </PrivateRoute>
                             }
                         />
