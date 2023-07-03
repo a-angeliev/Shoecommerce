@@ -116,9 +116,11 @@ export const BrandInfo = () => {
                                 <th className={style["cl-5"]}></th>
                             </tr>
 
-                            {filteredBrands.map((brand) => (
-                                <BrandInfoRow brand={brand}></BrandInfoRow>
-                            ))}
+                            {filteredBrands
+                                .slice(currentPage * itemPerPage - itemPerPage, currentPage * itemPerPage)
+                                .map((brand) => (
+                                    <BrandInfoRow brand={brand}></BrandInfoRow>
+                                ))}
                         </table>
                     </div>
                     <div className={style.pag}>
