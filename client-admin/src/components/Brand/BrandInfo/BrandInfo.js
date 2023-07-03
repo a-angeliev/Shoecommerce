@@ -13,6 +13,7 @@ export const BrandInfo = () => {
     const [orderByName, setOrderByName] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [numberOfPages, setNumberOfPages] = useState(8);
+    const [itemPerPage, setItemPerPage] = useState(10);
 
     useEffect(() => {
         brandService
@@ -78,6 +79,18 @@ export const BrandInfo = () => {
                                 <img src='../images/icons8-search-50-white.png'></img>
                             </div>
                         </div>
+                        <div className={style["per-page"]}>
+                            <p>Per Page: </p>
+                            <select
+                                value={itemPerPage}
+                                onChange={(e) => {
+                                    setItemPerPage(e.target.value);
+                                }}>
+                                <option>5</option>
+                                <option>10</option>
+                                <option>15</option>
+                            </select>
+                        </div>
                     </div>
                     <div className={style.table}>
                         <table>
@@ -109,6 +122,7 @@ export const BrandInfo = () => {
                                 currentPage={currentPage}
                                 numberOfPages={numberOfPages}></Pagination>
                         </div>
+                        <div className={style["item-info"]}>Showing 1 to 10 of 18 entries</div>
                     </div>
                 </div>
             </div>
