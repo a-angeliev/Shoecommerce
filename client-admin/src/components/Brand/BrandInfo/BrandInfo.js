@@ -94,6 +94,7 @@ export const BrandInfo = () => {
                                 </th>
                                 <th className={style["cl-3"]}>Description</th>
                                 <th className={style["cl-4"]}>Logo</th>
+                                <th className={style["cl-5"]}></th>
                             </tr>
 
                             {filteredBrands.map((brand) => (
