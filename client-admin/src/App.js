@@ -37,7 +37,7 @@ function App() {
                             }
                         />
                         <Route
-                            path='/brand/edit'
+                            path='/brand/edit/:id'
                             element={
                                 <PrivateRoute>
                                     <BrandEdit></BrandEdit>

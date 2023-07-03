@@ -1,5 +1,6 @@
 import style from "./BrandInfoRow.module.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const BrandInfoRow = (props) => {
     const brand = props.brand;
@@ -29,8 +30,12 @@ export const BrandInfoRow = (props) => {
                     </div>
                     <div className={style.list}>
                         <ul>
-                            <li>Edit</li>
-                            <li>Delete</li>
+                            <li>
+                                <Link to={`/brand/edit/${brand.id}`}>Edit</Link>
+                            </li>
+                            <li>
+                                <Link>Delete</Link>
+                            </li>
                         </ul>
                     </div>
                     <div className={style.dot}></div>

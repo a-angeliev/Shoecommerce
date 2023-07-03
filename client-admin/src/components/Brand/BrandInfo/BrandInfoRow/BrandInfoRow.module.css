@@ -122,6 +122,11 @@
     color: var(--main-dark-gray);
 }
 
+a {
+    text-decoration: none;
+    color: #bdbdbd;
+}
+
 .dots.active .container {
     transform: translateX(-45%) translateY(20px);
 }
