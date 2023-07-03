@@ -9,6 +9,7 @@ import { Ass } from "./components/Ass/Ass";
 import { AuthProvider } from "./contexts/AuthContext";
 import { UserBar } from "./components/UserBar/UserBar";
 import { BrandInfo } from "./components/Brand/BrandInfo/BrandInfo";
+import { BrandEdit } from "./components/Brand/BrandEdit/BrandEdit";
 
 function App() {
     return (
@@ -32,6 +33,14 @@ function App() {
                             element={
                                 <PrivateRoute>
                                     <Ass />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path='/brand/edit'
+                            element={
+                                <PrivateRoute>
+                                    <BrandEdit></BrandEdit>
                                 </PrivateRoute>
                             }
                         />

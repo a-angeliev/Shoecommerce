@@ -8,7 +8,6 @@ export const BrandInfoRow = (props) => {
 
     const expandDots = () => {
         setActiveDots((prev) => !prev);
-        console.log(activeDots);
     };
     return (
         <tr>

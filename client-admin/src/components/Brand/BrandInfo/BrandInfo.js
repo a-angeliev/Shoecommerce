@@ -12,9 +12,9 @@ export const BrandInfo = () => {
     const [orderById, setOrderById] = useState(true);
     const [orderByName, setOrderByName] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const [numberOfPages, setNumberOfPages] = useState(8);
-    const [itemPerPage, setItemPerPage] = useState(10);
-    const [numberOfBrands, setNumberOfBrands] = useState(0);
+    const [numberOfPages, setNumberOfPages] = useState(1);
+    const [itemPerPage, setItemPerPage] = useState(5);
+    const [numberOfBrands, setNumberOfBrands] = useState(1);
 
     useEffect(() => {
         brandService
