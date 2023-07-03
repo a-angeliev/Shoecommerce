@@ -95,6 +95,8 @@
     transform: translateX(-70%);
     margin-top: 30px;
     width: 130px;
+    z-index: -1;
+    display: hidden;
 
 }
 
@@ -138,6 +140,7 @@ a {
 }
 
 .dots.active .list {
+    display: block;
     z-index: 1;
 
 }
