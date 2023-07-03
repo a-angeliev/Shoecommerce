@@ -12,9 +12,10 @@ export const BrandInfo = () => {
     const [orderById, setOrderById] = useState(true);
     const [orderByName, setOrderByName] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const [numberOfPages, setNumberOfPages] = useState(1);
+    const [numberOfPages, setNumberOfPages] = useState(0);
     const [itemPerPage, setItemPerPage] = useState(5);
     const [numberOfBrands, setNumberOfBrands] = useState(1);
+    const [reset, setReset] = useState(false);
 
     useEffect(() => {
         brandService
@@ -25,7 +26,11 @@ export const BrandInfo = () => {
                 setFilteredBrands(res);
             })
             .catch((err) => console.log(err));
-    }, []);
+    }, [reset]);
+
+    useEffect(() => {
+        setNumberOfPages(Math.ceil(numberOfBrands / itemPerPage));
+    }, [brands]);
 
     useEffect(() => {
         if (brands !== "") {
@@ -119,7 +124,7 @@ export const BrandInfo = () => {
                             {filteredBrands
                                 .slice(currentPage * itemPerPage - itemPerPage, currentPage * itemPerPage)
                                 .map((brand) => (
-                                    <BrandInfoRow brand={brand}></BrandInfoRow>
+                                    <BrandInfoRow brand={brand} reset={setReset}></BrandInfoRow>
                                 ))}
                         </table>
                     </div>

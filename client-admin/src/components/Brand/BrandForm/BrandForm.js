@@ -77,11 +77,6 @@ export const BrandForm = (params) => {
             //         navigate("/brand/information");
             //     })
             //     .then((err) => console.log(err));
-
-            // const deletese = brandService
-            //     .deleteBrandById(param.id)
-            //     .then((res) => console.log(res))
-            //     .catch((err) => console.log(err));
         }
     };
 
