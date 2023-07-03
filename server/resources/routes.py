@@ -1,5 +1,5 @@
 from resources.auth import Login
-from resources.brand import Brand
+from resources.brand import Brand, BrandUpdate
 from resources.category import Category
 from resources.comments import Comments, CommentAction
 from resources.discounts import Discounts, DiscountsOperations, DiscountValidation
@@ -31,6 +31,7 @@ routes = (
     (Comments, "/comments"),
     (CommentAction, "/comments/<int:id_>"),
     (Wishes, "/wishes"),
+    (BrandUpdate, "/brand/<int:id_>"),
     (Brand, "/brand"),
     (Category, "/category"),
     (Discounts, "/discounts"),

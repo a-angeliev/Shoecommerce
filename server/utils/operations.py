@@ -19,10 +19,14 @@ def db_add_items(*items):
 def db_delete_items(items):
     try:
         if items:
-            db.session.delete(items)
+            for item in items:
+                db.session.delete(item)
         db.session.flush()
+        print("+")
     except Exception as ex:
         if ex.orig.pgcode == UNIQUE_VIOLATION:
             raise BadRequest("You can't delete the item")
         else:
-            InternalServerError("Server is unavailable.")
+            raise InternalServerError("Server is unavailable.")
+
+

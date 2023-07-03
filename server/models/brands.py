@@ -8,4 +8,4 @@ class BrandModel(db.Model):
     name = db.Column(db.String(255), nullable=False, unique=True)
     description = db.Column(db.Text, nullable=False)
     logo_url = db.Column(db.String(), nullable=False)
-    products = db.relationship("ProductsModel", backref="brand", lazy="select")
+    products = db.relationship("ProductsModel", cascade="all, delete-orphan", backref="brand", lazy="select")
