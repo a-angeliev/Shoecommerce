@@ -9,17 +9,17 @@ export const BrandEdit = () => {
     const [brand, setBrand] = useState("");
     const params = useParams();
     console.log(params.id);
-    useEffect(() => {
-        const brand = brandService
-            .getBrandById(params.id)
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => console.log(err));
-    }, []);
+    // useEffect(() => {
+    //     const brand = brandService
+    //         .getBrandById(params.id)
+    //         .then((res) => {
+    //             console.log(res);
+    //         })
+    //         .catch((err) => console.log(err));
+    // }, []);
     return (
         <>
-            <BrandForm title='Edit'></BrandForm>
+            <BrandForm title='Edit' job='edit'></BrandForm>
         </>
     );
 };

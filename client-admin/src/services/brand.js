@@ -4,6 +4,8 @@ const endpoints = {
     ALLBRANDS: "/brand",
     ADDBRAND: "/brand",
     BRANDBYID: (brandId) => `/brand/${brandId}`,
+    EDITBRAND: (brandId) => `/brand/${brandId}`,
+    DELETEBRAND: (brandId) => `/brand/${brandId}`,
 };
 
 export async function getAllBrands() {
@@ -16,4 +18,12 @@ export async function createBrand(brandData) {
 
 export async function getBrandById(brandId) {
     return request.get(endpoints.BRANDBYID(brandId));
+}
+
+export async function editBrandById(brandId, brandData) {
+    return request.put(endpoints.EDITBRAND(brandId), brandData);
+}
+
+export async function deleteBrandById(brandId) {
+    return request.del(endpoints.DELETEBRAND(brandId));
 }

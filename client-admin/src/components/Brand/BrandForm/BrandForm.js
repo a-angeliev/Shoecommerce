@@ -1,6 +1,7 @@
 import style from "./BrandForm.module.css";
 
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 import * as brandService from "../../../services/brand";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +11,7 @@ export const BrandForm = (params) => {
     const [nameValidation, setNameValidation] = useState("");
     const [logoValidation, setLogoValidation] = useState("");
     const [descValidation, setDescValidation] = useState("");
+    const param = useParams();
 
     const navigate = useNavigate();
 
@@ -21,7 +23,6 @@ export const BrandForm = (params) => {
     };
 
     const validate = () => {
-        console.log(brandInput);
         if (brandInput["name"].length <= 2) {
             setNameValidation(false);
         } else {
@@ -54,14 +55,33 @@ export const BrandForm = (params) => {
                 logo_url: brandInput["logo-url"],
                 description: brandInput.description,
             };
+            console.log(params);
+            if (params.job === "edit") {
+                const edit = brandService
+                    .editBrandById(param.id, brandData)
+                    .then((res) => navigate("/brand/information"))
+                    .catch((err) => console.log(err));
+            } else if (params.job === "create") {
+                const brand = brandService
+                    .createBrand(brandData)
+                    .then((res) => {
+                        navigate("/brand/information");
+                    })
+                    .then((err) => console.log(err));
+            }
 
-            const brand = brandService
-                .createBrand(brandData)
-                .then((res) => {
-                    console.log(res);
-                    navigate("/brand/information");
-                })
-                .then((err) => console.log(err));
+            // const brand = brandService
+            //     .createBrand(brandData)
+            //     .then((res) => {
+            //         console.log(res);
+            //         navigate("/brand/information");
+            //     })
+            //     .then((err) => console.log(err));
+
+            // const deletese = brandService
+            //     .deleteBrandById(param.id)
+            //     .then((res) => console.log(res))
+            //     .catch((err) => console.log(err));
         }
     };
 
