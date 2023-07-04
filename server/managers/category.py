@@ -3,7 +3,7 @@ from werkzeug.exceptions import BadRequest, InternalServerError, NotFound
 
 from db import db
 from models import CategoryModel, ProductsModel
-from utils.operations import db_add_items
+from utils.operations import db_add_items, db_delete_items
 
 
 class CategoryManager:
@@ -27,10 +27,47 @@ class CategoryManager:
     def get_by_name(category_title):
         category = CategoryModel.query.filter_by(title=category_title).first()
         if not category:
-            raise NotFound("There is no category with that title")
+            raise NotFound("There is not category with that title")
         return category
 
     @staticmethod
     def get_by_title_query(category_title):
         category = CategoryModel.query.filter_by(title=category_title)
         return category
+
+    @staticmethod
+    def get_by_id(id_):
+        category = CategoryModel.query.filter_by(id=id_).first()
+        if not category:
+            raise NotFound("There is not category with that id")
+        return category
+
+    @staticmethod
+    def edit_category(id_, data):
+        category = CategoryModel.query.filter_by(id=id_).first()
+        if not category:
+            raise NotFound("This category does not exist.")
+
+        category.title = data['title']
+
+        db_add_items(category)
+
+        return category
+
+    @staticmethod
+    def delete(_id):
+        category = CategoryModel.query.filter_by(id=_id).first()
+        if not category:
+            raise NotFound("There is not category with that id")
+
+        products = category.products
+        pairs = []
+        images = []
+        for product in products:
+            for pair in product.pairs:
+                pairs.append(pair)
+            for img in product.images:
+                images.append(img)
+        print(pairs)
+        db_delete_items([category, *products, *pairs, *images])
+        return {"massage": "You successfully delete the category"}

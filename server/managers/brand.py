@@ -71,4 +71,4 @@ class BrandManager:
                 images.append(img)
         print(pairs)
         db_delete_items([brand, *products, *pairs, *images])
-        return {"massage": "You successfully delete the discount"}
+        return {"massage": "You successfully delete the brand"}
