@@ -1,6 +1,6 @@
 import style from "./BrandForm.module.css";
 
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import * as brandService from "../../../services/brand";
@@ -17,6 +17,17 @@ export const BrandForm = (params) => {
     const param = useParams();
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (params.brand !== "") {
+            const brand = JSON.parse(params.brand);
+            setBrandInput({
+                name: brand.name,
+                "logo-url": brand["logo_url"],
+                description: brand.description,
+            });
+        }
+    }, [params.brand]);
 
     const inputHandler = (e) => {
         const data = { ...brandInput };
@@ -76,14 +87,6 @@ export const BrandForm = (params) => {
                         setAlert({ color: "red", text: err.message });
                     });
             }
-
-            // const brand = brandService
-            //     .createBrand(brandData)
-            //     .then((res) => {
-            //         console.log(res);
-            //         navigate("/brand/information");
-            //     })
-            //     .then((err) => console.log(err));
         }
     };
 
