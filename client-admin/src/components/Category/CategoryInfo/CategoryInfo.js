@@ -20,6 +20,7 @@ export const CategoryInfo = () => {
     const [numberOfCategories, setNumberOfCategories] = useState(1);
     const [orderById, setOrderById] = useState(true);
     const [orderByTitle, setOrderByTitle] = useState(true);
+    const [reset, setReset] = useState(false);
 
     const { setAlert } = useContext(AlertContext);
 
@@ -32,7 +33,7 @@ export const CategoryInfo = () => {
                 setNumberOfCategories(res.length);
             })
             .catch((err) => setAlert({ color: "red", text: err.message }));
-    }, []);
+    }, [reset]);
 
     useEffect(() => {
         setNumberOfPages(Math.ceil(numberOfCategories / itemPerPage));
@@ -109,7 +110,7 @@ export const CategoryInfo = () => {
                             {filteredCategories
                                 .slice(currentPage * itemPerPage - itemPerPage, currentPage * itemPerPage)
                                 .map((category) => (
-                                    <CategoryInfoRow category={category}></CategoryInfoRow>
+                                    <CategoryInfoRow category={category} reset={setReset}></CategoryInfoRow>
                                 ))}
                         </table>
                     </div>

@@ -1,14 +1,62 @@
 import style from "./CategoryInfoRow.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+
+import * as categoryService from "../../../../services/category";
+import { Alert } from "../../../Alert/Alert";
+import { AlertContext } from "../../../../contexts/AlertContext";
+
 export const CategoryInfoRow = (params) => {
     const [activeDots, setActiveDots] = useState(false);
+    const [deletePopup, setDeletePopup] = useState(false);
+    const { setAlert } = useContext(AlertContext);
 
     const expandDots = () => {
         setActiveDots((prev) => !prev);
     };
+
+    const deleteBrand = () => {
+        categoryService
+            .deleteCategory(params.category.id)
+            .then((res) => {
+                console.log(res);
+                params.reset((prev) => !prev);
+                setDeletePopup(false);
+                setActiveDots(false);
+                setAlert({ color: "green", text: "You successful delete the Item!" });
+            })
+            .catch((err) => {
+                console.log(err);
+                setAlert({ color: "red", text: err.message });
+            });
+    };
+
     return (
         <>
+            <Alert></Alert>
+            <div
+                className={`${style.delete}  ${deletePopup ? style.active : ""}`}
+                onClick={() => {
+                    setDeletePopup(false);
+                    setActiveDots(false);
+                }}>
+                <div className={style.popup} onClick={(e) => e.stopPropagation()}>
+                    <p>
+                        Are you sure you want to <span className={style["delete-color"]}>DELETE</span> this category and
+                        shoes in it?
+                    </p>
+                    <div className={style.buttons}>
+                        <button
+                            onClick={() => {
+                                setDeletePopup(false);
+                                setActiveDots(false);
+                            }}>
+                            NO
+                        </button>
+                        <button onClick={() => deleteBrand()}>YES</button>
+                    </div>
+                </div>
+            </div>
             <tr className={style.tr}>
                 <td className={style["cl-1"]}>{params.category.id}</td>
                 <td className={style["cl-2"]}>{params.category.title}</td>
@@ -26,7 +74,7 @@ export const CategoryInfoRow = (params) => {
                                     <Link to={`/category/edit/${params.category.id}`}>Edit</Link>
                                 </li>
                                 <li>
-                                    <Link>Delete</Link>
+                                    <Link onClick={() => setDeletePopup(true)}>Delete</Link>
                                 </li>
                             </ul>
                         </div>
