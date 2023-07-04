@@ -129,20 +129,12 @@ export const BrandInfo = () => {
                         </table>
                     </div>
                     <div className={style.pag}>
-                        <div className={style.pagination}>
-                            <Pagination
-                                setCurrentPage={setCurrentPage}
-                                currentPage={currentPage}
-                                numberOfPages={numberOfPages}></Pagination>
-                        </div>
-                        <div className={style["item-info"]}>
-                            Showing{" "}
-                            {currentPage * itemPerPage - Number(itemPerPage) == 0
-                                ? 1
-                                : currentPage * itemPerPage - Number(itemPerPage)}{" "}
-                            to {currentPage * itemPerPage > numberOfBrands ? numberOfBrands : currentPage * itemPerPage}{" "}
-                            of {numberOfBrands} entries
-                        </div>
+                        <Pagination
+                            setCurrentPage={setCurrentPage}
+                            currentPage={currentPage}
+                            numberOfPages={numberOfPages}
+                            itemPerPage={itemPerPage}
+                            numberOfItems={numberOfBrands}></Pagination>
                     </div>
                 </div>
             </div>
