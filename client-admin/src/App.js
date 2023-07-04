@@ -12,6 +12,8 @@ import { BrandEdit } from "./components/Brand/BrandEdit/BrandEdit";
 import { BrandCreate } from "./components/Brand/BrandCreate/BrandCreate";
 import { AlertProvider } from "./contexts/AlertContext";
 import { CategoryInfo } from "./components/Category/CategoryInfo/CategoryInfo";
+import { CategoryCreate } from "./components/Category/CategoryCreate/CategoryCreate";
+import { CategoryEdit } from "./components/Category/CategoryEdit/CategoryEdit";
 
 function App() {
     return (
@@ -53,6 +55,22 @@ function App() {
                                 element={
                                     <PrivateRoute>
                                         <CategoryInfo />
+                                    </PrivateRoute>
+                                }
+                            />
+                            <Route
+                                path='/category/create'
+                                element={
+                                    <PrivateRoute>
+                                        <CategoryCreate />
+                                    </PrivateRoute>
+                                }
+                            />
+                            <Route
+                                path='/category/edit/:id'
+                                element={
+                                    <PrivateRoute>
+                                        <CategoryEdit />
                                     </PrivateRoute>
                                 }
                             />

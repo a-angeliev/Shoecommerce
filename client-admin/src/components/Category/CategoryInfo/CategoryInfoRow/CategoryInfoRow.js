@@ -23,7 +23,7 @@ export const CategoryInfoRow = (params) => {
                         <div className={style.list}>
                             <ul>
                                 <li>
-                                    <Link>Edit</Link>
+                                    <Link to={`/category/edit/${params.category.id}`}>Edit</Link>
                                 </li>
                                 <li>
                                     <Link>Delete</Link>
