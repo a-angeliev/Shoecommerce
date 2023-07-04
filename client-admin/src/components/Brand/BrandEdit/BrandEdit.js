@@ -3,25 +3,31 @@ import style from "./BrandEdit.module.css";
 import * as brandService from "../../../services/brand";
 import { BrandForm } from "../BrandForm/BrandForm";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
+import { AlertContext } from "../../../contexts/AlertContext";
+import { Alert } from "../../Alert/Alert";
 
 export const BrandEdit = () => {
     const [brand, setBrand] = useState("");
     const params = useParams();
-    console.log(params.id);
+    const { setAlert } = useContext(AlertContext);
 
     useEffect(() => {
-        const brand = brandService
+        brandService
             .getBrandById(params.id)
             .then((res) => {
                 setBrand(res);
-                console.log(res);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                setAlert({ color: "red", text: err.message });
+                console.log(err);
+            });
     }, []);
 
     return (
         <>
+            <Alert></Alert>
             <BrandForm brand={brand} title='Edit' job='edit'></BrandForm>
         </>
     );

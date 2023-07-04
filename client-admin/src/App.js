@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import { NavigationBar } from "./components/Navigation/Navigation";
 import { PrivateRoute } from "../src/components/PrivetRoute/PrivateRoute";
 import { Login } from "./components/Auth/Login/Login";
-import { Ass } from "./components/Ass/Ass";
 
 import { AuthProvider } from "./contexts/AuthContext";
 import { UserBar } from "./components/UserBar/UserBar";
@@ -31,14 +30,7 @@ function App() {
                                     </PrivateRoute>
                                 }
                             />
-                            <Route
-                                path='/'
-                                element={
-                                    <PrivateRoute>
-                                        <Ass />
-                                    </PrivateRoute>
-                                }
-                            />
+
                             <Route
                                 path='/brand/edit/:id'
                                 element={

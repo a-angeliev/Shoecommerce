@@ -19,7 +19,7 @@ export const BrandForm = (params) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (params.brand !== "") {
+        if (params.brand !== "" && params.brand !== undefined) {
             const brand = JSON.parse(params.brand);
             setBrandInput({
                 name: brand.name,
@@ -73,7 +73,10 @@ export const BrandForm = (params) => {
             if (params.job === "edit") {
                 const edit = brandService
                     .editBrandById(param.id, brandData)
-                    .then((res) => navigate("/brand/information"))
+                    .then((res) => {
+                        setAlert({ color: "green", text: "You Successful edit the Brand" });
+                        navigate("/brand/information");
+                    })
                     .catch((err) => {
                         setAlert({ color: "red", text: err.message });
                     });
@@ -81,6 +84,7 @@ export const BrandForm = (params) => {
                 const brand = brandService
                     .createBrand(brandData)
                     .then((res) => {
+                        setAlert({ color: "green", text: "You Successful Create the Brand" });
                         navigate("/brand/information");
                     })
                     .catch((err) => {
@@ -108,6 +112,7 @@ export const BrandForm = (params) => {
                                     name='name'
                                     id='name'
                                     type='text'
+                                    placeholder='Nike'
                                     onChange={(e) => inputHandler(e)}
                                     value={brandInput.name}></input>
                                 <label htmlFor='logo-url'>Logo URL</label>
@@ -116,10 +121,12 @@ export const BrandForm = (params) => {
                                     name='logo-url'
                                     id='logo-url'
                                     type='url'
+                                    placeholder='https://www.img.com'
                                     onChange={(e) => inputHandler(e)}
                                     value={brandInput["logo-url"]}></input>
                                 <label htmlFor='description'>Description</label>
                                 <textarea
+                                    placeholder='This is description!'
                                     name='description'
                                     id='description'
                                     className={`${style.description}  ${descValidation === true ? "" : style.error} `}

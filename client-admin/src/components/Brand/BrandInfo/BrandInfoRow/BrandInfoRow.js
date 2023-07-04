@@ -1,8 +1,11 @@
 import style from "./BrandInfoRow.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import * as brandService from "../../../../services/brand";
+
+import { AlertContext } from "../../../../contexts/AlertContext";
+import { Alert } from "../../../Alert/Alert";
 
 export const BrandInfoRow = (props) => {
     const brand = props.brand;
@@ -10,6 +13,7 @@ export const BrandInfoRow = (props) => {
     const [activeDots, setActiveDots] = useState(false);
     const [deletePopup, setDeletePopup] = useState(false);
 
+    const { setAlert } = useContext(AlertContext);
     const navigate = useNavigate();
 
     const expandDots = () => {
@@ -23,21 +27,36 @@ export const BrandInfoRow = (props) => {
                 console.log(res);
                 props.reset((prev) => !prev);
                 setDeletePopup(false);
+                setActiveDots(false);
+                setAlert({ color: "green", text: "You successful delete the Item!" });
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err);
+                setAlert({ color: "red", text: err.message });
+            });
     };
     return (
         <>
+            <Alert></Alert>
             <div
                 className={`${style.delete}  ${deletePopup ? style.active : ""}`}
-                onClick={() => setDeletePopup(false)}>
+                onClick={() => {
+                    setDeletePopup(false);
+                    setActiveDots(false);
+                }}>
                 <div className={style.popup} onClick={(e) => e.stopPropagation()}>
                     <p>
                         Are you sure you want to <span className={style["delete-color"]}>DELETE</span> brand and all
                         shoes in this brand?
                     </p>
                     <div className={style.buttons}>
-                        <button onClick={() => setDeletePopup(false)}>NO</button>
+                        <button
+                            onClick={() => {
+                                setDeletePopup(false);
+                                setActiveDots(false);
+                            }}>
+                            NO
+                        </button>
                         <button onClick={() => deleteBrand()}>YES</button>
                     </div>
                 </div>
