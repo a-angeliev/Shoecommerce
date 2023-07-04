@@ -13,7 +13,7 @@ def db_add_items(*items):
         if ex.orig.pgcode == UNIQUE_VIOLATION:
             raise BadRequest("Item that you try to add already exist")
         else:
-            InternalServerError("Server is unavailable.")
+            raise InternalServerError("Server is unavailable.")
 
 
 def db_delete_items(items):

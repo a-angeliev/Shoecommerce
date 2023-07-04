@@ -30,6 +30,13 @@ class BrandManager:
         return brand
 
     @staticmethod
+    def get_by_id(_id):
+        brand = BrandModel.query.filter_by(id=_id).first()
+        if not brand:
+            raise NotFound("There is not brand with that ID")
+        return brand
+
+    @staticmethod
     def get_by_name_query(brand_name):
         brands = BrandModel.query.filter_by(name=brand_name)
         return brands

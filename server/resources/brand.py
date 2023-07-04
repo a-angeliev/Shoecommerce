@@ -61,10 +61,17 @@ class Brand(Resource):
 
         raise BadRequest("You should use query parameters, check the documentation!")
 
-        # TODO
-        # Implement Delete func
+
 
 class BrandUpdate(Resource):
+
+    @staticmethod
+    @permission_required(RoleType.admin)
+    def get(id_):
+        brand = BrandManager.get_by_id(id_)
+        schema = CreateBrandResponseSchema()
+        return schema.dumps(brand)
+
     @staticmethod
     @permission_required(RoleType.admin)
     @validate_schema(EditBrandRequestSchema)
