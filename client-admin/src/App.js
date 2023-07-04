@@ -11,51 +11,54 @@ import { UserBar } from "./components/UserBar/UserBar";
 import { BrandInfo } from "./components/Brand/BrandInfo/BrandInfo";
 import { BrandEdit } from "./components/Brand/BrandEdit/BrandEdit";
 import { BrandCreate } from "./components/Brand/BrandCreate/BrandCreate";
+import { AlertProvider } from "./contexts/AlertContext";
 
 function App() {
     return (
         <AuthProvider>
-            <div className='app'>
-                <NavigationBar />
-                <div className='content'>
-                    <UserBar />
-                    <Routes>
-                        <Route path='/login' element={<Login />} />
-                        <Route
-                            path='/brand/information'
-                            element={
-                                <PrivateRoute>
-                                    <BrandInfo />
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route
-                            path='/'
-                            element={
-                                <PrivateRoute>
-                                    <Ass />
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route
-                            path='/brand/edit/:id'
-                            element={
-                                <PrivateRoute>
-                                    <BrandEdit></BrandEdit>
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route
-                            path='/brand/create'
-                            element={
-                                <PrivateRoute>
-                                    <BrandCreate />
-                                </PrivateRoute>
-                            }
-                        />
-                    </Routes>
+            <AlertProvider>
+                <div className='app'>
+                    <NavigationBar />
+                    <div className='content'>
+                        <UserBar />
+                        <Routes>
+                            <Route path='/login' element={<Login />} />
+                            <Route
+                                path='/brand/information'
+                                element={
+                                    <PrivateRoute>
+                                        <BrandInfo />
+                                    </PrivateRoute>
+                                }
+                            />
+                            <Route
+                                path='/'
+                                element={
+                                    <PrivateRoute>
+                                        <Ass />
+                                    </PrivateRoute>
+                                }
+                            />
+                            <Route
+                                path='/brand/edit/:id'
+                                element={
+                                    <PrivateRoute>
+                                        <BrandEdit></BrandEdit>
+                                    </PrivateRoute>
+                                }
+                            />
+                            <Route
+                                path='/brand/create'
+                                element={
+                                    <PrivateRoute>
+                                        <BrandCreate />
+                                    </PrivateRoute>
+                                }
+                            />
+                        </Routes>
+                    </div>
                 </div>
-            </div>
+            </AlertProvider>
         </AuthProvider>
     );
 }

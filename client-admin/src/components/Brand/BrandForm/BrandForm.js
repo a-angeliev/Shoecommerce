@@ -1,16 +1,19 @@
 import style from "./BrandForm.module.css";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 import * as brandService from "../../../services/brand";
 import { useNavigate } from "react-router-dom";
+import { AlertContext } from "../../../contexts/AlertContext";
+import { Alert } from "../../Alert/Alert";
 
 export const BrandForm = (params) => {
     const [brandInput, setBrandInput] = useState({ name: "", "logo-url": "", description: "" });
     const [nameValidation, setNameValidation] = useState("");
     const [logoValidation, setLogoValidation] = useState("");
     const [descValidation, setDescValidation] = useState("");
+    const { alert, setAlert } = useContext(AlertContext);
     const param = useParams();
 
     const navigate = useNavigate();
@@ -60,14 +63,18 @@ export const BrandForm = (params) => {
                 const edit = brandService
                     .editBrandById(param.id, brandData)
                     .then((res) => navigate("/brand/information"))
-                    .catch((err) => console.log(err));
+                    .catch((err) => {
+                        setAlert({ color: "red", text: err.message });
+                    });
             } else if (params.job === "create") {
                 const brand = brandService
                     .createBrand(brandData)
                     .then((res) => {
                         navigate("/brand/information");
                     })
-                    .then((err) => console.log(err));
+                    .catch((err) => {
+                        setAlert({ color: "red", text: err.message });
+                    });
             }
 
             // const brand = brandService
@@ -82,6 +89,7 @@ export const BrandForm = (params) => {
 
     return (
         <>
+            <Alert></Alert>
             <div className={style["page-content"]}>
                 <div className={style.wrapper}>
                     <h1>{params.title}</h1>
