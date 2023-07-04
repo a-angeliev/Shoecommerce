@@ -28,7 +28,7 @@ class Category(Resource):
         if not category_title:
             categories = CategoryManager.get_all()
             category_only_base_info_schema = CategoryBaseInfoResponseSchema()
-            return category_only_base_info_schema.dumps(categories, many=True)
+            return category_only_base_info_schema.dump(categories, many=True)
 
         if category_title == "all":
             categories = CategoryManager.get_all()
