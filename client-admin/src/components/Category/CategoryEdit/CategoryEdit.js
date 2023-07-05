@@ -17,7 +17,6 @@ export const CategoryEdit = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(param.id, 123);
         categoryService
             .getCategoryById(param.id)
             .then((res) => setCategory(res))

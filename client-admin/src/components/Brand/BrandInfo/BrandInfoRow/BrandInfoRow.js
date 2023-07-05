@@ -24,14 +24,12 @@ export const BrandInfoRow = (props) => {
         const deletese = brandService
             .deleteBrandById(brand.id)
             .then((res) => {
-                console.log(res);
                 props.reset((prev) => !prev);
                 setDeletePopup(false);
                 setActiveDots(false);
                 setAlert({ color: "green", text: "You successful delete the Item!" });
             })
             .catch((err) => {
-                console.log(err);
                 setAlert({ color: "red", text: err.message });
             });
     };

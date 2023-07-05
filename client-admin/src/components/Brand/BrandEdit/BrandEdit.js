@@ -21,7 +21,6 @@ export const BrandEdit = () => {
             })
             .catch((err) => {
                 setAlert({ color: "red", text: err.message });
-                console.log(err);
             });
     }, []);
 

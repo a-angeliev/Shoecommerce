@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 export const ProductInfoRow = (props) => {
     const [activeDots, setActiveDots] = useState(false);
-    console.log(props.product);
     const expandDots = () => {
         setActiveDots((prev) => !prev);
     };

@@ -69,7 +69,6 @@ export const BrandForm = (params) => {
                 logo_url: brandInput["logo-url"],
                 description: brandInput.description,
             };
-            console.log(params);
             if (params.job === "edit") {
                 const edit = brandService
                     .editBrandById(param.id, brandData)

@@ -23,6 +23,7 @@ export const ProductInfo = () => {
         setNumberOfProducts(products.length);
         setNumberOfPages(Math.ceil(products.length / itemPerPage));
         setFilteredProducts(products);
+        console.log(products);
     }, [products]);
 
     useEffect(() => {

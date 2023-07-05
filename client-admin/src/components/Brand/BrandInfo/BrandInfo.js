@@ -53,6 +53,7 @@ export const BrandInfo = () => {
         setCurrentPage(1);
         setNumberOfPages(Math.ceil(numberOfBrands / itemPerPage));
     }, [itemPerPage]);
+
     if (filteredBrands !== "") {
         return (
             <div className={style.content}>

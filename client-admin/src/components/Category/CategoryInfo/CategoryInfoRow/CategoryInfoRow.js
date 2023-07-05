@@ -19,14 +19,12 @@ export const CategoryInfoRow = (params) => {
         categoryService
             .deleteCategory(params.category.id)
             .then((res) => {
-                console.log(res);
                 params.reset((prev) => !prev);
                 setDeletePopup(false);
                 setActiveDots(false);
                 setAlert({ color: "green", text: "You successful delete the Item!" });
             })
             .catch((err) => {
-                console.log(err);
                 setAlert({ color: "red", text: err.message });
             });
     };
