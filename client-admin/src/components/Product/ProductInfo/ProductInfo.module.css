@@ -20,6 +20,11 @@ table {
     width: 100%;
 }
 
+.sort-icon {
+    width: 12px;
+    height: 12px;
+}
+
 .cl-1 {
     width: 10%;
 }

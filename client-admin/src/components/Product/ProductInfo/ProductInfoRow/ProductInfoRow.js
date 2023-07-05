@@ -1,23 +1,22 @@
 import { useState } from "react";
 import style from "./ProductInfoRow.module.css";
 import { Link } from "react-router-dom";
-export const ProductInfoRow = () => {
-    const [activeDots, setActiveDots] = useState(false);
 
+export const ProductInfoRow = (props) => {
+    const [activeDots, setActiveDots] = useState(false);
+    console.log(props.product);
     const expandDots = () => {
         setActiveDots((prev) => !prev);
     };
     return (
         <>
             <tr className={style["tr"]}>
-                <td className={style["cl-1"]}>1</td>
+                <td className={style["cl-1"]}>{props.product.id}</td>
                 <td className={style["cl-2"]}>
-                    <img
-                        className={style["product-img"]}
-                        src='https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,q_80,w_440/a427af8a-b5fa-43c2-964c-743aae124d9c/air-jordan-xxxvi-fs-basketball-shoes-BdpjNf.png'></img>
+                    <img className={style["product-img"]} src={props.product.images[0].img_url}></img>
                 </td>
-                <td className={style["cl-3"]}>Addidas Shoes</td>
-                <td className={style["cl-4"]}>300$</td>
+                <td className={style["cl-3"]}>{props.product.title}</td>
+                <td className={style["cl-4"]}>{props.product.price}$</td>
                 <td className={style["cl-5"]}>
                     <div className={`${style["dots"]}  ${activeDots ? style.active : ""}`}>
                         <div className={style.dot}></div>
