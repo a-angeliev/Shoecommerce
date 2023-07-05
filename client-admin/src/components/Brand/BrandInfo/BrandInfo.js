@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { BrandInfoRow } from "./BrandInfoRow/BrandInfoRow";
 import { Pagination } from "../../Pagination/Pagination";
-import { orderByIdFunction } from "../../../utils/utils";
+import { orderByIdFunction, orderByNameFunction } from "../../../utils/utils";
 
 export const BrandInfo = () => {
     const [brands, setBrands] = useState("");
@@ -42,32 +42,11 @@ export const BrandInfo = () => {
     }, [filter]);
 
     useEffect(() => {
-        // const br = [...brands];
-        // if (orderById) {
-        //     br.sort((br1, br2) => br2.id - br1.id);
-        // } else {
-        //     br.sort((br1, br2) => br1.id - br2.id);
-        // }
-        // setFilteredBrands(br);
         orderByIdFunction(brands, orderById, setFilteredBrands);
     }, [orderById]);
 
     useEffect(() => {
-        const br = [...brands];
-        if (orderByName) {
-            br.sort((br1, br2) => {
-                const textA = br1.name.toUpperCase();
-                const textB = br2.name.toUpperCase();
-                return textA < textB ? -1 : textA > textB ? 1 : 0;
-            });
-        } else {
-            br.sort((br1, br2) => {
-                const textA = br1.name.toUpperCase();
-                const textB = br2.name.toUpperCase();
-                return textA > textB ? -1 : textA < textB ? 1 : 0;
-            });
-        }
-        setFilteredBrands(br);
+        orderByNameFunction(brands, orderByName, "name", setFilteredBrands);
     }, [orderByName]);
 
     useEffect(() => {

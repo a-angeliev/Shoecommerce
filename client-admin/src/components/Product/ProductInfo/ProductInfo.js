@@ -5,7 +5,7 @@ import { useContext, useState, useEffect } from "react";
 import { Pagination } from "../../Pagination/Pagination";
 import { SearchTable } from "../../SearchTable/SearchTable";
 import { ProductContext } from "../../../contexts/ProductsContext";
-import { orderByIdFunction } from "../../../utils/utils";
+import { orderByIdFunction, orderByNameFunction } from "../../../utils/utils";
 export const ProductInfo = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [numberOfPages, setNumberOfPages] = useState(1);
@@ -42,34 +42,11 @@ export const ProductInfo = () => {
     }, [itemPerPage]);
 
     useEffect(() => {
-        // const prd = [...products];
-        // if (orderById) {
-        //     prd.sort((prd1, prd2) => prd2.id - prd1.id);
-        // } else {
-        //     prd.sort((prd1, prd2) => prd1.id - prd2.id);
-        // }
-        // setFilteredProducts(prd);
-
         orderByIdFunction(products, orderById, setFilteredProducts);
     }, [orderById]);
 
     useEffect(() => {
-        const prd = [...products];
-        if (orderByName) {
-            console.log(prd);
-            prd.sort((prd1, prd2) => {
-                const textA = prd1.title.toUpperCase();
-                const textB = prd2.title.toUpperCase();
-                return textA < textB ? -1 : textA > textB ? 1 : 0;
-            });
-        } else {
-            prd.sort((prd1, prd2) => {
-                const textA = prd1.title.toUpperCase();
-                const textB = prd2.title.toUpperCase();
-                return textA > textB ? -1 : textA < textB ? 1 : 0;
-            });
-        }
-        setFilteredProducts(prd);
+        orderByNameFunction(filteredProducts, orderByName, "title", setFilteredProducts);
     }, [orderByName]);
 
     useEffect(() => {

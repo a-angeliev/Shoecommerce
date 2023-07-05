@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { SearchTable } from "../../SearchTable/SearchTable";
-import { orderByIdFunction } from "../../../utils/utils";
+import { orderByIdFunction, orderByNameFunction } from "../../../utils/utils";
 
 export const CategoryInfo = () => {
     const [categories, setCategories] = useState([]);
@@ -54,32 +54,11 @@ export const CategoryInfo = () => {
     }, [itemPerPage]);
 
     useEffect(() => {
-        // const cat = [...categories];
-        // if (orderById) {
-        //     cat.sort((c1, c2) => c2.id - c1.id);
-        // } else {
-        //     cat.sort((c1, c2) => c1.id - c2.id);
-        // }
-        // setFilteredCategories(cat);
         orderByIdFunction(categories, orderById, setFilteredCategories);
     }, [orderById]);
 
     useEffect(() => {
-        const cat = [...categories];
-        if (orderByTitle) {
-            cat.sort((c1, c2) => {
-                const textA = c1.title.toUpperCase();
-                const textB = c2.title.toUpperCase();
-                return textA < textB ? -1 : textA > textB ? 1 : 0;
-            });
-        } else {
-            cat.sort((c1, c2) => {
-                const textA = c1.title.toUpperCase();
-                const textB = c2.title.toUpperCase();
-                return textA > textB ? -1 : textA < textB ? 1 : 0;
-            });
-        }
-        setFilteredCategories(cat);
+        orderByNameFunction(categories, orderByTitle, "title", setFilteredCategories);
     }, [orderByTitle]);
 
     return (

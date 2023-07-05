@@ -15,3 +15,23 @@ export function orderByIdFunction(items, order, setOrderedItems) {
     }
     setOrderedItems(its);
 }
+
+export function orderByNameFunction(items, order, nameTitle, setOrderedItems) {
+    const its = [...items];
+    if (items.length > 0) {
+        if (order) {
+            its.sort((item1, item2) => {
+                const textA = item1[`${nameTitle}`].toUpperCase();
+                const textB = item2[`${nameTitle}`].toUpperCase();
+                return textA < textB ? -1 : textA > textB ? 1 : 0;
+            });
+        } else {
+            its.sort((item1, item2) => {
+                const textA = item1[`${nameTitle}`].toUpperCase();
+                const textB = item2[`${nameTitle}`].toUpperCase();
+                return textA > textB ? -1 : textA < textB ? 1 : 0;
+            });
+        }
+        setOrderedItems(its);
+    }
+}
