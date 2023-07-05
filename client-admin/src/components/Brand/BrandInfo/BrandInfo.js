@@ -130,15 +130,15 @@ export const BrandInfo = () => {
                                 ))}
                         </table>
                     </div>
-                    <div className={style.pag}>
-                        <Pagination
-                            setCurrentPage={setCurrentPage}
-                            currentPage={currentPage}
-                            numberOfPages={numberOfPages}
-                            itemPerPage={itemPerPage}
-                            numberOfItems={numberOfBrands}></Pagination>
-                    </div>
+                    {/* <div className={style.pag}> */}
                 </div>
+                <Pagination
+                    setCurrentPage={setCurrentPage}
+                    currentPage={currentPage}
+                    numberOfPages={numberOfPages}
+                    itemPerPage={itemPerPage}
+                    numberOfItems={numberOfBrands}></Pagination>
+                {/* </div> */}
             </div>
         );
     } else {
