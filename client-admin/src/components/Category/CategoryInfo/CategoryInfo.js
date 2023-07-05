@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { SearchTable } from "../../SearchTable/SearchTable";
+import { orderByIdFunction } from "../../../utils/utils";
 
 export const CategoryInfo = () => {
     const [categories, setCategories] = useState([]);
@@ -53,13 +54,14 @@ export const CategoryInfo = () => {
     }, [itemPerPage]);
 
     useEffect(() => {
-        const cat = [...categories];
-        if (orderById) {
-            cat.sort((c1, c2) => c2.id - c1.id);
-        } else {
-            cat.sort((c1, c2) => c1.id - c2.id);
-        }
-        setFilteredCategories(cat);
+        // const cat = [...categories];
+        // if (orderById) {
+        //     cat.sort((c1, c2) => c2.id - c1.id);
+        // } else {
+        //     cat.sort((c1, c2) => c1.id - c2.id);
+        // }
+        // setFilteredCategories(cat);
+        orderByIdFunction(categories, orderById, setFilteredCategories);
     }, [orderById]);
 
     useEffect(() => {

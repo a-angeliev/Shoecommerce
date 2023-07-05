@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { BrandInfoRow } from "./BrandInfoRow/BrandInfoRow";
 import { Pagination } from "../../Pagination/Pagination";
+import { orderByIdFunction } from "../../../utils/utils";
 
 export const BrandInfo = () => {
     const [brands, setBrands] = useState("");
@@ -41,13 +42,14 @@ export const BrandInfo = () => {
     }, [filter]);
 
     useEffect(() => {
-        const br = [...brands];
-        if (orderById) {
-            br.sort((br1, br2) => br2.id - br1.id);
-        } else {
-            br.sort((br1, br2) => br1.id - br2.id);
-        }
-        setFilteredBrands(br);
+        // const br = [...brands];
+        // if (orderById) {
+        //     br.sort((br1, br2) => br2.id - br1.id);
+        // } else {
+        //     br.sort((br1, br2) => br1.id - br2.id);
+        // }
+        // setFilteredBrands(br);
+        orderByIdFunction(brands, orderById, setFilteredBrands);
     }, [orderById]);
 
     useEffect(() => {

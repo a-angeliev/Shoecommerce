@@ -5,12 +5,12 @@ import { useContext, useState, useEffect } from "react";
 import { Pagination } from "../../Pagination/Pagination";
 import { SearchTable } from "../../SearchTable/SearchTable";
 import { ProductContext } from "../../../contexts/ProductsContext";
-
+import { orderByIdFunction } from "../../../utils/utils";
 export const ProductInfo = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [numberOfPages, setNumberOfPages] = useState(1);
     const [itemPerPage, setItemPerPage] = useState(5);
-    const [numberOfProducts, setNumberOfProducts] = useState(6);
+    const [numberOfProducts, setNumberOfProducts] = useState(1);
     const [filter, setFilter] = useState("");
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [orderById, setOrderById] = useState(true);
@@ -30,6 +30,9 @@ export const ProductInfo = () => {
             const regexp = new RegExp(filter, "i");
             const prd = products.filter((product) => regexp.test(product.title));
             setFilteredProducts(prd);
+            setNumberOfProducts(prd.length);
+            setNumberOfPages(Math.ceil(prd.length / itemPerPage));
+            setCurrentPage(1);
         }
     }, [filter]);
 
@@ -39,13 +42,15 @@ export const ProductInfo = () => {
     }, [itemPerPage]);
 
     useEffect(() => {
-        const prd = [...products];
-        if (orderById) {
-            prd.sort((prd1, prd2) => prd2.id - prd1.id);
-        } else {
-            prd.sort((prd1, prd2) => prd1.id - prd2.id);
-        }
-        setFilteredProducts(prd);
+        // const prd = [...products];
+        // if (orderById) {
+        //     prd.sort((prd1, prd2) => prd2.id - prd1.id);
+        // } else {
+        //     prd.sort((prd1, prd2) => prd1.id - prd2.id);
+        // }
+        // setFilteredProducts(prd);
+
+        orderByIdFunction(products, orderById, setFilteredProducts);
     }, [orderById]);
 
     useEffect(() => {
