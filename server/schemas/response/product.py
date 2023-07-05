@@ -41,6 +41,15 @@ class CreateProductResponseSchema(Schema):
     is_deleted = fields.Boolean()
 
 
+class ProductAdminResponseSchema(Schema):
+    id = fields.Integer(required=True)
+    title = fields.String(required=True)
+    description = fields.String(required=True)
+    price = fields.Float(required=True)
+
+    images = fields.Nested(ImagesSchemaNested(), many=True)
+
+
 class AddImageProductResponseSchema(Schema):
     id = fields.Integer(required=True)
     img_url = fields.String(required=True)

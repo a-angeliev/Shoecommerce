@@ -15,9 +15,10 @@ from schemas.response.product import (
     CreateProductResponseSchema,
     AddImageProductResponseSchema,
     AddProductPairResponseSchema,
-    EditProductPairResponseSchema,
+    EditProductPairResponseSchema, ProductAdminResponseSchema,
 )
 from utils.decorators import validate_schema, permission_required, token_required
+from utils.validators import validate_if_admin
 
 
 class Products(Resource):
@@ -33,6 +34,8 @@ class Products(Resource):
     def get():
         products = ProductManager.get_all()
         schema = CreateProductResponseSchema()
+        if validate_if_admin():
+            schema = ProductAdminResponseSchema()
         return schema.dumps(products, many=True)
 
 
