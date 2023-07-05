@@ -32,17 +32,23 @@ class Products(Resource):
 
     @staticmethod
     def get():
-        products = ProductManager.get_all()
-        schema = CreateProductResponseSchema()
+
         if validate_if_admin():
+            products = ProductManager.get_all(for_admin=True)
             schema = ProductAdminResponseSchema()
+        else:
+            products = ProductManager.get_all()
+            schema = CreateProductResponseSchema()
         return schema.dumps(products, many=True)
 
 
 class Product(Resource):
     @staticmethod
     def get(id_):
-        product = ProductManager.get_one(id_)
+        if validate_if_admin():
+            product = ProductManager.get_one(id_, for_admin=True)
+        else:
+            product = ProductManager.get_one(id_)
         schema = CreateProductResponseSchema()
         return schema.dumps(product)
 

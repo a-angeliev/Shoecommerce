@@ -185,16 +185,20 @@ class ProductManager:
         return product
 
     @staticmethod
-    def get_one(id_):
-        product = ProductsModel.query.filter(
-            ProductsModel.id == id_, text("is_deleted is FALSE")
-        ).first()
+    def get_one(id_, for_admin = False):
+        if for_admin:
+            product = ProductsModel.query.filter_by(id= id_).first()
+        else:
+            product = ProductsModel.query.filter(
+                ProductsModel.id == id_, text("is_deleted is FALSE")
+            ).first()
         if not product:
             raise NotFound("This product does not exist.")
         return product
 
     @staticmethod
-    def get_all():
+    def get_all(for_admin=False):
+
         category_title = request.args.get("category")
         brand_name = request.args.get("brand")
         gender = request.args.get("gender")
@@ -212,11 +216,18 @@ class ProductManager:
         if not gender:
             gender_f = True
 
-        products = (
-            ProductsModel.query.join(ProductsModel.category)
-            .join(ProductsModel.brand)
-            .filter(brand_f, text("is_deleted is FALSE"), category_f, gender_f)
-        )
+        if(for_admin):
+            products = (
+                ProductsModel.query.join(ProductsModel.category)
+                .join(ProductsModel.brand)
+                .filter(brand_f, category_f, gender_f)
+            )
+        else:
+            products = (
+                ProductsModel.query.join(ProductsModel.category)
+                .join(ProductsModel.brand)
+                .filter(brand_f, text("is_deleted is FALSE"), category_f, gender_f)
+            )
 
         return products.all()
 
