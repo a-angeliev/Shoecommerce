@@ -1,0 +1,177 @@
+.tr {
+    text-align: center;
+    height: 5rem;
+    background: white;
+    border: 1px solid var(--main-gray-border);
+}
+
+.product-img {
+    width: 4rem;
+    height: 4rem;
+}
+
+table {
+    width: 100%;
+}
+
+.cl-1 {
+    width: 10%;
+}
+
+.cl-2 {
+    width: 20%;
+}
+
+.cl-3 {
+    width: 40%;
+}
+
+.cl-4 {
+    width: 20%;
+}
+
+.cl-5 {
+    width: 10%;
+}
+
+
+
+.dots {
+    display: relative;
+    margin-right: 1rem;
+    padding: 10px;
+}
+
+.cut {
+    clip-path: polygon(75.5% 0%, 81.3% 8%, 100% 8%, 100% 100%, 0% 100%, 0% 8%, 70.6% 8%);
+
+}
+
+
+.container {
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    margin-left: -1.5%;
+    overflow: hidden;
+    position: absolute;
+    transform: translateX(-50%);
+    transition: transform 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    ;
+    width: 130px;
+}
+
+.dot {
+    background: gray;
+    margin-bottom: 1px;
+    border-radius: 50%;
+    height: 5px;
+    margin-right: 3px;
+    width: 5px;
+}
+
+.dot:last-child {
+    margin-right: 0;
+    margin-bottom: 0
+}
+
+.drop {
+    background: white;
+    border-radius: 1.2px;
+    height: 0.5px;
+    transform: translateY(5px);
+    transition: transform 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    width: 0.5px;
+}
+
+.list {
+    position: absolute;
+    transform: translateX(-70%);
+    margin-top: 30px;
+    width: 130px;
+    z-index: -1;
+    display: hidden;
+
+}
+
+.list ul {
+    margin: 0;
+    padding: 10px;
+    z-index: 3;
+}
+
+.list li {
+    align-items: center;
+    border-bottom: 1px solid #bdbdbd;
+    display: flex;
+    color: #bdbdbd;
+    font-size: 1.5rem;
+    opacity: 0;
+    list-style: none;
+    transition: opacity 100ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    user-select: none;
+    -moz-user-select: none;
+}
+
+.list li:hover {
+    background: #f5f5f5;
+    color: var(--main-dark-gray);
+}
+
+a {
+    text-decoration: none;
+    color: #bdbdbd;
+}
+
+.dots.active .container {
+    transform: translateX(-45%) translateY(20px);
+}
+
+.dots.active .drop {
+    background: var(--main-dark-gray);
+    width: 200px;
+    height: 70px;
+}
+
+.dots.active .list {
+    display: block;
+    z-index: 1;
+
+}
+
+.dots.active .list li {
+
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 200ms 100ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.dots.active .list li:nth-child(2) {
+    transition-delay: 130ms;
+}
+
+.dots.active .list li:nth-child(3) {
+    transition-delay: 160ms;
+}
+
+.dots.active .list li:nth-child(4) {
+    transition-delay: 190ms;
+}
+
+.dots.active .list li:nth-child(5) {
+    transition-delay: 220ms;
+}
+
+.dots.active .shadow {
+    opacity: 1;
+    transition: opacity 150ms 150ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.cursor {
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    height: 40px;
+    margin-top: -35px;
+    position: absolute;
+    width: 50px;
+}

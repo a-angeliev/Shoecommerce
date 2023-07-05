@@ -14,71 +14,83 @@ import { AlertProvider } from "./contexts/AlertContext";
 import { CategoryInfo } from "./components/Category/CategoryInfo/CategoryInfo";
 import { CategoryCreate } from "./components/Category/CategoryCreate/CategoryCreate";
 import { CategoryEdit } from "./components/Category/CategoryEdit/CategoryEdit";
+import { ProductInfo } from "./components/Product/ProductInfo/ProductInfo";
+import { ProductProvider } from "./contexts/ProductsContext";
 
 function App() {
     return (
-        <AuthProvider>
-            <AlertProvider>
-                <div className='app'>
-                    <NavigationBar />
-                    <div className='content'>
-                        <UserBar />
-                        <Routes>
-                            <Route path='/login' element={<Login />} />
-                            <Route
-                                path='/brand/information'
-                                element={
-                                    <PrivateRoute>
-                                        <BrandInfo />
-                                    </PrivateRoute>
-                                }
-                            />
+        <ProductProvider>
+            <AuthProvider>
+                <AlertProvider>
+                    <div className='app'>
+                        <NavigationBar />
+                        <div className='content'>
+                            <UserBar />
+                            <Routes>
+                                <Route path='/login' element={<Login />} />
+                                <Route
+                                    path='/brand/information'
+                                    element={
+                                        <PrivateRoute>
+                                            <BrandInfo />
+                                        </PrivateRoute>
+                                    }
+                                />
 
-                            <Route
-                                path='/brand/edit/:id'
-                                element={
-                                    <PrivateRoute>
-                                        <BrandEdit></BrandEdit>
-                                    </PrivateRoute>
-                                }
-                            />
-                            <Route
-                                path='/brand/create'
-                                element={
-                                    <PrivateRoute>
-                                        <BrandCreate />
-                                    </PrivateRoute>
-                                }
-                            />
-                            <Route
-                                path='/category/information'
-                                element={
-                                    <PrivateRoute>
-                                        <CategoryInfo />
-                                    </PrivateRoute>
-                                }
-                            />
-                            <Route
-                                path='/category/create'
-                                element={
-                                    <PrivateRoute>
-                                        <CategoryCreate />
-                                    </PrivateRoute>
-                                }
-                            />
-                            <Route
-                                path='/category/edit/:id'
-                                element={
-                                    <PrivateRoute>
-                                        <CategoryEdit />
-                                    </PrivateRoute>
-                                }
-                            />
-                        </Routes>
+                                <Route
+                                    path='/brand/edit/:id'
+                                    element={
+                                        <PrivateRoute>
+                                            <BrandEdit></BrandEdit>
+                                        </PrivateRoute>
+                                    }
+                                />
+                                <Route
+                                    path='/brand/create'
+                                    element={
+                                        <PrivateRoute>
+                                            <BrandCreate />
+                                        </PrivateRoute>
+                                    }
+                                />
+                                <Route
+                                    path='/category/information'
+                                    element={
+                                        <PrivateRoute>
+                                            <CategoryInfo />
+                                        </PrivateRoute>
+                                    }
+                                />
+                                <Route
+                                    path='/category/create'
+                                    element={
+                                        <PrivateRoute>
+                                            <CategoryCreate />
+                                        </PrivateRoute>
+                                    }
+                                />
+                                <Route
+                                    path='/category/edit/:id'
+                                    element={
+                                        <PrivateRoute>
+                                            <CategoryEdit />
+                                        </PrivateRoute>
+                                    }
+                                />
+                                <Route
+                                    path='/products/information'
+                                    element={
+                                        <PrivateRoute>
+                                            <ProductInfo />
+                                        </PrivateRoute>
+                                    }
+                                />
+                            </Routes>
+                        </div>
                     </div>
-                </div>
-            </AlertProvider>
-        </AuthProvider>
+                </AlertProvider>
+            </AuthProvider>
+        </ProductProvider>
     );
 }
 

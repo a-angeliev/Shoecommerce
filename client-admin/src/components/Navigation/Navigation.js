@@ -29,6 +29,11 @@ export const NavigationBar = () => {
         "Delete code": "/discount/delete",
     };
 
+    const productsUrls = {
+        "Product info": "/products/information",
+        "Create product": "/products/create",
+    };
+
     if (isAdmin) {
         return (
             <div className={style.nav}>
@@ -36,6 +41,7 @@ export const NavigationBar = () => {
                 <div className={style["group-title"]}>MENU</div>
                 <NavSection links={brandUrls} name='Brand' icon='brand'></NavSection>
                 <NavSection links={categoryUrls} name='Category' icon='category'></NavSection>
+                <NavSection links={productsUrls} name='Products' icon='product'></NavSection>
                 <NavSection links={orderUrls} name='Order' icon='order'></NavSection>
                 <NavSection links={discountUrls} name='Discount' icon='discount'></NavSection>
             </div>
