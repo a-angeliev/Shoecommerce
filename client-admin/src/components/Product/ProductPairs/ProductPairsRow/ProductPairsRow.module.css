@@ -1,0 +1,40 @@
+.trash-img {
+    width: 20px;
+    height: 20px;
+}
+
+.trash-img:hover {
+    scale: 1.3;
+}
+
+.tr {
+    width: 100%;
+    height: 4rem;
+    background: white;
+    border: 1px solid var(--main-gray-border);
+}
+
+.cl-1 {
+    text-align: center;
+    width: 10%;
+}
+
+.cl-2 {
+    text-align: center;
+    width: 30%;
+}
+
+.cl-3 {
+    text-align: center;
+    width: 25%;
+}
+
+.cl-4 {
+    text-align: center;
+    width: 20%;
+}
+
+.cl-5 {
+    text-align: center;
+    width: 10%;
+}
