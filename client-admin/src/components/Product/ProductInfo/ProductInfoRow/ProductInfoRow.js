@@ -27,7 +27,7 @@ export const ProductInfoRow = (props) => {
                         <div className={style.list}>
                             <ul>
                                 <li>
-                                    <Link to={`/brand/edit/`}>Details</Link>
+                                    <Link to={`/product/${props.product.id}`}>Details</Link>
                                 </li>
                                 <li>{/* <Link onClick={() => setDeletePopup(true)}>Delete</Link> */}</li>
                             </ul>

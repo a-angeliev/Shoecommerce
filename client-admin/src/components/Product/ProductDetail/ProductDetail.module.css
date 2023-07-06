@@ -1,0 +1,23 @@
+.detail-component {
+    width: 90%;
+    margin-top: 3rem;
+}
+
+.product-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+.product-info {
+    width: 50%;
+    background: white;
+    border: 1px solid var(--main-gray-border);
+}
+
+.product-pairs {
+    width: 45%;
+    background: white;
+    border: 1px solid var(--main-gray-border);
+}
