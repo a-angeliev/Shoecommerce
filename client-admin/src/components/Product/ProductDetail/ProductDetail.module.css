@@ -12,8 +12,8 @@
 
 .product-info {
     width: 50%;
-    background: white;
-    border: 1px solid var(--main-gray-border);
+    /* background: white; */
+    /* border: 1px solid var(--main-gray-border); */
     height: 100%;
 }
 

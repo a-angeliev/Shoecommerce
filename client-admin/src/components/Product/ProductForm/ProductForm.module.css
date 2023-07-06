@@ -5,6 +5,11 @@
     margin-top: 1rem;
 }
 
+.form-background {
+    background: white;
+    border: 1px solid var(--main-gray-border);
+}
+
 form {
     display: flex;
     flex-direction: column;

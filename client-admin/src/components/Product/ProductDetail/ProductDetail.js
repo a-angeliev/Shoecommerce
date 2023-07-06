@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import * as productServices from "../../../services/product";
 import { ProductForm } from "../ProductForm/ProductForm";
 import { ProductPairs } from "../ProductPairs/ProductPairs";
+import { ProductImages } from "../ProductImages/ProductImages";
 
 export const ProductDetail = () => {
     const [shoe, setShoe] = useState("");
@@ -29,6 +30,7 @@ export const ProductDetail = () => {
                 <div className={style["product-content"]}>
                     <div className={style["product-info"]}>
                         <ProductForm></ProductForm>
+                        <ProductImages></ProductImages>
                     </div>
                     <div className={style["product-pairs"]}>
                         <ProductPairs></ProductPairs>

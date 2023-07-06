@@ -3,7 +3,7 @@ import style from "./ProductForm.module.css";
 export const ProductForm = () => {
     return (
         <>
-            <div>
+            <div className={style["form-background"]}>
                 <form>
                     <div className={style["shoe-name"]}>
                         <h2>Shoe Information</h2>
