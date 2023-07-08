@@ -3,6 +3,9 @@ import style from "./ProductForm.module.css";
 
 import * as brandServices from "../../../services/brand";
 import * as categoryServices from "../../../services/category";
+import * as productServices from "../../../services/product";
+
+import { useParams } from "react-router-dom";
 
 export const ProductForm = (params) => {
     const [title, setTitle] = useState("");
@@ -15,6 +18,8 @@ export const ProductForm = (params) => {
     const [description, setDescription] = useState("");
     const [isDeleted, setIsDeleted] = useState(false);
     const [edit, setEdit] = useState(false);
+
+    const p = useParams();
 
     useEffect(() => {
         brandServices
@@ -43,7 +48,18 @@ export const ProductForm = (params) => {
     const submit = (e) => {
         e.preventDefault();
         if (edit) {
-            console.log(edit);
+            productServices
+                .editBaseById(p.id, {
+                    title,
+                    description,
+                    price,
+                    gender,
+                    brand_name: brand,
+                    category_title: category,
+                    discount: 0,
+                })
+                .then((res) => console.log(res))
+                .catch((err) => console.log(err));
             setEdit(false);
         } else {
             console.log(edit);
@@ -94,7 +110,7 @@ export const ProductForm = (params) => {
                                 <select
                                     className={`${style["select-menu"]} ${style.input}`}
                                     onChange={(e) => setGender(e.target.value)}
-                                    defaultValue={gender}
+                                    value={gender}
                                     name='gender'
                                     disabled={edit ? null : true}>
                                     <option key='1' value='man'>
