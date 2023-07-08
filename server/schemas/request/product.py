@@ -22,6 +22,7 @@ class CreateProductRequestSchema(Schema):
     brand_name = fields.String(required=True)
     category_title = fields.String(required=True)
     pairs = fields.List(fields.Nested(CreatePorductPairRequestSchema(), required=True))
+    is_deleted = fields.Boolean(required=False)
 
     @validates_schema
     def validate_numbers(self, data, **kwargs):

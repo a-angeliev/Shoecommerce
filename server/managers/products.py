@@ -150,9 +150,11 @@ class ProductManager:
 
     @staticmethod
     def edit_product_base_info(id_, product_data):
-        product_q = ProductsModel.query.filter(
-            ProductsModel.id == id_, text("is_deleted is FALSE")
-        )
+        # product_q = ProductsModel.query.filter(
+        #     ProductsModel.id == id_, text("is_deleted is FALSE")
+        # )
+
+        product_q = ProductsModel.query.filter_by(id=id_)
         product = product_q.first()
 
         if not product:
