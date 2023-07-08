@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import style from "./ProductForm.module.css";
 
 import * as brandServices from "../../../services/brand";
 import * as categoryServices from "../../../services/category";
 import * as productServices from "../../../services/product";
 
-import { useParams } from "react-router-dom";
+import { Alert } from "../../Alert/Alert";
+import { AlertContext } from "../../../contexts/AlertContext";
 
 export const ProductForm = (params) => {
     const [title, setTitle] = useState("");
@@ -20,6 +22,7 @@ export const ProductForm = (params) => {
     const [edit, setEdit] = useState(false);
 
     const p = useParams();
+    const { setAlert } = useContext(AlertContext);
 
     useEffect(() => {
         brandServices
@@ -57,9 +60,14 @@ export const ProductForm = (params) => {
                     brand_name: brand,
                     category_title: category,
                     discount: 0,
+                    is_deleted: isDeleted,
                 })
-                .then((res) => console.log(res))
-                .catch((err) => console.log(err));
+                .then((res) => {
+                    setAlert({ color: "green", text: "You successful edit product base information!" });
+                })
+                .catch((err) => {
+                    setAlert({ color: "green", text: "You successful edit product base information!" });
+                });
             setEdit(false);
         } else {
             console.log(edit);
@@ -69,6 +77,7 @@ export const ProductForm = (params) => {
     };
     return (
         <>
+            <Alert />
             <div className={style["form-background"]}>
                 <form>
                     <div className={style["shoe-name"]}>
