@@ -30,13 +30,13 @@ export const ProductForm = (params) => {
             .then((res) => {
                 setBrands(res.map((brand) => brand.name));
             })
-            .catch((err) => console.log(err));
+            .catch((err) => setAlert({ color: "red", text: err.messages }));
         categoryServices
             .getAllCategories()
             .then((res) => {
                 setCategories(res.map((cat) => cat.title));
             })
-            .catch((err) => console.log(err));
+            .catch((err) => setAlert({ color: "red", text: err.messages }));
         if (params.shoe) {
             setTitle(params.shoe.title);
             setPrice(params.shoe.price);
@@ -70,8 +70,6 @@ export const ProductForm = (params) => {
                 });
             setEdit(false);
         } else {
-            console.log(edit);
-
             setEdit(true);
         }
     };
