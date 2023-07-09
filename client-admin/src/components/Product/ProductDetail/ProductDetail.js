@@ -38,7 +38,7 @@ export const ProductDetail = () => {
                 <div className={style["product-content"]}>
                     <div className={style["product-info"]}>
                         <ProductForm shoe={shoe}></ProductForm>
-                        <ProductImages></ProductImages>
+                        <ProductImages images={shoeImages}></ProductImages>
                     </div>
                     <div className={style["product-pairs"]}>
                         <ProductPairs></ProductPairs>
