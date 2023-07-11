@@ -1,15 +1,75 @@
+import { useContext, useEffect, useState } from "react";
 import style from "./ProductPairsRow.module.css";
+import { AlertContext } from "../../../../contexts/AlertContext";
+import { Alert } from "../../../Alert/Alert";
+import * as productServices from "../../../../services/product";
+import { useParams } from "react-router-dom";
 
 export const ProductPairsRow = (params) => {
+    const [edit, setEdit] = useState(false);
+    const [input, setInput] = useState(0);
+    const { setAlert } = useContext(AlertContext);
+    const param = useParams();
+
+    useEffect(() => {
+        setInput(params.pair.quantity);
+    }, []);
+
+    const validateInput = () => {
+        if (input < 0 || input > 10000) {
+            setAlert({ color: "red", text: "Quantity must be between 0 and 10000" });
+            return false;
+        }
+        return true;
+    };
+    const onSubmit = () => {
+        if (validateInput()) {
+            productServices
+                .editProductPair(param.id, params.pair.id, { quantity: input })
+                .then((res) => {
+                    setAlert({ color: "green", text: "You successful edit the pair" });
+                    setEdit(false);
+                })
+                .catch((err) => {
+                    console.log(typeof err);
+                    setAlert({ color: "red", text: err.message });
+                });
+        }
+    };
+
     return (
         <>
+            <Alert />
             <tr className={style.tr}>
                 <td className={style["cl-1"]}>{params.pair.id}</td>
                 <td className={style["cl-2"]}>{params.pair.color}</td>
                 <td className={style["cl-3"]}>{params.pair.size}</td>
-                <td className={style["cl-4"]}>{params.pair.quantity}</td>
+                <td className={style["cl-4"]}>
+                    {edit ? (
+                        <input
+                            className={style.input}
+                            type='number'
+                            onChange={(e) => setInput(e.target.value)}
+                            value={input}
+                        />
+                    ) : (
+                        `${input}`
+                    )}
+                </td>
                 <td className={style["cl-5"]}>
-                    <img className={style["trash-img"]} src='../images/add.png'></img>
+                    {edit ? (
+                        <img
+                            className={style["trash-img"]}
+                            onClick={onSubmit}
+                            src='../images/accept.png'
+                            alt='accept img'></img>
+                    ) : (
+                        <img
+                            className={style["trash-img"]}
+                            onClick={() => setEdit(true)}
+                            alt='accept img'
+                            src='../images/add.png'></img>
+                    )}
                 </td>
             </tr>
         </>

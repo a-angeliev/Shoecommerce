@@ -7,6 +7,16 @@
     scale: 1.3;
 }
 
+
+.input {
+    width: 3rem;
+    height: 2rem;
+    border: 1px solid var(--main-gray-border);
+    border-radius: 8px;
+    /* align-items: center; */
+    text-align: center;
+}
+
 .tr {
     width: 100%;
     height: 4rem;
