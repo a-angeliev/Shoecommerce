@@ -153,15 +153,13 @@ class ProductManager:
 
     @staticmethod
     def edit_pair(product_id, pair_id, pair_data):
-        product = ProductsModel.query.filter(
-            ProductsModel.id == product_id, text("is_deleted is FALSE")
-        ).first()
+        product = ProductsModel.query.filter_by(id=product_id).first()
         pair = ProductPair.query.filter_by(id=pair_id).first()
 
         check_pair_or_image_product(pair, product, pair_id, product_id, "pair")
 
-        pair.size = pair_data["size"]
-        pair.color = pair_data["color"]
+        # pair.size = pair_data["size"]
+        # pair.color = pair_data["color"]
         pair.quantity = pair_data["quantity"]
 
         db_add_items(pair)

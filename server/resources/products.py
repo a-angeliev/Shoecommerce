@@ -11,7 +11,7 @@ from schemas.request.product import (
     CreateProductImageRequestSchema,
     DeleteProductImageRequestSchema,
     CreatePorductPairRequestSchema,
-    DeleteProductPairRequestSchema, EditProductImageRequestSchema,
+    DeleteProductPairRequestSchema, EditProductImageRequestSchema, EditProductPairRequestSchema,
 )
 from schemas.response.product import (
     CreateProductResponseSchema,
@@ -109,11 +109,16 @@ class ProductPairs(Resource):
         response = ProductManager.delete_pair(id_, request.get_json())
         return response
 
+    # @staticmethod
+    # @permission_required(RoleType.admin)
+    # def put(id_):
+    #     pair = ProductManager.edit_pair()
+    #
 
 class ProductPairEdit(Resource):
     @staticmethod
     @permission_required(RoleType.admin)
-    @validate_schema(CreatePorductPairRequestSchema)
+    @validate_schema(EditProductPairRequestSchema)
     def put(id_, pair_id):
         pair = ProductManager.edit_pair(id_, pair_id, request.get_json())
         schema = EditProductPairResponseSchema()

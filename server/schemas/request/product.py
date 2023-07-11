@@ -11,6 +11,10 @@ class CreatePorductPairRequestSchema(Schema):
     color = fields.Str(validate=validate.OneOf(color_list))
     quantity = fields.Integer(required=True, validate=validate.Range(min=0))
 
+class EditProductPairRequestSchema(CreatePorductPairRequestSchema):
+
+    class Meta:
+        exclude = ("color", "size")
 
 class CreateProductRequestSchema(Schema):
     title = fields.String(required=True, validate=validate.Length(max=255))
