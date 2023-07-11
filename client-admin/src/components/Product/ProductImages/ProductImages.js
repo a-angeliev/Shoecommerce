@@ -43,8 +43,20 @@ export const ProductImages = (props) => {
         setInputContent(input);
     };
 
+    const validateInput = () => {
+        if (
+            Object.values(inputContent)
+                .map((x) => (x.length >= 0 ? true : false))
+                .includes(false)
+        ) {
+            setAlert({ color: "red", text: "Can't upload empty url" });
+            return false;
+        }
+        return true;
+    };
+
     const onSubmit = () => {
-        if (edit) {
+        if (edit && validateInput) {
             const idForDelete = [];
             const urlsForAdd = [];
             const newUrls = Object.values(inputContent);
