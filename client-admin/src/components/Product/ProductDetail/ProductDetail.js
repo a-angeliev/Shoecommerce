@@ -12,7 +12,7 @@ export const ProductDetail = () => {
     const [shoe, setShoe] = useState("");
     const [shoeImages, setShoeImages] = useState([]);
     const [pairs, setPairs] = useState([]);
-
+    const [reload, setReload] = useState(false);
     const param = useParams();
 
     useEffect(() => {
@@ -21,6 +21,7 @@ export const ProductDetail = () => {
             .then((res) => {
                 const shoe = JSON.parse(res);
                 setShoe(shoe);
+                console.log(shoe, 123);
                 if (shoe.images !== undefined) {
                     setShoeImages(shoe.images);
                 }
@@ -29,7 +30,7 @@ export const ProductDetail = () => {
                 }
             })
             .catch((err) => console.log(err));
-    }, [param.id]);
+    }, [reload]);
 
     return (
         <>
@@ -38,7 +39,7 @@ export const ProductDetail = () => {
                 <div className={style["product-content"]}>
                     <div className={style["product-info"]}>
                         <ProductForm shoe={shoe}></ProductForm>
-                        <ProductImages images={shoeImages}></ProductImages>
+                        <ProductImages images={shoeImages} setReload={setReload} reload={reload}></ProductImages>
                     </div>
                     <div className={style["product-pairs"]}>
                         <ProductPairs></ProductPairs>

@@ -5,6 +5,7 @@ const endpoints = {
     GET_PRODUCT_BY_ID: (productId) => `/products/product/${productId}`,
     EDIT_PRODUCT_BASE_BY_ID: (productId) => `/products/product/${productId}`,
     PRODUCT_COMMENTS: (productId) => `/comments/${productId}`,
+    EDIT_PRODUCT_IMAGES: (productId) => `/products/product/${productId}/images`,
 };
 
 export async function getProducts() {
@@ -23,6 +24,9 @@ export async function editBaseById(productId, productData) {
     return request.put(endpoints.EDIT_PRODUCT_BASE_BY_ID(productId), productData);
 }
 
+export async function editProductImages(productId, images_data) {
+    return request.put(endpoints.EDIT_PRODUCT_IMAGES(productId), images_data);
+}
 // export async function deleteById(productId) {
 //     return request.del(endpoints.GET_PRODUCT_BY_ID(productId));
 // }
