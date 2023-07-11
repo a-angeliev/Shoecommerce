@@ -21,11 +21,10 @@ export const ProductDetail = () => {
             .then((res) => {
                 const shoe = JSON.parse(res);
                 setShoe(shoe);
-                console.log(shoe, 123);
                 if (shoe.images !== undefined) {
                     setShoeImages(shoe.images);
                 }
-                if (shoe.paris !== undefined) {
+                if (shoe.pairs !== undefined) {
                     setPairs(shoe.pairs);
                 }
             })
@@ -42,7 +41,7 @@ export const ProductDetail = () => {
                         <ProductImages images={shoeImages} setReload={setReload} reload={reload}></ProductImages>
                     </div>
                     <div className={style["product-pairs"]}>
-                        <ProductPairs></ProductPairs>
+                        <ProductPairs pairs={pairs} setReload={setReload}></ProductPairs>
                     </div>
                 </div>
             </div>
