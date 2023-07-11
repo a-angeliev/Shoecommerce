@@ -35,3 +35,13 @@ export function orderByNameFunction(items, order, nameTitle, setOrderedItems) {
         setOrderedItems(its);
     }
 }
+
+export function orderByNumberFunction(items, order, nameTitle, setOrderedItems) {
+    const its = [...items];
+    if (order) {
+        its.sort((item1, item2) => item2[`${nameTitle}`] - item1[`${nameTitle}`]);
+    } else {
+        its.sort((item1, item2) => item1[`${nameTitle}`] - item2[`${nameTitle}`]);
+    }
+    setOrderedItems(its);
+}

@@ -61,6 +61,11 @@
     margin-left: 1rem;
 }
 
+.sort-icon {
+    width: 12px;
+    height: 12px;
+}
+
 .input-div {
     width: 30%;
 }
@@ -85,21 +90,25 @@ input {
 } */
 
 .cl-1 {
+    cursor: pointer;
     text-align: center;
     width: 10%;
 }
 
 .cl-2 {
+    cursor: pointer;
     text-align: center;
     width: 30%;
 }
 
 .cl-3 {
+    cursor: pointer;
     text-align: center;
     width: 25%;
 }
 
 .cl-4 {
+    cursor: pointer;
     text-align: center;
     width: 20%;
 }

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import style from "./ProductPairs.module.css";
 import { ProductPairsRow } from "./ProductPairsRow/ProductPairsRow";
 
@@ -6,16 +6,43 @@ import * as productService from "../../../services/product";
 import { useParams } from "react-router-dom";
 import { AlertContext } from "../../../contexts/AlertContext";
 import { Alert } from "../../Alert/Alert";
+import { orderByIdFunction, orderByNameFunction, orderByNumberFunction } from "../../../utils/utils";
 
 export const ProductPairs = (props) => {
     const [add, setAdd] = useState(false);
     const [color, setColor] = useState("black");
     const [size, setSize] = useState(30);
     const [quantity, setQuantity] = useState(0);
+    const [orderedPairs, setOrderedPairs] = useState([]);
+    const [orderById, setOrderById] = useState(false);
+    const [orderByColor, setOrderByColor] = useState(false);
+    const [orderBySize, setOrderBySize] = useState(false);
+    const [orderByQuantity, setOrderByQuantity] = useState(false);
 
     const param = useParams();
 
     const { setAlert } = useContext(AlertContext);
+
+    useEffect(() => {
+        orderByIdFunction(props.pairs, orderById, setOrderedPairs);
+    }, [props.pairs]);
+
+    useEffect(() => {
+        orderByIdFunction(orderedPairs, orderById, setOrderedPairs);
+    }, [orderById]);
+
+    useEffect(() => {
+        orderByNameFunction(orderedPairs, orderByColor, "color", setOrderedPairs);
+    }, [orderByColor]);
+
+    useEffect(() => {
+        orderByNumberFunction(orderedPairs, orderBySize, "size", setOrderedPairs);
+    }, [orderBySize]);
+
+    useEffect(() => {
+        console.log(123);
+        orderByNumberFunction(orderedPairs, orderByQuantity, "quantity", setOrderedPairs);
+    }, [orderByQuantity]);
 
     const validateInput = () => {
         if (20 < size < 60 && 0 <= quantity < 10000 && color.length > 0) {
@@ -126,19 +153,25 @@ export const ProductPairs = (props) => {
                 <div className={style.table}>
                     <table>
                         <tr className={style["tr-title"]}>
-                            <th className={style["cl-1"]}>Id</th>
-                            <th className={style["cl-2"]}>Color</th>
-                            <th className={style["cl-3"]}>Size</th>
-                            <th className={style["cl-4"]}>Quantity</th>
+                            <th className={style["cl-1"]} onClick={() => setOrderById((prev) => !prev)}>
+                                Id <img className={style["sort-icon"]} alt='sort icon' src='../images/sort.png'></img>
+                            </th>
+                            <th className={style["cl-2"]} onClick={() => setOrderByColor((prev) => !prev)}>
+                                Color{" "}
+                                <img className={style["sort-icon"]} alt='sort icon' src='../images/sort.png'></img>
+                            </th>
+                            <th className={style["cl-3"]} onClick={() => setOrderBySize((prev) => !prev)}>
+                                Size <img className={style["sort-icon"]} alt='sort icon' src='../images/sort.png'></img>
+                            </th>
+                            <th className={style["cl-4"]} onClick={() => setOrderByQuantity((prev) => !prev)}>
+                                Quantity{" "}
+                                <img className={style["sort-icon"]} alt='sort icon' src='../images/sort.png'></img>
+                            </th>
                             <th className={style["cl-4"]}></th>
                         </tr>
-                        {props.pairs.map((pair) => (
+                        {orderedPairs.map((pair) => (
                             <ProductPairsRow pair={pair}></ProductPairsRow>
                         ))}
-                        {/* <ProductPairsRow></ProductPairsRow> */}
-                        {/* <ProductPairsRow></ProductPairsRow> */}
-                        {/* <ProductPairsRow></ProductPairsRow> */}
-                        {/* <ProductPairsRow></ProductPairsRow> */}
                     </table>
                 </div>
             </div>

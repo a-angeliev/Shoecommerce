@@ -13,7 +13,7 @@ export const ProductPairsRow = (params) => {
 
     useEffect(() => {
         setInput(params.pair.quantity);
-    }, []);
+    }, [params.pair.quantity]);
 
     const validateInput = () => {
         if (input < 0 || input > 10000) {
