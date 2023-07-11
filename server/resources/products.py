@@ -1,3 +1,5 @@
+import json
+
 from flask import request
 from flask_restful import Resource
 
@@ -9,7 +11,7 @@ from schemas.request.product import (
     CreateProductImageRequestSchema,
     DeleteProductImageRequestSchema,
     CreatePorductPairRequestSchema,
-    DeleteProductPairRequestSchema,
+    DeleteProductPairRequestSchema, EditProductImageRequestSchema,
 )
 from schemas.response.product import (
     CreateProductResponseSchema,
@@ -82,6 +84,13 @@ class ProductImages(Resource):
     def delete(id_):
         response = ProductManager.delete_image(id_, request.get_json())
         return response
+
+    @staticmethod
+    @permission_required(RoleType.admin)
+    @validate_schema(EditProductImageRequestSchema)
+    def put(id_):
+        response = ProductManager.edit_image(id_, request.get_json())
+        return json.dumps(response)
 
 
 class ProductPairs(Resource):

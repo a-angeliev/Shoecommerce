@@ -11,7 +11,7 @@
 >> ### PRODUCTS   
 >>"/products" ==> POST GET  :white_check_mark:      
 >"/products/product/:id" ==> PUT DELETE GET :white_check_mark:  
->"/products/product/:id/images" POST DELETE :white_check_mark:   
+>"/products/product/:id/images" POST DELETE PUT :white_check_mark:    
 >"/products/product/:id/pairs" POST DELETE :white_check_mark:   
 >"/products/product/:product_id/pairs/:pair_id" POST DELETE :white_check_mark:   
 > 
@@ -72,6 +72,7 @@ The REST API to the app is described below.
     - [Edit general product information](#edit-general-product-information)
     - [Add product images](#add-product-images)
     - [Delete product images](#delete-product-images)
+    - [Edit product images](#edit-product-images)
     - [Add pair to product](#add-pair-to-product)
     - [Delete pair from product](#delete-pair-from-product)
     - [Edit pair](#edit-pair)
@@ -789,6 +790,29 @@ The REST API to the app is described below.
 >     "message": "images with id: 88 is not attached to product with id: 70"
 > }
 > ```
+> 
+> ## Edit-product-images 
+> You have to send object with keys ids and urls. The values should be list of int and strings. Ids are id of images that will be deleted and urls will be new images that should be added.   
+> Example: if you access "/products/product/1/images" and send in body {ids: [1], urls: [https://someImageUrl.com]}, image with id 1 will be deleted from product with id 1 and the new image with current ulr will be added to product 1.
+> 
+> ### Request
+> `[PUT] '/products/porduct/:id/images'`
+> ```json
+> {
+>   "ids": [1],
+>   "urls": ["https://someImageUrl.com"]
+> }
+> ```
+> ### Response
+> ```json
+> "You successful edit product images"
+> ```
+> Server validation are:
+> - Admin permissions require
+> - Product id in url should be valid product id
+> - Image ids in body should be valid image ids
+> - Images should be attached to the product
+>
 > 
 > ## Add pair to product
 >  You can add pairs when you create product. After product is created you can add additional pairs.   

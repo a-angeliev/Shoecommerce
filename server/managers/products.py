@@ -82,16 +82,43 @@ class ProductManager:
 
     @staticmethod
     def delete_image(id, image_id):
+
         image = ProductImages.query.filter_by(id=image_id["id"]).first()
         product = ProductsModel.query.filter(
             ProductsModel.id == id, text("is_deleted is FALSE")
         ).first()
 
         check_pair_or_image_product(image, product, image_id["id"], id, "images")
-
-        db_delete_items(image)
+        db_delete_items(*image)
 
         return f"You delete image with id: {image_id['id']} successfully", 202
+
+    @staticmethod
+    def edit_image(product_id, images_data):
+        images_ids = [id for id in images_data["ids"]]
+        new_urls = [url for url in images_data["urls"]]
+        product = ProductsModel.query.filter_by(id=product_id).first()
+
+        new_images = [ProductImages(product_id=product_id, img_url=url) for url in new_urls]
+        old_images = [ProductImages.query.filter_by(id=id).first() for id in images_ids]
+
+        if len(images_ids) != len(new_urls):
+            raise BadRequest("You should add same number of new images such as number of deleted one")
+
+        if not product:
+            raise NotFound(f"There is not product with id: {product_id}")
+
+        for image in old_images:
+            if image not in product.images:
+                raise NotFound(f"The id:{id} is not attached to product with id:{product_id}")
+
+        try:
+            db_add_items(*new_images)
+            db_delete_items(old_images)
+        except:
+            raise BadRequest("You cannot do that operation")
+
+        return {"message": "You successful edit images"}
 
     @staticmethod
     def add_pair(id, pair_data):

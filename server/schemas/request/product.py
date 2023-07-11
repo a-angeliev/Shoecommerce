@@ -40,8 +40,11 @@ class CreateProductImageRequestSchema(Schema):
 
 
 class DeleteProductImageRequestSchema(Schema):
-    id = fields.Integer(required=True)
+    id= fields.Integer()
 
+class EditProductImageRequestSchema(Schema):
+    ids = fields.List(fields.Integer())
+    urls = fields.List(fields.String())
 
 class DeleteProductPairRequestSchema(Schema):
     id = fields.Integer(required=True)
