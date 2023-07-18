@@ -1,8 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./OrderDetails.module.css";
+import * as orderServices from "../../../services/order";
+import { useParams } from "react-router-dom";
 
 export const OrderDetails = (props) => {
     const [activeSelect, setActiveSelect] = useState(false);
+    const [order, setOrder] = useState("");
+
+    const param = useParams();
+    useEffect(() => {
+        orderServices
+            .getOrderById(param.id)
+            .then((res) => {
+                setOrder(res);
+                console.log(res);
+            })
+            .catch((err) => console.log(err));
+    }, []);
+    const orderRow = (row) => {
+        return (
+            <tr>
+                <td>{row.id}</td>
+                <td>{row.title}</td>
+                <td>{row.pair_color}</td>
+                <td>{row.pair_size}</td>
+                <td>{row.price} $</td>
+            </tr>
+        );
+    };
 
     return (
         <>
@@ -29,7 +54,10 @@ export const OrderDetails = (props) => {
                             )}
                         </div>
                         <div className={style["meta-data"]}>
-                            <div className={style["created-on"]}>Created on: 12-23-2023 -- 12;23</div>
+                            <div className={style["created-on"]}>
+                                Created on: {new Date(order.created_on).toDateString()} --{" "}
+                                {new Date(order.created_on).toLocaleTimeString("en-US")}
+                            </div>
                             <div className={style["order-id"]}>Order Id: 2</div>
                         </div>
                         <table className={style.table}>
@@ -40,35 +68,25 @@ export const OrderDetails = (props) => {
                                 <th className={style["cl-4"]}>Size</th>
                                 <th className={style["cl-5"]}>Price</th>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Adidas shoe</td>
-                                <td>black</td>
-                                <td>35</td>
-                                <td>199.99$</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Adidas shoe</td>
-                                <td>black</td>
-                                <td>35</td>
-                                <td>199.99$</td>
-                            </tr>
+                            {order.order_items.map((row) => orderRow(row))}
+
                             <tr className={style["last-row"]}>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td>Total price:</td>
-                                <td> 399.99$</td>
+                                <td> {order.total_price}$</td>
                             </tr>
                         </table>
                         <dir className={style["meta-data-bottom"]}>
                             <div className={style["order-meta-information"]}>
-                                <div>User Id: 10</div>
-                                <div>Order status: pending</div>
-                                <div>Shipped on: none</div>
+                                <div>User Id: {order.user_id}</div>
+                                <div>Order status: {order.is_shipped}</div>
+                                <div>Shipped on: {order.shipped_on == null ? "none" : order.shipped_on}</div>
                             </div>
-                            <div className={style["text-div"]}>Comment: The delivery should after 10am!</div>
+                            <div className={style["text-div"]}>
+                                Comment: {order.comment == "" ? "-----------" : order.comment}
+                            </div>
                         </dir>
                     </div>
                 </div>
