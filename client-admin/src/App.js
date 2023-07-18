@@ -17,6 +17,8 @@ import { CategoryEdit } from "./components/Category/CategoryEdit/CategoryEdit";
 import { ProductInfo } from "./components/Product/ProductInfo/ProductInfo";
 import { ProductProvider } from "./contexts/ProductsContext";
 import { ProductDetail } from "./components/Product/ProductDetail/ProductDetail";
+import { OrderInfo } from "./components/Order/OrderInfo/OrderInfo";
+import { OrderDetails } from "./components/Order/OrderDetails/OrderDetails";
 
 function App() {
     return (
@@ -91,6 +93,22 @@ function App() {
                                     element={
                                         <PrivateRoute>
                                             <ProductDetail />
+                                        </PrivateRoute>
+                                    }
+                                />
+                                <Route
+                                    path='/orders/information'
+                                    element={
+                                        <PrivateRoute>
+                                            <OrderInfo />
+                                        </PrivateRoute>
+                                    }
+                                />
+                                <Route
+                                    path='/order/:id'
+                                    element={
+                                        <PrivateRoute>
+                                            <OrderDetails />
                                         </PrivateRoute>
                                     }
                                 />

@@ -1,22 +1,22 @@
 import { useState } from "react";
-import style from "./ProductInfoRow.module.css";
+import style from "./OrderInfoRow.module.css";
 import { Link } from "react-router-dom";
 
-export const ProductInfoRow = (props) => {
+export const OrderInfoRow = (props) => {
     const [activeDots, setActiveDots] = useState(false);
-    const expandDots = () => {
-        setActiveDots((prev) => !prev);
-    };
+    const date = new Date(props.order.created_on);
+    console.log(date.toLocaleDateString(), date.toLocaleTimeString(), 123);
     return (
         <>
-            <tr className={style["tr"]}>
-                <td className={style["cl-1"]}>{props.product.id}</td>
+            <tr className={style.tr}>
+                <td className={style["cl-1"]}>{props.order.id}</td>
                 <td className={style["cl-2"]}>
-                    <img className={style["product-img"]} src={props.product.images[0].img_url}></img>
+                    {date.toLocaleDateString()} - {date.toLocaleTimeString()}
                 </td>
-                <td className={style["cl-3"]}>{props.product.title}</td>
-                <td className={style["cl-4"]}>{props.product.price}$</td>
-                <td className={style["cl-5"]}>
+                <td className={style["cl-3"]}>{props.order.is_shipped}</td>
+                <td className={style["cl-4"]}>{props.order.shipped_on === null ? "none" : props.order.shipped_on}</td>
+                <td className={style["cl-5"]}>{props.order.total_price} $</td>
+                <td className={style["cl-6"]}>
                     <div className={`${style["dots"]}  ${activeDots ? style.active : ""}`}>
                         <div className={style.dot}></div>
                         <div className={style.dot}></div>
@@ -27,7 +27,7 @@ export const ProductInfoRow = (props) => {
                         <div className={style.list}>
                             <ul>
                                 <li>
-                                    <Link to={`/product/${props.product.id}`}>Details</Link>
+                                    <Link to={`/order/${1}`}>Details</Link>
                                 </li>
                             </ul>
                         </div>
@@ -36,7 +36,7 @@ export const ProductInfoRow = (props) => {
                     <div
                         className={style.cursor}
                         onClick={() => {
-                            expandDots();
+                            setActiveDots((prev) => !prev);
                         }}></div>
                 </td>
             </tr>

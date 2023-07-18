@@ -1,0 +1,50 @@
+.order-context {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.context {
+    margin-top: 4rem;
+    width: 70%;
+}
+
+.table {}
+
+.tr-head {
+    width: 100%;
+    height: 3rem;
+    background-color: white;
+    border: 1px solid var(--main-gray-border)
+}
+
+.tr {
+    text-align: center;
+    height: 5rem;
+    background: white;
+    border: 1px solid var(--main-gray-border);
+}
+
+.cl-1 {
+    width: 10%;
+}
+
+.cl-2 {
+    width: 20%;
+}
+
+.cl-3 {
+    width: 15%;
+}
+
+.cl-4 {
+    width: 30%;
+}
+
+.cl-5 {
+    width: 15%;
+}
+
+.cl-6 {
+    width: 10%;
+}
