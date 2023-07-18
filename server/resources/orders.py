@@ -7,7 +7,11 @@ from schemas.request.order import (
     CreateOrderRequestSchema,
     ChangeOrderStatusRequestSchema,
 )
-from schemas.response.order import CreateOrderResponseSchema, GetAllOrdersResponseSchema
+from schemas.response.order import (
+    CreateOrderResponseSchema,
+    GetAllOrdersResponseSchema,
+    GetUserOrdersResponseSchema,
+)
 from utils.decorators import token_required, validate_schema, permission_required
 
 
@@ -36,3 +40,12 @@ class ChangeOrder(Resource):
         order = OrdersManager.edit_order_status(id_, request.get_json())
         schema = GetAllOrdersResponseSchema()
         return schema.dumps(order)
+
+
+class Order(Resource):
+    @staticmethod
+    @permission_required(RoleType.admin)
+    def get(id_):
+        order = OrdersManager.get_one(id_)
+        schema = GetUserOrdersResponseSchema()
+        return schema.dump(order)

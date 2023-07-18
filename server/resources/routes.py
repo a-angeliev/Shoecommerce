@@ -4,7 +4,7 @@ from resources.category import Category, CategoryHandel
 from resources.comments import Comments, CommentAction
 from resources.discounts import Discounts, DiscountsOperations, DiscountValidation
 from resources.newsletter import Newsletter
-from resources.orders import Orders, ChangeOrder
+from resources.orders import Orders, ChangeOrder, Order
 from resources.products import (
     Products,
     Product,
@@ -28,6 +28,7 @@ routes = (
     (ProductPairEdit, "/products/product/<int:id_>/pairs/<int:pair_id>"),
     (Orders, "/orders"),
     (ChangeOrder, "/orders/<int:id_>"),
+    (Order, "/order/<int:id_>"),
     (Comments, "/comments"),
     (CommentAction, "/comments/<int:id_>"),
     (Wishes, "/wishes"),
