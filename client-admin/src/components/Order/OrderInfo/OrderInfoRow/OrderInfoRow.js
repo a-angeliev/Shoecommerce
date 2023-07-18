@@ -27,7 +27,7 @@ export const OrderInfoRow = (props) => {
                         <div className={style.list}>
                             <ul>
                                 <li>
-                                    <Link to={`/order/${1}`}>Details</Link>
+                                    <Link to={`/order/${props.order.id}`}>Details</Link>
                                 </li>
                             </ul>
                         </div>

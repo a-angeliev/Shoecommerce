@@ -25,12 +25,17 @@
     border: 1px solid var(--main-gray-border);
 }
 
+.sort-icon {
+    width: 12px;
+    height: 12px;
+}
+
 .cl-1 {
     width: 10%;
 }
 
 .cl-2 {
-    width: 20%;
+    width: 25%;
 }
 
 .cl-3 {
@@ -38,7 +43,7 @@
 }
 
 .cl-4 {
-    width: 30%;
+    width: 25%;
 }
 
 .cl-5 {
