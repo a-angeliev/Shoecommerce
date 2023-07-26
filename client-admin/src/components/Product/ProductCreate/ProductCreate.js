@@ -21,7 +21,7 @@ export const ProductCreate = () => {
                         </div>
                     </div>
                 </div>
-                <button className={style.submit}>Submit</button>
+                <button className={style.submit}>Create</button>
             </div>
         </>
     );
