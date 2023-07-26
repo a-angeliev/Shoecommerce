@@ -3,6 +3,8 @@ import { ProductCreateForm } from "./ProductCreateForm/ProductCreateForm";
 import { ProductCreatePairs } from "./ProductCreatePairs/ProductCreatePairs";
 import { ProductCreateUrls } from "./ProductCreateUrls/ProductCreateUrls";
 
+import { useEffect, useState } from "react";
+
 export const ProductCreate = () => {
     return (
         <>

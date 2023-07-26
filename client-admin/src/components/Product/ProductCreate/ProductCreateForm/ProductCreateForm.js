@@ -1,10 +1,12 @@
 import style from "./ProductCreateForm.module.css";
 import { Alert } from "../../../Alert/Alert";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export const ProductCreateForm = () => {
+import * as brandServices from "../../../../services/brand";
+import * as categoryServices from "../../../../services/category";
+
+export const ProductCreateForm = (props) => {
     const [isDeleted, setIsDeleted] = useState(false);
-    const [edit, setEdit] = useState(false);
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState(0);
     const [gender, setGender] = useState("");
@@ -13,6 +15,17 @@ export const ProductCreateForm = () => {
     const [brand, setBrand] = useState("");
     const [brands, setBrands] = useState([]);
     const [description, setDescription] = useState("");
+
+    useEffect(() => {
+        brandServices
+            .getAllBrands()
+            .then((res) => setBrands(res))
+            .catch((err) => console.log(err));
+        categoryServices
+            .getAllCategories()
+            .then((res) => setCategories(res))
+            .catch((err) => console.log(err));
+    }, []);
 
     return (
         <>
@@ -77,7 +90,7 @@ export const ProductCreateForm = () => {
                                     onChange={(e) => setCategory(e.target.value)}
                                     name='category'>
                                     {categories.map((cat) => (
-                                        <option key={cat}>{cat}</option>
+                                        <option key={cat.title}>{cat.title}</option>
                                     ))}
                                 </select>
                             </div>
@@ -91,7 +104,7 @@ export const ProductCreateForm = () => {
                                     className={`${style["select-menu"]} ${style.input}`}
                                     name='brand'>
                                     {brands.map((brand) => (
-                                        <option key={brand}>{brand}</option>
+                                        <option key={brand.name}>{brand.name}</option>
                                     ))}
                                 </select>
                             </div>
