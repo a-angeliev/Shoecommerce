@@ -73,3 +73,10 @@ class OrdersManager:
         order.is_shipped = IsShipped[data["status"]]
         db_add_items(order)
         return order
+
+    @staticmethod
+    def get_one(order_id):
+        order = OrdersModel.query.filter_by(id=order_id).first()
+        if not order:
+            raise NotFound("There is not order with that id.")
+        return order

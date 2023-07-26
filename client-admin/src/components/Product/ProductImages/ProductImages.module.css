@@ -34,6 +34,7 @@
 }
 
 .link-container-left {
+    height: 220px;
     display: flex;
     align-items: center;
     margin-top: -30px;
@@ -41,6 +42,8 @@
 }
 
 .link-container-right {
+    height: 220px;
+
     display: flex;
     align-items: center;
     text-align: right;
@@ -49,6 +52,8 @@
 }
 
 .link-container-top {
+    height: 220px;
+
     display: flex;
     align-items: center;
     width: 100%;
@@ -57,11 +62,15 @@
 
 .image-div-left {
     width: 30%;
+
+    /* height: 300px; */
 }
 
 .image-div-right {
     width: 30%;
     margin-left: 1rem;
+    /* height: 300px; */
+
     /* text-align: right; */
 }
 

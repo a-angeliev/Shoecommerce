@@ -20,10 +20,12 @@ export const ProductImages = (props) => {
     const param = useParams();
     const { setAlert } = useContext(AlertContext);
     const [edit, setEdit] = useState(false);
+    const [images, setImages] = useState([]);
 
     useEffect(() => {
         setOldImages(props.images);
-        if (props.images.length > 0)
+        if (props.images.length > 0) {
+            console.log(props.images);
             setInputContent({
                 url1: props.images[0].img_url,
                 url2: props.images[1].img_url,
@@ -33,9 +35,12 @@ export const ProductImages = (props) => {
                 url6: props.images[5].img_url,
                 url7: props.images[6].img_url,
             });
+            // const im = props.images.map((x) => x.img_url);
+            setImages(props.images);
+        }
     }, [props.images, param.id]);
 
-    const images = props.images;
+    // const images = props.images;
 
     const inputHandler = (e) => {
         const input = { ...inputContent };
@@ -78,6 +83,7 @@ export const ProductImages = (props) => {
         setEdit((prev) => !prev);
     };
     if (images.length > 0) {
+        console.log(images, 321);
         return (
             <>
                 <Alert />
