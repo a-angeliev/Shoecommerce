@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import { AlertContext } from "../../../contexts/AlertContext";
 
 import * as productServices from "../../../services/product";
+import { validateLengthArray } from "../../../utils/utils";
 
 export const ProductCreate = () => {
     const { setAlert } = useContext(AlertContext);
@@ -25,25 +26,17 @@ export const ProductCreate = () => {
 
     const isInputValid = () => {
         if (
-            mainData.title.length < 2 ||
             mainData.price < 0 ||
             mainData.price > 10000 ||
-            mainData.gender.length < 2 ||
-            mainData.category_title.length < 2 ||
-            mainData.brand_name.length < 2 ||
-            mainData.description.length < 2
+            validateLengthArray(
+                [mainData.title, mainData.gender, mainData.category_title, mainData.brand_name, mainData.description],
+                2,
+                "<"
+            )
         ) {
             setAlert({ color: "red", text: "You have empty fields in main shoe information" });
             return false;
-        } else if (
-            urlData.url1.length < 3 ||
-            urlData.url2.length < 3 ||
-            urlData.url3.length < 3 ||
-            urlData.url4.length < 3 ||
-            urlData.url5.length < 3 ||
-            urlData.url6.length < 3 ||
-            urlData.url7.length < 3
-        ) {
+        } else if (validateLengthArray(Object.values(urlData), 3, "<")) {
             setAlert({ color: "red", text: "You have empty fields in image urls section" });
             return false;
         } else if (

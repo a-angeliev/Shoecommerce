@@ -45,3 +45,36 @@ export function orderByNumberFunction(items, order, nameTitle, setOrderedItems) 
     }
     setOrderedItems(its);
 }
+
+export function validateLengthArray(array, length, type) {
+    console.log(array);
+    if (type == ">") {
+        if (
+            array
+                .map((item) => {
+                    if (item.length > length) {
+                        return false;
+                    }
+                    return true;
+                })
+                .includes(false)
+        ) {
+            return true;
+        }
+        return false;
+    } else if (type == "<") {
+        if (
+            array
+                .map((item) => {
+                    if (item.length < length) {
+                        return false;
+                    }
+                    return true;
+                })
+                .includes(false)
+        ) {
+            return true;
+        }
+        return false;
+    }
+}
