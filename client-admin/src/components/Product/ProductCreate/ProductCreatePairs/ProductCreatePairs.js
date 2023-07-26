@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import style from "./ProductCreatePairs.module.css";
 
-export const ProductCreatePairs = () => {
+export const ProductCreatePairs = (props) => {
     const [rowsNumber, setRowsNumber] = useState(1);
     const [row, setRow] = useState([{ color: "black", size: "", quantity: "" }]);
 
     useEffect(() => {
         setRowsNumber(row.length);
+        props.setPairData(row);
     }, [row]);
 
     const colorHandler = (e, i) => {

@@ -9,7 +9,7 @@ export const ProductCreateForm = (props) => {
     const [isDeleted, setIsDeleted] = useState(false);
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState(0);
-    const [gender, setGender] = useState("");
+    const [gender, setGender] = useState("man");
     const [category, setCategory] = useState("");
     const [categories, setCategories] = useState([]);
     const [brand, setBrand] = useState("");
@@ -19,13 +19,32 @@ export const ProductCreateForm = (props) => {
     useEffect(() => {
         brandServices
             .getAllBrands()
-            .then((res) => setBrands(res))
+            .then((res) => {
+                setBrands(res);
+                setBrand(res[0].name);
+            })
             .catch((err) => console.log(err));
         categoryServices
             .getAllCategories()
-            .then((res) => setCategories(res))
+            .then((res) => {
+                setCategories(res);
+                setCategory(res[0].title);
+            })
             .catch((err) => console.log(err));
     }, []);
+
+    useEffect(() => {
+        props.setMainData({
+            // isDeleted: isDeleted,
+            title: title,
+            price: price,
+            gender: gender,
+            category_title: category,
+            brand_name: brand,
+            description: description,
+            discount: 0,
+        });
+    }, [isDeleted, title, price, gender, category, brand, description]);
 
     return (
         <>
