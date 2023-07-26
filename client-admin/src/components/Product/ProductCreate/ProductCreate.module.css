@@ -1,0 +1,75 @@
+.create-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+
+.content-div {
+    width: 90%;
+    margin-top: 5rem;
+}
+
+.content {
+    background-color: white;
+    border: 1px solid var(--main-gray-border);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    /* text-align: center; */
+}
+
+.form {
+    width: 33%;
+    border: 1px solid red;
+}
+
+.urls {
+    width: 33%;
+    border: 1px solid red;
+}
+
+.pairs {
+    width: 33%;
+    border: 1px solid red;
+}
+
+.submit {
+    width: 40%;
+}
+
+@media only screen and (max-width: 1800px) {
+    .form {
+        width: 40%;
+    }
+
+    .urls {
+        width: 27%;
+    }
+}
+
+@media only screen and (max-width: 1650px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .content-div {
+        width: 60%;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+    .urls {
+        width: 100%;
+    }
+
+    .pairs {
+        width: 100%;
+    }
+
+}

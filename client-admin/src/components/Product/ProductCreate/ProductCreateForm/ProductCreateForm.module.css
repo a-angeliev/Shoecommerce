@@ -1,0 +1,82 @@
+.shoe-name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.form-background {
+    background: white;
+    border: 1px solid var(--main-gray-border);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 3rem 3rem 3rem;
+}
+
+form>input {
+    height: 3rem;
+}
+
+.input-group {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.group-div {
+    display: grid;
+    align-items: center;
+    text-align: center;
+    grid-template-columns: 1fr 3fr;
+    width: 50%;
+    font-size: 1rem;
+}
+
+.combine {
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+.input {
+    font-size: 1.4rem;
+    padding: 1rem;
+    margin-left: 2rem;
+    width: inherit;
+    height: 3rem;
+    border: 1px solid var(--main-gray-border);
+    border-radius: 8px;
+}
+
+.select-menu {
+    padding: 0 !important;
+    padding-left: 0.5rem !important;
+}
+
+
+#dollar {
+    margin-left: 0.3rem;
+    font-size: 1.5rem;
+}
+
+.description {
+    padding: 1rem;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    color: black;
+    height: 10rem;
+    border: 1px solid var(--main-gray-border);
+    border-radius: 8px;
+    resize: none;
+    margin-bottom: 2rem;
+}
+
+.deleted {
+    scale: 2;
+    border: 1px solid var(--main-gray-border) !important;
+    margin-left: 1rem
+}

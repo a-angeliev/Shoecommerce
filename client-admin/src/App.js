@@ -17,6 +17,7 @@ import { CategoryEdit } from "./components/Category/CategoryEdit/CategoryEdit";
 import { ProductInfo } from "./components/Product/ProductInfo/ProductInfo";
 import { ProductProvider } from "./contexts/ProductsContext";
 import { ProductDetail } from "./components/Product/ProductDetail/ProductDetail";
+import { ProductCreate } from "./components/Product/ProductCreate/ProductCreate";
 
 function App() {
     return (
@@ -91,6 +92,14 @@ function App() {
                                     element={
                                         <PrivateRoute>
                                             <ProductDetail />
+                                        </PrivateRoute>
+                                    }
+                                />
+                                <Route
+                                    path='/products/create'
+                                    element={
+                                        <PrivateRoute>
+                                            <ProductCreate />
                                         </PrivateRoute>
                                     }
                                 />
