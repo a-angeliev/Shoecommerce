@@ -64,10 +64,12 @@
 
     .form {
         width: 100%;
+        border-bottom: 1px solid var(--main-gray-border)
     }
 
     .urls {
         width: 100%;
+        border-bottom: 1px solid var(--main-gray-border)
     }
 
     .pairs {
