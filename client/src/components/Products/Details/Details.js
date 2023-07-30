@@ -152,15 +152,21 @@ export const Details = () => {
                             <span className='main-shoe-size'>
                                 <label htmlFor='size'>Choose a size:</label>
 
-                                <select onChange={chosenSize} className='main-shoe-sizes' name='size' id='size'>
-                                    {colorDict[color]
-                                        ? colorDict[color].map((x) => (
-                                              <option key={x} value={x}>
-                                                  {x}
-                                              </option>
-                                          ))
-                                        : ""}
-                                </select>
+                                {color === "" ? (
+                                    <select className='pick-size' name='pick-size' id='pick-size'>
+                                        <option>Pick a color first</option>
+                                    </select>
+                                ) : (
+                                    <select onChange={chosenSize} className='main-shoe-sizes' name='size' id='size'>
+                                        {colorDict[color]
+                                            ? colorDict[color].map((x) => (
+                                                  <option key={x} value={x}>
+                                                      {x}
+                                                  </option>
+                                              ))
+                                            : ""}
+                                    </select>
+                                )}
                             </span>
                         </h3>
                         <p className='main-shoe-description'>{product.description}</p>
