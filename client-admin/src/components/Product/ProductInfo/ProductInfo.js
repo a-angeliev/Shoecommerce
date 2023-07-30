@@ -16,14 +16,7 @@ export const ProductInfo = () => {
     const [orderById, setOrderById] = useState(true);
     const [orderByName, setOrderByName] = useState(true);
     const [orderByPrice, setOrderByPrice] = useState(true);
-
     const { products } = useContext(ProductContext);
-
-    useEffect(() => {
-        setNumberOfProducts(products.length);
-        setNumberOfPages(Math.ceil(products.length / itemPerPage));
-        setFilteredProducts(products);
-    }, [products]);
 
     useEffect(() => {
         if (products !== "") {
@@ -39,6 +32,7 @@ export const ProductInfo = () => {
     useEffect(() => {
         setCurrentPage(1);
         setNumberOfPages(Math.ceil(numberOfProducts / itemPerPage));
+        console.log(Math.ceil(numberOfProducts / itemPerPage));
     }, [itemPerPage]);
 
     useEffect(() => {
@@ -58,6 +52,13 @@ export const ProductInfo = () => {
         }
         setFilteredProducts(prd);
     }, [orderByPrice]);
+
+    useEffect(() => {
+        setNumberOfProducts(products.length);
+        setNumberOfPages(Math.ceil(products.length / itemPerPage));
+        setFilteredProducts(products);
+    }, [products]);
+
     return (
         <>
             <div className={style["page-content"]}>

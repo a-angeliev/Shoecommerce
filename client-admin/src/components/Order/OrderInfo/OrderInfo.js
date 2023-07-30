@@ -76,9 +76,11 @@ export const OrderInfo = () => {
                                 <th className={style["cl-5"]}>Price</th>
                                 <th className={style["cl-6"]}></th>
                             </tr>
-                            {filteredOrders.map((order) => (
-                                <OrderInfoRow order={order} />
-                            ))}
+                            {filteredOrders
+                                .slice(currentPage * itemPerPage - itemPerPage, currentPage * itemPerPage)
+                                .map((order) => (
+                                    <OrderInfoRow order={order} />
+                                ))}
                         </table>
                         <Pagination
                             setCurrentPage={setCurrentPage}
