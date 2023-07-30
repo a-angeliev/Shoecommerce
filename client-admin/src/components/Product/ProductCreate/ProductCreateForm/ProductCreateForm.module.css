@@ -13,7 +13,7 @@ input::-webkit-inner-spin-button {
 
 .form-background {
     background: white;
-    border: 1px solid var(--main-gray-border);
+    /* border: 1px solid var(--main-gray-border); */
 }
 
 form {

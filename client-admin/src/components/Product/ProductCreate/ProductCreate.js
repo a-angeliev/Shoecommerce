@@ -9,6 +9,7 @@ import { AlertContext } from "../../../contexts/AlertContext";
 
 import * as productServices from "../../../services/product";
 import { validateLengthArray } from "../../../utils/utils";
+import { useNavigate } from "react-router-dom";
 
 export const ProductCreate = () => {
     const { setAlert } = useContext(AlertContext);
@@ -23,6 +24,7 @@ export const ProductCreate = () => {
     });
     const [urlData, setUrlData] = useState({ url1: "", url2: "", url3: "", url4: "", url5: "", url6: "", url7: "" });
     const [pairData, setPairData] = useState({ color: "", size: "", quantity: "" });
+    const navigate = useNavigate();
 
     const isInputValid = () => {
         if (
@@ -49,7 +51,6 @@ export const ProductCreate = () => {
                 })
                 .includes(false)
         ) {
-            console.log(pairData);
             setAlert({
                 color: "red",
                 text: "You have empty fields in pair section or incorrect number of size or quantity. Size must be between 10 and 70. The quantity myst be between 0 and 100.",
@@ -67,11 +68,14 @@ export const ProductCreate = () => {
             pairs: [...pairData],
         };
         if (isInputValid()) {
-            console.log(data);
             productServices
                 .create(data)
-                .then((res) => console.log(res))
-                .catch((err) => console.log(err));
+                .then((res) => {
+                    console.log();
+                    navigate(`/product/${JSON.parse(res).id}`);
+                    setAlert({ color: "green", text: "You create product successful" });
+                })
+                .catch((err) => setAlert({ color: "red", text: err }));
         }
     };
     return (
