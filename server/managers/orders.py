@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import request
 from werkzeug.exceptions import NotFound
 
@@ -71,6 +73,10 @@ class OrdersManager:
             raise NotFound("There is not order with that id.")
 
         order.is_shipped = IsShipped[data["status"]]
+        if data["status"] == "shipped":
+            order.shipped_on = datetime.now()
+        else:
+            order.shipped_on = None
         db_add_items(order)
         return order
 
