@@ -1,22 +1,43 @@
-import { useEffect, useState } from "react";
 import style from "./OrderDetails.module.css";
-import * as orderServices from "../../../services/order";
+
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
+import * as orderServices from "../../../services/order";
+
+import { Alert } from "../../Alert/Alert";
+
+import { AlertContext } from "../../../contexts/AlertContext";
 
 export const OrderDetails = (props) => {
     const [activeSelect, setActiveSelect] = useState(false);
-    const [order, setOrder] = useState("");
+    const [order, setOrder] = useState({ order_items: [] });
+    const [statusInput, setStatusInput] = useState("pending");
+    const { setAlert } = useContext(AlertContext);
 
     const param = useParams();
+
     useEffect(() => {
         orderServices
             .getOrderById(param.id)
             .then((res) => {
                 setOrder(res);
-                console.log(res);
+                setStatusInput(res.is_shipped);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => setAlert({ color: "red", text: err }));
     }, []);
+
+    const changeOrder = () => {
+        orderServices
+            .changeOrderStatus(param.id, { status: statusInput })
+            .then((res) => {
+                setOrder(JSON.parse(res));
+                setStatusInput(JSON.parse(res).is_shipped);
+                setAlert({ color: "green", text: "Change order status successful!" });
+            })
+            .catch((err) => setAlert({ color: "red", text: err }));
+        setActiveSelect(false);
+    };
     const orderRow = (row) => {
         return (
             <tr>
@@ -31,21 +52,23 @@ export const OrderDetails = (props) => {
 
     return (
         <>
+            <Alert></Alert>
             <div className={style["details-content"]}>
                 <div className={style.content}>
                     <h1>Order Details</h1>
                     <div className={style["table-content"]}>
                         <div className={style["change-status"]}>
-                            <select className={style.select} disabled={activeSelect ? false : true}>
+                            <select
+                                className={style.select}
+                                disabled={activeSelect ? false : true}
+                                value={statusInput}
+                                onChange={(e) => setStatusInput(e.target.value)}>
                                 <option>pending</option>
                                 <option>shipped</option>
                                 <option>rejected</option>
                             </select>
                             {activeSelect ? (
-                                <img
-                                    src='../images/accept.png'
-                                    alt='accept button'
-                                    onClick={() => setActiveSelect(false)}></img>
+                                <img src='../images/accept.png' alt='accept button' onClick={() => changeOrder()}></img>
                             ) : (
                                 <img
                                     src='../images/add.png'

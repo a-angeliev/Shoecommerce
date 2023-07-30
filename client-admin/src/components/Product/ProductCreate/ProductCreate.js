@@ -4,7 +4,7 @@ import { ProductCreatePairs } from "./ProductCreatePairs/ProductCreatePairs";
 import { ProductCreateUrls } from "./ProductCreateUrls/ProductCreateUrls";
 import { Alert } from "../../Alert/Alert";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AlertContext } from "../../../contexts/AlertContext";
 
 import * as productServices from "../../../services/product";
