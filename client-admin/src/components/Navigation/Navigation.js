@@ -34,6 +34,9 @@ export const NavigationBar = () => {
         "Create product": "/products/create",
     };
 
+    const profile = {
+        Logout: "/logout",
+    };
     if (isAdmin) {
         return (
             <div className={style.nav}>
@@ -43,7 +46,8 @@ export const NavigationBar = () => {
                 <NavSection links={categoryUrls} name='Category' icon='category'></NavSection>
                 <NavSection links={productsUrls} name='Products' icon='product'></NavSection>
                 <NavSection links={orderUrls} name='Order' icon='order'></NavSection>
-                <NavSection links={discountUrls} name='Discount' icon='discount'></NavSection>
+                {/* <NavSection links={discountUrls} name='Discount' icon='discount'></NavSection> */}
+                <NavSection links={profile} name='Profile' icon='profile'></NavSection>
             </div>
         );
     }

@@ -12,6 +12,7 @@ export const NavSection = (props) => {
         order: "gg-shopping-cart",
         discount: "gg-calculator",
         product: "gg-product-hunt",
+        profile: "gg-profile",
     };
 
     console.log(icons[props.icon]);

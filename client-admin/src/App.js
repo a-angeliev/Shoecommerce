@@ -20,6 +20,7 @@ import { ProductDetail } from "./components/Product/ProductDetail/ProductDetail"
 import { ProductCreate } from "./components/Product/ProductCreate/ProductCreate";
 import { OrderInfo } from "./components/Order/OrderInfo/OrderInfo";
 import { OrderDetails } from "./components/Order/OrderDetails/OrderDetails";
+import { Logout } from "./components/Logout/Logout";
 
 function App() {
     return (
@@ -118,6 +119,14 @@ function App() {
                                     element={
                                         <PrivateRoute>
                                             <OrderDetails />
+                                        </PrivateRoute>
+                                    }
+                                />
+                                <Route
+                                    path='/logout'
+                                    element={
+                                        <PrivateRoute>
+                                            <Logout />
                                         </PrivateRoute>
                                     }
                                 />
