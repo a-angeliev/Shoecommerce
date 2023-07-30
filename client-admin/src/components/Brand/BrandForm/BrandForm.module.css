@@ -18,6 +18,10 @@ h1 {
 
 }
 
+form {
+    margin: unset !important;
+}
+
 .form {
     display: flex;
     flex-direction: column;
