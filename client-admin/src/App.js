@@ -21,6 +21,7 @@ import { ProductCreate } from "./components/Product/ProductCreate/ProductCreate"
 import { OrderInfo } from "./components/Order/OrderInfo/OrderInfo";
 import { OrderDetails } from "./components/Order/OrderDetails/OrderDetails";
 import { Logout } from "./components/Logout/Logout";
+import { Summary } from "./components/Summary/Summary";
 
 function App() {
     return (
@@ -33,6 +34,16 @@ function App() {
                             <UserBar />
                             <Routes>
                                 <Route path='/login' element={<Login />} />
+
+                                <Route
+                                    path='/'
+                                    element={
+                                        <PrivateRoute>
+                                            <Summary />
+                                        </PrivateRoute>
+                                    }
+                                />
+
                                 <Route
                                     path='/brand/information'
                                     element={

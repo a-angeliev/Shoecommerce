@@ -4,9 +4,11 @@ import { useContext } from "react";
 import { NavSection } from "./NavSection/NavSection";
 
 import { AuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const NavigationBar = () => {
     const { isAdmin } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const brandUrls = {
         "Brand info": "/brand/information",
@@ -40,7 +42,9 @@ export const NavigationBar = () => {
     if (isAdmin) {
         return (
             <div className={style.nav}>
-                <div className={style.logo}>Shoecommerce</div>
+                <div className={style.logo} onClick={() => navigate("/")}>
+                    Shoecommerce
+                </div>
                 <div className={style["group-title"]}>MENU</div>
                 <NavSection links={brandUrls} name='Brand' icon='brand'></NavSection>
                 <NavSection links={categoryUrls} name='Category' icon='category'></NavSection>
