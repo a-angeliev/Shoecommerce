@@ -17,19 +17,3 @@ export async function register(userData) {
 export async function getUser(userId) {
     return request.get(endpoints.USER(userId));
 }
-
-// export async function updateUser(userId, userData) {
-//     return request.put(endpoints.USER(userId), userData);
-// }
-
-// export async function deleteUser(userId) {
-//     return request.del(endpoints.USER(userId));
-// }
-
-// export async function getOrders(userId) {
-//     return request.get(endpoints.USER_ORDERS(userId));
-// }
-
-// export async function getComments(userId) {
-//     return request.get(endpoints.USER_COMMENTS(userId));
-// }

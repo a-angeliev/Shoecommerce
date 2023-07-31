@@ -6,7 +6,6 @@ export const ProductCreateUrls = (props) => {
 
     useEffect(() => {
         props.setUrlData(urlData);
-        console.log(123);
     }, [urlData]);
 
     const urlHandler = (e) => {
