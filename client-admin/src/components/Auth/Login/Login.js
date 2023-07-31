@@ -1,5 +1,7 @@
 import style from "./Login.module.css";
 import { useContext, useState, useEffect } from "react";
+import { AlertContext } from "../../../contexts/AlertContext";
+import { Alert } from "../../Alert/Alert";
 
 import * as userService from "../../../services/user";
 
@@ -7,10 +9,11 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
-    const { isAuthenticated, userLogin } = useContext(AuthContext);
+    const { isAuthenticated, userLogin, isAdmin } = useContext(AuthContext);
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
     const [shake, setShake] = useState("");
+    const { setAlert } = useContext(AlertContext);
 
     const navigate = useNavigate();
 
@@ -19,7 +22,7 @@ export const Login = () => {
     }, [shake]);
 
     useEffect(() => {
-        if (isAuthenticated) {
+        if (isAuthenticated && isAdmin) {
             navigate("/");
         }
     }, [isAuthenticated]);
@@ -30,13 +33,20 @@ export const Login = () => {
         } else {
             userService
                 .login({ password: passwordInput, email: emailInput })
-                .then((userData) => userLogin(userData))
-                .catch((err) => console.log(err));
+                .then((userData) => {
+                    if (JSON.parse(userData).role == "admin") {
+                        userLogin(userData);
+                    } else {
+                        setAlert({ color: "red", text: "You don't have permissions. Need to be admin!" });
+                    }
+                })
+                .catch((err) => setAlert({ color: "red", text: err.message }));
         }
     };
 
     return (
         <div className={style["login-page"]}>
+            <Alert></Alert>
             <div className={style["login-form"]}>
                 <div className={style.logo}>
                     <h1>Shoecommerce</h1>
