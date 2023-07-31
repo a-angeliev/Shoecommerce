@@ -99,18 +99,24 @@ class ProductManager:
         new_urls = [url for url in images_data["urls"]]
         product = ProductsModel.query.filter_by(id=product_id).first()
 
-        new_images = [ProductImages(product_id=product_id, img_url=url) for url in new_urls]
+        new_images = [
+            ProductImages(product_id=product_id, img_url=url) for url in new_urls
+        ]
         old_images = [ProductImages.query.filter_by(id=id).first() for id in images_ids]
 
         if len(images_ids) != len(new_urls):
-            raise BadRequest("You should add same number of new images such as number of deleted one")
+            raise BadRequest(
+                "You should add same number of new images such as number of deleted one"
+            )
 
         if not product:
             raise NotFound(f"There is not product with id: {product_id}")
 
         for image in old_images:
             if image not in product.images:
-                raise NotFound(f"The id:{id} is not attached to product with id:{product_id}")
+                raise NotFound(
+                    f"The id:{id} is not attached to product with id:{product_id}"
+                )
 
         try:
             db_add_items(*new_images)
@@ -212,9 +218,9 @@ class ProductManager:
         return product
 
     @staticmethod
-    def get_one(id_, for_admin = False):
+    def get_one(id_, for_admin=False):
         if for_admin:
-            product = ProductsModel.query.filter_by(id= id_).first()
+            product = ProductsModel.query.filter_by(id=id_).first()
         else:
             product = ProductsModel.query.filter(
                 ProductsModel.id == id_, text("is_deleted is FALSE")
@@ -243,7 +249,7 @@ class ProductManager:
         if not gender:
             gender_f = True
 
-        if(for_admin):
+        if for_admin:
             products = (
                 ProductsModel.query.join(ProductsModel.category)
                 .join(ProductsModel.brand)

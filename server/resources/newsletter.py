@@ -4,7 +4,10 @@ from flask import request
 from flask_restful import Resource
 
 from managers.newsletter import NewsletterManager
-from schemas.request.newsletter import SubscribeNewsletterRequestSchema, UnsubscribeNewsletterRequestSchema
+from schemas.request.newsletter import (
+    SubscribeNewsletterRequestSchema,
+    UnsubscribeNewsletterRequestSchema,
+)
 from utils.decorators import validate_schema
 
 
@@ -20,4 +23,3 @@ class Newsletter(Resource):
     def delete():
         response = NewsletterManager.unsubscribe(request.get_json())
         return json.dumps(response)
-

@@ -44,7 +44,6 @@ class Category(Resource):
 
 
 class CategoryHandel(Resource):
-
     @staticmethod
     @permission_required(RoleType.admin)
     def get(id_):

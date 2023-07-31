@@ -1,6 +1,11 @@
 from marshmallow import Schema, fields, validate
 
-from schemas.bases_schemas import BaseUserSchema, BaseUserDataSchema, EditBaseUserDataSchema, BaseUserRegisterSchema
+from schemas.bases_schemas import (
+    BaseUserSchema,
+    BaseUserDataSchema,
+    EditBaseUserDataSchema,
+    BaseUserRegisterSchema,
+)
 from utils.validators import validate_password
 
 
@@ -20,7 +25,6 @@ class RegisterUserRequestSchema(BaseUserSchema):
         validate=validate.And(validate.Length(min=5, max=60), validate_password),
     )
     user_data = fields.Nested(BaseUserRegisterSchema, required=True)
-
 
 
 class EditUserRequestSchema(BaseUserSchema):

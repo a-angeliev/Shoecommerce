@@ -4,7 +4,7 @@ from resources.category import Category, CategoryHandel
 from resources.comments import Comments, CommentAction
 from resources.discounts import Discounts, DiscountsOperations, DiscountValidation
 from resources.newsletter import Newsletter
-from resources.orders import Orders, ChangeOrder, Order
+from resources.orders import Orders, ChangeOrder, Order, OrderStatistic
 from resources.products import (
     Products,
     Product,
@@ -26,6 +26,7 @@ routes = (
     (ProductImages, "/products/product/<int:id_>/images"),
     (ProductPairs, "/products/product/<int:id_>/pairs"),
     (ProductPairEdit, "/products/product/<int:id_>/pairs/<int:pair_id>"),
+    (OrderStatistic, "/orders/statistic"),
     (Orders, "/orders"),
     (ChangeOrder, "/orders/<int:id_>"),
     (Order, "/order/<int:id_>"),

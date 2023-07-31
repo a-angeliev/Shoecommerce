@@ -11,10 +11,11 @@ class CreatePorductPairRequestSchema(Schema):
     color = fields.Str(validate=validate.OneOf(color_list))
     quantity = fields.Integer(required=True, validate=validate.Range(min=0))
 
-class EditProductPairRequestSchema(CreatePorductPairRequestSchema):
 
+class EditProductPairRequestSchema(CreatePorductPairRequestSchema):
     class Meta:
         exclude = ("color", "size")
+
 
 class CreateProductRequestSchema(Schema):
     title = fields.String(required=True, validate=validate.Length(max=255))
@@ -44,11 +45,13 @@ class CreateProductImageRequestSchema(Schema):
 
 
 class DeleteProductImageRequestSchema(Schema):
-    id= fields.Integer()
+    id = fields.Integer()
+
 
 class EditProductImageRequestSchema(Schema):
     ids = fields.List(fields.Integer())
     urls = fields.List(fields.String())
+
 
 class DeleteProductPairRequestSchema(Schema):
     id = fields.Integer(required=True)

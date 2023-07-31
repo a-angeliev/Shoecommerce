@@ -62,9 +62,7 @@ class Brand(Resource):
         raise BadRequest("You should use query parameters, check the documentation!")
 
 
-
 class BrandUpdate(Resource):
-
     @staticmethod
     @permission_required(RoleType.admin)
     def get(id_):
@@ -79,7 +77,6 @@ class BrandUpdate(Resource):
         brand = BrandManager.edit_brand(id_, request.get_json())
         schema = CreateBrandResponseSchema()
         return schema.dumps(brand)
-
 
     @staticmethod
     @permission_required(RoleType.admin)

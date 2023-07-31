@@ -31,4 +31,3 @@ def validate_if_admin():
         return True
     else:
         return False
-

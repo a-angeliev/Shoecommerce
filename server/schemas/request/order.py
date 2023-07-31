@@ -24,13 +24,12 @@ class CreateOrderAddressRequestSchema(Schema):
 
 class CreateOrderRequestSchema(Schema):
     comment = fields.String(required=True)
-    order_items = fields.List(fields.Nested(CreateOrderInfoRequestSchema()), many=True, required=True)
+    order_items = fields.List(
+        fields.Nested(CreateOrderInfoRequestSchema()), many=True, required=True
+    )
     address = fields.Nested(CreateOrderAddressRequestSchema(), required=True)
     discount_code = fields.String(required=True)
 
 
 class ChangeOrderStatusRequestSchema(Schema):
     status = fields.String(validate=validate.OneOf(status))
-
-
-

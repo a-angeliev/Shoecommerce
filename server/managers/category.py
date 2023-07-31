@@ -48,7 +48,7 @@ class CategoryManager:
         if not category:
             raise NotFound("This category does not exist.")
 
-        category.title = data['title']
+        category.title = data["title"]
 
         db_add_items(category)
 

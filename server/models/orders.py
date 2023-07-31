@@ -23,7 +23,6 @@ class OrdersModel(db.Model):
     discount_code = db.Column(db.String, nullable=True)
 
 
-
 class OrderItemModel(db.Model):
     __tablename__ = "order_item"
     id = db.Column(db.Integer, primary_key=True)

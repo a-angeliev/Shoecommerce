@@ -28,5 +28,3 @@ def db_delete_items(items):
             raise BadRequest("You can't delete the item")
         else:
             raise InternalServerError("Server is unavailable.")
-
-

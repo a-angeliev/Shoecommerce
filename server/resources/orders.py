@@ -1,3 +1,5 @@
+import json
+
 from flask import request
 from flask_restful import Resource
 
@@ -49,3 +51,11 @@ class Order(Resource):
         order = OrdersManager.get_one(id_)
         schema = GetUserOrdersResponseSchema()
         return schema.dump(order)
+
+
+class OrderStatistic(Resource):
+    @staticmethod
+    def get():
+        orders = OrdersManager.monthly_statistic()
+        # return json.dumps(orders)
+        return orders

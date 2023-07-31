@@ -11,13 +11,16 @@ from schemas.request.product import (
     CreateProductImageRequestSchema,
     DeleteProductImageRequestSchema,
     CreatePorductPairRequestSchema,
-    DeleteProductPairRequestSchema, EditProductImageRequestSchema, EditProductPairRequestSchema,
+    DeleteProductPairRequestSchema,
+    EditProductImageRequestSchema,
+    EditProductPairRequestSchema,
 )
 from schemas.response.product import (
     CreateProductResponseSchema,
     AddImageProductResponseSchema,
     AddProductPairResponseSchema,
-    EditProductPairResponseSchema, ProductAdminResponseSchema,
+    EditProductPairResponseSchema,
+    ProductAdminResponseSchema,
 )
 from utils.decorators import validate_schema, permission_required, token_required
 from utils.validators import validate_if_admin
@@ -114,6 +117,7 @@ class ProductPairs(Resource):
     # def put(id_):
     #     pair = ProductManager.edit_pair()
     #
+
 
 class ProductPairEdit(Resource):
     @staticmethod
