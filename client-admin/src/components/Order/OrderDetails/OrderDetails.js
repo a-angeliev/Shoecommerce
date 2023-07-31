@@ -11,7 +11,22 @@ import { AlertContext } from "../../../contexts/AlertContext";
 
 export const OrderDetails = (props) => {
     const [activeSelect, setActiveSelect] = useState(false);
-    const [order, setOrder] = useState({ order_items: [] });
+    const [order, setOrder] = useState({
+        order_address: [
+            {
+                address_1: "",
+                address_2: "",
+                city: "",
+                country: "",
+                post_code: "",
+                email: "",
+                first_name: "",
+                last_name: "",
+                phone: "",
+            },
+        ],
+        order_items: [],
+    });
     const [statusInput, setStatusInput] = useState("pending");
     const { setAlert } = useContext(AlertContext);
 
@@ -21,6 +36,7 @@ export const OrderDetails = (props) => {
         orderServices
             .getOrderById(param.id)
             .then((res) => {
+                console.log(res);
                 setOrder(res);
                 setStatusInput(res.is_shipped);
             })

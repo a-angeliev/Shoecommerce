@@ -1,4 +1,4 @@
-import React, { PureComponent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     BarChart,
     Bar,
@@ -11,12 +11,11 @@ import {
     ResponsiveContainer,
     PieChart,
     Pie,
-    LabelList,
-    Label,
     Sector,
 } from "recharts";
 import style from "./Summary.module.css";
-import * as request from "../../services/request";
+import * as summaryService from "../../services/summary";
+
 export const Summary = () => {
     const [chartData, setChartData] = useState([]);
     const [numberOfOrders, setNumberOfOrders] = useState([
@@ -32,8 +31,8 @@ export const Summary = () => {
     const [statePrice, setStatePrice] = useState({ activeIndex: 0 });
 
     useEffect(() => {
-        request
-            .get("/orders/statistic")
+        summaryService
+            .getSummary()
             .then((res) => {
                 setChartData(res.chart_data);
                 setNumberOfOrders([
