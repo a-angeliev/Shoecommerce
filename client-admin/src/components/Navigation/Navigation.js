@@ -26,11 +26,11 @@ export const NavigationBar = () => {
         // "Pending orders": "/orders/pending",
     };
 
-    const discountUrls = {
-        "Discount info": "/discount/information",
-        "Create code": "/discount/create",
-        "Delete code": "/discount/delete",
-    };
+    // const discountUrls = {
+    //     "Discount info": "/discount/information",
+    //     "Create code": "/discount/create",
+    //     "Delete code": "/discount/delete",
+    // };
 
     const productsUrls = {
         "Product info": "/products/information",

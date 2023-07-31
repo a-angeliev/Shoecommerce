@@ -23,6 +23,7 @@ export const CategoryEdit = () => {
             .getCategoryById(param.id)
             .then((res) => setCategory(res))
             .catch((err) => setAlert({ color: "red", text: err.message }));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {

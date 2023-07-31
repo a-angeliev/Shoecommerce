@@ -45,6 +45,7 @@ export const ProductCreateForm = (props) => {
             description: description,
             discount: 0,
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isDeleted, title, price, gender, category, brand, description]);
 
     return (

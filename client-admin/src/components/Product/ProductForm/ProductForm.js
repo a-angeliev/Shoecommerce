@@ -47,6 +47,7 @@ export const ProductForm = (params) => {
             setBrand(params.shoe.brand.name);
             setCategory(params.shoe.category.title);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [params.shoe]);
 
     const submit = (e) => {

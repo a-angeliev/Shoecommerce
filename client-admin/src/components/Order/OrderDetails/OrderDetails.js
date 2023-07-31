@@ -40,6 +40,7 @@ export const OrderDetails = (props) => {
                 setStatusInput(res.is_shipped);
             })
             .catch((err) => setAlert({ color: "red", text: err }));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const changeOrder = () => {
@@ -141,7 +142,7 @@ export const OrderDetails = (props) => {
                                 <div>Shipped on: {order.shipped_on == null ? "none" : order.shipped_on}</div>
                             </div>
                             <div className={style["text-div"]}>
-                                Comment: {order.comment == "" ? "-----------" : order.comment}
+                                Comment: {order.comment === "" ? "-----------" : order.comment}
                             </div>
                         </dir>
                     </div>

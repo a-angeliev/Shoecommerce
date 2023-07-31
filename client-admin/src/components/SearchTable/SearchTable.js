@@ -11,7 +11,7 @@ export const SearchTable = (params) => {
                         value={params.filter}
                         onChange={(e) => params.setFilter(e.target.value)}></input>
                     <div className={style["search-btn"]}>
-                        <img src='../images/icons8-search-50-white.png'></img>
+                        <img src='../images/icons8-search-50-white.png' alt='search icon'></img>
                     </div>
                 </div>
                 <div className={style["per-page"]}>

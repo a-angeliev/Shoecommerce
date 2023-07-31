@@ -6,8 +6,6 @@ import { AlertContext } from "../../../contexts/AlertContext";
 import { BrandForm } from "../BrandForm/BrandForm";
 import * as brandService from "../../../services/brand";
 
-import style from "./BrandEdit.module.css";
-
 export const BrandEdit = () => {
     const { setAlert } = useContext(AlertContext);
 
@@ -24,6 +22,7 @@ export const BrandEdit = () => {
             .catch((err) => {
                 setAlert({ color: "red", text: err.message });
             });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

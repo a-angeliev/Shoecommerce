@@ -15,7 +15,7 @@ export const ProductInfoRow = (props) => {
             <tr className={style["tr"]}>
                 <td className={style["cl-1"]}>{props.product.id}</td>
                 <td className={style["cl-2"]}>
-                    <img className={style["product-img"]} src={props.product.images[0].img_url}></img>
+                    <img className={style["product-img"]} src={props.product.images[0].img_url} alt='product img'></img>
                 </td>
                 <td className={style["cl-3"]}>{props.product.title}</td>
                 <td className={style["cl-4"]}>{props.product.price}$</td>

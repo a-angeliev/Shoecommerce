@@ -7,6 +7,7 @@ export const ProductCreateUrls = (props) => {
 
     useEffect(() => {
         props.setUrlData(urlData);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [urlData]);
 
     const urlHandler = (e) => {

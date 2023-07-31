@@ -26,6 +26,7 @@ export const Login = () => {
         if (isAuthenticated && isAdmin) {
             navigate("/");
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAuthenticated]);
 
     const login = () => {
@@ -35,7 +36,7 @@ export const Login = () => {
             userService
                 .login({ password: passwordInput, email: emailInput })
                 .then((userData) => {
-                    if (JSON.parse(userData).role == "admin") {
+                    if (JSON.parse(userData).role === "admin") {
                         userLogin(userData);
                     } else {
                         setAlert({ color: "red", text: "You don't have permissions. Need to be admin!" });

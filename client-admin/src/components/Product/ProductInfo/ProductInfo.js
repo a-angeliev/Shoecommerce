@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useState, useEffect } from "react";
 
 import { orderByIdFunction, orderByNameFunction } from "../../../utils/utils";
@@ -76,14 +77,17 @@ export const ProductInfo = () => {
                         <table>
                             <tr className={style["tr-title"]}>
                                 <th className={style["cl-1"]} onClick={() => setOrderById((prev) => !prev)}>
-                                    Id <img className={style["sort-icon"]} src='../images/sort.png'></img>
+                                    Id{" "}
+                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
                                 </th>
                                 <th className={style["cl-2"]}>Img</th>
                                 <th className={style["cl-3"]} onClick={() => setOrderByName((prev) => !prev)}>
-                                    Name <img className={style["sort-icon"]} src='../images/sort.png'></img>
+                                    Name{" "}
+                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
                                 </th>
                                 <th className={style["cl-4"]} onClick={() => setOrderByPrice((prev) => !prev)}>
-                                    Price <img className={style["sort-icon"]} src='../images/sort.png'></img>
+                                    Price{" "}
+                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
                                 </th>
                                 <th className={style["cl-5"]}></th>
                             </tr>

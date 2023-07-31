@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -45,7 +46,7 @@ export const ProductPairs = (props) => {
     }, [orderByQuantity]);
 
     const validateInput = () => {
-        if (20 < size < 60 && 0 <= quantity < 10000 && color.length > 0) {
+        if (20 < size < 60 && 0 <= quantity <= 10000 && color.length > 0) {
             return true;
         }
         if (size < 20 || size > 60) {
@@ -61,7 +62,7 @@ export const ProductPairs = (props) => {
     };
 
     const isExist = () => {
-        const check = props.pairs.map((pair) => (pair.color == color && pair.size == size ? true : false));
+        const check = props.pairs.map((pair) => (pair.color === color && pair.size === size ? true : false));
         console.log(check);
         if (check.includes(true)) {
             setAlert({ color: "red", text: "That pair already exist" });

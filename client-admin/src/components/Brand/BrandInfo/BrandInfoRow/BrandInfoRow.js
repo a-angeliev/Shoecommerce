@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 
 import { Alert } from "../../../Alert/Alert";
@@ -13,8 +13,6 @@ export const BrandInfoRow = (props) => {
     const [activeDots, setActiveDots] = useState(false);
     const [deletePopup, setDeletePopup] = useState(false);
 
-    const navigate = useNavigate();
-
     const brand = props.brand;
 
     const expandDots = () => {
@@ -22,7 +20,7 @@ export const BrandInfoRow = (props) => {
     };
 
     const deleteBrand = () => {
-        const deletese = brandService
+        brandService
             .deleteBrandById(brand.id)
             .then((res) => {
                 props.reset((prev) => !prev);
@@ -67,7 +65,7 @@ export const BrandInfoRow = (props) => {
                     <div className={style["brand-description"]}>{brand.description}</div>
                 </td>
                 <td className={style["cl-4"]}>
-                    <img className={style["brand-logo"]} src={brand.logo_url}></img>
+                    <img className={style["brand-logo"]} src={brand.logo_url} alt='logo img'></img>
                 </td>
                 <td className={style["cl-5"]}>
                     <div className={`${style["dots"]}  ${activeDots ? style.active : ""}`}>

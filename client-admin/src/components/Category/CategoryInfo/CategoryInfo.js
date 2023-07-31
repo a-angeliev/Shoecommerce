@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -79,12 +80,14 @@ export const CategoryInfo = () => {
                                 <th
                                     className={`${style["cl-1"]} ${style.pointer}`}
                                     onClick={() => setOrderById((prev) => !prev)}>
-                                    Id <img className={style["sort-icon"]} src='../images/sort.png'></img>
+                                    Id{" "}
+                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
                                 </th>
                                 <th
                                     className={`${style["cl-2"]} ${style.pointer}`}
                                     onClick={() => setOrderByTitle((prev) => !prev)}>
-                                    Title <img className={style["sort-icon"]} src='../images/sort.png'></img>
+                                    Title{" "}
+                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
                                 </th>
                                 <th className={style["cl-3"]}></th>
                             </tr>

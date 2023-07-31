@@ -22,7 +22,7 @@ export const Pagination = (props) => {
             <div className={style["pagination-content"]}>
                 <ul className={style["pagination-list"]}>
                     <li onClick={prevPage} className={props.currentPage === 1 ? style["non-hover"] : ""}>
-                        <img className={style.pagImg} src='../images/left-arrow.png'></img>
+                        <img className={style.pagImg} src='../images/left-arrow.png' alt='arrow icon'></img>
                     </li>
                     {props.numberOfPages > 3 ? (
                         props.currentPage === 1 ? (
@@ -54,7 +54,7 @@ export const Pagination = (props) => {
                         [...Array(props.numberOfPages)].map((x, i) => (
                             <li
                                 onClick={(e) => changePage(e)}
-                                className={props.currentPage == i + 1 ? style.active : ""}
+                                className={props.currentPage === i + 1 ? style.active : ""}
                                 key={i + 1}>
                                 {i + 1}
                             </li>
@@ -64,13 +64,13 @@ export const Pagination = (props) => {
                     <li
                         onClick={nextPage}
                         className={props.currentPage === props.numberOfPages ? style["non-hover"] : ""}>
-                        <img className={style.pagImg} src='../images/right-arrow.png'></img>
+                        <img className={style.pagImg} src='../images/right-arrow.png' alt='arrow icon'></img>
                     </li>
                 </ul>
 
                 <div className={style["item-info"]}>
                     Showing{" "}
-                    {props.currentPage * props.itemPerPage - Number(props.itemPerPage) == 0
+                    {props.currentPage * props.itemPerPage - Number(props.itemPerPage) === 0
                         ? 1
                         : props.currentPage * props.itemPerPage - Number(props.itemPerPage)}{" "}
                     to{" "}

@@ -48,7 +48,7 @@ export function orderByNumberFunction(items, order, nameTitle, setOrderedItems) 
 
 export function validateLengthArray(array, length, type) {
     console.log(array);
-    if (type == ">") {
+    if (type === ">") {
         if (
             array
                 .map((item) => {
@@ -62,7 +62,7 @@ export function validateLengthArray(array, length, type) {
             return true;
         }
         return false;
-    } else if (type == "<") {
+    } else if (type === "<") {
         if (
             array
                 .map((item) => {

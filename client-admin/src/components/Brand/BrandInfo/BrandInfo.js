@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -71,7 +72,7 @@ export const BrandInfo = () => {
                                 value={filter}
                                 onChange={(e) => setFilter(e.target.value)}></input>
                             <div className={style["search-btn"]}>
-                                <img src='../images/icons8-search-50-white.png'></img>
+                                <img src='../images/icons8-search-50-white.png' alt='arrow icon'></img>
                             </div>
                         </div>
                         <div className={style["per-page"]}>
@@ -93,12 +94,14 @@ export const BrandInfo = () => {
                                 <th
                                     className={`${style["cl-1"]} ${style.link}`}
                                     onClick={() => setOrderById((prev) => !prev)}>
-                                    Id <img className={style["sort-icon"]} src='../images/sort.png'></img>
+                                    Id{" "}
+                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
                                 </th>
                                 <th
                                     className={`${style["cl-2"]} ${style.link}`}
                                     onClick={() => setOrderByName((prev) => !prev)}>
-                                    Name <img className={style["sort-icon"]} src='../images/sort.png'></img>
+                                    Name{" "}
+                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
                                 </th>
                                 <th className={style["cl-3"]}>Description</th>
                                 <th className={style["cl-4"]}>Logo</th>
