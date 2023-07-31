@@ -77,7 +77,7 @@ export const ProductForm = (params) => {
         <>
             <Alert />
             <div className={style["form-background"]}>
-                <form>
+                <form className={style["form"]}>
                     <div className={style["shoe-name"]}>
                         <h2>Shoe Information</h2>
                         <div className={style["deleted-div"]}>
