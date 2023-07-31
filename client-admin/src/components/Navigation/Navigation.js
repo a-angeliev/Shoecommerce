@@ -20,7 +20,7 @@ export const NavigationBar = () => {
 
     const orderUrls = {
         "Orders info": "/orders/information",
-        "Pending orders": "/orders/pending",
+        // "Pending orders": "/orders/pending",
     };
 
     const discountUrls = {

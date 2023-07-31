@@ -101,6 +101,23 @@ export const OrderDetails = (props) => {
                                 <td> {order.total_price}$</td>
                             </tr>
                         </table>
+                        <div className={style["address-div"]}>
+                            <div className={style["address-cl1"]}>
+                                <p className={style["address-p"]}>Address 1: {order.order_address[0].address_1}</p>
+                                <p className={style["address-p"]}>Address 2: {order.order_address[0].address_2}</p>
+                                <p className={style["address-p"]}>City: {order.order_address[0].city}</p>
+                            </div>
+                            <div className={style["address-cl2"]}>
+                                <p className={style["address-p"]}>Country: {order.order_address[0].country}</p>
+                                <p className={style["address-p"]}>Post code: {order.order_address[0].post_code}</p>
+                                <p className={style["address-p"]}>Email: {order.order_address[0].email}</p>
+                            </div>
+                            <div className={style["address-cl3"]}>
+                                <p className={style["address-p"]}>First name: {order.order_address[0].first_name}</p>
+                                <p className={style["address-p"]}>Last name: {order.order_address[0].last_name}</p>
+                                <p className={style["address-p"]}>Phone: {order.order_address[0].phone}</p>
+                            </div>
+                        </div>
                         <dir className={style["meta-data-bottom"]}>
                             <div className={style["order-meta-information"]}>
                                 <div>User Id: {order.user_id}</div>

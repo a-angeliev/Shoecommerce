@@ -116,3 +116,17 @@
 .cl-5 {
     width: 15%;
 }
+
+.address-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem 1rem 2rem;
+    background-color: white;
+    border: 1px solid var(--main-gray-border);
+    color: #68738C;
+}
+
+.address-p {
+    margin-bottom: 1rem;
+}
