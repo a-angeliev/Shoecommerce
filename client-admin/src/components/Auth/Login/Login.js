@@ -1,12 +1,12 @@
-import style from "./Login.module.css";
 import { useContext, useState, useEffect } from "react";
-import { AlertContext } from "../../../contexts/AlertContext";
-import { Alert } from "../../Alert/Alert";
+import { useNavigate } from "react-router-dom";
 
+import { Alert } from "../../Alert/Alert";
+import { AlertContext } from "../../../contexts/AlertContext";
+import { AuthContext } from "../../../contexts/AuthContext";
 import * as userService from "../../../services/user";
 
-import { AuthContext } from "../../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import style from "./Login.module.css";
 
 export const Login = () => {
     const { isAuthenticated, userLogin, isAdmin } = useContext(AuthContext);

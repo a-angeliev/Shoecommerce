@@ -1,11 +1,13 @@
-import style from "./ProductInfo.module.css";
-import { ProductInfoRow } from "./ProductInfoRow/ProductInfoRow";
-
 import { useContext, useState, useEffect } from "react";
-import { Pagination } from "../../Pagination/Pagination";
-import { SearchTable } from "../../SearchTable/SearchTable";
-import { ProductContext } from "../../../contexts/ProductsContext";
+
 import { orderByIdFunction, orderByNameFunction } from "../../../utils/utils";
+import { Pagination } from "../../Pagination/Pagination";
+import { ProductContext } from "../../../contexts/ProductsContext";
+import { ProductInfoRow } from "./ProductInfoRow/ProductInfoRow";
+import { SearchTable } from "../../SearchTable/SearchTable";
+
+import style from "./ProductInfo.module.css";
+
 export const ProductInfo = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [numberOfPages, setNumberOfPages] = useState(1);

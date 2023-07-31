@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import style from "./ProductForm.module.css";
 
+import { Alert } from "../../Alert/Alert";
+import { AlertContext } from "../../../contexts/AlertContext";
 import * as brandServices from "../../../services/brand";
 import * as categoryServices from "../../../services/category";
 import * as productServices from "../../../services/product";
 
-import { Alert } from "../../Alert/Alert";
-import { AlertContext } from "../../../contexts/AlertContext";
+import style from "./ProductForm.module.css";
 
 export const ProductForm = (params) => {
     const [title, setTitle] = useState("");

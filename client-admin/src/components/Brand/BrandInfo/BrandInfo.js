@@ -1,10 +1,12 @@
-import style from "./BrandInfo.module.css";
-import * as brandService from "../../../services/brand";
-import { useState } from "react";
 import { useEffect } from "react";
+import { useState } from "react";
+
 import { BrandInfoRow } from "./BrandInfoRow/BrandInfoRow";
-import { Pagination } from "../../Pagination/Pagination";
 import { orderByIdFunction, orderByNameFunction } from "../../../utils/utils";
+import { Pagination } from "../../Pagination/Pagination";
+import * as brandService from "../../../services/brand";
+
+import style from "./BrandInfo.module.css";
 
 export const BrandInfo = () => {
     const [brands, setBrands] = useState("");

@@ -1,6 +1,7 @@
-import style from "./NavSection.module.css";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
+import style from "./NavSection.module.css";
 
 export const NavSection = (props) => {
     const [expandMenu, setExpandMenu] = useState(false);

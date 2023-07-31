@@ -1,10 +1,10 @@
-import style from "./Navigation.module.css";
 import { useContext } from "react";
-
-import { NavSection } from "./NavSection/NavSection";
+import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { NavSection } from "./NavSection/NavSection";
+
+import style from "./Navigation.module.css";
 
 export const NavigationBar = () => {
     const { isAdmin } = useContext(AuthContext);

@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import style from "./ProductPairs.module.css";
-import { ProductPairsRow } from "./ProductPairsRow/ProductPairsRow";
-
-import * as productService from "../../../services/product";
 import { useParams } from "react-router-dom";
+
 import { AlertContext } from "../../../contexts/AlertContext";
-import { Alert } from "../../Alert/Alert";
 import { orderByIdFunction, orderByNameFunction, orderByNumberFunction } from "../../../utils/utils";
+import { ProductPairsRow } from "./ProductPairsRow/ProductPairsRow";
+import * as productService from "../../../services/product";
+
+import style from "./ProductPairs.module.css";
 
 export const ProductPairs = (props) => {
     const [add, setAdd] = useState(false);

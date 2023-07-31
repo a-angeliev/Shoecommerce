@@ -1,11 +1,12 @@
-import style from "./CategoryCreate.module.css";
-
-import { CategoryForm } from "../CategoryForm/CategoryForm";
-import * as categoryService from "../../../services/category";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { Alert } from "../../Alert/Alert";
 import { AlertContext } from "../../../contexts/AlertContext";
+import { CategoryForm } from "../CategoryForm/CategoryForm";
+import * as categoryService from "../../../services/category";
+
+import style from "./CategoryCreate.module.css";
 
 export const CategoryCreate = () => {
     const [title, setTitle] = useState("");

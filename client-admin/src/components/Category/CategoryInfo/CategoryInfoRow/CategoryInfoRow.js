@@ -1,10 +1,11 @@
-import style from "./CategoryInfoRow.module.css";
-import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
 
-import * as categoryService from "../../../../services/category";
 import { Alert } from "../../../Alert/Alert";
 import { AlertContext } from "../../../../contexts/AlertContext";
+import * as categoryService from "../../../../services/category";
+
+import style from "./CategoryInfoRow.module.css";
 
 export const CategoryInfoRow = (params) => {
     const [activeDots, setActiveDots] = useState(false);

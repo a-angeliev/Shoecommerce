@@ -1,11 +1,11 @@
-import style from "./BrandInfoRow.module.css";
-import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
 
+import { Alert } from "../../../Alert/Alert";
+import { AlertContext } from "../../../../contexts/AlertContext";
 import * as brandService from "../../../../services/brand";
 
-import { AlertContext } from "../../../../contexts/AlertContext";
-import { Alert } from "../../../Alert/Alert";
+import style from "./BrandInfoRow.module.css";
 
 export const BrandInfoRow = (props) => {
     const brand = props.brand;

@@ -1,15 +1,16 @@
-import style from "./CategoryInfo.module.css";
-import { CategoryInfoRow } from "./CategoryInfoRow/CategoryInfoRow";
-
-import { AlertContext } from "../../../contexts/AlertContext";
-import { Alert } from "../../Alert/Alert";
-import { Pagination } from "../../Pagination/Pagination";
-import * as categoryServices from "../../../services/category";
-import { useState } from "react";
-import { useEffect } from "react";
 import { useContext } from "react";
-import { SearchTable } from "../../SearchTable/SearchTable";
+import { useEffect } from "react";
+import { useState } from "react";
+
+import { Alert } from "../../Alert/Alert";
+import { AlertContext } from "../../../contexts/AlertContext";
+import { CategoryInfoRow } from "./CategoryInfoRow/CategoryInfoRow";
 import { orderByIdFunction, orderByNameFunction } from "../../../utils/utils";
+import { Pagination } from "../../Pagination/Pagination";
+import { SearchTable } from "../../SearchTable/SearchTable";
+import * as categoryServices from "../../../services/category";
+
+import style from "./CategoryInfo.module.css";
 
 export const CategoryInfo = () => {
     const [categories, setCategories] = useState([]);

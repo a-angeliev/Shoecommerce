@@ -1,27 +1,27 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
-import { NavigationBar } from "./components/Navigation/Navigation";
-import { PrivateRoute } from "../src/components/PrivetRoute/PrivateRoute";
-import { Login } from "./components/Auth/Login/Login";
-
-import { AuthProvider } from "./contexts/AuthContext";
-import { UserBar } from "./components/UserBar/UserBar";
-import { BrandInfo } from "./components/Brand/BrandInfo/BrandInfo";
-import { BrandEdit } from "./components/Brand/BrandEdit/BrandEdit";
-import { BrandCreate } from "./components/Brand/BrandCreate/BrandCreate";
 import { AlertProvider } from "./contexts/AlertContext";
-import { CategoryInfo } from "./components/Category/CategoryInfo/CategoryInfo";
+import { AuthProvider } from "./contexts/AuthContext";
+import { BrandCreate } from "./components/Brand/BrandCreate/BrandCreate";
+import { BrandEdit } from "./components/Brand/BrandEdit/BrandEdit";
+import { BrandInfo } from "./components/Brand/BrandInfo/BrandInfo";
 import { CategoryCreate } from "./components/Category/CategoryCreate/CategoryCreate";
 import { CategoryEdit } from "./components/Category/CategoryEdit/CategoryEdit";
+import { CategoryInfo } from "./components/Category/CategoryInfo/CategoryInfo";
+import { Login } from "./components/Auth/Login/Login";
+import { Logout } from "./components/Logout/Logout";
+import { NavigationBar } from "./components/Navigation/Navigation";
+import { OrderDetails } from "./components/Order/OrderDetails/OrderDetails";
+import { OrderInfo } from "./components/Order/OrderInfo/OrderInfo";
+import { PrivateRoute } from "../src/components/PrivetRoute/PrivateRoute";
+import { ProductCreate } from "./components/Product/ProductCreate/ProductCreate";
+import { ProductDetail } from "./components/Product/ProductDetail/ProductDetail";
 import { ProductInfo } from "./components/Product/ProductInfo/ProductInfo";
 import { ProductProvider } from "./contexts/ProductsContext";
-import { ProductDetail } from "./components/Product/ProductDetail/ProductDetail";
-import { ProductCreate } from "./components/Product/ProductCreate/ProductCreate";
-import { OrderInfo } from "./components/Order/OrderInfo/OrderInfo";
-import { OrderDetails } from "./components/Order/OrderDetails/OrderDetails";
-import { Logout } from "./components/Logout/Logout";
 import { Summary } from "./components/Summary/Summary";
+import { UserBar } from "./components/UserBar/UserBar";
+
+import "./App.css";
 
 function App() {
     return (

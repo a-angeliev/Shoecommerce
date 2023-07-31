@@ -1,9 +1,10 @@
-import style from "./ProductCreateForm.module.css";
-import { Alert } from "../../../Alert/Alert";
 import { useEffect, useState } from "react";
 
+import { Alert } from "../../../Alert/Alert";
 import * as brandServices from "../../../../services/brand";
 import * as categoryServices from "../../../../services/category";
+
+import style from "./ProductCreateForm.module.css";
 
 export const ProductCreateForm = (props) => {
     const [isDeleted, setIsDeleted] = useState(false);

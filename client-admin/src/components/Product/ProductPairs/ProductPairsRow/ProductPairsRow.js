@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import style from "./ProductPairsRow.module.css";
-import { AlertContext } from "../../../../contexts/AlertContext";
-import { Alert } from "../../../Alert/Alert";
-import * as productServices from "../../../../services/product";
 import { useParams } from "react-router-dom";
+
+import { Alert } from "../../../Alert/Alert";
+import { AlertContext } from "../../../../contexts/AlertContext";
+import * as productServices from "../../../../services/product";
+
+import style from "./ProductPairsRow.module.css";
 
 export const ProductPairsRow = (params) => {
     const [edit, setEdit] = useState(false);

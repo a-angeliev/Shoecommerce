@@ -1,8 +1,10 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import style from "./UserBar.module.css";
-import { AuthContext } from "../../contexts/AuthContext";
 import { useContext, useEffect, useState } from "react";
+
+import { AuthContext } from "../../contexts/AuthContext";
 import * as userService from "../../services/user";
+
+import style from "./UserBar.module.css";
 
 export const UserBar = () => {
     const { isAdmin, user } = useContext(AuthContext);

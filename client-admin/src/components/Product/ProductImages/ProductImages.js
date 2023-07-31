@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import style from "./ProductImages.module.css";
-
-import * as productServices from "../../../services/product";
 import { useParams } from "react-router-dom";
-import { AlertContext } from "../../../contexts/AlertContext";
+
 import { Alert } from "../../Alert/Alert";
+import { AlertContext } from "../../../contexts/AlertContext";
+import * as productServices from "../../../services/product";
+
+import style from "./ProductImages.module.css";
 
 export const ProductImages = (props) => {
     const [inputContent, setInputContent] = useState({

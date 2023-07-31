@@ -1,15 +1,15 @@
-import style from "./ProductCreate.module.css";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { Alert } from "../../Alert/Alert";
+import { AlertContext } from "../../../contexts/AlertContext";
 import { ProductCreateForm } from "./ProductCreateForm/ProductCreateForm";
 import { ProductCreatePairs } from "./ProductCreatePairs/ProductCreatePairs";
 import { ProductCreateUrls } from "./ProductCreateUrls/ProductCreateUrls";
-import { Alert } from "../../Alert/Alert";
-
-import { useContext, useState } from "react";
-import { AlertContext } from "../../../contexts/AlertContext";
-
-import * as productServices from "../../../services/product";
 import { validateLengthArray } from "../../../utils/utils";
-import { useNavigate } from "react-router-dom";
+import * as productServices from "../../../services/product";
+
+import style from "./ProductCreate.module.css";
 
 export const ProductCreate = () => {
     const { setAlert } = useContext(AlertContext);

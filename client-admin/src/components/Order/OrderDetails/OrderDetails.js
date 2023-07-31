@@ -1,13 +1,11 @@
-import style from "./OrderDetails.module.css";
-
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import { Alert } from "../../Alert/Alert";
+import { AlertContext } from "../../../contexts/AlertContext";
 import * as orderServices from "../../../services/order";
 
-import { Alert } from "../../Alert/Alert";
-
-import { AlertContext } from "../../../contexts/AlertContext";
+import style from "./OrderDetails.module.css";
 
 export const OrderDetails = (props) => {
     const [activeSelect, setActiveSelect] = useState(false);

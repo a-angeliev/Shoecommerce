@@ -1,10 +1,12 @@
-import { SearchTable } from "../../SearchTable/SearchTable";
-import style from "./OrderInfo.module.css";
-import { OrderInfoRow } from "./OrderInfoRow/OrderInfoRow";
-import * as OrderServices from "../../../services/order";
 import { useEffect, useState } from "react";
+
+import { orderByIdFunction, orderByNameFunction } from "../../../utils/utils";
+import { OrderInfoRow } from "./OrderInfoRow/OrderInfoRow";
 import { Pagination } from "../../Pagination/Pagination";
-import { orderByIdFunction, orderByNumberFunction, orderByNameFunction } from "../../../utils/utils";
+import { SearchTable } from "../../SearchTable/SearchTable";
+import * as OrderServices from "../../../services/order";
+
+import style from "./OrderInfo.module.css";
 
 export const OrderInfo = () => {
     const [currentPage, setCurrentPage] = useState(1);

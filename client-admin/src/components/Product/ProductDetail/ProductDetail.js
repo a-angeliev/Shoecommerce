@@ -1,12 +1,12 @@
-import { useParams } from "react-router-dom";
-import style from "./ProductDetail.module.css";
 import { useEffect, useState } from "react";
-
-import * as productServices from "../../../services/product";
+import { useParams } from "react-router-dom";
 
 import { ProductForm } from "../ProductForm/ProductForm";
-import { ProductPairs } from "../ProductPairs/ProductPairs";
 import { ProductImages } from "../ProductImages/ProductImages";
+import { ProductPairs } from "../ProductPairs/ProductPairs";
+import * as productServices from "../../../services/product";
+
+import style from "./ProductDetail.module.css";
 
 export const ProductDetail = () => {
     const [shoe, setShoe] = useState("");

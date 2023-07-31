@@ -1,6 +1,7 @@
-import { useState } from "react";
-import style from "./ProductInfoRow.module.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
+import style from "./ProductInfoRow.module.css";
 
 export const ProductInfoRow = (props) => {
     const [activeDots, setActiveDots] = useState(false);

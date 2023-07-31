@@ -1,12 +1,12 @@
-import style from "./BrandForm.module.css";
-
-import { useState, useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
-
-import * as brandService from "../../../services/brand";
 import { useNavigate } from "react-router-dom";
-import { AlertContext } from "../../../contexts/AlertContext";
+import { useParams } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+
 import { Alert } from "../../Alert/Alert";
+import { AlertContext } from "../../../contexts/AlertContext";
+import * as brandService from "../../../services/brand";
+
+import style from "./BrandForm.module.css";
 
 export const BrandForm = (params) => {
     const [brandInput, setBrandInput] = useState({ name: "", "logo-url": "", description: "" });

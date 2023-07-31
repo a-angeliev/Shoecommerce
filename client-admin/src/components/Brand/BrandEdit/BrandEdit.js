@@ -1,12 +1,12 @@
-import style from "./BrandEdit.module.css";
-
-import * as brandService from "../../../services/brand";
-import { BrandForm } from "../BrandForm/BrandForm";
-import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-import { AlertContext } from "../../../contexts/AlertContext";
 import { Alert } from "../../Alert/Alert";
+import { AlertContext } from "../../../contexts/AlertContext";
+import { BrandForm } from "../BrandForm/BrandForm";
+import * as brandService from "../../../services/brand";
+
+import style from "./BrandEdit.module.css";
 
 export const BrandEdit = () => {
     const [brand, setBrand] = useState("");

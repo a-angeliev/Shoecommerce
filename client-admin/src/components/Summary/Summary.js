@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import {
     BarChart,
     Bar,
@@ -13,8 +14,9 @@ import {
     Pie,
     Sector,
 } from "recharts";
-import style from "./Summary.module.css";
 import * as summaryService from "../../services/summary";
+
+import style from "./Summary.module.css";
 
 export const Summary = () => {
     const [chartData, setChartData] = useState([]);

@@ -1,12 +1,12 @@
-import { CategoryForm } from "../CategoryForm/CategoryForm";
-import style from "./CategoryEdit.module.css";
-
-import * as categoryService from "../../../services/category";
-
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { AlertContext } from "../../../contexts/AlertContext";
+
 import { Alert } from "../../Alert/Alert";
+import { AlertContext } from "../../../contexts/AlertContext";
+import { CategoryForm } from "../CategoryForm/CategoryForm";
+import * as categoryService from "../../../services/category";
+
+import style from "./CategoryEdit.module.css";
 
 export const CategoryEdit = () => {
     const { setAlert } = useContext(AlertContext);
