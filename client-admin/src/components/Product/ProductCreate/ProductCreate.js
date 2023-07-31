@@ -13,6 +13,7 @@ import style from "./ProductCreate.module.css";
 
 export const ProductCreate = () => {
     const { setAlert } = useContext(AlertContext);
+
     const [mainData, setMainData] = useState({
         title: "",
         price: "",
@@ -24,6 +25,7 @@ export const ProductCreate = () => {
     });
     const [urlData, setUrlData] = useState({ url1: "", url2: "", url3: "", url4: "", url5: "", url6: "", url7: "" });
     const [pairData, setPairData] = useState({ color: "", size: "", quantity: "" });
+
     const navigate = useNavigate();
 
     const isInputValid = () => {

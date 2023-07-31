@@ -9,9 +9,11 @@ import * as brandService from "../../../services/brand";
 import style from "./BrandEdit.module.css";
 
 export const BrandEdit = () => {
-    const [brand, setBrand] = useState("");
-    const params = useParams();
     const { setAlert } = useContext(AlertContext);
+
+    const [brand, setBrand] = useState("");
+
+    const params = useParams();
 
     useEffect(() => {
         brandService

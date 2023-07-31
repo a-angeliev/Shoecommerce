@@ -8,9 +8,10 @@ import * as categoryService from "../../../../services/category";
 import style from "./CategoryInfoRow.module.css";
 
 export const CategoryInfoRow = (params) => {
+    const { setAlert } = useContext(AlertContext);
+
     const [activeDots, setActiveDots] = useState(false);
     const [deletePopup, setDeletePopup] = useState(false);
-    const { setAlert } = useContext(AlertContext);
 
     const expandDots = () => {
         setActiveDots((prev) => !prev);

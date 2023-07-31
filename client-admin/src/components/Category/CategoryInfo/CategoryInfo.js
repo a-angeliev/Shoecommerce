@@ -13,18 +13,18 @@ import * as categoryServices from "../../../services/category";
 import style from "./CategoryInfo.module.css";
 
 export const CategoryInfo = () => {
-    const [categories, setCategories] = useState([]);
-    const [filter, setFilter] = useState("");
-    const [itemPerPage, setItemPerPage] = useState(5);
-    const [filteredCategories, setFilteredCategories] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [numberOfPages, setNumberOfPages] = useState(1);
-    const [numberOfCategories, setNumberOfCategories] = useState(1);
-    const [orderById, setOrderById] = useState(true);
-    const [orderByTitle, setOrderByTitle] = useState(true);
-    const [reset, setReset] = useState(false);
-
     const { setAlert } = useContext(AlertContext);
+
+    const [reset, setReset] = useState(false);
+    const [filter, setFilter] = useState("");
+    const [orderById, setOrderById] = useState(true);
+    const [categories, setCategories] = useState([]);
+    const [itemPerPage, setItemPerPage] = useState(5);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [orderByTitle, setOrderByTitle] = useState(true);
+    const [numberOfPages, setNumberOfPages] = useState(1);
+    const [filteredCategories, setFilteredCategories] = useState([]);
+    const [numberOfCategories, setNumberOfCategories] = useState(1);
 
     useEffect(() => {
         categoryServices

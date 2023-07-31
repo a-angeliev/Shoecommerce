@@ -8,6 +8,8 @@ import * as productServices from "../../../services/product";
 import style from "./ProductImages.module.css";
 
 export const ProductImages = (props) => {
+    const { setAlert } = useContext(AlertContext);
+
     const [inputContent, setInputContent] = useState({
         url1: "",
         url2: "",
@@ -19,7 +21,6 @@ export const ProductImages = (props) => {
     });
     const [oldImages, setOldImages] = useState({});
     const param = useParams();
-    const { setAlert } = useContext(AlertContext);
     const [edit, setEdit] = useState(false);
     const [images, setImages] = useState([]);
 

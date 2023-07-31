@@ -11,14 +11,14 @@ import style from "./BrandInfo.module.css";
 export const BrandInfo = () => {
     const [brands, setBrands] = useState("");
     const [filter, setFilter] = useState("");
-    const [filteredBrands, setFilteredBrands] = useState("");
+    const [reset, setReset] = useState(false);
     const [orderById, setOrderById] = useState(true);
     const [orderByName, setOrderByName] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const [numberOfPages, setNumberOfPages] = useState(0);
     const [itemPerPage, setItemPerPage] = useState(5);
+    const [numberOfPages, setNumberOfPages] = useState(0);
+    const [filteredBrands, setFilteredBrands] = useState("");
     const [numberOfBrands, setNumberOfBrands] = useState(1);
-    const [reset, setReset] = useState(false);
 
     useEffect(() => {
         brandService

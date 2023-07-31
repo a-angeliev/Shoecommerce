@@ -13,6 +13,7 @@ export const ProductDetail = () => {
     const [shoeImages, setShoeImages] = useState([]);
     const [pairs, setPairs] = useState([]);
     const [reload, setReload] = useState(false);
+
     const param = useParams();
 
     useEffect(() => {

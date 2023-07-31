@@ -5,8 +5,11 @@ import style from "./OrderInfoRow.module.css";
 
 export const OrderInfoRow = (props) => {
     const [activeDots, setActiveDots] = useState(false);
+
     const date = new Date(props.order.created_on);
+
     console.log(date.toLocaleDateString(), date.toLocaleTimeString(), 123);
+
     return (
         <>
             <tr className={style.tr}>

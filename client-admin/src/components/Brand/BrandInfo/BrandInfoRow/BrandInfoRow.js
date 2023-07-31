@@ -8,13 +8,14 @@ import * as brandService from "../../../../services/brand";
 import style from "./BrandInfoRow.module.css";
 
 export const BrandInfoRow = (props) => {
-    const brand = props.brand;
+    const { setAlert } = useContext(AlertContext);
 
     const [activeDots, setActiveDots] = useState(false);
     const [deletePopup, setDeletePopup] = useState(false);
 
-    const { setAlert } = useContext(AlertContext);
     const navigate = useNavigate();
+
+    const brand = props.brand;
 
     const expandDots = () => {
         setActiveDots((prev) => !prev);

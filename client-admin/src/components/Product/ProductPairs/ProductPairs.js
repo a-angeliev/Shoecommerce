@@ -9,6 +9,8 @@ import * as productService from "../../../services/product";
 import style from "./ProductPairs.module.css";
 
 export const ProductPairs = (props) => {
+    const { setAlert } = useContext(AlertContext);
+
     const [add, setAdd] = useState(false);
     const [color, setColor] = useState("black");
     const [size, setSize] = useState(30);
@@ -20,8 +22,6 @@ export const ProductPairs = (props) => {
     const [orderByQuantity, setOrderByQuantity] = useState(false);
 
     const param = useParams();
-
-    const { setAlert } = useContext(AlertContext);
 
     useEffect(() => {
         orderByIdFunction(props.pairs, orderById, setOrderedPairs);

@@ -8,6 +8,7 @@ import style from "./UserBar.module.css";
 
 export const UserBar = () => {
     const { isAdmin, user } = useContext(AuthContext);
+
     const [userName, setUserName] = useState({ first: "", last: "" });
 
     useEffect(() => {

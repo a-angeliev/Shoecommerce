@@ -9,9 +9,11 @@ import * as categoryService from "../../../services/category";
 import style from "./CategoryCreate.module.css";
 
 export const CategoryCreate = () => {
+    const { setAlert } = useContext(AlertContext);
+
     const [title, setTitle] = useState("");
     const [isValidTitle, setIsValidTitle] = useState(true);
-    const { setAlert } = useContext(AlertContext);
+
     const navigate = useNavigate();
 
     const validateTitle = () => {

@@ -10,9 +10,11 @@ import style from "./CategoryEdit.module.css";
 
 export const CategoryEdit = () => {
     const { setAlert } = useContext(AlertContext);
+
+    const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
     const [isValidTitle, setIsValidTitle] = useState(true);
-    const [title, setTitle] = useState("");
+
     const param = useParams();
     const navigate = useNavigate();
 

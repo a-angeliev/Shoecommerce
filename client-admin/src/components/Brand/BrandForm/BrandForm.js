@@ -9,13 +9,14 @@ import * as brandService from "../../../services/brand";
 import style from "./BrandForm.module.css";
 
 export const BrandForm = (params) => {
+    const { alert, setAlert } = useContext(AlertContext);
+
     const [brandInput, setBrandInput] = useState({ name: "", "logo-url": "", description: "" });
     const [nameValidation, setNameValidation] = useState("");
     const [logoValidation, setLogoValidation] = useState("");
     const [descValidation, setDescValidation] = useState("");
-    const { alert, setAlert } = useContext(AlertContext);
-    const param = useParams();
 
+    const param = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {

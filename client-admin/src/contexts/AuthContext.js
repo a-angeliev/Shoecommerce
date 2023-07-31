@@ -6,9 +6,11 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useLocalStorage("auth", {});
-    const userLogin = (authData) => setAuth(JSON.parse(authData));
-    const userLogout = () => setAuth({});
     const isAuthenticated = Boolean(auth?.token);
+
+    const userLogin = (authData) => setAuth(JSON.parse(authData));
+
+    const userLogout = () => setAuth({});
 
     return (
         <AuthContext.Provider

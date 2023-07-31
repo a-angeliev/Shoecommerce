@@ -5,6 +5,7 @@ import style from "./NavSection.module.css";
 
 export const NavSection = (props) => {
     const [expandMenu, setExpandMenu] = useState(false);
+
     const links = Object.entries(props.links);
 
     const icons = {

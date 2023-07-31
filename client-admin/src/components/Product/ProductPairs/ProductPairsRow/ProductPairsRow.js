@@ -8,9 +8,11 @@ import * as productServices from "../../../../services/product";
 import style from "./ProductPairsRow.module.css";
 
 export const ProductPairsRow = (params) => {
+    const { setAlert } = useContext(AlertContext);
+
     const [edit, setEdit] = useState(false);
     const [input, setInput] = useState(0);
-    const { setAlert } = useContext(AlertContext);
+
     const param = useParams();
 
     useEffect(() => {

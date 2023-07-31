@@ -28,9 +28,10 @@ export const Summary = () => {
         { name: "Total Price", value: 0 },
         { name: "Shipped Price", value: 0 },
     ]);
-
     const [stateOrders, setStateOrders] = useState({ activeIndex: 0 });
     const [statePrice, setStatePrice] = useState({ activeIndex: 0 });
+
+    const colors = ["#8884D8", "#82CA9D"];
 
     useEffect(() => {
         summaryService
@@ -48,8 +49,6 @@ export const Summary = () => {
             })
             .catch((err) => console.log(err));
     }, []);
-
-    const colors = ["#8884D8", "#82CA9D"];
 
     const renderActiveShape = (props, text) => {
         const RADIAN = Math.PI / 180;

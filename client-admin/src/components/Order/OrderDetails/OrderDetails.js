@@ -8,7 +8,10 @@ import * as orderServices from "../../../services/order";
 import style from "./OrderDetails.module.css";
 
 export const OrderDetails = (props) => {
+    const { setAlert } = useContext(AlertContext);
+
     const [activeSelect, setActiveSelect] = useState(false);
+    const [statusInput, setStatusInput] = useState("pending");
     const [order, setOrder] = useState({
         order_address: [
             {
@@ -25,8 +28,6 @@ export const OrderDetails = (props) => {
         ],
         order_items: [],
     });
-    const [statusInput, setStatusInput] = useState("pending");
-    const { setAlert } = useContext(AlertContext);
 
     const param = useParams();
 
@@ -52,6 +53,7 @@ export const OrderDetails = (props) => {
             .catch((err) => setAlert({ color: "red", text: err }));
         setActiveSelect(false);
     };
+
     const orderRow = (row) => {
         return (
             <tr>

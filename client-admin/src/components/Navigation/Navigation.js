@@ -8,6 +8,7 @@ import style from "./Navigation.module.css";
 
 export const NavigationBar = () => {
     const { isAdmin } = useContext(AuthContext);
+
     const navigate = useNavigate();
 
     const brandUrls = {
@@ -39,6 +40,7 @@ export const NavigationBar = () => {
     const profile = {
         Logout: "/logout",
     };
+
     if (isAdmin) {
         return (
             <div className={style.nav}>

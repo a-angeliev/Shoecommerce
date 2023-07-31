@@ -10,6 +10,8 @@ import * as productServices from "../../../services/product";
 import style from "./ProductForm.module.css";
 
 export const ProductForm = (params) => {
+    const { setAlert } = useContext(AlertContext);
+
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState(0);
     const [brands, setBrands] = useState([]);
@@ -22,7 +24,6 @@ export const ProductForm = (params) => {
     const [edit, setEdit] = useState(false);
 
     const p = useParams();
-    const { setAlert } = useContext(AlertContext);
 
     useEffect(() => {
         brandServices

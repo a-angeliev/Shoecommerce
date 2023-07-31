@@ -10,10 +10,11 @@ import style from "./Login.module.css";
 
 export const Login = () => {
     const { isAuthenticated, userLogin, isAdmin } = useContext(AuthContext);
+    const { setAlert } = useContext(AlertContext);
+
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
     const [shake, setShake] = useState("");
-    const { setAlert } = useContext(AlertContext);
 
     const navigate = useNavigate();
 

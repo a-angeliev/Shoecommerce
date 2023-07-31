@@ -9,6 +9,8 @@ import { SearchTable } from "../../SearchTable/SearchTable";
 import style from "./ProductInfo.module.css";
 
 export const ProductInfo = () => {
+    const { products } = useContext(ProductContext);
+
     const [currentPage, setCurrentPage] = useState(1);
     const [numberOfPages, setNumberOfPages] = useState(1);
     const [itemPerPage, setItemPerPage] = useState(5);
@@ -18,7 +20,6 @@ export const ProductInfo = () => {
     const [orderById, setOrderById] = useState(true);
     const [orderByName, setOrderByName] = useState(true);
     const [orderByPrice, setOrderByPrice] = useState(true);
-    const { products } = useContext(ProductContext);
 
     useEffect(() => {
         if (products !== "") {

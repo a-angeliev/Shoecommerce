@@ -5,9 +5,11 @@ import style from "./ProductInfoRow.module.css";
 
 export const ProductInfoRow = (props) => {
     const [activeDots, setActiveDots] = useState(false);
+
     const expandDots = () => {
         setActiveDots((prev) => !prev);
     };
+
     return (
         <>
             <tr className={style["tr"]}>
