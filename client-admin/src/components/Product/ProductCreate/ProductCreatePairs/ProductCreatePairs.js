@@ -9,41 +9,31 @@ export const ProductCreatePairs = (props) => {
     useEffect(() => {
         setRowsNumber(row.length);
         props.setPairData(row);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [row]);
 
-    const colorHandler = (e, i) => {
-        const r = [...row];
-        const data = r[i];
-        data.color = e.target.value;
-        r[i] = data;
-        setRow(r);
+    const inputHandler = (e, i, key, func = null) => {
+        const rowCopy = [...row];
+        const pair = rowCopy[i];
+        if (func) {
+            pair[`${key}`] = func(e.target.value);
+        } else {
+            pair[`${key}`] = e.target.value;
+        }
+        rowCopy[i] = pair;
+        setRow(rowCopy);
     };
 
-    const sizeHandler = (e, i) => {
-        const r = [...row];
-        const data = r[i];
-        data.size = Number(e.target.value);
-        r[i] = data;
-        setRow(r);
-    };
-
-    const quantityHandler = (e, i) => {
-        const r = [...row];
-        const data = r[i];
-        data.quantity = Number(e.target.value);
-        r[i] = data;
-        setRow(r);
-    };
     const addRow = () => {
-        const r = [...row];
-        r.push({ color: "black", size: "", quantity: "" });
-        setRow(r);
+        const rowCopy = [...row];
+        rowCopy.push({ color: "black", size: "", quantity: "" });
+        setRow(rowCopy);
     };
 
     const removeRow = () => {
-        const r = [...row];
-        r.pop();
-        setRow(r);
+        const rowCopy = [...row];
+        rowCopy.pop();
+        setRow(rowCopy);
     };
 
     const newRow = (x, i) => {
@@ -57,7 +47,7 @@ export const ProductCreatePairs = (props) => {
                                 <select
                                     className={style.select}
                                     name={`color-${i}`}
-                                    onChange={(e) => colorHandler(e, i)}
+                                    onChange={(e) => inputHandler(e, i, "color")}
                                     value={x.color}>
                                     <option key='black'>black</option>
                                     <option key='white'>white</option>
@@ -76,7 +66,7 @@ export const ProductCreatePairs = (props) => {
                                     className={style.input}
                                     name={`size-${i}`}
                                     type='number'
-                                    onChange={(e) => sizeHandler(e, i)}
+                                    onChange={(e) => inputHandler(e, i, "size", Number)}
                                     value={x.size}></input>
                             </div>
 
@@ -86,7 +76,7 @@ export const ProductCreatePairs = (props) => {
                                     className={style.input}
                                     name={`quantity-${i}`}
                                     type='number'
-                                    onChange={(e) => quantityHandler(e, i)}
+                                    onChange={(e) => inputHandler(e, i, "quantity", Number)}
                                     value={x.quantity}></input>
                             </div>
                         </form>

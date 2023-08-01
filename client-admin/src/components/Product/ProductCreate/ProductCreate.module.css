@@ -19,24 +19,20 @@
     display: flex;
     justify-content: center;
     align-items: top;
-    /* text-align: center; */
 }
 
 .form {
     width: 33%;
     border-right: 1px solid var(--main-gray-border)
-        /* border: 1px solid red; */
 }
 
 .urls {
     width: 33%;
     border-right: 1px solid var(--main-gray-border)
-        /* border: 1px solid red; */
 }
 
 .pairs {
     width: 33%;
-    /* border: 1px solid red; */
 }
 
 .submit {

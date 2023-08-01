@@ -4,7 +4,7 @@ import { AlertContext } from "../../contexts/AlertContext";
 
 import style from "./Alert.module.css";
 
-export const Alert = (props) => {
+export const Alert = () => {
     const { alert, setAlert } = useContext(AlertContext);
 
     const color = {
@@ -18,6 +18,7 @@ export const Alert = (props) => {
                 setAlert(false);
             }, 1500);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [alert]);
 
     return (

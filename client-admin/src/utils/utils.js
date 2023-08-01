@@ -78,3 +78,7 @@ export function validateLengthArray(array, length, type) {
         return false;
     }
 }
+
+export function outsideRange(number, lowerBound, higherBound) {
+    return number < lowerBound || number > higherBound;
+}

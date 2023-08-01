@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useLocalStorage("auth", {});
     const isAuthenticated = Boolean(auth?.token);
 
-    const userLogin = (authData) => setAuth(JSON.parse(authData));
+    const userLogin = (authData) => setAuth(authData);
 
     const userLogout = () => setAuth({});
 

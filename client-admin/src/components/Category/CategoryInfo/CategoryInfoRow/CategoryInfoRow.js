@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 
-import { Alert } from "../../../Alert/Alert";
 import { AlertContext } from "../../../../contexts/AlertContext";
 import * as categoryService from "../../../../services/category";
 
@@ -20,7 +19,7 @@ export const CategoryInfoRow = (params) => {
     const deleteBrand = () => {
         categoryService
             .deleteCategory(params.category.id)
-            .then((res) => {
+            .then((_) => {
                 params.reset((prev) => !prev);
                 setDeletePopup(false);
                 setActiveDots(false);
@@ -33,7 +32,6 @@ export const CategoryInfoRow = (params) => {
 
     return (
         <>
-            <Alert></Alert>
             <div
                 className={`${style.delete}  ${deletePopup ? style.active : ""}`}
                 onClick={() => {
@@ -45,7 +43,7 @@ export const CategoryInfoRow = (params) => {
                         Are you sure you want to <span className={style["delete-color"]}>DELETE</span> this category and
                         shoes in it?
                     </p>
-                    <div className={style.buttons}>
+                    <div className={style["popup-buttons"]}>
                         <button
                             onClick={() => {
                                 setDeletePopup(false);

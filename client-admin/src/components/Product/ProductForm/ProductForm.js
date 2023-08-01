@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { Alert } from "../../Alert/Alert";
 import { AlertContext } from "../../../contexts/AlertContext";
 import * as brandServices from "../../../services/brand";
 import * as categoryServices from "../../../services/category";
@@ -28,16 +27,18 @@ export const ProductForm = (params) => {
     useEffect(() => {
         brandServices
             .getAllBrands()
-            .then((res) => {
-                setBrands(res.map((brand) => brand.name));
+            .then((allBrands) => {
+                setBrands(JSON.parse(allBrands).map((brand) => brand.name));
             })
             .catch((err) => setAlert({ color: "red", text: err.messages }));
+
         categoryServices
             .getAllCategories()
-            .then((res) => {
-                setCategories(res.map((cat) => cat.title));
+            .then((allCategories) => {
+                setCategories(JSON.parse(allCategories).map((cat) => cat.title));
             })
             .catch((err) => setAlert({ color: "red", text: err.messages }));
+
         if (params.shoe) {
             setTitle(params.shoe.title);
             setPrice(params.shoe.price);
@@ -50,34 +51,33 @@ export const ProductForm = (params) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [params.shoe]);
 
-    const submit = (e) => {
-        e.preventDefault();
+    const submit = () => {
         if (edit) {
+            const data = {
+                title,
+                description,
+                price,
+                gender,
+                brand_name: brand,
+                category_title: category,
+                discount: 0,
+                is_deleted: isDeleted,
+            };
+
             productServices
-                .editBaseById(p.id, {
-                    title,
-                    description,
-                    price,
-                    gender,
-                    brand_name: brand,
-                    category_title: category,
-                    discount: 0,
-                    is_deleted: isDeleted,
-                })
-                .then((res) => {
+                .editBaseById(p.id, data)
+                .then((_) => {
                     setAlert({ color: "green", text: "You successful edit product base information!" });
                 })
                 .catch((err) => {
-                    setAlert({ color: "green", text: "You successful edit product base information!" });
+                    setAlert({ color: "green", text: err.messages });
                 });
             setEdit(false);
-        } else {
-            setEdit(true);
-        }
+        } else setEdit(true);
     };
+
     return (
         <>
-            <Alert />
             <div className={style["form-background"]}>
                 <form className={style["form"]}>
                     <div className={style["shoe-name"]}>

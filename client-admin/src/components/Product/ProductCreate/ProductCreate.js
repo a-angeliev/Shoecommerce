@@ -1,12 +1,11 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Alert } from "../../Alert/Alert";
 import { AlertContext } from "../../../contexts/AlertContext";
 import { ProductCreateForm } from "./ProductCreateForm/ProductCreateForm";
 import { ProductCreatePairs } from "./ProductCreatePairs/ProductCreatePairs";
 import { ProductCreateUrls } from "./ProductCreateUrls/ProductCreateUrls";
-import { validateLengthArray } from "../../../utils/utils";
+import { validateLengthArray, outsideRange } from "../../../utils/utils";
 import * as productServices from "../../../services/product";
 
 import style from "./ProductCreate.module.css";
@@ -30,15 +29,14 @@ export const ProductCreate = () => {
 
     const isInputValid = () => {
         if (
-            mainData.price < 0 ||
-            mainData.price > 10000 ||
+            outsideRange(mainData.price, 0, 10000) ||
             validateLengthArray(
                 [mainData.title, mainData.gender, mainData.category_title, mainData.brand_name, mainData.description],
                 2,
                 "<"
             )
         ) {
-            setAlert({ color: "red", text: "You have empty fields in main shoe information" });
+            setAlert({ color: "red", text: "You have empty fields or wrong value in main shoe information" });
             return false;
         } else if (validateLengthArray(Object.values(urlData), 3, "<")) {
             setAlert({ color: "red", text: "You have empty fields in image urls section" });
@@ -46,10 +44,7 @@ export const ProductCreate = () => {
         } else if (
             pairData
                 .map((x) => {
-                    if (x.color.length < 2 || 10 > x.size || x.size > 70 || 0 > x.quantity || x.quantity > 100) {
-                        return false;
-                    }
-                    return true;
+                    return !(x.color.length < 2 || outsideRange(x.size, 10, 70) || outsideRange(x.quantity, 0, 100));
                 })
                 .includes(false)
         ) {
@@ -62,27 +57,26 @@ export const ProductCreate = () => {
         return true;
     };
 
-    const createProduct = (e) => {
-        e.preventDefault();
-        const data = {
+    const createProduct = () => {
+        const productData = {
             ...mainData,
             images: Object.values(urlData),
             pairs: [...pairData],
         };
         if (isInputValid()) {
             productServices
-                .create(data)
-                .then((res) => {
-                    console.log();
-                    navigate(`/product/${JSON.parse(res).id}`);
+                .create(productData)
+                .then((product) => {
+                    navigate(`/product/${JSON.parse(product).id}`);
                     setAlert({ color: "green", text: "You create product successful" });
                 })
-                .catch((err) => setAlert({ color: "red", text: err }));
+                .catch((err) => {
+                    setAlert({ color: "red", text: err.message });
+                });
         }
     };
     return (
         <>
-            <Alert></Alert>
             <div className={style["create-content"]}>
                 <div className={style["content-div"]}>
                     <h1>Create product</h1>

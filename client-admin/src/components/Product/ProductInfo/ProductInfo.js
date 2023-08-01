@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useState, useEffect } from "react";
 
-import { orderByIdFunction, orderByNameFunction } from "../../../utils/utils";
+import { orderByIdFunction, orderByNameFunction, orderByNumberFunction } from "../../../utils/utils";
 import { Pagination } from "../../Pagination/Pagination";
 import { ProductContext } from "../../../contexts/ProductsContext";
 import { ProductInfoRow } from "./ProductInfoRow/ProductInfoRow";
@@ -36,7 +36,6 @@ export const ProductInfo = () => {
     useEffect(() => {
         setCurrentPage(1);
         setNumberOfPages(Math.ceil(numberOfProducts / itemPerPage));
-        console.log(Math.ceil(numberOfProducts / itemPerPage));
     }, [itemPerPage]);
 
     useEffect(() => {
@@ -48,13 +47,7 @@ export const ProductInfo = () => {
     }, [orderByName]);
 
     useEffect(() => {
-        const prd = [...products];
-        if (orderByPrice) {
-            prd.sort((prd1, prd2) => prd1.price - prd2.price);
-        } else {
-            prd.sort((prd1, prd2) => prd2.price - prd1.price);
-        }
-        setFilteredProducts(prd);
+        orderByNumberFunction(products, orderByPrice, "price", setFilteredProducts);
     }, [orderByPrice]);
 
     useEffect(() => {
@@ -91,7 +84,6 @@ export const ProductInfo = () => {
                                 </th>
                                 <th className={style["cl-5"]}></th>
                             </tr>
-
                             {filteredProducts
                                 .slice(currentPage * itemPerPage - itemPerPage, currentPage * itemPerPage)
                                 .map((product) => (

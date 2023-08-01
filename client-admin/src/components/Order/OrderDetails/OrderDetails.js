@@ -34,10 +34,9 @@ export const OrderDetails = (props) => {
     useEffect(() => {
         orderServices
             .getOrderById(param.id)
-            .then((res) => {
-                console.log(res);
-                setOrder(res);
-                setStatusInput(res.is_shipped);
+            .then((order) => {
+                setOrder(JSON.parse(order));
+                setStatusInput(JSON.parse(order).is_shipped);
             })
             .catch((err) => setAlert({ color: "red", text: err }));
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -46,9 +45,9 @@ export const OrderDetails = (props) => {
     const changeOrder = () => {
         orderServices
             .changeOrderStatus(param.id, { status: statusInput })
-            .then((res) => {
-                setOrder(JSON.parse(res));
-                setStatusInput(JSON.parse(res).is_shipped);
+            .then((order) => {
+                setOrder(JSON.parse(order));
+                setStatusInput(JSON.parse(order).is_shipped);
                 setAlert({ color: "green", text: "Change order status successful!" });
             })
             .catch((err) => setAlert({ color: "red", text: err }));

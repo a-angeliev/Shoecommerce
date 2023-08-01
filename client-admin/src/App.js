@@ -20,6 +20,7 @@ import { ProductInfo } from "./components/Product/ProductInfo/ProductInfo";
 import { ProductProvider } from "./contexts/ProductsContext";
 import { Summary } from "./components/Summary/Summary";
 import { UserBar } from "./components/UserBar/UserBar";
+import { Alert } from "./components/Alert/Alert";
 
 import "./App.css";
 
@@ -28,6 +29,7 @@ function App() {
         <ProductProvider>
             <AuthProvider>
                 <AlertProvider>
+                    <Alert></Alert>
                     <div className='app'>
                         <NavigationBar />
                         <div className='content'>

@@ -16,8 +16,8 @@ export const BrandEdit = () => {
     useEffect(() => {
         brandService
             .getBrandById(params.id)
-            .then((res) => {
-                setBrand(res);
+            .then((brandStr) => {
+                setBrand(JSON.parse(brandStr));
             })
             .catch((err) => {
                 setAlert({ color: "red", text: err.message });

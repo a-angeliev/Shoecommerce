@@ -6,15 +6,11 @@ export const Pagination = (props) => {
     };
 
     const prevPage = () => {
-        if (props.currentPage > 1) {
-            props.setCurrentPage((prev) => prev - 1);
-        }
+        if (props.currentPage > 1) props.setCurrentPage((prev) => prev - 1);
     };
 
     const nextPage = () => {
-        if (props.currentPage < props.numberOfPages) {
-            props.setCurrentPage((prev) => prev + 1);
-        }
+        if (props.currentPage < props.numberOfPages) props.setCurrentPage((prev) => prev + 1);
     };
 
     return (

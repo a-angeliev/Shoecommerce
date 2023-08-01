@@ -29,7 +29,6 @@
 
 .summary-title {
     width: 100%;
-    /* height: 5rem; */
     border: 1px solid var(--main-gray-border);
     background: white;
     padding: 1.5rem 0 1.5rem 2rem;

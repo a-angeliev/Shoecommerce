@@ -10,12 +10,10 @@ async function request(method, url, data) {
 
     if (data !== undefined) {
         options.headers["Content-Type"] = "application/json";
-        // options.headers["mode"] = "no-cors";
         options.body = JSON.stringify(data);
     }
 
     const user = getUserData();
-    // const user = useLocalStorage("auth");
 
     if (user) {
         options.headers["x-access-token"] = user.token;
@@ -30,7 +28,6 @@ async function request(method, url, data) {
             }
 
             const err = await response.json();
-            // console.dir(err);
             throw err;
         }
 

@@ -17,7 +17,6 @@ export const NavSection = (props) => {
         profile: "gg-profile",
     };
 
-    console.log(icons[props.icon]);
     return (
         <div className={style["nav-section"]}>
             <div
@@ -31,10 +30,6 @@ export const NavSection = (props) => {
             </div>
             <div className={`${style["nav-section-links"]} ${expandMenu ? style["expanded"] : ""}`}>
                 {links.map((link) => (
-                    // <p key={link[0]}>
-                    //     {link[0]}
-                    //     {/* - {link[1]} */}
-                    // </p>
                     <Link className={style.link} to={link[1]}>
                         {link[0]}
                     </Link>

@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
-import { Alert } from "../../../Alert/Alert";
+import { AlertContext } from "../../../../contexts/AlertContext";
 import * as brandServices from "../../../../services/brand";
 import * as categoryServices from "../../../../services/category";
 
 import style from "./ProductCreateForm.module.css";
 
 export const ProductCreateForm = (props) => {
+    const { setAlert } = useContext(AlertContext);
+
     const [isDeleted, setIsDeleted] = useState(false);
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState(0);
@@ -20,18 +22,18 @@ export const ProductCreateForm = (props) => {
     useEffect(() => {
         brandServices
             .getAllBrands()
-            .then((res) => {
-                setBrands(res);
-                setBrand(res[0].name);
+            .then((allBrands) => {
+                setBrands(JSON.parse(allBrands));
+                setBrand(JSON.parse(allBrands)[0].name);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => setAlert({ color: "red", text: err.message }));
         categoryServices
             .getAllCategories()
-            .then((res) => {
-                setCategories(res);
-                setCategory(res[0].title);
+            .then((alLCategories) => {
+                setCategories(JSON.parse(alLCategories));
+                setCategory(JSON.parse(alLCategories)[0].title);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => setAlert({ color: "red", text: err.message }));
     }, []);
 
     useEffect(() => {
@@ -50,7 +52,6 @@ export const ProductCreateForm = (props) => {
 
     return (
         <>
-            <Alert />
             <div className={style["form-background"]}>
                 <form className={style.form}>
                     <div className={style["shoe-name"]}>

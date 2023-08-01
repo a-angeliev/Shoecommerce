@@ -2,14 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 
-import { Alert } from "../../Alert/Alert";
 import { AlertContext } from "../../../contexts/AlertContext";
 import * as brandService from "../../../services/brand";
 
 import style from "./BrandForm.module.css";
 
 export const BrandForm = (params) => {
-    const { alert, setAlert } = useContext(AlertContext);
+    const { setAlert } = useContext(AlertContext);
 
     const [brandInput, setBrandInput] = useState({ name: "", "logo-url": "", description: "" });
     const [nameValidation, setNameValidation] = useState("");
@@ -21,7 +20,7 @@ export const BrandForm = (params) => {
 
     useEffect(() => {
         if (params.brand !== "" && params.brand !== undefined) {
-            const brand = JSON.parse(params.brand);
+            const brand = params.brand;
             setBrandInput({
                 name: brand.name,
                 "logo-url": brand["logo_url"],
@@ -30,36 +29,33 @@ export const BrandForm = (params) => {
         }
     }, [params.brand]);
 
+    const validate = () => {
+        const validateLengthHelper = (input, len, func) => {
+            if (input.length < len) {
+                func(false);
+                console.log(123);
+            } else {
+                console.log(123);
+
+                func(true);
+            }
+        };
+
+        validateLengthHelper(brandInput["name"], 2, setNameValidation);
+        validateLengthHelper(brandInput["logo-url"], 5, setLogoValidation);
+        validateLengthHelper(brandInput["description"], 2, setDescValidation);
+    };
+
+    const checkValidation = () => {
+        if (nameValidation && logoValidation && descValidation) return true;
+        return false;
+    };
+
     const inputHandler = (e) => {
         const data = { ...brandInput };
         data[e.target.name] = e.target.value;
         setBrandInput(data);
         validate();
-    };
-
-    const validate = () => {
-        if (brandInput["name"].length <= 2) {
-            setNameValidation(false);
-        } else {
-            setNameValidation(true);
-        }
-        if (brandInput["logo-url"].length < 5) {
-            setLogoValidation(false);
-        } else {
-            setLogoValidation(true);
-        }
-        if (brandInput["description"].length <= 2) {
-            setDescValidation(false);
-        } else {
-            setDescValidation(true);
-        }
-    };
-
-    const checkValidation = () => {
-        if (nameValidation && logoValidation && descValidation) {
-            return true;
-        }
-        return false;
     };
 
     const onSubmit = (e) => {
@@ -71,9 +67,9 @@ export const BrandForm = (params) => {
                 description: brandInput.description,
             };
             if (params.job === "edit") {
-                const edit = brandService
+                brandService
                     .editBrandById(param.id, brandData)
-                    .then((res) => {
+                    .then((_) => {
                         setAlert({ color: "green", text: "You Successful edit the Brand" });
                         navigate("/brand/information");
                     })
@@ -81,9 +77,9 @@ export const BrandForm = (params) => {
                         setAlert({ color: "red", text: err.message });
                     });
             } else if (params.job === "create") {
-                const brand = brandService
+                brandService
                     .createBrand(brandData)
-                    .then((res) => {
+                    .then((_) => {
                         setAlert({ color: "green", text: "You Successful Create the Brand" });
                         navigate("/brand/information");
                     })
@@ -96,12 +92,11 @@ export const BrandForm = (params) => {
 
     return (
         <>
-            <Alert></Alert>
             <div className={style["page-content"]}>
                 <div className={style.wrapper}>
                     <h1>{params.title}</h1>
                     <div className={style.container}>
-                        <div className={style.title}>
+                        <div className={style["form-title"]}>
                             <h2>Brand Form</h2>
                         </div>
                         <form onSubmit={onSubmit}>

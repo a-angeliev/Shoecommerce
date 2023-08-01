@@ -13,7 +13,6 @@ input::-webkit-inner-spin-button {
 
 .form-background {
     background: white;
-    /* border: 1px solid var(--main-gray-border); */
 }
 
 .form {
@@ -34,14 +33,10 @@ input::-webkit-inner-spin-button {
 }
 
 .group-div {
-    /* display: grid; */
     align-items: center;
     display: flex;
     justify-content: space-around;
-    /* text-align: center; */
-    /* grid-template-columns: 1fr 3fr; */
     width: 46%;
-    /* margin-left: 0.5rem; */
     font-size: 1rem;
 }
 

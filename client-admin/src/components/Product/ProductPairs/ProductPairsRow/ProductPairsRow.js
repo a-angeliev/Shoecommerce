@@ -6,6 +6,7 @@ import { AlertContext } from "../../../../contexts/AlertContext";
 import * as productServices from "../../../../services/product";
 
 import style from "./ProductPairsRow.module.css";
+import { outsideRange } from "../../../../utils/utils";
 
 export const ProductPairsRow = (params) => {
     const { setAlert } = useContext(AlertContext);
@@ -20,7 +21,7 @@ export const ProductPairsRow = (params) => {
     }, [params.pair.quantity]);
 
     const validateInput = () => {
-        if (input < 0 || input > 10000) {
+        if (outsideRange(input, 0, 10000)) {
             setAlert({ color: "red", text: "Quantity must be between 0 and 10000" });
             return false;
         }
@@ -30,12 +31,11 @@ export const ProductPairsRow = (params) => {
         if (validateInput()) {
             productServices
                 .editProductPair(param.id, params.pair.id, { quantity: input })
-                .then((res) => {
+                .then((_) => {
                     setAlert({ color: "green", text: "You successful edit the pair" });
                     setEdit(false);
                 })
                 .catch((err) => {
-                    console.log(typeof err);
                     setAlert({ color: "red", text: err.message });
                 });
         }

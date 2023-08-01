@@ -30,10 +30,11 @@ export const CategoryInfo = () => {
     useEffect(() => {
         categoryServices
             .getAllCategories()
-            .then((res) => {
-                setCategories(res);
-                setFilteredCategories(res);
-                setNumberOfCategories(res.length);
+            .then((categories) => {
+                const jsonCategories = JSON.parse(categories);
+                setCategories(jsonCategories);
+                setFilteredCategories(jsonCategories);
+                setNumberOfCategories(jsonCategories.length);
             })
             .catch((err) => setAlert({ color: "red", text: err.message }));
     }, [reset]);

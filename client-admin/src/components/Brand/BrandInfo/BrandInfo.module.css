@@ -135,36 +135,6 @@
     color: #63738C;
 }
 
-/* .pagination-list {}
-
-.pagination-list>li {
-    display: inline;
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-.pagination-list>li:not(.non-hover) {
-    cursor: pointer;
-
-}
-
-.pagination-list>li:hover:not(.active):not(.non-hover) {
-    background-color: var(--main-gray-border);
-}
-
-
-.active {
-    background-color: var(--main-blue)
-}
-
-.pagImg {
-    width: 13px;
-    height: 13px;
-} */
-
 .cl-1 {
     width: 5%;
 

@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Alert } from "../../Alert/Alert";
 import { AlertContext } from "../../../contexts/AlertContext";
 import { CategoryForm } from "../CategoryForm/CategoryForm";
 import * as categoryService from "../../../services/category";
@@ -29,7 +28,7 @@ export const CategoryCreate = () => {
         if (validateTitle()) {
             categoryService
                 .createCategory({ title: title })
-                .then((res) => {
+                .then((_) => {
                     setAlert({ color: "green", text: "You successful create Category" });
                     navigate("/category/information");
                 })
@@ -39,7 +38,6 @@ export const CategoryCreate = () => {
 
     return (
         <>
-            <Alert></Alert>
             <div className={style["create-container"]}>
                 <div className={style.content}>
                     <h1>Create</h1>

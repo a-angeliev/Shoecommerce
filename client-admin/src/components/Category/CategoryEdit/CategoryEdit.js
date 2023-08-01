@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { Alert } from "../../Alert/Alert";
 import { AlertContext } from "../../../contexts/AlertContext";
 import { CategoryForm } from "../CategoryForm/CategoryForm";
 import * as categoryService from "../../../services/category";
@@ -12,7 +11,7 @@ export const CategoryEdit = () => {
     const { setAlert } = useContext(AlertContext);
 
     const [title, setTitle] = useState("");
-    const [category, setCategory] = useState("");
+    const [category, setCategory] = useState(null);
     const [isValidTitle, setIsValidTitle] = useState(true);
 
     const param = useParams();
@@ -21,15 +20,13 @@ export const CategoryEdit = () => {
     useEffect(() => {
         categoryService
             .getCategoryById(param.id)
-            .then((res) => setCategory(res))
+            .then((category) => setCategory(JSON.parse(category)))
             .catch((err) => setAlert({ color: "red", text: err.message }));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
-        if (category !== "") {
-            setTitle(category.title);
-        }
+        if (category) setTitle(category.title);
     }, [category]);
 
     const validate = () => {
@@ -46,7 +43,7 @@ export const CategoryEdit = () => {
         if (validate()) {
             categoryService
                 .editCategory(param.id, { title: title })
-                .then((res) => {
+                .then((_) => {
                     setAlert({ color: "green", text: "You successful edit the Category!" });
                     navigate("/category/information");
                 })
@@ -55,7 +52,6 @@ export const CategoryEdit = () => {
     };
     return (
         <>
-            <Alert></Alert>
             <div className={style["edit-container"]}>
                 <div className={style.content}>
                     <h1>Edit</h1>

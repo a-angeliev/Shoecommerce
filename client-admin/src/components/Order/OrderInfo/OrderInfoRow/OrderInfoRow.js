@@ -8,8 +8,6 @@ export const OrderInfoRow = (props) => {
 
     const date = new Date(props.order.created_on);
 
-    console.log(date.toLocaleDateString(), date.toLocaleTimeString(), 123);
-
     return (
         <>
             <tr className={style.tr}>

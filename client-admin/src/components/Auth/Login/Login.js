@@ -37,7 +37,7 @@ export const Login = () => {
                 .login({ password: passwordInput, email: emailInput })
                 .then((userData) => {
                     if (JSON.parse(userData).role === "admin") {
-                        userLogin(userData);
+                        userLogin(JSON.parse(userData));
                     } else {
                         setAlert({ color: "red", text: "You don't have permissions. Need to be admin!" });
                     }

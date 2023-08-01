@@ -22,7 +22,7 @@ export const BrandInfoRow = (props) => {
     const deleteBrand = () => {
         brandService
             .deleteBrandById(brand.id)
-            .then((res) => {
+            .then((_) => {
                 props.reset((prev) => !prev);
                 setDeletePopup(false);
                 setActiveDots(false);
@@ -32,9 +32,9 @@ export const BrandInfoRow = (props) => {
                 setAlert({ color: "red", text: err.message });
             });
     };
+
     return (
         <>
-            <Alert></Alert>
             <div
                 className={`${style.delete}  ${deletePopup ? style.active : ""}`}
                 onClick={() => {
@@ -46,7 +46,7 @@ export const BrandInfoRow = (props) => {
                         Are you sure you want to <span className={style["delete-color"]}>DELETE</span> brand and all
                         shoes in this brand?
                     </p>
-                    <div className={style.buttons}>
+                    <div className={style["popup-buttons"]}>
                         <button
                             onClick={() => {
                                 setDeletePopup(false);

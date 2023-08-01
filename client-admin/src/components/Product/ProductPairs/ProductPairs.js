@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { AlertContext } from "../../../contexts/AlertContext";
-import { orderByIdFunction, orderByNameFunction, orderByNumberFunction } from "../../../utils/utils";
+import { orderByIdFunction, orderByNameFunction, orderByNumberFunction, outsideRange } from "../../../utils/utils";
 import { ProductPairsRow } from "./ProductPairsRow/ProductPairsRow";
 import * as productService from "../../../services/product";
 
@@ -41,33 +41,29 @@ export const ProductPairs = (props) => {
     }, [orderBySize]);
 
     useEffect(() => {
-        console.log(123);
         orderByNumberFunction(orderedPairs, orderByQuantity, "quantity", setOrderedPairs);
     }, [orderByQuantity]);
 
+    const alertWithReturn = (text) => {
+        setAlert({ color: "red", text: text });
+        return false;
+    };
+
     const validateInput = () => {
-        if (20 < size < 60 && 0 <= quantity <= 10000 && color.length > 0) {
-            return true;
-        }
-        if (size < 20 || size > 60) {
-            setAlert({ color: "red", text: "The size must be between 20 and 60" });
-            return false;
-        } else if (quantity < 0 || quantity >= 10000) {
-            setAlert({ color: "red", text: "The quantity must be between 0 and 10000" });
-            return false;
+        if (20 < size < 60 && 0 <= quantity <= 10000 && color.length > 0) return true;
+
+        if (outsideRange(size, 20, 70)) {
+            alertWithReturn("The size must be between 20 and 70");
+        } else if (outsideRange(quantity, 0, 10000)) {
+            alertWithReturn("The quantity must be between 0 and 10000");
         } else {
-            setAlert({ color: "red", text: "Choose color" });
-            return false;
+            alertWithReturn("Choose color");
         }
     };
 
     const isExist = () => {
         const check = props.pairs.map((pair) => (pair.color === color && pair.size === size ? true : false));
-        console.log(check);
-        if (check.includes(true)) {
-            setAlert({ color: "red", text: "That pair already exist" });
-            return false;
-        }
+        if (check.includes(true)) alertWithReturn("That pair already exist");
         return true;
     };
 
@@ -75,7 +71,7 @@ export const ProductPairs = (props) => {
         if (validateInput() && isExist()) {
             productService
                 .addProductPair(param.id, { size: size, color: color, quantity: quantity })
-                .then((res) => {
+                .then((_) => {
                     setAlert({ color: "green", text: "You successful add new pair" });
                     setAdd(false);
                     props.setReload((prev) => !prev);

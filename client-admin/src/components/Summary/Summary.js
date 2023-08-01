@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import {
     BarChart,
@@ -14,11 +14,14 @@ import {
     Pie,
     Sector,
 } from "recharts";
+import { AlertContext } from "../../contexts/AlertContext";
 import * as summaryService from "../../services/summary";
 
 import style from "./Summary.module.css";
 
 export const Summary = () => {
+    const { setAlert } = useContext(AlertContext);
+
     const [chartData, setChartData] = useState([]);
     const [numberOfOrders, setNumberOfOrders] = useState([
         { name: "Total Orders", value: 0 },
@@ -47,7 +50,7 @@ export const Summary = () => {
                     { name: "Shipped Price", value: res.monthly_shipped_orders_price },
                 ]);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => setAlert({ color: "red", text: err.message }));
     }, []);
 
     const renderActiveShape = (props, text) => {

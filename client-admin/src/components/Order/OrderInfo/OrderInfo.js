@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
+import { AlertContext } from "../../../contexts/AlertContext";
 import { orderByIdFunction, orderByNameFunction } from "../../../utils/utils";
 import { OrderInfoRow } from "./OrderInfoRow/OrderInfoRow";
 import { Pagination } from "../../Pagination/Pagination";
@@ -10,6 +11,8 @@ import * as OrderServices from "../../../services/order";
 import style from "./OrderInfo.module.css";
 
 export const OrderInfo = () => {
+    const { setAlert } = useContext(AlertContext);
+
     const [currentPage, setCurrentPage] = useState(1);
     const [numberOfPages, setNumberOfPages] = useState(1);
     const [itemPerPage, setItemPerPage] = useState(5);
@@ -22,14 +25,14 @@ export const OrderInfo = () => {
 
     useEffect(() => {
         OrderServices.getAllOrders()
-            .then((res) => {
-                setOrders(JSON.parse(res));
-                setFilteredOrders(JSON.parse(res));
-                const numOfOrd = JSON.parse(res).length;
+            .then((allOrders) => {
+                setOrders(JSON.parse(allOrders));
+                setFilteredOrders(JSON.parse(allOrders));
+                const numOfOrd = JSON.parse(allOrders).length;
                 setNumberOfPages(Math.ceil(numOfOrd / itemPerPage));
                 setNumberOfOrders(numOfOrd);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => setAlert({ color: "red", text: err }));
     }, []);
 
     useEffect(() => {
