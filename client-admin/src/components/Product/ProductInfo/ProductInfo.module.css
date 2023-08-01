@@ -11,13 +11,16 @@
 
 .tr-title {
     width: 100%;
-    background: white;
     height: 2rem;
+    background: white;
     border: 1px solid var(--main-gray-border);
 }
 
-table {
+.product-table {
     width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    color: #63738C;
+    border-collapse: collapse;
 }
 
 .sort-icon {

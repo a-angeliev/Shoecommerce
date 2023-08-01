@@ -33,10 +33,7 @@ export const BrandForm = (params) => {
         const validateLengthHelper = (input, len, func) => {
             if (input.length < len) {
                 func(false);
-                console.log(123);
             } else {
-                console.log(123);
-
                 func(true);
             }
         };
@@ -94,7 +91,7 @@ export const BrandForm = (params) => {
         <>
             <div className={style["page-content"]}>
                 <div className={style.wrapper}>
-                    <h1>{params.title}</h1>
+                    <h1 className={style["h1"]}>{params.title}</h1>
                     <div className={style.container}>
                         <div className={style["form-title"]}>
                             <h2>Brand Form</h2>
@@ -128,7 +125,9 @@ export const BrandForm = (params) => {
                                     onChange={(e) => inputHandler(e)}
                                     value={brandInput.description}
                                     type='textarea'></textarea>
-                                <button name='button'>Submit</button>
+                                <button className={style["submit-button"]} name='button'>
+                                    Submit
+                                </button>
                             </div>
                         </form>
                     </div>

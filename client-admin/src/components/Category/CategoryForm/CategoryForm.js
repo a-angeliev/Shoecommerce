@@ -8,7 +8,7 @@ export const CategoryForm = (props) => {
                     <h2>Category Form</h2>
                 </div>
                 <div className={style.form}>
-                    <form onSubmit={props.onSubmit}>
+                    <form className={style["category-form"]} onSubmit={props.onSubmit}>
                         <label htmlFor='title'>Title</label>
                         <input
                             className={props.isValidTitle ? "" : style.error}
@@ -16,7 +16,7 @@ export const CategoryForm = (props) => {
                             placeholder='Outdoor'
                             value={props.title}
                             onChange={(e) => props.setTitle(e.target.value)}></input>
-                        <button>Submit</button>
+                        <button className={style["submit-button"]}>Submit</button>
                     </form>
                 </div>
             </div>

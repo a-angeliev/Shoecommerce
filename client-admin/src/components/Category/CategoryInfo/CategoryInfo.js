@@ -69,14 +69,14 @@ export const CategoryInfo = () => {
             <Alert></Alert>
             <div className={style["category-info-container"]}>
                 <div className={style["category-content"]}>
-                    <h1>Category Information</h1>
+                    <h1 className={style["category-h1"]}>Category Information</h1>
                     <SearchTable
                         filter={filter}
                         setFilter={setFilter}
                         itemPerPage={itemPerPage}
                         setItemPerPage={setItemPerPage}></SearchTable>
                     <div className={style["table-section"]}>
-                        <table>
+                        <table className={style["category-table"]}>
                             <tr className={style["tr-title"]}>
                                 <th
                                     className={`${style["cl-1"]} ${style.pointer}`}

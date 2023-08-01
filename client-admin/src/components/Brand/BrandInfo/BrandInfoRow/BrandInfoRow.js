@@ -48,13 +48,16 @@ export const BrandInfoRow = (props) => {
                     </p>
                     <div className={style["popup-buttons"]}>
                         <button
+                            className={style["popup-button"]}
                             onClick={() => {
                                 setDeletePopup(false);
                                 setActiveDots(false);
                             }}>
                             NO
                         </button>
-                        <button onClick={() => deleteBrand()}>YES</button>
+                        <button className={style["popup-button"]} onClick={() => deleteBrand()}>
+                            YES
+                        </button>
                     </div>
                 </div>
             </div>

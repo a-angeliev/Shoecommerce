@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { Alert } from "../../../Alert/Alert";
 import { AlertContext } from "../../../../contexts/AlertContext";
 import * as productServices from "../../../../services/product";
 
@@ -43,7 +42,6 @@ export const ProductPairsRow = (params) => {
 
     return (
         <>
-            <Alert />
             <tr className={style.tr}>
                 <td className={style["cl-1"]}>{params.pair.id}</td>
                 <td className={style["cl-2"]}>{params.pair.color}</td>

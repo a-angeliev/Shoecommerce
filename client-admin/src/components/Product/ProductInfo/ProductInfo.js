@@ -67,7 +67,7 @@ export const ProductInfo = () => {
                             setFilter={setFilter}
                             itemPerPage={itemPerPage}
                             setItemPerPage={setItemPerPage}></SearchTable>
-                        <table>
+                        <table className={style["product-table"]}>
                             <tr className={style["tr-title"]}>
                                 <th className={style["cl-1"]} onClick={() => setOrderById((prev) => !prev)}>
                                     Id{" "}

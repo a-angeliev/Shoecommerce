@@ -26,16 +26,16 @@ input::-webkit-inner-spin-button {
 }
 
 .input-group {
-    margin-top: 2rem;
-    width: 100%;
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    margin-top: 2rem;
 }
 
 .group-div {
-    align-items: center;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     width: 46%;
     font-size: 1rem;
 }
@@ -47,13 +47,13 @@ input::-webkit-inner-spin-button {
 }
 
 .input {
-    font-size: 1rem;
-    padding: 1rem;
-    margin-left: 1rem;
     width: inherit;
     height: 3rem;
+    font-size: 1rem;
     border: 1px solid var(--main-gray-border);
     border-radius: 8px;
+    padding: 1rem;
+    margin-left: 1rem;
 }
 
 .select-menu {
@@ -67,19 +67,19 @@ input::-webkit-inner-spin-button {
 }
 
 #dollar {
-    margin-left: 0.3rem;
     font-size: 1.5rem;
+    margin-left: 0.3rem;
 }
 
 .description {
-    padding: 1rem;
+    resize: none;
+    height: 10rem;
     font-size: 1rem;
     font-family: 'Open Sans', sans-serif;
     color: black;
-    height: 10rem;
     border: 1px solid var(--main-gray-border);
     border-radius: 8px;
-    resize: none;
+    padding: 1rem;
     margin-bottom: 2rem;
 }
 

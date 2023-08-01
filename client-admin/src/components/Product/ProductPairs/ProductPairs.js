@@ -148,7 +148,7 @@ export const ProductPairs = (props) => {
                 ) : null}
 
                 <div className={style.table}>
-                    <table>
+                    <table className={style["pair-table"]}>
                         <tr className={style["tr-title"]}>
                             <th className={style["cl-1"]} onClick={() => setOrderById((prev) => !prev)}>
                                 Id <img className={style["sort-icon"]} alt='sort icon' src='../images/sort.png'></img>

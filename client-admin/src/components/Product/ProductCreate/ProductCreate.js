@@ -92,7 +92,7 @@ export const ProductCreate = () => {
                         </div>
                     </div>
                 </div>
-                <button onClick={createProduct} className={style.submit}>
+                <button onClick={createProduct} className={style["submit-button"]}>
                     Create
                 </button>
             </div>

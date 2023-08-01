@@ -16,15 +16,30 @@
     margin: 1rem 3rem 3rem 3rem;
 }
 
-form>input {
+.product-form {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 3rem 3rem 3rem;
+}
+
+.product-form>input {
     height: 3rem;
+    font-size: 1.4rem;
+    border: 1px solid var(--main-gray-border);
+    border-radius: 8px;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.product-form>label {
+    margin: 2rem 0 1rem 0;
 }
 
 .input-group {
-    margin-top: 2rem;
-    width: 100%;
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    margin-top: 2rem;
 }
 
 .group-div {
@@ -43,13 +58,13 @@ form>input {
 }
 
 .input {
-    font-size: 1.4rem;
-    padding: 1rem;
-    margin-left: 2rem;
     width: inherit;
     height: 3rem;
+    font-size: 1.4rem;
     border: 1px solid var(--main-gray-border);
     border-radius: 8px;
+    padding: 1rem;
+    margin-left: 2rem;
 }
 
 .select-menu {
@@ -57,21 +72,20 @@ form>input {
     padding-left: 0.5rem !important;
 }
 
-
 #dollar {
-    margin-left: 0.3rem;
     font-size: 1.5rem;
+    margin-left: 0.3rem;
 }
 
 .description {
-    padding: 1rem;
+    resize: none;
+    height: 10rem;
     font-size: 1rem;
     font-family: 'Open Sans', sans-serif;
     color: black;
-    height: 10rem;
     border: 1px solid var(--main-gray-border);
     border-radius: 8px;
-    resize: none;
+    padding: 1rem;
     margin-bottom: 2rem;
 }
 
@@ -79,4 +93,20 @@ form>input {
     scale: 2;
     border: 1px solid var(--main-gray-border) !important;
     margin-left: 1rem
+}
+
+.submit-button {
+    height: 3rem;
+    font-size: 1rem;
+    color: white;
+    background-color: var(--main-blue);
+    border-radius: 8px;
+    border: none;
+    margin-top: 1rem;
+}
+
+.submit-button:hover {
+    color: var(--main-blue);
+    background-color: white;
+    border: 2px solid var(--main-blue);
 }

@@ -3,22 +3,20 @@
 .nav {
     width: 250px;
     height: 100%;
-    background-color: beige;
     padding: 2rem;
-    background-color: #1C2434;
 }
 
 .logo {
     text-align: center;
-    margin: 1rem 0rem 2rem 0rem;
     font-size: 1.6rem;
     color: white;
+    margin: 1rem 0rem 2rem 0rem;
 }
 
 .group-title {
     font-size: 1.4rem;
-    margin: 1rem 0 1rem 0;
     color: #DEE4EE;
+    margin: 1rem 0 1rem 0;
 }
 
 .nav-section {
@@ -29,8 +27,8 @@
 .nav-section-title {
     display: flex;
     align-items: center;
-    padding: 0.7rem 0rem 0.7rem 1rem;
     cursor: pointer;
+    padding: 0.7rem 0rem 0.7rem 1rem;
 }
 
 .nav-section-title>span {
@@ -42,27 +40,25 @@
 }
 
 .nav-section-links {
-    max-height: 0px;
-    overflow: hidden;
-    transition: 0.5s max-height ease-in-out;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    max-height: 0px;
+    transition: 0.5s max-height ease-in-out;
 }
 
 .nav-section-links>p {
-    margin-left: 2rem;
-    margin-top: 0.5rem;
-    font-family: 'Open Sans', sans-serif;
     cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0.5rem 0 0 2rem;
 }
 
 .link {
     text-decoration: none;
-    color: aliceblue;
-    margin-left: 2rem;
-    margin-top: 0.5rem;
-    font-family: 'Open Sans', sans-serif;
     cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    color: aliceblue;
+    margin: 0.5rem 0 0 2rem;
 }
 
 .title-expanded, .nav-section-title:hover {
@@ -76,24 +72,24 @@
 }
 
 .arrow-container {
-    width: 100%;
     text-align: right;
+    width: 100%;
     padding-right: 1rem;
 }
 
 .arrow {
+    display: inline-block;
     border: solid white;
     border-width: 0 3px 3px 0;
-    display: inline-block;
     padding: 3px;
 }
 
 .up {
-    transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
 }
 
 .down {
-    transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
 }

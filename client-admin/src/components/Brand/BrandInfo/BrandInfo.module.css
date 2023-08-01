@@ -3,8 +3,8 @@
 }
 
 .content {
-    margin-top: 5rem;
     width: 90%;
+    margin-top: 5rem;
 }
 
 .title {
@@ -17,13 +17,13 @@
 }
 
 .search-pag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     height: 90px;
     background-color: white;
     border: 1px solid var(--main-gray-border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .search {
@@ -33,22 +33,22 @@
 }
 
 .search>input {
+    width: 350px;
+    font-size: 1.5rem;
     border: 1px solid var(--main-gray-border);
     border-radius: 7px 0 0 7px;
     padding-left: 1.75rem;
-    width: 350px;
-    font-size: 1.5rem;
 }
 
 .search-btn {
-    background-color: #3B50DF;
-    width: 50px;
-    height: 50px;
-    border-radius: 0 7px 7px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    width: 50px;
+    height: 50px;
+    background-color: #3B50DF;
+    border-radius: 0 7px 7px 0;
 }
 
 .search-btn>img {
@@ -62,8 +62,8 @@
 
 
 .table>table {
-    color: #63738C;
     width: 100%;
+    color: #63738C;
     border-collapse: collapse;
 }
 
@@ -80,13 +80,13 @@
 }
 
 .table>table>tr>th {
-    padding-left: 2rem;
     text-align: left;
+    padding-left: 2rem;
 }
 
 .table>table>tr>td {
-    padding-left: 2rem;
     text-align: left;
+    padding-left: 2rem;
 }
 
 .sort-icon {
@@ -113,14 +113,14 @@
 }
 
 .per-page {
-    margin-right: 2rem;
     display: flex;
+    margin-right: 2rem;
 }
 
 .per-page>p {
-    margin-right: 1rem;
     font-weight: bold;
     color: #63738C;
+    margin-right: 1rem;
 
 }
 
@@ -131,8 +131,8 @@
 }
 
 .item-info {
-    margin-right: 3rem;
     color: #63738C;
+    margin-right: 3rem;
 }
 
 .cl-1 {

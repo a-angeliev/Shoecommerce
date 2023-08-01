@@ -1,28 +1,18 @@
-.table>table>tr {
-    width: 100%;
-    background-color: white;
-    border: 1px solid var(--main-gray-border);
-}
-
-
 .brand-logo {
-    margin: 1rem 0 1rem 0;
     width: 40px;
     height: 40px;
+    margin: 1rem 0 1rem 0;
 }
-
 
 .brand-description {
     max-width: 1600px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
 }
 
 .cl-1 {
     width: 5%;
-
 }
 
 .cl-2 {
@@ -41,7 +31,6 @@
     width: 2%;
 }
 
-
 .dots {
     display: relative;
     margin-right: 1rem;
@@ -50,30 +39,27 @@
 
 .cut {
     clip-path: polygon(75.5% 0%, 81.3% 8%, 100% 8%, 100% 100%, 0% 100%, 0% 8%, 70.6% 8%);
-
 }
-
 
 .container {
     display: flex;
-    height: 100px;
     justify-content: center;
-    margin-left: -1.5%;
-    overflow: hidden;
     position: absolute;
+    overflow: hidden;
+    width: 130px;
+    height: 100px;
+    margin-left: -1.5%;
     transform: translateX(-50%);
     transition: transform 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
-    ;
-    width: 130px;
 }
 
 .dot {
-    background: gray;
-    margin-bottom: 1px;
-    border-radius: 50%;
-    height: 5px;
-    margin-right: 3px;
     width: 5px;
+    height: 5px;
+    background: gray;
+    border-radius: 50%;
+    margin-bottom: 1px;
+    margin-right: 3px;
 }
 
 .dot:last-child {
@@ -82,51 +68,45 @@
 }
 
 .drop {
+    width: 0.5px;
+    height: 0.5px;
     background: white;
     border-radius: 1.2px;
-    height: 0.5px;
     transform: translateY(5px);
     transition: transform 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
-    width: 0.5px;
 }
 
 .list {
+    display: hidden;
     position: absolute;
-    transform: translateX(-70%);
-    margin-top: 30px;
     width: 130px;
     z-index: -1;
-    display: hidden;
-
+    margin-top: 30px;
+    transform: translateX(-70%);
 }
 
 .list ul {
-    margin: 0;
-    padding: 10px;
     z-index: 3;
+    padding: 10px;
+    margin: 0;
 }
 
 .list li {
-    align-items: center;
-    border-bottom: 1px solid #bdbdbd;
+    -moz-user-select: none;
     display: flex;
-    color: #bdbdbd;
+    align-items: center;
+    list-style: none;
+    user-select: none;
     font-size: 1.5rem;
     opacity: 0;
-    list-style: none;
+    color: #bdbdbd;
+    border-bottom: 1px solid #bdbdbd;
     transition: opacity 100ms cubic-bezier(0.4, 0.0, 0.2, 1);
-    user-select: none;
-    -moz-user-select: none;
 }
 
 .list li:hover {
-    background: #f5f5f5;
     color: var(--main-dark-gray);
-}
-
-a {
-    text-decoration: none;
-    color: #bdbdbd;
+    background: #f5f5f5;
 }
 
 .dots.active .container {
@@ -134,19 +114,17 @@ a {
 }
 
 .dots.active .drop {
-    background: var(--main-dark-gray);
     width: 200px;
     height: 100px;
+    background: var(--main-dark-gray);
 }
 
 .dots.active .list {
     display: block;
     z-index: 1;
-
 }
 
 .dots.active .list li {
-
     cursor: pointer;
     opacity: 1;
     transition: opacity 200ms 100ms cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -175,42 +153,40 @@ a {
 
 .cursor {
     -webkit-tap-highlight-color: transparent;
+    position: absolute;
     cursor: pointer;
+    width: 50px;
     height: 40px;
     margin-top: -35px;
-    position: absolute;
-    width: 50px;
 }
 
 
 .delete {
-    z-index: 3;
     display: none;
     position: absolute;
+    width: 100vw;
+    height: 100vh;
     top: 0px;
     right: 0px;
     bottom: 0px;
     left: 0px;
-    height: 100vh;
-    width: 100vw;
+    z-index: 3;
     background: rgba(0, 0, 0, 0.3);
-
 }
 
 .popup {
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin: 20% 50% 20% 45%;
     width: 20%;
     height: 20%;
     background: white;
     border: 2px solid var(--main-gray-border);
     border-radius: 8px;
     padding: 2rem;
+    margin: 20% 50% 20% 45%;
 }
 
 .delete-color {
@@ -222,17 +198,27 @@ a {
     justify-content: center;
     width: 100%;
     margin-top: 2rem;
-
-}
-
-.popup-buttons>button {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    width: 35%;
 }
 
 .active {
     display: block;
+}
+
+.popup-button {
+    width: 35%;
+    height: 3rem;
+    font-size: 1rem;
+    background-color: var(--main-blue);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    margin: 1rem 1rem 0 1rem;
+}
+
+.popup-button:hover {
+    color: var(--main-blue);
+    background-color: white;
+    border: 2px solid var(--main-blue);
 }
 
 @media only screen and (max-width: 2400px) {

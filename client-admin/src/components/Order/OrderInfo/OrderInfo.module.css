@@ -1,15 +1,19 @@
 .order-context {
-    width: 100%;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .context {
-    margin-top: 4rem;
     width: 70%;
+    margin-top: 4rem;
 }
 
-.table {}
+.table {
+    font-family: 'Open Sans', sans-serif;
+    color: #63738C;
+    border-collapse: collapse;
+}
 
 .tr-head {
     width: 100%;

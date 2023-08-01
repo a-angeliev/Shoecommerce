@@ -79,7 +79,7 @@ export const ProductForm = (params) => {
     return (
         <>
             <div className={style["form-background"]}>
-                <form className={style["form"]}>
+                <form className={style["product-form"]}>
                     <div className={style["shoe-name"]}>
                         <h2>Shoe Information</h2>
                         <div className={style["deleted-div"]}>
@@ -176,7 +176,9 @@ export const ProductForm = (params) => {
                         name='description'
                         disabled={edit ? null : true}></textarea>
 
-                    <button onClick={submit}>{edit ? "Save" : "Edit"}</button>
+                    <button className={style["submit-button"]} onClick={submit}>
+                        {edit ? "Save" : "Edit"}
+                    </button>
                 </form>
             </div>
         </>

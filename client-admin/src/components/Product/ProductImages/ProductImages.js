@@ -178,7 +178,7 @@ export const ProductImages = (props) => {
                                     disabled={edit ? null : true}></input>
                             </div>
                         </div>
-                        <button onClick={onSubmit} className={style["edit-button"]}>
+                        <button onClick={onSubmit} className={style["submit-button"]}>
                             {edit ? "Save" : "Edit"}
                         </button>
                     </div>

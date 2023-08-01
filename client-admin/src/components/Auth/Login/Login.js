@@ -80,7 +80,7 @@ export const Login = () => {
                             setPasswordInput(e.target.value);
                         }}></input>
                 </div>
-                <button id={style["login-btn"]} onClick={login}>
+                <button className={style["login-btn"]} onClick={login}>
                     Sigh in
                 </button>
             </div>
