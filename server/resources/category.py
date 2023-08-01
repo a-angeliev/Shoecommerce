@@ -30,7 +30,7 @@ class Category(Resource):
         if not category_title:
             categories = CategoryManager.get_all()
             category_only_base_info_schema = CategoryBaseInfoResponseSchema()
-            return category_only_base_info_schema.dump(categories, many=True)
+            return category_only_base_info_schema.dumps(categories, many=True)
 
         if category_title == "all":
             categories = CategoryManager.get_all()
@@ -50,14 +50,14 @@ class CategoryHandel(Resource):
         print(id_)
         category = CategoryManager.get_by_id(id_)
         schema = CategoryBaseInfoResponseSchema()
-        return schema.dump(category)
+        return schema.dumps(category)
 
     @staticmethod
     @permission_required(RoleType.admin)
     def put(id_):
         category = CategoryManager.edit_category(id_, request.get_json())
         schema = CreateCategoryResponseSchema()
-        return schema.dump(category)
+        return schema.dumps(category)
 
     @staticmethod
     @permission_required(RoleType.admin)

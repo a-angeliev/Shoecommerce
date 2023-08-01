@@ -49,7 +49,7 @@ class Brand(Resource):
         if not brand_name:
             brands = BrandManager.get_all()
             brand_name_schema = BrandNameOnlyResponseSchema()
-            return brand_name_schema.dump(brands, many=True)
+            return brand_name_schema.dumps(brands, many=True)
 
         if brand_name == "all":
             brands = BrandManager.get_all()

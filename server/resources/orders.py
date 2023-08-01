@@ -50,7 +50,7 @@ class Order(Resource):
     def get(id_):
         order = OrdersManager.get_one(id_)
         schema = GetUserOrdersResponseSchema()
-        return schema.dump(order)
+        return schema.dumps(order)
 
 
 class OrderStatistic(Resource):
