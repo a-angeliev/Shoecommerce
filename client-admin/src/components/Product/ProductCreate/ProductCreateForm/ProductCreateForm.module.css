@@ -23,6 +23,15 @@ input::-webkit-inner-spin-button {
 
 .form>input {
     height: 3rem;
+    border: 1px solid var(--main-gray-border);
+    border-radius: 8px;
+}
+
+.form>h2 {}
+
+.title-label {
+    margin-top: 2rem;
+
 }
 
 .input-group {

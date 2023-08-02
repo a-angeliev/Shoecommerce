@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 
-import { Alert } from "../../../Alert/Alert";
 import { AlertContext } from "../../../../contexts/AlertContext";
 import * as brandService from "../../../../services/brand";
 

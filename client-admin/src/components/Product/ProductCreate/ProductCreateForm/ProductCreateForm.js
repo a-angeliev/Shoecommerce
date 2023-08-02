@@ -66,7 +66,9 @@ export const ProductCreateForm = (props) => {
                                 checked={isDeleted}></input>
                         </div>
                     </div>
-                    <label htmlFor='title'>Title</label>
+                    <label className={style["title-label"]} htmlFor='title'>
+                        Title
+                    </label>
                     <input name='title' onChange={(e) => setTitle(e.target.value)} value={title}></input>
                     <div className={style["input-group"]}>
                         <div className={style["group-div"]}>
