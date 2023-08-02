@@ -27,11 +27,8 @@ input::-webkit-inner-spin-button {
     border-radius: 8px;
 }
 
-.form>h2 {}
-
 .title-label {
     margin-top: 2rem;
-
 }
 
 .input-group {

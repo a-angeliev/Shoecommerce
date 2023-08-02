@@ -10,6 +10,7 @@
 }
 
 .table {
+    width: 100%;
     font-family: 'Open Sans', sans-serif;
     color: #63738C;
     border-collapse: collapse;
@@ -20,13 +21,6 @@
     height: 3rem;
     background-color: white;
     border: 1px solid var(--main-gray-border)
-}
-
-.tr {
-    text-align: center;
-    height: 5rem;
-    background: white;
-    border: 1px solid var(--main-gray-border);
 }
 
 .sort-icon {
