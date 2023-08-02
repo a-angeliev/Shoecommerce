@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { Alert } from "../../Alert/Alert";
 import { AlertContext } from "../../../contexts/AlertContext";
 import { BrandForm } from "../BrandForm/BrandForm";
 import * as brandService from "../../../services/brand";
@@ -27,7 +26,6 @@ export const BrandEdit = () => {
 
     return (
         <>
-            <Alert></Alert>
             <BrandForm brand={brand} title='Edit' job='edit'></BrandForm>
         </>
     );
