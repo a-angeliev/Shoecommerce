@@ -6,8 +6,8 @@ The admin panel uses React, such as the main client part.With this part the proj
 
 Admin panel will be live at:
 
-For credentials, please use:
-ADMIN EMAIL: admin@admin.com
+For credentials, please use:  
+ADMIN EMAIL: admin@admin.com  
 ADMIN PASSWORD: admin123
 
 # Key features of the Admin Panel
