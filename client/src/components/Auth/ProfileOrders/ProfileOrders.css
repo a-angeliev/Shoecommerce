@@ -1,21 +1,17 @@
 .orders {
     display: flex;
-    /* border: 1px solid black; */
     flex-direction: column;
-    margin: 10rem auto 5rem auto;
     width: 60%;
-    /* height: 10000px; */
+    margin: 10rem auto 5rem auto;
 }
 
 @media only screen and (max-width: 1600px) {
-
     .orders {
         width: 80%;
     }
 }
 
 @media only screen and (max-width: 900px) {
-
     .orders {
         width: 100%;
     }
