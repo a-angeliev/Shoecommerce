@@ -26,9 +26,13 @@ export const ProfileOrders = () => {
     return (
         <>
             <div className='orders'>
-                {userOrders.map((order) => (
-                    <OrderInfo order={order}></OrderInfo>
-                ))}
+                {userOrders.length !== 0 ? (
+                    userOrders.map((order) => <OrderInfo order={order}></OrderInfo>)
+                ) : (
+                    <div className='order-message'>
+                        <p>You don't have any orders yet</p>
+                    </div>
+                )}
             </div>
         </>
     );

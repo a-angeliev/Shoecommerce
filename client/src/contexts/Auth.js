@@ -40,7 +40,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useLocalStorage("auth", {});
-    const userLogin = (authData) => setAuth(JSON.parse(authData));
+    const userLogin = (authData) => setAuth(authData);
     const userLogout = () => setAuth({});
     const isAuthenticated = Boolean(auth?.token);
 
