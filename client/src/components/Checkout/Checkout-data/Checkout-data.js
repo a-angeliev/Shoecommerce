@@ -4,7 +4,6 @@ import { CartContext } from "../../../contexts/cartContext";
 import * as ordersRequest from "../../../services/orders.js";
 import "./Checkout-data.css";
 import { useNavigate } from "react-router-dom";
-import { Alert } from "../../Alert/Alert";
 import { AlertContext } from "../../../contexts/alertContext";
 
 export const CheckoutData = () => {
@@ -157,7 +156,7 @@ export const CheckoutData = () => {
                     })
                     .catch((res) => {
                         console.log(res);
-                        setAlert({ color: "red", text: "notAvailable" });
+                        setAlert({ color: "red", text: "Some of the products in your order are not available!" });
                     });
                 // navigate("/");
             } catch (err) {
@@ -364,7 +363,6 @@ export const CheckoutData = () => {
                     {cartState ? Object.entries(cartState).map((x, y) => shoeList(x, y)) : ""}
                 </div>
             </div>
-            <Alert></Alert>
         </div>
     );
 };

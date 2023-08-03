@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../contexts/cartContext";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { Alert } from "../Alert/Alert";
 import { Auth } from "../Auth/Auth";
 
 import "./Navbar.css";
@@ -117,7 +116,6 @@ export const Navbar = () => {
 
     return (
         <header>
-            <Alert></Alert>
             <Link to='/#' className='logo' onClick={() => setActiveIcon(false)}>
                 {" "}
                 <i className='bx bxs-shopping-bag-alt'></i>

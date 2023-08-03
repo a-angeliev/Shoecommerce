@@ -22,7 +22,7 @@ export const ProfileDetails = () => {
             })
             .catch((err) => {
                 console.log(err);
-                setAlert({ color: "red", text: "tokenMissing" });
+                setAlert({ color: "red", text: "A valid token is missing!" });
                 userLogout();
                 navigate("/");
             });
@@ -62,10 +62,10 @@ export const ProfileDetails = () => {
             delete updatedData.user_data.created_on;
             userRequest
                 .updateUser(user.user_id, updatedData)
-                .then((res) => setAlert({ color: "green", text: "userUpdated" }))
+                .then((res) => setAlert({ color: "green", text: "Updated user info successfully!" }))
                 .catch((err) => console.log(err));
         } else {
-            setAlert({ color: "red", text: "inputInvalid" });
+            setAlert({ color: "red", text: "You should fill with valid data all fields!" });
         }
     };
 

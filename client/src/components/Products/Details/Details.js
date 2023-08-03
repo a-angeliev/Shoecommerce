@@ -9,7 +9,6 @@ import * as wishService from "../../../services/wishlist";
 import "./Details.css";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { CartContext } from "../../../contexts/cartContext";
-import { Alert } from "../../Alert/Alert";
 import { AlertContext } from "../../../contexts/alertContext";
 import { WishlistContext } from "../../../contexts/wishlistContext";
 import { AuthContext } from "../../../contexts/Auth";
@@ -25,7 +24,7 @@ export const Details = () => {
     const [colorDict, setColorDict] = useState("");
     const [addInCartPopUp, setAddInCartPopUp] = useState(false);
     const { cartState, setCartState, removeFromCart, addToCart } = useContext(CartContext);
-    const { alert, setAlert } = useContext(AlertContext);
+    const { setAlert } = useContext(AlertContext);
     const { isAuthenticated } = useContext(AuthContext);
     const { setActiveIcon } = useContext(ActiveIconContext);
     const [wishlist, setWishlist] = useState(false);
@@ -73,9 +72,9 @@ export const Details = () => {
         let shoe = {};
 
         if (!color) {
-            setAlert({ color: "red", text: "chooseColor" });
+            setAlert({ color: "red", text: "You should pick color and size!" });
         } else {
-            setAlert({ color: "green", text: "addInCart" });
+            setAlert({ color: "green", text: "Product added to cart successfully!" });
             shoe["title"] = product.title;
             shoe["image"] = product.images[0].img_url;
             shoe["price"] = product.price;
@@ -96,25 +95,25 @@ export const Details = () => {
                 wishService
                     .removeWish({ id: param.id })
                     .then((res) => {
-                        setAlert({ color: "green", text: "removeWish" });
+                        setAlert({ color: "green", text: "You successful remove the shoe from the Wishlist!" });
                         setWishlist((prev) => !prev);
                         removeWishlistCtx(JSON.parse(res).id);
                     })
                     .catch((err) => {
                         console.log(err);
-                        setAlert({ color: "red", text: "wishProblem" });
+                        setAlert({ color: "red", text: "There is problem with Add/Remove.Try to reload!" });
                     });
             } else {
                 wishService
                     .addWish({ id: param.id })
                     .then((res) => {
-                        setAlert({ color: "green", text: "addWish" });
+                        setAlert({ color: "green", text: "You successful add the shoe into the Wishlist!" });
                         setWishlist((prev) => !prev);
                         addWishlistCtx(JSON.parse(res));
                     })
                     .catch((err) => {
                         console.log(err);
-                        setAlert({ color: "red", text: "wishProblem" });
+                        setAlert({ color: "red", text: "There is problem with Add/Remove.Try to reload!" });
                     });
             }
         }
@@ -126,7 +125,6 @@ export const Details = () => {
 
     return (
         <main className='main-details'>
-            <Alert></Alert>
             <div className='main-wrapper'>
                 <section className='main-shoe-content scn'>
                     <img className='main-shoe' src={product ? product.images[0].img_url : null} alt={product.title} />

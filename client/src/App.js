@@ -1,26 +1,27 @@
 import { Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./contexts/Auth";
-import { ProductProvider } from "./contexts/productContext";
 
-import { Navbar } from "./components/Navbar/Navbar";
-import { Home } from "./components/Home/Home";
-import { Products } from "./components/Products/Products";
-import { Details } from "./components/Products/Details/Details";
-import { Footer } from "./components/Footer/Footer";
-import { ProfileOrders } from "./components/Auth/ProfileOrders/ProfileOrders";
-import { Copyright } from "./components/Copyright/Copyright";
-
-import "./App.css";
-import { CartProvider } from "./contexts/cartContext";
-import { FilterProvider } from "./contexts/filterContext";
+import { ActiveIconProvider } from "./contexts/activeIconContext";
 import { AlertProvider } from "./contexts/alertContext";
-import { WishlistProvider } from "./contexts/wishlistContext";
-import { EducationalPopupProvider } from "./contexts/educationalPopupContext";
+import { AuthProvider } from "./contexts/Auth";
+import { CartProvider } from "./contexts/cartContext";
 import { Checkout } from "./components/Checkout/Checkout";
 import { CheckoutData } from "./components/Checkout/Checkout-data/Checkout-data";
-import { ActiveIconProvider } from "./contexts/activeIconContext";
-import { ProfileDetails } from "./components/Auth/ProfileDetails/ProfileDetails";
+import { Copyright } from "./components/Copyright/Copyright";
+import { Details } from "./components/Products/Details/Details";
+import { EducationalPopupProvider } from "./contexts/educationalPopupContext";
 import { EducationInfo } from "./components/EducationInfo/EducationInfo";
+import { FilterProvider } from "./contexts/filterContext";
+import { Footer } from "./components/Footer/Footer";
+import { Home } from "./components/Home/Home";
+import { Navbar } from "./components/Navbar/Navbar";
+import { ProductProvider } from "./contexts/productContext";
+import { Products } from "./components/Products/Products";
+import { ProfileDetails } from "./components/Auth/ProfileDetails/ProfileDetails";
+import { ProfileOrders } from "./components/Auth/ProfileOrders/ProfileOrders";
+import { WishlistProvider } from "./contexts/wishlistContext";
+import { Alert } from "./components/Alert/Alert";
+
+import "./App.css";
 
 function App() {
     return (
@@ -32,6 +33,7 @@ function App() {
                             <AlertProvider>
                                 <ActiveIconProvider>
                                     <WishlistProvider>
+                                        <Alert />
                                         <div className='App'>
                                             <EducationInfo />
                                             <Navbar />

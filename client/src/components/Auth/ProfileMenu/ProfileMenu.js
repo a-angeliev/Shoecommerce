@@ -10,6 +10,7 @@ export const ProfileMenu = () => {
     const { setActiveIcon } = useContext(ActiveIconContext);
     const navigate = useNavigate();
     const navTo = useNav();
+
     const logout = () => {
         userLogout();
         navTo("/");
