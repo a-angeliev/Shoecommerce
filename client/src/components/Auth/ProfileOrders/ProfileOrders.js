@@ -24,7 +24,7 @@ export const ProfileOrders = () => {
         <>
             <div className='orders'>
                 {userOrders.map((order) => (
-                    <OrderInfo>{order}</OrderInfo>
+                    <OrderInfo order={order}></OrderInfo>
                 ))}
             </div>
         </>

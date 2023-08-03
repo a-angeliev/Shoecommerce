@@ -1,0 +1,39 @@
+.shoe-image {
+    display: block;
+    width: 60px;
+    height: 60px;
+}
+
+.small-divider {
+    width: 100%;
+    border: 1px solid rgba(239, 239, 240, 1);
+    margin-bottom: 0.5rem;
+}
+
+.item-color {
+    text-align: center;
+}
+
+.item-size {
+    text-align: center;
+}
+
+.item-price {
+    text-align: right;
+}
+
+.order-item {
+    display: grid;
+    justify-content: space-around;
+    text-align: left;
+    align-items: center;
+    grid-template-columns: 2fr 4fr 1fr 1fr 1fr;
+    margin-bottom: 0.5rem;
+}
+
+@media only screen and (max-width: 1200px) {
+    .order-item {
+        grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+    }
+
+}
