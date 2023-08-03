@@ -7,17 +7,17 @@
 
 .detail-form>input {
     height: 50px;
-    margin-bottom: 1rem;
     border-radius: 5px;
     padding-left: 1rem;
+    margin-bottom: 1rem;
 }
 
 .edit-btn {
-    margin: 2rem auto;
     text-align: center;
+    cursor: pointer;
     width: 30%;
     border: solid 1px gray;
-    cursor: pointer;
+    margin: 2rem auto;
 }
 
 .detail-form>label {

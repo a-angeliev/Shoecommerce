@@ -1,7 +1,8 @@
-import { AlertContext } from "../../contexts/alertContext";
-import "./Alert.css";
-
 import React, { useEffect, useContext } from "react";
+
+import { AlertContext } from "../../contexts/alertContext";
+
+import "./Alert.css";
 
 export const Alert = () => {
     const { alert, setAlert } = useContext(AlertContext);

@@ -1,24 +1,30 @@
-import { useState, useEffect, useContext } from "react";
-import "./ProfileDetails.css";
-import * as userRequest from "../../../services/user";
-import { AuthContext } from "../../../contexts/Auth";
-import { AlertContext } from "../../../contexts/alertContext";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+
+import { AlertContext } from "../../../contexts/alertContext";
+import { AuthContext } from "../../../contexts/Auth";
+import * as userRequest from "../../../services/user";
+
+import "./ProfileDetails.css";
 
 export const ProfileDetails = () => {
-    const [editable, setEditable] = useState(false);
-    const [userData, setUserData] = useState("");
     const { user, userLogout } = useContext(AuthContext);
     const { setAlert } = useContext(AlertContext);
+
     const [validInput, setValidInput] = useState({ f_name: "", l_name: "", phone: "" });
+    const [editable, setEditable] = useState(false);
+    const [userData, setUserData] = useState({
+        user_data: { f_name: "", l_name: "", phone: "", created_on: "" },
+        email: "",
+    });
 
     const navigate = useNavigate();
 
     useEffect(() => {
         userRequest
             .getUser(user.user_id)
-            .then((res) => {
-                setUserData(JSON.parse(res));
+            .then((user) => {
+                setUserData(JSON.parse(user));
             })
             .catch((err) => {
                 console.log(err);
@@ -28,30 +34,26 @@ export const ProfileDetails = () => {
             });
     }, []);
 
-    const validateDataInput = (title, inputData) => {
+    const validateDataInput = (key, inputData) => {
         let validation = { ...validInput };
-        if (inputData.user_data[title].length <= 2) {
-            validation[title] = "incorrect";
-        } else {
-            validation[title] = "";
-        }
+
+        if (inputData.user_data[key].length <= 2) validation[key] = "incorrect";
+        else validation[key] = "";
+
         setValidInput(validation);
     };
 
     const isValidDataInput = () => {
-        if (Object.values(validInput).includes("incorrect")) {
-            return false;
-        }
+        if (Object.values(validInput).includes("incorrect")) return false;
         return true;
     };
 
     const dataInput = (e) => {
-        const title = e.target.name;
+        const key = e.target.name;
         let updatedData = { ...userData };
-        updatedData.user_data[title] = e.target.value;
+        updatedData.user_data[key] = e.target.value;
         setUserData(updatedData);
-
-        validateDataInput(title, updatedData);
+        validateDataInput(key, updatedData);
     };
 
     const updateUserData = () => {
@@ -62,11 +64,15 @@ export const ProfileDetails = () => {
             delete updatedData.user_data.created_on;
             userRequest
                 .updateUser(user.user_id, updatedData)
-                .then((res) => setAlert({ color: "green", text: "Updated user info successfully!" }))
-                .catch((err) => console.log(err));
-        } else {
-            setAlert({ color: "red", text: "You should fill with valid data all fields!" });
-        }
+                .then((_) => {
+                    setEditable((prev) => !prev);
+                    setAlert({ color: "green", text: "Updated user info successfully!" });
+                })
+                .catch((err) => {
+                    console.log(err);
+                    setAlert({ color: "red", text: "Somethings gone wrong. Try again!" });
+                });
+        } else setAlert({ color: "red", text: "You should fill with valid data all fields!" });
     };
 
     return (
@@ -79,7 +85,7 @@ export const ProfileDetails = () => {
                     name='f_name'
                     placeholder='First Name'
                     onChange={(e) => dataInput(e)}
-                    value={userData != "" ? userData.user_data.f_name : ""}
+                    value={userData.user_data.f_name}
                     disabled={editable ? false : true}></input>
                 <label for='l_name'>Last Name</label>
                 <input
@@ -88,7 +94,7 @@ export const ProfileDetails = () => {
                     name='l_name'
                     placeholder='Last Name'
                     onChange={(e) => dataInput(e)}
-                    value={userData != "" ? userData.user_data.l_name : ""}
+                    value={userData.user_data.l_name}
                     disabled={editable ? false : true}></input>
                 <label for='phone'>Phone</label>
                 <input
@@ -97,7 +103,7 @@ export const ProfileDetails = () => {
                     name='phone'
                     placeholder='Phone'
                     onChange={(e) => dataInput(e)}
-                    value={userData != "" ? userData.user_data.phone : ""}
+                    value={userData.user_data.phone}
                     disabled={editable ? false : true}></input>
                 <label for='email'>Email</label>
                 <input
@@ -105,7 +111,7 @@ export const ProfileDetails = () => {
                     type='text'
                     name='email'
                     placeholder='email'
-                    value={userData != "" ? userData.email : ""}
+                    value={userData.email}
                     disabled></input>
                 <label for='created_on'>Created on</label>
                 <input
@@ -113,15 +119,13 @@ export const ProfileDetails = () => {
                     type='text'
                     name='created_on'
                     placeholder='created_on'
-                    value={userData != "" ? userData.user_data.created_on : ""}
+                    value={userData.user_data.created_on}
                     disabled></input>
                 <div
                     className='edit-btn btn'
-                    onClick={(e) => {
-                        if (editable) {
-                            updateUserData();
-                        }
-                        setEditable((prev) => !prev);
+                    onClick={() => {
+                        if (editable) updateUserData();
+                        else setEditable((prev) => !prev);
                     }}>
                     {editable ? "Update" : "Edit"}
                 </div>
