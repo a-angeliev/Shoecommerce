@@ -1,12 +1,12 @@
 .divider-co {
-    margin: 1rem 0rem;
     border: 1px solid #e5e5e5;
+    margin: 1rem 0rem;
 }
 
 .total-price {
-    margin-top: 2rem;
     display: flex;
     justify-content: space-between;
+    margin-top: 2rem;
 }
 
 .delivery {

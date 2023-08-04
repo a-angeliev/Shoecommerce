@@ -1,27 +1,26 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+
 import { CartContext } from "../../../contexts/cartContext";
 
 import "./Summary.css";
 
 export const Summary = () => {
     const { cartState } = useContext(CartContext);
-    let sum = 0;
+
+    const [totalSum, setTotalSum] = useState(0);
+
+    useEffect(() => {
+        let sum = 0;
+        Object.entries(cartState).forEach((shoe) => (sum += shoe[1]["price"]));
+        setTotalSum(sum);
+    }, [cartState]);
 
     return (
         <>
             <p>Summary</p>
             <div className='total-price'>
                 <p>Subtotal</p>
-                <p>
-                    BGN{" "}
-                    {cartState
-                        ? Object.entries(cartState).map((x, y) => {
-                              //   console.dir(x[1].price);
-                              sum += x[1]["price"];
-                          })
-                        : null}
-                    {sum}
-                </p>
+                <p>BGN {totalSum}</p>
             </div>
             <div className='delivery'>
                 <p>Delivery</p>
@@ -30,7 +29,7 @@ export const Summary = () => {
             <div className='divider-co'></div>
             <div className='total'>
                 <p>Total</p>
-                <p>BGN {sum}</p>
+                <p>BGN {totalSum}</p>
             </div>
             <div className='divider-co'></div>
         </>

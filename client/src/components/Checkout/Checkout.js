@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Checkout.css";
 import { CartContext } from "../../contexts/cartContext";
-import { Summary } from "./summary/Summary";
+import { Summary } from "./Summary/Summary";
 import { AuthContext } from "../../contexts/Auth";
 import { ActiveIconContext } from "../../contexts/activeIconContext";
 

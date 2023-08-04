@@ -2,7 +2,7 @@
 import { useContext, useState } from "react";
 
 import { CartContext } from "../../../contexts/cartContext";
-import { Summary } from "../summary/Summary";
+import { Summary } from "../Summary/Summary";
 
 import "./CheckoutData.css";
 import { CheckoutForm } from "../CheckoutForm/CheckoutForm";
