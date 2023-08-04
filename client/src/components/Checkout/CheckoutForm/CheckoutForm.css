@@ -1,0 +1,110 @@
+.name-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.title {
+    font-size: 1.25rem;
+    margin: 3rem 0 0 0;
+}
+
+.name-form>input, .city-input>input, .contact-info>input {
+    height: 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding-left: 1rem;
+    margin-top: 1.25rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.terms {
+    display: flex;
+    position: relative;
+    margin-top: 2rem;
+}
+
+.city-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+.city-input>input {
+    width: 48%;
+}
+
+.terms>input {
+    position: relative;
+    top: -0.5rem;
+    scale: 1.50;
+    accent-color: black;
+    margin-top: 0;
+}
+
+.terms>p {
+    font-size: 0.70rem;
+    color: gray;
+    margin-left: 1rem;
+}
+
+.terms>p>span>a {
+    text-decoration: underline;
+}
+
+.incorrect {
+    color: red !important;
+    border-color: red !important;
+}
+
+.incorrect::placeholder {
+    color: red !important;
+}
+
+.purchase-btn {
+    text-align: center;
+    cursor: pointer;
+    width: 40%;
+    margin: 30px auto;
+}
+
+.horizontal-shake {
+    animation: horizontal-shaking 0.35s ease-in-out;
+}
+
+@keyframes horizontal-shaking {
+    0% {
+        transform: translateX(0)
+    }
+
+    25% {
+        transform: translateX(5px)
+    }
+
+    50% {
+        transform: translateX(-5px)
+    }
+
+    75% {
+        transform: translateX(5px)
+    }
+
+    100% {
+        transform: translateX(0)
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .purchase-btn {
+        position: fixed;
+        clip-path: none;
+        z-index: 1;
+        width: 100%;
+        bottom: 0px;
+        left: 0px;
+        margin: auto;
+    }
+}

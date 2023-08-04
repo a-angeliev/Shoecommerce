@@ -79,7 +79,10 @@ export const Auth = ({ activeIcon }) => {
     };
 
     const checkIsValidEmail = () => {
-        const result = /\S+@\S+\.\S+/.test(inputData.email);
+        const result =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+                inputData.email
+            );
         if (!result) setLoginError(["Wrong email or password!"]);
         return result;
     };
@@ -106,7 +109,7 @@ export const Auth = ({ activeIcon }) => {
         }
     };
 
-    const register = (e) => {
+    const register = () => {
         if (checkAllFieldsFilled("register") && checkIsSamePasswords()) {
             authService
                 .register({

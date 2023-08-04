@@ -5,7 +5,7 @@ import { AlertProvider } from "./contexts/alertContext";
 import { AuthProvider } from "./contexts/Auth";
 import { CartProvider } from "./contexts/cartContext";
 import { Checkout } from "./components/Checkout/Checkout";
-import { CheckoutData } from "./components/Checkout/Checkout-data/Checkout-data";
+import { CheckoutData } from "./components/Checkout/CheckoutData/CheckoutData";
 import { Copyright } from "./components/Copyright/Copyright";
 import { Details } from "./components/Products/Details/Details";
 import { EducationalPopupProvider } from "./contexts/educationalPopupContext";

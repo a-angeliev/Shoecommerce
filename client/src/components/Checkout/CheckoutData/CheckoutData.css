@@ -1,0 +1,123 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.checkout-data {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: 8rem auto;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+}
+
+.summary {
+    width: 40%;
+}
+
+.top-summary {
+    display: none;
+}
+
+.deliver-btn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    line-height: 1.5;
+    width: 100%;
+    min-height: 82px;
+    font-size: 1rem;
+    color: #111;
+    font-weight: 500;
+    background: transparent;
+    border-radius: 12px;
+    border-style: solid;
+    border-color: #111;
+    border-width: 2px;
+    padding: 19px;
+    margin: 2rem 0 2rem 0;
+}
+
+.deliver-btn>img {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 2rem;
+}
+
+.delivery-date>p {
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 1240px) {
+    .checkout-data {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .checkout-data {
+        flex-direction: column;
+        width: 80%;
+        margin: 2rem auto 4rem auto;
+    }
+
+    .form {
+        width: 100%;
+        margin-top: 3rem;
+    }
+
+    .summary {
+        width: 100%;
+    }
+
+    .top-summary {
+        display: block;
+    }
+
+    .bottom-summary {
+        display: none;
+    }
+
+    .item-btn {
+        text-align: left;
+        width: 100%;
+        height: 3rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid gray;
+        background-color: white;
+        padding-left: 1rem;
+        margin-top: 1rem;
+    }
+
+    .item-btn:after {
+        float: right;
+        content: '\02795';
+        /* Unicode character for "plus" sign (+) */
+        font-size: 13px;
+        color: white;
+        margin: auto 10px auto 10px;
+    }
+
+    .active-button:after {
+        content: "\2796";
+        /* Unicode character for "minus" sign (-) */
+    }
+
+    .shoes-list {
+        overflow: hidden;
+        height: 0;
+        transition: all 0.5s ease;
+    }
+
+    .toggle-list {
+        height: 100%;
+    }
+}

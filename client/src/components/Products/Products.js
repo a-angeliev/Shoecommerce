@@ -50,6 +50,9 @@ export const Products = () => {
         return filteredProductsForDisplay;
     };
 
+    // useEffect(() => {
+
+    // }, products)
     useEffect(() => {
         const sortedProducts = sortProducts();
         if (JSON.stringify(sortedProducts) !== JSON.stringify(filteredProductsForDisplay)) {
