@@ -51,7 +51,8 @@ export const ProductForm = (params) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [params.shoe]);
 
-    const submit = () => {
+    const submit = (e) => {
+        e.preventDefault();
         if (edit) {
             const data = {
                 title,
