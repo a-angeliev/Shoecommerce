@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../../contexts/productContext";
 import { useNavigate } from "react-router-dom";
+import { Autoplay, Navigation, Pagination, Scrollbar } from "swiper";
 
 export const NewArrival = () => {
     const { products } = useContext(ProductContext);
@@ -44,6 +45,7 @@ export const NewArrival = () => {
             </SwiperSlide>
         );
     };
+
     return (
         <section className='new' id='new'>
             <div className='heading'>
@@ -53,12 +55,18 @@ export const NewArrival = () => {
             </div>
 
             <Swiper
+                modules={[Autoplay, Navigation, Pagination, Scrollbar]}
                 spaceBetween={20}
+                navigation
+                pagination={{ clickable: true }}
+                // scrollbar={{ draggable: true }}
                 loop={true}
                 autoplay={{
-                    delay: 2500,
-                    disableOnInteraction: false,
+                    // start: true,
+                    delay: 2000,
+                    // disableOnInteraction: false,
                 }}
+                onSlideChange={() => console.log("slide change")}
                 centeredSlides={true}
                 breakpoints={{
                     0: {

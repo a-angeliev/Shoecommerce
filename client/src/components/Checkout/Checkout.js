@@ -1,15 +1,17 @@
-import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Checkout.css";
+import { useContext, useEffect, useState } from "react";
+
+import { ActiveIconContext } from "../../contexts/activeIconContext";
+import { AuthContext } from "../../contexts/Auth";
 import { CartContext } from "../../contexts/cartContext";
 import { Summary } from "./Summary/Summary";
-import { AuthContext } from "../../contexts/Auth";
-import { ActiveIconContext } from "../../contexts/activeIconContext";
+
+import "./Checkout.css";
 
 export const Checkout = () => {
-    const { cartState, removeFromCart } = useContext(CartContext);
     const { isAuthenticated } = useContext(AuthContext);
     const { setActiveIcon } = useContext(ActiveIconContext);
+    const { cartState, removeFromCart } = useContext(CartContext);
 
     const [checkoutShaking, setCheckoutShaking] = useState("");
 
@@ -18,11 +20,6 @@ export const Checkout = () => {
     useEffect(() => {
         setTimeout(setCheckoutShaking, 1000, "");
     }, [checkoutShaking]);
-
-    const remove = (e, index) => {
-        e.preventDefault();
-        removeFromCart(index);
-    };
 
     const checkForLogin = (e) => {
         e.preventDefault();
@@ -39,9 +36,8 @@ export const Checkout = () => {
         return (
             <>
                 <div className='shoe'>
-                    {console.dir(shoe)}
                     <div className='image'>
-                        <img className='img' src={shoe[1]["image"]}></img>
+                        <img className='img' src={shoe[1]["image"]} alt='shoe img'></img>
                     </div>
                     <div className='shoe-info'>
                         <div className='title-price'>
@@ -60,7 +56,7 @@ export const Checkout = () => {
                             <p className='gray-f'>Size {shoe[1]["size"]}</p>
                         </div>
                         <div className='bin'>
-                            <i onClick={(e) => remove(e, index)} className='bx bxs-trash-alt'></i>
+                            <i onClick={(e) => removeFromCart(index)} className='bx bxs-trash-alt'></i>
                         </div>
                     </div>
                 </div>
@@ -69,8 +65,6 @@ export const Checkout = () => {
         );
     };
 
-    let sum = 0;
-
     return (
         <div className='checkout'>
             <div className='bag'>
@@ -78,18 +72,17 @@ export const Checkout = () => {
                     <p>Bag</p>
                     <p className='number-of-items gray-f'>{Object.entries(cartState).length} items</p>
                 </div>
-
-                {cartState ? Object.entries(cartState).map((x, y) => shoeList(x, y)) : ""}
+                {cartState
+                    ? Object.entries(cartState).map((shoe, index) => <li key={index}>{shoeList(shoe, index)} </li>)
+                    : ""}
             </div>
 
             <div className='summary'>
                 <Summary />
                 <div className='btn-co'>
                     <Link to='/checkout-data' onClick={checkForLogin} className={"btn btn-1" + " " + checkoutShaking}>
-                        {/* <Link className='btn btn-1'> */}
                         Checkout
                     </Link>
-                    {/* <div className='btn btn-1'>Checkout</div> */}
                 </div>
             </div>
         </div>

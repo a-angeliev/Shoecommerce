@@ -94,7 +94,7 @@ export const Auth = ({ activeIcon }) => {
     };
 
     const login = () => {
-        if (checkAllFieldsFilled("login") && checkIsValidEmail()) {
+        if (checkAllFieldsFilled("login")) {
             authService
                 .login({ email: inputData.email, password: inputData.password1 })
                 .then((authData) => {
@@ -110,7 +110,7 @@ export const Auth = ({ activeIcon }) => {
     };
 
     const register = () => {
-        if (checkAllFieldsFilled("register") && checkIsSamePasswords()) {
+        if (checkAllFieldsFilled("register") && checkIsSamePasswords() && checkIsValidEmail()) {
             authService
                 .register({
                     email: inputData.email,
@@ -196,7 +196,7 @@ export const Auth = ({ activeIcon }) => {
                     )}
                     {loginError.length !== 0 ? displayErrors() : null}
                     <p>
-                        Forget Password <a href='/#'>Reset Now</a>
+                        Forgot Password <a href='/#'>Reset Now</a>
                     </p>
                     <p className='user-auth-question'>
                         {isSignIn ? "Don't have an account?" : "Already have an account?"}

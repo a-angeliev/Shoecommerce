@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { AlertContext } from "../../../contexts/alertContext";
@@ -10,6 +10,10 @@ import "./CheckoutForm.css";
 export const CheckoutForm = () => {
     const { cartState, emptyCart } = useContext(CartContext);
     const { setAlert } = useContext(AlertContext);
+
+    const [buttonOffset, setButtonOffset] = useState(0);
+    const [buttonClass, setButtonClass] = useState("");
+    const [scrollPosition, setScrollPosition] = useState(0);
 
     const [termsCheckbox, setTermsCheckbox] = useState(false);
     const [termsValidation, setTermsValidation] = useState("incorrect");
@@ -47,7 +51,74 @@ export const CheckoutForm = () => {
         country: (e) => validateByLength(e, 2),
     };
 
+    const buttonRef = useRef();
     const navigate = useNavigate();
+
+    const handleScroll = () => {
+        const position = window.pageYOffset;
+        setScrollPosition(position);
+    };
+
+    const getButtonPosition = () => {
+        // const x = buttonRef.current.offsetTop;
+        // const a = x.getBoundingClientRect().top;
+        let element = buttonRef.current;
+        // var distanceScrolled = document.body.scrollTop;
+        var elemRect = element.offsetTop;
+        // var elemViewportOffset = elemRect.top;
+        // var totalOffset = distanceScrolled + elemViewportOffset;
+        // while (element) {
+        //     y += element.offsetTop - element.scrollTop + element.clientTop;
+        //     element = element.offsetParent;
+        // }
+        setButtonOffset(elemRect);
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    // useEffect(() => {
+    //     setTimeout(setTermsShaking(""), 500);
+    // }, [termsShaking]);
+
+    // useEffect(() => {
+    //     window.addEventListener("scroll", getButtonPosition, { passive: true });
+
+    //     return () => {
+    //         window.removeEventListener("scroll", getButtonPosition);
+    //     };
+    // }, []);
+
+    useEffect(() => {
+        // getButtonPosition();
+        let element = buttonRef.current;
+        // var distanceScrolled = document.body.scrollTop;
+        // var elemRect = element.getBoundingClientRect().top;
+        var elemRect = element.getBoundingClientRect().top;
+        // var elemViewportOffset = elemRect.top;
+        // var totalOffset = distanceScrolled + elemViewportOffset;
+        // while (element) {
+        //     y += element.offsetTop - element.scrollTop + element.clientTop;
+        //     element = element.offsetParent;
+        // }
+        setButtonOffset(elemRect);
+    }, [scrollPosition]);
+
+    // useEffect(() => {
+    //     window.addEventListener("resize", getButtonPosition);
+    // }, []);
+
+    useEffect(() => {
+        if (scrollPosition - 100 < buttonOffset) setButtonClass("fixed");
+        else setButtonClass("stick");
+        console.log(123, scrollPosition);
+        console.log("asd", buttonOffset);
+    }, [scrollPosition]);
 
     const validateEmail = (e) => {
         const result =
@@ -78,8 +149,15 @@ export const CheckoutForm = () => {
         validateFiled(e);
     };
 
+    const shakeTermsBox = () => {
+        setTermsShaking("horizontal-shake");
+        setTimeout(() => {
+            setTermsShaking("");
+        }, 500);
+    };
+
     const checkInputValidation = () => {
-        if (termsValidation === "incorrect") setTermsShaking("horizontal-shake");
+        if (termsValidation === "incorrect") shakeTermsBox();
         else if (!Object.values(formValidation).includes("incorrect")) return true;
         return false;
     };
@@ -116,6 +194,7 @@ export const CheckoutForm = () => {
                 },
             };
 
+            console.log(data);
             ordersRequest
                 .createOrder(data)
                 .then((_) => {
@@ -253,7 +332,9 @@ export const CheckoutForm = () => {
                     {""}. eShopWorld is a trusted ShoeCommerce partner.{" "}
                 </p>
             </div>
-            <div className='btn purchase-btn' onClick={makePurchase}>
+
+            <div ref={buttonRef}></div>
+            <div className={`btn purchase-btn ${buttonClass}`} onClick={makePurchase}>
                 Purchase
             </div>
         </>

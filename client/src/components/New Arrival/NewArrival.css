@@ -1,7 +1,8 @@
-.new{
+.new {
     position: flex;
     /* margin-bottom: 1000000px; */
 }
+
 .new-arrival {
     margin-top: 2rem;
 }
@@ -9,14 +10,14 @@
 .new-arrival .box {
     position: relative;
     overflow: hidden;
-    background: var(--second-color);
+    /* background: var(--second-color); */
 }
 
 .new-arrival .box img {
-    background: var(--second-color);
+    /* background: var(--second-color); */
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* object-fit: cover; */
 }
 
 .new-arrival .box .content {
@@ -28,7 +29,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: hsl(0, 0%, 91%, 0.5);
+    /* background: hsl(0, 0%, 91%, 0.5); */
     overflow: hidden;
 }
 

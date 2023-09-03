@@ -36,8 +36,11 @@ export const ProfileDetails = () => {
 
     const validateDataInput = (key, inputData) => {
         let validation = { ...validInput };
-
-        if (inputData.user_data[key].length <= 2) validation[key] = "incorrect";
+        if (key == "phone") {
+            if (3 >= inputData.user_data[key].length || inputData.user_data[key].length >= 11) {
+                validation[key] = "incorrect";
+            } else validation[key] = "";
+        } else if (inputData.user_data[key].length <= 2) validation[key] = "incorrect";
         else validation[key] = "";
 
         setValidInput(validation);
@@ -69,8 +72,9 @@ export const ProfileDetails = () => {
                     setAlert({ color: "green", text: "Updated user info successfully!" });
                 })
                 .catch((err) => {
-                    console.log(err);
+                    console.log(err.message);
                     setAlert({ color: "red", text: "Somethings gone wrong. Try again!" });
+                    // setAlert({ color: "red", text: err.message });
                 });
         } else setAlert({ color: "red", text: "You should fill with valid data all fields!" });
     };

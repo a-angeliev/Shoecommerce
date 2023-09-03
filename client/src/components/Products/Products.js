@@ -33,6 +33,8 @@ export const Products = () => {
         setPriceFilterCtx,
         setSortedByCtx,
         setPageLoaderCtx,
+        newRow,
+        startPageLoader,
     } = useContext(FilterContext);
 
     const sortProducts = () => {
@@ -50,9 +52,6 @@ export const Products = () => {
         return filteredProductsForDisplay;
     };
 
-    // useEffect(() => {
-
-    // }, products)
     useEffect(() => {
         const sortedProducts = sortProducts();
         if (JSON.stringify(sortedProducts) !== JSON.stringify(filteredProductsForDisplay)) {
@@ -87,10 +86,10 @@ export const Products = () => {
             setCategoryFilterCtx([]);
             setPriceFilterCtx([]);
             setSortedByCtx("");
-            setPageLoader(7);
-            setPageLoaderCtx(7);
+            setPageLoader(startPageLoader);
+            setPageLoaderCtx(startPageLoader);
         }
-    }, [gender]);
+    }, [gender, products]);
 
     useEffect(() => {
         const products = [...filteredProductsByGender];
@@ -230,13 +229,13 @@ export const Products = () => {
     };
 
     const loadMoreProducts = () => {
-        setPageLoaderCtx(pageLoader + 4);
-        setPageLoader(pageLoader + 4);
+        setPageLoaderCtx(pageLoader + newRow);
+        setPageLoader(pageLoader + newRow);
     };
 
-    if (!filteredProductsByGender) {
-        return <div></div>;
-    }
+    // if (!filteredProductsByGender) {
+    //     return <div></div>;
+    // }
 
     return (
         <>

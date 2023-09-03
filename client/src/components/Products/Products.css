@@ -55,7 +55,7 @@
     clip-path: polygon(100% 0, 93% 50%, 86% 99%, 0% 100%, 7% 47%, 13% 0%);
 }
 
-.new-arrival {
+/* .new-arrival {
     margin-top: 2rem;
 }
 
@@ -88,7 +88,7 @@
 .new-arrival .box:hover .content {
     top: 0;
     transition: 0.2s;
-}
+} */
 
 .product-container {
     display: grid;
