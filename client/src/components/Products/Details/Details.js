@@ -151,9 +151,15 @@ export const Details = () => {
                                 <label htmlFor='size'>Choose a size:</label>
 
                                 {color === "" ? (
-                                    <select className='pick-size' name='pick-size' id='pick-size'>
-                                        <option>Pick a color first</option>
-                                    </select>
+                                    Object.keys(colorDict).length == 0 ? (
+                                        <select className='pick-size' name='pick-size' id='pick-size'>
+                                            <option>There is not available colors</option>
+                                        </select>
+                                    ) : (
+                                        <select className='pick-size' name='pick-size' id='pick-size'>
+                                            <option>Pick a color first</option>
+                                        </select>
+                                    )
                                 ) : (
                                     <select onChange={chosenSize} className='main-shoe-sizes' name='size' id='size'>
                                         {colorDict[color]
