@@ -12,7 +12,6 @@ def validate_schema(schema_name):
     def wrapper(func):
         def decorated_func(*args, **kwargs):
             data = request.get_json()
-            print(data)
             schema = schema_name()
             errors = schema.validate(data)
             if errors:

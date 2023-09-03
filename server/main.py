@@ -1,24 +1,42 @@
-from flask import Flask
+import json
+
+from flask import Flask, jsonify
+from flask.views import MethodView
 from flask_migrate import Migrate
-from flask_restful import Api
+from flask_restful import Api, Resource
 from models.users import UsersModel, UserData
 from config import create_app
 from db import db
 from resources.routes import routes
 from decouple import config
 
+from flask import request
+
 # app = create_app()
 
 # Comment app=create_app() and uncomment the flowling for migrate (flask db migrate , flask db upgrade)
 
 app = Flask(__name__)
+
+
 app.config.from_object("config.DevelopmentConfig")
+
 db.init_app(app)
 
 migrate = Migrate(app, db)
 api = Api(app)
 [api.add_resource(*r) for r in routes]
 
+#
+# @app.before_request
+# def decode():
+#     if request.method == 'POST':
+#         if request.is_json:
+#             try:
+#                 data = json.loads(request.data.decode('utf-8'))
+#                 request.json_data = data
+#             except Exception as e:
+#                 return jsonify({"error": str(e)}), 400
 
 @app.before_first_request
 def create_tables():
@@ -28,6 +46,7 @@ def create_tables():
 
 @app.after_request
 def apply_caching(response):
+
     response.headers["Access-Control-Allow-Credentials"] = "true"
     response.headers[
         "Access-Control-Allow-Methods"

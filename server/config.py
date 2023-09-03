@@ -1,10 +1,13 @@
+import json
+
 from decouple import config
-from flask import Flask
+from flask import Flask, jsonify
 from flask_migrate import Migrate
-from flask_restful import Api
+from flask_restful import Api, Resource
 from models import UsersModel
 from db import db
 from resources.routes import routes
+from schemas import request
 
 
 class DevelopmentConfig:
@@ -22,6 +25,7 @@ class TestConfig:
 def create_app(config="config.DevelopmentConfig"):
     app = Flask(__name__)
     # CORS(app)
+
     app.config.from_object(config)
 
     api = Api(app)
