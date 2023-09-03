@@ -159,6 +159,10 @@ section.scn {
     background-color: pink;
 }
 
+.black {
+    background-color: black;
+}
+
 /* .main-shoe-color:nth-child(2) {
     background-color: rgb(222, 60, 60);
 }
