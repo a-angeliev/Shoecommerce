@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FilterContext } from "../../contexts/filterContext";
 import { ProductContext } from "../../contexts/productContext";
@@ -52,6 +52,22 @@ export const Products = () => {
         return filteredProductsForDisplay;
     };
 
+    // const scrollXRef = useRef(0);
+    // const scrollYRef = useRef(0);
+
+    // const handleScroll = () => {
+    //     scrollXRef.current = window.scrollX;
+    //     scrollYRef.current = window.scrollY;
+    // };
+
+    // useEffect(() => {
+    //     window.addEventListener("scroll", handleScroll);
+
+    //     return () => {
+    //         window.removeEventListener("scroll", handleScroll);
+    //     };
+    // }, []);
+
     useEffect(() => {
         const sortedProducts = sortProducts();
         if (JSON.stringify(sortedProducts) !== JSON.stringify(filteredProductsForDisplay)) {
@@ -101,6 +117,18 @@ export const Products = () => {
     }, [brandFilter, categoryFilter, priceFilter]);
 
     const goToShoeDetailPage = (id) => {
+        // let arr = [];
+        // if (sessionStorage.getItem("scroll")) {
+        //     const a = sessionStorage.getItem("scroll");
+        //     arr = [a];
+        // }
+        // console.log(123123123);
+        // const scrollP = Number(scrollYRef.current);
+        // console.log(scrollP);
+        // arr.push(scrollP);
+
+        // sessionStorage.setItem("scroll", arr);
+        // console.log(scrollYRef.current);
         let path = "/product/" + id;
         navTo(path);
     };

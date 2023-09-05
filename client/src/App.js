@@ -22,6 +22,7 @@ import { WishlistProvider } from "./contexts/wishlistContext";
 import { Alert } from "./components/Alert/Alert";
 
 import "./App.css";
+import { useEffect } from "react";
 
 function App() {
     return (

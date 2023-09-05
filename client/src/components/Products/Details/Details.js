@@ -153,7 +153,7 @@ export const Details = () => {
                                 {color === "" ? (
                                     Object.keys(colorDict).length == 0 ? (
                                         <select className='pick-size' name='pick-size' id='pick-size'>
-                                            <option>There is not available colors</option>
+                                            <option>Out of stock</option>
                                         </select>
                                     ) : (
                                         <select className='pick-size' name='pick-size' id='pick-size'>
