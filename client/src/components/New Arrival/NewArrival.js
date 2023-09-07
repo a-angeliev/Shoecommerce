@@ -4,11 +4,12 @@ import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../../contexts/productContext";
 import { useNavigate } from "react-router-dom";
 import { Autoplay, Navigation, Pagination, Scrollbar } from "swiper";
+import { useNavigationWithHistory } from "../../hooks/useNavigation";
 
 export const NewArrival = () => {
     const { products } = useContext(ProductContext);
     const [newArrival, setNewArrival] = useState([]);
-    const navigate = useNavigate();
+    const navigate = useNavigationWithHistory();
     useEffect(() => {
         if (products) {
             products.sort((product1, product2) => product2.id - product1.id);

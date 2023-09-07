@@ -6,6 +6,7 @@ import { CartContext } from "../../../contexts/cartContext";
 import * as ordersRequest from "../../../services/orders.js";
 
 import "./CheckoutForm.css";
+import { useNavigationWithHistory } from "../../../hooks/useNavigation";
 
 export const CheckoutForm = () => {
     const { cartState, emptyCart } = useContext(CartContext);
@@ -52,7 +53,7 @@ export const CheckoutForm = () => {
     };
 
     const buttonRef = useRef();
-    const navigate = useNavigate();
+    const navigate = useNavigationWithHistory();
 
     const handleScroll = () => {
         const position = window.pageYOffset;

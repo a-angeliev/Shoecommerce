@@ -52,21 +52,21 @@ export const Products = () => {
         return filteredProductsForDisplay;
     };
 
-    // const scrollXRef = useRef(0);
-    // const scrollYRef = useRef(0);
+    const scrollXRef = useRef(0);
+    const scrollYRef = useRef(0);
 
-    // const handleScroll = () => {
-    //     scrollXRef.current = window.scrollX;
-    //     scrollYRef.current = window.scrollY;
-    // };
+    const handleScroll = () => {
+        scrollXRef.current = window.scrollX;
+        scrollYRef.current = window.scrollY;
+    };
 
-    // useEffect(() => {
-    //     window.addEventListener("scroll", handleScroll);
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
 
-    //     return () => {
-    //         window.removeEventListener("scroll", handleScroll);
-    //     };
-    // }, []);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     useEffect(() => {
         const sortedProducts = sortProducts();
@@ -117,17 +117,18 @@ export const Products = () => {
     }, [brandFilter, categoryFilter, priceFilter]);
 
     const goToShoeDetailPage = (id) => {
-        // let arr = [];
-        // if (sessionStorage.getItem("scroll")) {
-        //     const a = sessionStorage.getItem("scroll");
-        //     arr = [a];
-        // }
+        // console.log(window.history.scrollRestoration);
+        let arr = [];
+        if (sessionStorage.getItem("scrollPosition")) {
+            const a = sessionStorage.getItem("scrollPosition");
+            arr = [a];
+        }
         // console.log(123123123);
-        // const scrollP = Number(scrollYRef.current);
-        // console.log(scrollP);
-        // arr.push(scrollP);
+        const scrollP = Number(scrollYRef.current);
+        console.log(scrollP);
+        arr.push(scrollP);
 
-        // sessionStorage.setItem("scroll", arr);
+        sessionStorage.setItem("scrollPosition", arr);
         // console.log(scrollYRef.current);
         let path = "/product/" + id;
         navTo(path);
@@ -233,23 +234,27 @@ export const Products = () => {
 
     const displayProduct = (product) => {
         return (
-            <div className='catalog-items-container'>
-                <div
-                    className='box'
-                    onClick={() => {
-                        navTo(`/product/${product.id}`);
-                    }}>
+            <div
+                className='catalog-items-container'
+                onClick={() => {
+                    goToShoeDetailPage(product.id);
+                }}>
+                <div className='box'>
                     <img src={product.images[0].img_url} alt='' />
                 </div>
                 <div
                     className='content'
-                    onClick={() => {
-                        navTo(`/product/${product.id}`);
-                    }}>
+                    // onClick={() => {
+                    //     navTo(`/product/${product.id}`);
+                    // }}
+                >
                     <h1>{product.title}</h1>
                     <div className='priceB'>
                         <span>{product.price} USD</span>
-                        <i onClick={() => goToShoeDetailPage(product.id)} className='bx bx-cart-alt'></i>
+                        {/* <i onClick={() => goToShoeDetailPage(product.id)} className='bx bx-cart-alt'></i> */}
+                        <i
+                            // onClick={() => navTo(`/product/${product.id}`)}
+                            className='bx bx-cart-alt'></i>
                     </div>
                 </div>
             </div>
