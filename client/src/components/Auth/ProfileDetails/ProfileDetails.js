@@ -6,6 +6,7 @@ import { AuthContext } from "../../../contexts/Auth";
 import * as userRequest from "../../../services/user";
 
 import "./ProfileDetails.css";
+import { useNavigationWithHistory } from "../../../hooks/useNavigation";
 
 export const ProfileDetails = () => {
     const { user, userLogout } = useContext(AuthContext);
@@ -18,7 +19,7 @@ export const ProfileDetails = () => {
         email: "",
     });
 
-    const navigate = useNavigate();
+    const navigate = useNavigationWithHistory();
 
     useEffect(() => {
         userRequest

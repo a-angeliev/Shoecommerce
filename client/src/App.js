@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, createBrowserRouter, createRoutesFromElements, RouterProvider, Router } from "react-router-dom";
 
 import { ActiveIconProvider } from "./contexts/activeIconContext";
 import { AlertProvider } from "./contexts/alertContext";
@@ -23,42 +23,26 @@ import { Alert } from "./components/Alert/Alert";
 
 import "./App.css";
 import { useEffect } from "react";
+import { Root } from "./root/root";
 
 function App() {
-    return (
-        <EducationalPopupProvider>
-            <AuthProvider>
-                <ProductProvider>
-                    <CartProvider>
-                        <FilterProvider>
-                            <AlertProvider>
-                                <ActiveIconProvider>
-                                    <WishlistProvider>
-                                        <Alert />
-                                        <div className='App'>
-                                            <EducationInfo />
-                                            <Navbar />
-                                            <Routes>
-                                                <Route path='/' element={<Home />} />
-                                                <Route path='/products/:gender' element={<Products />} />
-                                                <Route path='/product/:id' element={<Details />} />
-                                                <Route path='/checkout' element={<Checkout />} />
-                                                <Route path='/checkout-data' element={<CheckoutData />} />
-                                                <Route path='/user/orders' element={<ProfileOrders />} />
-                                                <Route path='/user/details' element={<ProfileDetails />}></Route>
-                                            </Routes>
-                                            <Footer />
-                                            {/* <Copyright /> */}
-                                        </div>
-                                    </WishlistProvider>
-                                </ActiveIconProvider>
-                            </AlertProvider>
-                        </FilterProvider>
-                    </CartProvider>
-                </ProductProvider>
-            </AuthProvider>
-        </EducationalPopupProvider>
+    const router = createBrowserRouter(
+        createRoutesFromElements(
+            <>
+                <Route path='/' element={<Root />}>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/products/:gender' element={<Products />} />
+                    <Route path='/product/:id' element={<Details />} />
+                    <Route path='/checkout' element={<Checkout />} />
+                    <Route path='/checkout-data' element={<CheckoutData />} />
+                    <Route path='/user/orders' element={<ProfileOrders />} />
+                    <Route path='/user/details' element={<ProfileDetails />}></Route>
+                </Route>
+            </>
+        )
     );
+
+    return <RouterProvider router={router} />;
 }
 
 export default App;

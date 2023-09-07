@@ -11,10 +11,14 @@ import { WishlistContext } from "../../contexts/wishlistContext";
 import * as wishlistService from "../../services/wishlist";
 import { AuthContext } from "../../contexts/Auth";
 import { useNav } from "../../hooks/useNavigation";
+import { ScrollContext } from "../../contexts/scrollContext";
 
 export const Navbar = () => {
+    console.log(window.history.location);
+
     const { activeIcon, setActiveIcon } = useContext(ActiveIconContext);
     // const [activeIcon, setActiveIcon] = useState("");
+    const { addScrollPosition } = useContext(ScrollContext);
     const { cartState, removeFromCart } = useContext(CartContext);
     const { wishlistIds, wishlist, removeWishlistCtx } = useContext(WishlistContext);
     const { isAuthenticated } = useContext(AuthContext);
@@ -116,31 +120,57 @@ export const Navbar = () => {
 
     return (
         <header>
-            <Link to='/#' className='logo' onClick={() => setActiveIcon(false)}>
+            <Link
+                to='/#'
+                className='logo'
+                onClick={() => {
+                    setActiveIcon(false);
+                    addScrollPosition();
+                }}>
                 {" "}
                 <i className='bx bxs-shopping-bag-alt'></i>
                 ShoeCommerce
             </Link>
             <ul className={`navbar ${activeIcon === "menu" && "active"}`}>
                 <li key='home'>
-                    <Link to='/' onClick={() => setActiveIcon(false)}>
+                    <Link
+                        to='/'
+                        onClick={() => {
+                            setActiveIcon(false);
+                            addScrollPosition();
+                        }}>
                         Home
                     </Link>
                 </li>
                 <li key='Men'>
-                    <Link to='/products/man' onClick={() => setActiveIcon(false)}>
+                    <Link
+                        to='/products/man'
+                        onClick={() => {
+                            setActiveIcon(false);
+                            addScrollPosition();
+                        }}>
                         {/* Men */}
                         Man
                     </Link>
                 </li>
                 <li key='Women'>
-                    <Link to='/products/woman' onClick={() => setActiveIcon(false)}>
+                    <Link
+                        to='/products/woman'
+                        onClick={() => {
+                            setActiveIcon(false);
+                            addScrollPosition();
+                        }}>
                         {/* Women */}
                         Woman
                     </Link>
                 </li>
                 <li key='Kids'>
-                    <Link to='/products/kid' onClick={() => setActiveIcon(false)}>
+                    <Link
+                        to='/products/kid'
+                        onClick={() => {
+                            setActiveIcon(false);
+                            addScrollPosition();
+                        }}>
                         {/* Kids */}
                         Kid
                     </Link>

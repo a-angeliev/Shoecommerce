@@ -7,15 +7,18 @@ import { CartContext } from "../../contexts/cartContext";
 import { Summary } from "./Summary/Summary";
 
 import "./Checkout.css";
+import { useNavigationWithHistory } from "../../hooks/useNavigation";
+import { ScrollContext } from "../../contexts/scrollContext";
 
 export const Checkout = () => {
     const { isAuthenticated } = useContext(AuthContext);
     const { setActiveIcon } = useContext(ActiveIconContext);
     const { cartState, removeFromCart } = useContext(CartContext);
+    const { addScrollPosition } = useContext(ScrollContext);
 
     const [checkoutShaking, setCheckoutShaking] = useState("");
 
-    const navigator = useNavigate();
+    const navigator = useNavigationWithHistory();
 
     useEffect(() => {
         setTimeout(setCheckoutShaking, 1000, "");
@@ -24,6 +27,7 @@ export const Checkout = () => {
     const checkForLogin = (e) => {
         e.preventDefault();
         setActiveIcon("");
+        addScrollPosition();
         if (isAuthenticated) {
             navigator("/checkout-data");
         } else {

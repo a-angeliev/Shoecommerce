@@ -205,23 +205,27 @@ export const Products = () => {
 
     const displayProduct = (product) => {
         return (
-            <div className='catalog-items-container'>
-                <div
-                    className='box'
-                    onClick={() => {
-                        navTo(`/product/${product.id}`);
-                    }}>
+            <div
+                className='catalog-items-container'
+                onClick={() => {
+                    goToShoeDetailPage(product.id);
+                }}>
+                <div className='box'>
                     <img src={product.images[0].img_url} alt='' />
                 </div>
                 <div
                     className='content'
-                    onClick={() => {
-                        navTo(`/product/${product.id}`);
-                    }}>
+                    // onClick={() => {
+                    //     navTo(`/product/${product.id}`);
+                    // }}
+                >
                     <h1>{product.title}</h1>
                     <div className='priceB'>
                         <span>{product.price} USD</span>
-                        <i onClick={() => goToShoeDetailPage(product.id)} className='bx bx-cart-alt'></i>
+                        {/* <i onClick={() => goToShoeDetailPage(product.id)} className='bx bx-cart-alt'></i> */}
+                        <i
+                            // onClick={() => navTo(`/product/${product.id}`)}
+                            className='bx bx-cart-alt'></i>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ import { ProfileMenu } from "./ProfileMenu/ProfileMenu";
 import * as authService from "../../services/user";
 
 import "./Auth.css";
+import { useNavigationWithHistory } from "../../hooks/useNavigation";
 
 export const Auth = ({ activeIcon }) => {
     const { userLogin, isAuthenticated } = useContext(AuthContext);
@@ -22,7 +23,7 @@ export const Auth = ({ activeIcon }) => {
     const [loginError, setLoginError] = useState([]);
     const [localActiveIcon, setLocalActiveIcon] = useState("");
 
-    const navigate = useNavigate();
+    const navigate = useNavigationWithHistory();
 
     useEffect(() => {
         setLocalActiveIcon(activeIcon);
