@@ -16,13 +16,13 @@ import { ScrollProvider } from "../contexts/scrollContext";
 export const Root = () => {
     return (
         <div>
-            <ScrollProvider>
-                <EducationalPopupProvider>
-                    <AuthProvider>
-                        <ProductProvider>
-                            <CartProvider>
-                                <FilterProvider>
-                                    <AlertProvider>
+            <AlertProvider>
+                <ScrollProvider>
+                    <EducationalPopupProvider>
+                        <AuthProvider>
+                            <ProductProvider>
+                                <CartProvider>
+                                    <FilterProvider>
                                         <ActiveIconProvider>
                                             <WishlistProvider>
                                                 <Alert />
@@ -35,13 +35,13 @@ export const Root = () => {
                                                 </div>
                                             </WishlistProvider>
                                         </ActiveIconProvider>
-                                    </AlertProvider>
-                                </FilterProvider>
-                            </CartProvider>
-                        </ProductProvider>
-                    </AuthProvider>
-                </EducationalPopupProvider>
-            </ScrollProvider>
+                                    </FilterProvider>
+                                </CartProvider>
+                            </ProductProvider>
+                        </AuthProvider>
+                    </EducationalPopupProvider>
+                </ScrollProvider>
+            </AlertProvider>
         </div>
     );
 };
