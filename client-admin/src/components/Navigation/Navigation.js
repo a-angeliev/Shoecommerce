@@ -12,17 +12,17 @@ export const NavigationBar = () => {
     const navigate = useNavigate();
 
     const brandUrls = {
-        "Brand info": "/brand/information",
+        "Brand info": "/brand/information?curPage=1&perPage=5",
         "Create brand": "/brand/create",
     };
 
     const categoryUrls = {
-        "Category info": "/category/information",
+        "Category info": "/category/information?curPage=1&perPage=5",
         "Create category": "/category/create",
     };
 
     const orderUrls = {
-        "Orders info": "/orders/information",
+        "Orders info": "/orders/information?curPage=1&perPage=5",
         // "Pending orders": "/orders/pending",
     };
 
@@ -33,7 +33,7 @@ export const NavigationBar = () => {
     // };
 
     const productsUrls = {
-        "Product info": "/products/information",
+        "Product info": "/products/information?curPage=1&perPage=5",
         "Create product": "/products/create",
     };
 

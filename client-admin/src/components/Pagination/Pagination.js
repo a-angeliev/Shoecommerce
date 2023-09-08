@@ -1,15 +1,54 @@
+import { useEffect, useState } from "react";
 import style from "./Pagination.module.css";
+import { useNavigate } from "react-router-dom";
 
 export const Pagination = (props) => {
+    const queryParameters = new URLSearchParams(window.location.search);
+    const navigate = useNavigate();
+    const [itemPerPageStatic, setItemPerPageStatic] = useState();
+    const [currentPageStatic, setCurrentPageStatic] = useState();
+
+    // useEffect(() => {
+    //     window.history.replaceState(
+    //         "http://localhost:3000/products/information",
+    //         "",
+    //         "?curPage=" + 1 + "&perPage=" + 5
+    //     );
+    // }, []);
+
+    useEffect(() => {
+        const urlCurrentPage = Number(queryParameters.get("curPage"));
+        const urlItemPerPage = Number(queryParameters.get("perPage"));
+        if (urlCurrentPage !== currentPageStatic && urlCurrentPage != 0 && urlCurrentPage !== undefined) {
+            props.setCurrentPage(urlCurrentPage);
+        }
+
+        if (urlItemPerPage !== itemPerPageStatic && urlItemPerPage != 0 && urlItemPerPage !== undefined) {
+            props.setItemPerPage(urlItemPerPage);
+        }
+    }, [queryParameters]);
+
+    useEffect(() => {
+        setItemPerPageStatic(props.itemPerPage);
+        setCurrentPageStatic(props.currentPage);
+        const urlItemPerPage = Number(queryParameters.get("perPage"));
+        const urlCurrentPage = Number(queryParameters.get("curPage"));
+        if (urlItemPerPage != props.itemPerPage || urlCurrentPage != props.currentPage) {
+            navigate("?curPage=" + props.currentPage + "&perPage=" + props.itemPerPage);
+        }
+    }, [props.currentPage, props.itemPerPage]);
+
     const changePage = (e) => {
         props.setCurrentPage(Number(e.target.innerText));
     };
 
     const prevPage = () => {
+        // if (props.currentPage > 1) props.setCurrentPage((prev) => prev - 1);
         if (props.currentPage > 1) props.setCurrentPage((prev) => prev - 1);
     };
 
     const nextPage = () => {
+        // if (props.currentPage < props.numberOfPages) props.setCurrentPage((prev) => prev + 1);
         if (props.currentPage < props.numberOfPages) props.setCurrentPage((prev) => prev + 1);
     };
 
@@ -66,13 +105,13 @@ export const Pagination = (props) => {
 
                 <div className={style["item-info"]}>
                     Showing{" "}
-                    {props.currentPage * props.itemPerPage - Number(props.itemPerPage) === 0
+                    {props.currentPage * itemPerPageStatic - Number(itemPerPageStatic) === 0
                         ? 1
-                        : props.currentPage * props.itemPerPage - Number(props.itemPerPage)}{" "}
+                        : props.currentPage * itemPerPageStatic - Number(itemPerPageStatic)}{" "}
                     to{" "}
-                    {props.currentPage * props.itemPerPage > props.numberOfItems
+                    {props.currentPage * itemPerPageStatic > props.numberOfItems
                         ? props.numberOfItems
-                        : props.currentPage * props.itemPerPage}{" "}
+                        : props.currentPage * itemPerPageStatic}{" "}
                     of {props.numberOfItems} entries
                 </div>
             </div>

@@ -95,6 +95,7 @@ export const OrderInfo = () => {
                             currentPage={currentPage}
                             numberOfPages={numberOfPages}
                             itemPerPage={itemPerPage}
+                            setItemPerPage={setItemPerPage}
                             numberOfItems={numberOfOrders}
                         />
                     </div>

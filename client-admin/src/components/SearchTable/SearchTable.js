@@ -1,6 +1,6 @@
 import style from "./SearchTable.module.css";
 
-export const SearchTable = (params) => {
+export const SearchTable = (props) => {
     return (
         <>
             <div className={style["search-pag"]}>
@@ -8,8 +8,8 @@ export const SearchTable = (params) => {
                     <input
                         name='search'
                         placeholder='Search here...'
-                        value={params.filter}
-                        onChange={(e) => params.setFilter(e.target.value)}></input>
+                        value={props.filter}
+                        onChange={(e) => props.setFilter(e.target.value)}></input>
                     <div className={style["search-btn"]}>
                         <img src='../images/icons8-search-50-white.png' alt='search icon'></img>
                     </div>
@@ -17,9 +17,9 @@ export const SearchTable = (params) => {
                 <div className={style["per-page"]}>
                     <p>Per Page: </p>
                     <select
-                        value={params.itemPerPage}
+                        value={props.itemPerPage}
                         onChange={(e) => {
-                            params.setItemPerPage(e.target.value);
+                            props.setItemPerPage(e.target.value);
                         }}>
                         <option>5</option>
                         <option>10</option>

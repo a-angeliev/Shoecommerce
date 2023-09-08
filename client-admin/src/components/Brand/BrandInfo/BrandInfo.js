@@ -9,6 +9,7 @@ import { AlertContext } from "../../../contexts/AlertContext";
 import * as brandService from "../../../services/brand";
 
 import style from "./BrandInfo.module.css";
+import { SearchTable } from "../../SearchTable/SearchTable";
 
 export const BrandInfo = () => {
     const { setAlert } = useContext(AlertContext);
@@ -65,7 +66,7 @@ export const BrandInfo = () => {
                 <h1>Brand Information</h1>
             </div>
             <div className={style["table-content"]}>
-                <div className={style["search-pag"]}>
+                {/* <div className={style["search-pag"]}>
                     <div className={style.search}>
                         <input
                             name='search'
@@ -88,7 +89,12 @@ export const BrandInfo = () => {
                             <option>15</option>
                         </select>
                     </div>
-                </div>
+                </div> */}
+                <SearchTable
+                    filter={filter}
+                    setFilter={setFilter}
+                    itemPerPage={itemPerPage}
+                    setItemPerPage={setItemPerPage}></SearchTable>
                 <div className={style.table}>
                     <table>
                         <tr className={style["tr-title"]}>
@@ -120,6 +126,7 @@ export const BrandInfo = () => {
                 currentPage={currentPage}
                 numberOfPages={numberOfPages}
                 itemPerPage={itemPerPage}
+                setItemPerPage={setItemPerPage}
                 numberOfItems={numberOfBrands}></Pagination>
         </div>
     );

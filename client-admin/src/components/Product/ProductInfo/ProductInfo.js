@@ -95,6 +95,7 @@ export const ProductInfo = () => {
                             currentPage={currentPage}
                             numberOfPages={numberOfPages}
                             itemPerPage={itemPerPage}
+                            setItemPerPage={setItemPerPage}
                             numberOfItems={numberOfProducts}></Pagination>
                     </div>
                 </div>

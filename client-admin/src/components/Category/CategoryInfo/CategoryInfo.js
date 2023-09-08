@@ -106,6 +106,7 @@ export const CategoryInfo = () => {
                             currentPage={currentPage}
                             numberOfPages={numberOfPages}
                             itemPerPage={itemPerPage}
+                            setItemPerPage={setItemPerPage}
                             numberOfItems={numberOfCategories}></Pagination>
                     </div>
                 </div>
