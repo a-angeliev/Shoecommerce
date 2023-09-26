@@ -2,6 +2,7 @@ import json
 
 from flask import Flask, jsonify
 from flask.views import MethodView
+from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from models.users import UsersModel, UserData
@@ -22,21 +23,12 @@ app = Flask(__name__)
 app.config.from_object("config.DevelopmentConfig")
 
 db.init_app(app)
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 migrate = Migrate(app, db)
 api = Api(app)
 [api.add_resource(*r) for r in routes]
 
-#
-# @app.before_request
-# def decode():
-#     if request.method == 'POST':
-#         if request.is_json:
-#             try:
-#                 data = json.loads(request.data.decode('utf-8'))
-#                 request.json_data = data
-#             except Exception as e:
-#                 return jsonify({"error": str(e)}), 400
 
 @app.before_first_request
 def create_tables():
@@ -54,7 +46,7 @@ def apply_caching(response):
     # response.headers["Access-Control-Allow-Headers"] = "Content-Type"
     # response.headers["Access-Control-Allow-Headers"] = "Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization"
     response.headers["Access-Control-Allow-Headers"] = "*"
-    response.headers["Access-Control-Allow-Origin"] = "*"
+    # response.headers["Access-Control-Allow-Origin"] = "*"
     return response
 
 
