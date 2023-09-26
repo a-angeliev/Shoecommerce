@@ -1,5 +1,6 @@
-import "./Footer.css";
 import { Copyright } from "../Copyright/Copyright";
+
+import "./Footer.css";
 
 export const Footer = () => {
     return (
