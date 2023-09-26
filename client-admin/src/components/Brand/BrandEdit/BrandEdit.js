@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { AlertContext } from "../../../contexts/AlertContext";
 import { BrandForm } from "../BrandForm/BrandForm";
+
 import * as brandService from "../../../services/brand";
 
 export const BrandEdit = () => {
@@ -21,7 +22,6 @@ export const BrandEdit = () => {
             .catch((err) => {
                 setAlert({ color: "red", text: err.message });
             });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

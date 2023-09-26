@@ -2,10 +2,10 @@
     position: fixed;
     top: 100px;
     right: 20px;
+    opacity: 0;
     color: #fff;
     border-radius: 5px;
     visibility: hidden;
-    opacity: 0;
     padding: 10px;
     transition: opacity .5s ease-in-out;
 }
@@ -27,7 +27,6 @@
 
 .color-red {
     background-color: rgba(210, 17, 17, 0.678);
-
 }
 
 .popup-text {
