@@ -1,19 +1,21 @@
-import "./NewArrival.css";
+import { Autoplay, Navigation, Pagination, Scrollbar } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useContext, useEffect, useState } from "react";
+
 import { ProductContext } from "../../contexts/productContext";
-import { useNavigate } from "react-router-dom";
-import { Autoplay, Navigation, Pagination, Scrollbar } from "swiper";
 import { useNavigationWithHistory } from "../../hooks/useNavigation";
+
+import "./NewArrival.css";
 
 export const NewArrival = () => {
     const { products } = useContext(ProductContext);
+
     const [newArrival, setNewArrival] = useState([]);
+
     const navigate = useNavigationWithHistory();
+
     useEffect(() => {
-        if (products) {
-            products.sort((product1, product2) => product2.id - product1.id);
-        }
+        if (products) products.sort((product1, product2) => product2.id - product1.id);
         setNewArrival(products.slice(0, 6));
     }, [products]);
 
@@ -34,6 +36,7 @@ export const NewArrival = () => {
             </SwiperSlide>
         );
     };
+
     const dummyShoes = () => {
         return (
             <SwiperSlide className='swiper-slide box'>
@@ -60,12 +63,9 @@ export const NewArrival = () => {
                 spaceBetween={20}
                 navigation
                 pagination={{ clickable: true }}
-                // scrollbar={{ draggable: true }}
                 loop={true}
                 autoplay={{
-                    // start: true,
                     delay: 2000,
-                    // disableOnInteraction: false,
                 }}
                 onSlideChange={() => console.log("slide change")}
                 centeredSlides={true}
