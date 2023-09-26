@@ -3,18 +3,16 @@
 }
 
 .main-shoe-images-list {
-    padding: 0;
-
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    padding: 0;
 }
 
 .main-shoe-img-item {
+    cursor: pointer;
     width: 180px;
     height: 180px;
-    
-    cursor: pointer;
     transition: all ease-in-out 0.25s;
 }
 
