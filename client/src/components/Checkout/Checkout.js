@@ -1,14 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 
 import { ActiveIconContext } from "../../contexts/activeIconContext";
 import { AuthContext } from "../../contexts/Auth";
 import { CartContext } from "../../contexts/cartContext";
+import { ScrollContext } from "../../contexts/scrollContext";
 import { Summary } from "./Summary/Summary";
+import { useNavigationWithHistory } from "../../hooks/useNavigation";
 
 import "./Checkout.css";
-import { useNavigationWithHistory } from "../../hooks/useNavigation";
-import { ScrollContext } from "../../contexts/scrollContext";
 
 export const Checkout = () => {
     const { isAuthenticated } = useContext(AuthContext);

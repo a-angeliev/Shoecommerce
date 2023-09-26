@@ -134,7 +134,6 @@
 
     .bag {
         width: 100%;
-        /* text-align: center; */
     }
 
     .title {
@@ -157,19 +156,9 @@
         left: 0px;
     }
 
-    /* .btn-1 {
-        width: 100%;
-        clip-path: none;
-    } */
     .btn-1 {
         width: 100%;
-        /* position: fixed; */
         clip-path: none !important;
-        /* z-index: 1;
-        width: 100%;
-        bottom: 0px;
-        left: 0px;
-        margin: auto; */
     }
 }
 
