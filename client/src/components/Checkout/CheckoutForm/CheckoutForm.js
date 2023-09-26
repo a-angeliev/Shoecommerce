@@ -1,12 +1,11 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { AlertContext } from "../../../contexts/alertContext";
 import { CartContext } from "../../../contexts/cartContext";
+import { useNavigationWithHistory } from "../../../hooks/useNavigation";
 import * as ordersRequest from "../../../services/orders.js";
 
 import "./CheckoutForm.css";
-import { useNavigationWithHistory } from "../../../hooks/useNavigation";
 
 export const CheckoutForm = () => {
     const { cartState, emptyCart } = useContext(CartContext);
@@ -15,7 +14,6 @@ export const CheckoutForm = () => {
     const [buttonOffset, setButtonOffset] = useState(0);
     const [buttonClass, setButtonClass] = useState("");
     const [scrollPosition, setScrollPosition] = useState(0);
-
     const [termsCheckbox, setTermsCheckbox] = useState(false);
     const [termsValidation, setTermsValidation] = useState("incorrect");
     const [termsShaking, setTermsShaking] = useState("");
@@ -40,6 +38,7 @@ export const CheckoutForm = () => {
         email: "",
         phone: "",
     });
+
     const validationAction = {
         email: (e) => validateEmail(e),
         phone: (e) => validateByLength(e, 8),
@@ -60,21 +59,6 @@ export const CheckoutForm = () => {
         setScrollPosition(position);
     };
 
-    const getButtonPosition = () => {
-        // const x = buttonRef.current.offsetTop;
-        // const a = x.getBoundingClientRect().top;
-        let element = buttonRef.current;
-        // var distanceScrolled = document.body.scrollTop;
-        var elemRect = element.offsetTop;
-        // var elemViewportOffset = elemRect.top;
-        // var totalOffset = distanceScrolled + elemViewportOffset;
-        // while (element) {
-        //     y += element.offsetTop - element.scrollTop + element.clientTop;
-        //     element = element.offsetParent;
-        // }
-        setButtonOffset(elemRect);
-    };
-
     useEffect(() => {
         window.addEventListener("scroll", handleScroll, { passive: true });
 
@@ -83,42 +67,15 @@ export const CheckoutForm = () => {
         };
     }, []);
 
-    // useEffect(() => {
-    //     setTimeout(setTermsShaking(""), 500);
-    // }, [termsShaking]);
-
-    // useEffect(() => {
-    //     window.addEventListener("scroll", getButtonPosition, { passive: true });
-
-    //     return () => {
-    //         window.removeEventListener("scroll", getButtonPosition);
-    //     };
-    // }, []);
-
     useEffect(() => {
-        // getButtonPosition();
         let element = buttonRef.current;
-        // var distanceScrolled = document.body.scrollTop;
-        // var elemRect = element.getBoundingClientRect().top;
         var elemRect = element.getBoundingClientRect().top;
-        // var elemViewportOffset = elemRect.top;
-        // var totalOffset = distanceScrolled + elemViewportOffset;
-        // while (element) {
-        //     y += element.offsetTop - element.scrollTop + element.clientTop;
-        //     element = element.offsetParent;
-        // }
         setButtonOffset(elemRect);
     }, [scrollPosition]);
-
-    // useEffect(() => {
-    //     window.addEventListener("resize", getButtonPosition);
-    // }, []);
 
     useEffect(() => {
         if (scrollPosition - 100 < buttonOffset) setButtonClass("fixed");
         else setButtonClass("stick");
-        console.log(123, scrollPosition);
-        console.log("asd", buttonOffset);
     }, [scrollPosition]);
 
     const validateEmail = (e) => {
@@ -279,6 +236,7 @@ export const CheckoutForm = () => {
                 <input
                     className={formValidation["email"]}
                     name='email'
+                    id='email'
                     type='text'
                     placeholder='Email'
                     onChange={inputHandler}
@@ -291,6 +249,7 @@ export const CheckoutForm = () => {
                 <input
                     className={formValidation["phone"]}
                     name='phone'
+                    id='phone'
                     type='number'
                     placeholder='Phone Number'
                     onChange={inputHandler}
