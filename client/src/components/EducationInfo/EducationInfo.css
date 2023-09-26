@@ -1,20 +1,20 @@
 .frame-education {
+    display: none;
     width: 100%;
-    display: none
 }
 
 .education-popup {
-    max-width: 60%;
-    max-height: 70%;
     position: fixed;
     z-index: 10000;
+    text-align: center;
+    max-width: 60%;
+    max-height: 70%;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     background-color: white;
-    text-align: center;
     box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65);
     border-radius: 10px;
+    transform: translate(-50%, -50%);
 }
 
 .education-popup .title {
@@ -23,9 +23,7 @@
 }
 
 .education-popup>p {
-    margin-left: 3rem;
-    margin-right: 3rem;
-    margin-top: 1rem;
+    margin: 1rem 3rem 0rem 3rem;
 }
 
 .education-popup .p-1 {
@@ -36,10 +34,8 @@
     color: var(--main-color)
 }
 
-
 .education-popup>div {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin: 1rem 0 1rem 0;
     cursor: pointer;
 }
 

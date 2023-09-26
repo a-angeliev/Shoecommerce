@@ -1,9 +1,12 @@
 import { useContext } from "react";
-import "./EducationInfo.css";
+
 import { EducationalPopupContext } from "../../contexts/educationalPopupContext";
+
+import "./EducationInfo.css";
 
 export const EducationInfo = () => {
     const { educationPopup, setEducationPopup } = useContext(EducationalPopupContext);
+
     const hideEducationPopup = () => {
         setEducationPopup(false);
     };
