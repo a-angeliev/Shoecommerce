@@ -1,12 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../../contexts/Auth";
 import { ProfileMenu } from "./ProfileMenu/ProfileMenu";
+import { useNavigationWithHistory } from "../../hooks/useNavigation";
 import * as authService from "../../services/user";
 
 import "./Auth.css";
-import { useNavigationWithHistory } from "../../hooks/useNavigation";
 
 export const Auth = ({ activeIcon }) => {
     const { userLogin, isAuthenticated } = useContext(AuthContext);
@@ -99,12 +99,12 @@ export const Auth = ({ activeIcon }) => {
             authService
                 .login({ email: inputData.email, password: inputData.password1 })
                 .then((authData) => {
-                    console.log(123, JSON.parse(authData));
+                    // console.log(123, JSON.parse(authData));
                     userLogin(JSON.parse(authData));
                     navigate("/");
                 })
                 .catch((err) => {
-                    console.log(321, err);
+                    console.log(err);
                     collectErrors(err);
                 });
         }
