@@ -1,21 +1,24 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 
-import Spinner from "../../common/Spinner/Spinner";
+import { ActiveIconContext } from "../../../contexts/activeIconContext";
+import { AlertContext } from "../../../contexts/alertContext";
+import { AuthContext } from "../../../contexts/Auth";
+import { CartContext } from "../../../contexts/cartContext";
 import { MorePhotos } from "./MorePhotos/MorePhotos";
 import { Recommended } from "./Recommended/Recommended";
+import { WishlistContext } from "../../../contexts/wishlistContext";
 import * as productService from "./../../../services/product";
 import * as wishService from "../../../services/wishlist";
+
 import "./Details.css";
-import { useLocalStorage } from "../../../hooks/useLocalStorage";
-import { CartContext } from "../../../contexts/cartContext";
-import { AlertContext } from "../../../contexts/alertContext";
-import { WishlistContext } from "../../../contexts/wishlistContext";
-import { AuthContext } from "../../../contexts/Auth";
-import { ActiveIconContext } from "../../../contexts/activeIconContext";
 
 export const Details = () => {
-    const param = useParams();
+    const { cartState, setCartState, removeFromCart, addToCart } = useContext(CartContext);
+    const { setAlert } = useContext(AlertContext);
+    const { isAuthenticated } = useContext(AuthContext);
+    const { setActiveIcon } = useContext(ActiveIconContext);
+    const { addWishlistCtx, removeWishlistCtx, wishlistIds } = useContext(WishlistContext);
 
     const [product, setProduct] = useState("");
     const [state, setState] = useState("loading");
@@ -23,12 +26,9 @@ export const Details = () => {
     const [size, setSize] = useState("");
     const [colorDict, setColorDict] = useState("");
     const [addInCartPopUp, setAddInCartPopUp] = useState(false);
-    const { cartState, setCartState, removeFromCart, addToCart } = useContext(CartContext);
-    const { setAlert } = useContext(AlertContext);
-    const { isAuthenticated } = useContext(AuthContext);
-    const { setActiveIcon } = useContext(ActiveIconContext);
     const [wishlist, setWishlist] = useState(false);
-    const { addWishlistCtx, removeWishlistCtx, wishlistIds } = useContext(WishlistContext);
+
+    const param = useParams();
 
     useEffect(() => {
         productService.getProductById(param.id).then((result) => {
@@ -36,7 +36,6 @@ export const Details = () => {
             setProduct(res);
             setState("success");
         });
-        // console.log(wishlistIds, param.id);
         if (wishlistIds.includes(Number(param.id))) {
             setWishlist(true);
         }
