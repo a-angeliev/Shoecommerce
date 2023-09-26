@@ -1,15 +1,19 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { ProductContext } from "../../../../contexts/productContext";
-import "./Recommended.css";
 import { useNavigationWithHistory } from "../../../../hooks/useNavigation";
 
+import "./Recommended.css";
+
 export const Recommended = (props) => {
-    const gender = props.gender;
+    const { products } = useContext(ProductContext);
+
     const [recommendedProducts, setRecommenderProducts] = useState([]);
     const [path, setPath] = useState("");
-    const { products } = useContext(ProductContext);
+
     const navigate = useNavigationWithHistory();
+
+    const gender = props.gender;
 
     useEffect(() => {
         if (typeof products !== "string") {
@@ -20,7 +24,6 @@ export const Recommended = (props) => {
     }, [products, path]);
 
     const goToShoeDetailPage = (id) => {
-        // window.scrollTo({ top: 0, left: 0, behavior: "instant" });
         let path = "/product/" + id;
         setPath(path);
         navigate(path);

@@ -7,12 +7,11 @@
 }
 
 .main-recommended-list {
-    padding: 0;
     display: flex;
-
-    flex-wrap: wrap;
     justify-content: flex-start;
+    flex-wrap: wrap;
     gap: 1rem;
+    padding: 0;
 }
 
 .main-recommended-item {
@@ -20,11 +19,10 @@
 }
 
 .main-recommended-item h4 {
-    font-size: 1.2rem;
     overflow: hidden;
-
     white-space: nowrap;
     text-overflow: ellipsis;
+    font-size: 1.2rem;
 }
 
 .main-recommended-item h5 {
@@ -33,7 +31,7 @@
 }
 
 .main-recommended-item button {
-    font-size: 1rem;
     clip-path: unset;
+    font-size: 1rem;
     width: 100%;
 }
