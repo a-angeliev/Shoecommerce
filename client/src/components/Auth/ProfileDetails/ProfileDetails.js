@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 
 import { AlertContext } from "../../../contexts/alertContext";
@@ -129,8 +128,7 @@ export const ProfileDetails = () => {
                 <div
                     className='edit-btn btn'
                     onClick={() => {
-                        if (editable) updateUserData();
-                        else setEditable((prev) => !prev);
+                        editable ? updateUserData() : setEditable((prev) => !prev);
                     }}>
                     {editable ? "Update" : "Edit"}
                 </div>
