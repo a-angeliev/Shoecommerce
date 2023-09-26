@@ -2,10 +2,10 @@
 import { useContext, useState } from "react";
 
 import { CartContext } from "../../../contexts/cartContext";
+import { CheckoutForm } from "../CheckoutForm/CheckoutForm";
 import { Summary } from "../Summary/Summary";
 
 import "./CheckoutData.css";
-import { CheckoutForm } from "../CheckoutForm/CheckoutForm";
 
 export const CheckoutData = () => {
     const { cartState } = useContext(CartContext);
@@ -33,6 +33,7 @@ export const CheckoutData = () => {
         let sMonth = secondDate.getMonth();
         let sYear = secondDate.getFullYear();
         let delivery = `Estimated delivery ${fDay}/${fMonth}/${fYear} - ${sDay}/${sMonth}/${sYear}  `;
+
         return delivery;
     };
 
