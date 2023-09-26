@@ -196,9 +196,9 @@ export const Auth = ({ activeIcon }) => {
                         <input type='submit' onClick={register} value='Register' className='login-btn' />
                     )}
                     {loginError.length !== 0 ? displayErrors() : null}
-                    <p>
+                    {/* <p>
                         Forgot Password <a href='/#'>Reset Now</a>
-                    </p>
+                    </p> */}
                     <p className='user-auth-question'>
                         {isSignIn ? "Don't have an account?" : "Already have an account?"}
                         <Link to={""} onClick={handleSwitchMode}>

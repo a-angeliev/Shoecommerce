@@ -6,10 +6,12 @@ import "./Alert.css";
 
 export const Alert = () => {
     const { alert, setAlert } = useContext(AlertContext);
+
     const color = {
         green: "color-green",
         red: "color-red",
     };
+
     useEffect(() => {
         if (alert) {
             setTimeout(() => {

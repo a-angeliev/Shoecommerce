@@ -4,8 +4,11 @@ import { NewArrival } from "../New Arrival/NewArrival";
 import { Products } from "../Products/Products";
 import { Reviews } from "../Reviews/Reviews";
 import "./Home.css";
+import { useNav } from "../../hooks/useNavigation";
 
 export const Home = () => {
+    const navTo = useNav();
+
     return (
         <>
             <section className='home' id='home'>
@@ -16,7 +19,11 @@ export const Home = () => {
                         New Arrival of
                     </h1>
                     <h1 className='home-title-2'>Fresh Products</h1>
-                    <a href='#new' className='btn'>
+                    <a
+                        onClick={() => {
+                            navTo("/products/woman");
+                        }}
+                        className='btn'>
                         Shop Now
                     </a>
                 </div>
