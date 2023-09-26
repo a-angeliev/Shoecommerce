@@ -1,13 +1,15 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import { FilterContext } from "../../contexts/filterContext";
 import { ProductContext } from "../../contexts/productContext";
 import { useNav } from "../../hooks/useNavigation";
+
 import "./Products.css";
 
 export const Products = () => {
-    const { gender } = useParams();
     const { products } = useContext(ProductContext);
+
     const [filteredProductsByGender, setFilteredProductsByGender] = useState([]);
     const [availableBrands, setAvailableBrands] = useState([]);
     const [availableCategories, setAvailableCategories] = useState([]);
@@ -18,6 +20,9 @@ export const Products = () => {
     const [isFilter, setIsFilter] = useState(false);
     const [sortedBy, setSortedBy] = useState("");
     const [pageLoader, setPageLoader] = useState(7);
+
+    const { gender } = useParams();
+
     const navTo = useNav();
 
     const {
@@ -213,19 +218,11 @@ export const Products = () => {
                 <div className='box'>
                     <img src={product.images[0].img_url} alt='' />
                 </div>
-                <div
-                    className='content'
-                    // onClick={() => {
-                    //     navTo(`/product/${product.id}`);
-                    // }}
-                >
+                <div className='content'>
                     <h1>{product.title}</h1>
                     <div className='priceB'>
                         <span>{product.price} USD</span>
-                        {/* <i onClick={() => goToShoeDetailPage(product.id)} className='bx bx-cart-alt'></i> */}
-                        <i
-                            // onClick={() => navTo(`/product/${product.id}`)}
-                            className='bx bx-cart-alt'></i>
+                        <i className='bx bx-cart-alt'></i>
                     </div>
                 </div>
             </div>
@@ -236,10 +233,6 @@ export const Products = () => {
         setPageLoaderCtx(pageLoader + newRow);
         setPageLoader(pageLoader + newRow);
     };
-
-    // if (!filteredProductsByGender) {
-    //     return <div></div>;
-    // }
 
     return (
         <>
@@ -403,9 +396,7 @@ export const Products = () => {
                             </ul>
                         </div>
                     </div>
-                    {/* {isFilter
-                    ? filteredProductsForDisplay.map((product) => displayProduct(product))
-                    : filteredProductsForDisplay.map((product) => displayProduct(product))} */}
+
                     {filteredProductsForDisplay.slice(0, pageLoaderCtx).map((product) => displayProduct(product))}
                     {filteredProductsForDisplay.length < 4
                         ? Array.from({ length: 5 }, () => <div className='catalog-items-container'></div>)
