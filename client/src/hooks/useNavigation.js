@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import { ActiveIconContext } from "../contexts/activeIconContext";
 import { useNavigate } from "react-router-dom";
+
+import { ActiveIconContext } from "../contexts/activeIconContext";
 import { ScrollContext } from "../contexts/scrollContext";
 
 export const useNav = () => {
     const { setActiveIcon } = useContext(ActiveIconContext);
     const { addScrollPosition } = useContext(ScrollContext);
+
     const navigate = useNavigate();
 
     const nav = (url, removeActiveIcon = true) => {

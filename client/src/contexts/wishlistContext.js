@@ -1,13 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import * as wishlistService from "../services/wishlist";
+
 import { AuthContext } from "./Auth";
+import * as wishlistService from "../services/wishlist";
 
 export const WishlistContext = createContext();
 
 export const WishlistProvider = ({ children }) => {
+    const { user } = useContext(AuthContext);
+
     const [wishlist, setWishlist] = useState([]);
     const [wishlistIds, setWishlistIds] = useState([]);
-    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         setWishlistIds(wishlist.map((shoe) => shoe.id));
