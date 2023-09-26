@@ -1,28 +1,28 @@
-import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { CartContext } from "../../contexts/cartContext";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { useContext } from "react";
+
+import { ActiveIconContext } from "../../contexts/activeIconContext";
+import { AlertContext } from "../../contexts/alertContext";
 import { Auth } from "../Auth/Auth";
+import { AuthContext } from "../../contexts/Auth";
+import { CartContext } from "../../contexts/cartContext";
+import { ScrollContext } from "../../contexts/scrollContext";
+import { useNav } from "../../hooks/useNavigation";
+import { WishlistContext } from "../../contexts/wishlistContext";
+import * as wishlistService from "../../services/wishlist";
 
 import "./Navbar.css";
-import { ActiveIconContext } from "../../contexts/activeIconContext";
-import { WishlistContext } from "../../contexts/wishlistContext";
-
-import * as wishlistService from "../../services/wishlist";
-import { AuthContext } from "../../contexts/Auth";
-import { useNav } from "../../hooks/useNavigation";
-import { ScrollContext } from "../../contexts/scrollContext";
 
 export const Navbar = () => {
-    console.log(window.history.location);
-
     const { activeIcon, setActiveIcon } = useContext(ActiveIconContext);
-    // const [activeIcon, setActiveIcon] = useState("");
     const { addScrollPosition } = useContext(ScrollContext);
     const { cartState, removeFromCart } = useContext(CartContext);
     const { wishlistIds, wishlist, removeWishlistCtx } = useContext(WishlistContext);
     const { isAuthenticated } = useContext(AuthContext);
+    const { setAlert } = useContext(AlertContext);
+
     const navTo = useNav();
+
     window.onscroll = () => {
         setActiveIcon("");
     };
@@ -51,6 +51,7 @@ export const Navbar = () => {
                 removeWishlistCtx(shoeId);
             })
             .catch((err) => {
+                setAlert({ color: "red", text: err });
                 console.log(err);
             });
     };
