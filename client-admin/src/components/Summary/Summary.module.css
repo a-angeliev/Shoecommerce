@@ -32,3 +32,34 @@
     background: white;
     padding: 1.5rem 0 1.5rem 2rem;
 }
+
+@media only screen and (max-width: 1945px) {
+    .circle-section {
+        width: 40%;
+    }
+
+    .bar-chart {
+        width: 60%;
+    }
+}
+
+
+@media only screen and (max-width: 1750px) {
+    .circle-section {
+        width: 50%;
+    }
+
+    .bar-chart {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 1450px) {
+    .circle-section {
+        width: 60%;
+    }
+
+    .bar-chart {
+        width: 40%;
+    }
+}
