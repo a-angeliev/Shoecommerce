@@ -67,7 +67,7 @@ export const NewArrival = () => {
                 autoplay={{
                     delay: 2000,
                 }}
-                onSlideChange={() => console.log("slide change")}
+                // onSlideChange={() => console.log("slide change")}
                 centeredSlides={true}
                 breakpoints={{
                     0: {

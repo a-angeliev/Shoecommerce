@@ -124,7 +124,7 @@ export const Auth = ({ activeIcon }) => {
                     navigate("/");
                 })
                 .catch((err) => {
-                    console.log("asd");
+                    console.log(err);
                     collectErrors(err);
                 });
         }

@@ -24,7 +24,6 @@ export const ScrollProvider = ({ children }) => {
             allScrollPositions = [sessionScrollPositionState];
         }
         const currentScrollPosition = Number(scrollYRef.current);
-        console.log(currentScrollPosition);
         allScrollPositions.push(currentScrollPosition);
         sessionStorage.setItem("scrollPosition", allScrollPositions);
     };

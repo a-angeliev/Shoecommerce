@@ -17,7 +17,6 @@ export const AuthProvider = ({ children }) => {
     const isAuthenticated = Boolean(auth?.token);
 
     useEffect(() => {
-        console.log(auth);
         if (auth.role == "admin") {
             userLogout();
             setAlert({ color: "red", text: "You cannot login with admin account. Use client account. " });

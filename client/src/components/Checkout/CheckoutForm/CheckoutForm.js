@@ -152,7 +152,6 @@ export const CheckoutForm = () => {
                 },
             };
 
-            console.log(data);
             ordersRequest
                 .createOrder(data)
                 .then((_) => {
