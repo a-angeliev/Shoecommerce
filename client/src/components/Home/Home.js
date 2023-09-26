@@ -1,10 +1,8 @@
-import { useContext } from "react";
-import { ProductContext } from "../../contexts/productContext";
 import { NewArrival } from "../New Arrival/NewArrival";
-import { Products } from "../Products/Products";
 import { Reviews } from "../Reviews/Reviews";
-import "./Home.css";
 import { useNav } from "../../hooks/useNavigation";
+
+import "./Home.css";
 
 export const Home = () => {
     const navTo = useNav();
@@ -14,10 +12,7 @@ export const Home = () => {
             <section className='home' id='home'>
                 <div className='home-text'>
                     <span>Step into Style</span>
-                    <h1 className='home-title'>
-                        {/* New Arrival of <br /> Fresh Products */}
-                        New Arrival of
-                    </h1>
+                    <h1 className='home-title'>New Arrival of</h1>
                     <h1 className='home-title-2'>Fresh Products</h1>
                     <a
                         onClick={() => {
@@ -33,7 +28,6 @@ export const Home = () => {
             </section>
 
             <NewArrival />
-            {/* <Products /> */}
             <Reviews />
         </>
     );
