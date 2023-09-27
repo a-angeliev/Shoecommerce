@@ -20,10 +20,10 @@ from flask import request
 app = Flask(__name__)
 
 
-app.config.from_object("config.DevelopmentConfig")
+app.config.from_object("config.ProductionConfig")
 
 db.init_app(app)
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+# CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 migrate = Migrate(app, db)
 api = Api(app)

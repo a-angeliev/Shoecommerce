@@ -22,8 +22,13 @@ class TestConfig:
     TESTING = True
     SQLALCHEMY_DATABASE_URI = f"postgresql://{config('DB_USER')}:{config('DB_PASSWORD')}@localhost:{config('DB_PORT')}/{config('TEST_DB_NAME')}"
 
+class ProductionConfig:
+    DEBUG = False
+    TESTING = False
+    SQLALCHEMY_DATABASE_URI = f"{config('DB_URL')}"
 
-def create_app(config="config.DevelopmentConfig"):
+
+def create_app(config="config.ProductionConfig"):
     app = Flask(__name__)
     # CORS(app)
 
