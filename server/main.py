@@ -1,10 +1,15 @@
 import json
-
+import click
 from flask import Flask, jsonify
 from flask.views import MethodView
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
+from werkzeug.security import generate_password_hash
+
+from managers.auth import AuthManager
+from managers.users import UserManager
+from models import RoleType
 from models.users import UsersModel, UserData
 from config import create_app
 from db import db
@@ -29,6 +34,35 @@ migrate = Migrate(app, db)
 api = Api(app)
 [api.add_resource(*r) for r in routes]
 
+
+@app.cli.command("create_superuser")
+@click.argument("email")
+@click.argument("password")
+@click.argument('f_name')
+@click.argument("l_name")
+@click.argument("phone")
+def create_superuser(email, password, f_name, l_name, phone):
+    print(email, password, f_name, l_name, phone)
+    user_data = UserData(**{"f_name": f_name, "l_name": l_name, "phone":phone})
+
+    prime_user_data = {"email": email, "password": password}
+    prime_user_data["password"] = generate_password_hash(
+        prime_user_data["password"]
+    )
+    user = UsersModel(**prime_user_data)
+    try:
+        db.session.add(user_data)
+        db.session.add(user)
+        user.user_data = user_data
+        db.session.flush()
+        print(user)
+    except Exception as ex:
+        print(ex)
+
+@app.cli.command("get_users")
+def get_users():
+    users = UserData.query.all()
+    print(users)
 
 @app.before_first_request
 def create_tables():
