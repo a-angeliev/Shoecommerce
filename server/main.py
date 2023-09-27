@@ -23,7 +23,7 @@ app = Flask(__name__)
 app.config.from_object("config.ProductionConfig")
 
 db.init_app(app)
-# CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+CORS(app, resources={r"/*": {"origins": "http://localhost:3001"}})
 
 migrate = Migrate(app, db)
 api = Api(app)
