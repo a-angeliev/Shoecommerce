@@ -5,7 +5,7 @@ import { ActiveIconContext } from "../../contexts/activeIconContext";
 import { AuthContext } from "../../contexts/Auth";
 import { CartContext } from "../../contexts/cartContext";
 import { ScrollContext } from "../../contexts/scrollContext";
-import { Summary } from "./Summary/Summary";
+import { Summary } from "./Summary1/Summary";
 import { useNavigationWithHistory } from "../../hooks/useNavigation";
 
 import "./Checkout.css";
