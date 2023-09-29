@@ -28,7 +28,7 @@ app = Flask(__name__)
 app.config.from_object("config.ProductionConfig")
 
 db.init_app(app)
-CORS(app, resources={r"/*": {"origins": "http://localhost:3001"}})
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 migrate = Migrate(app, db)
 api = Api(app)
@@ -54,14 +54,14 @@ def create_superuser(email, password, f_name, l_name, phone):
         db.session.add(user_data)
         db.session.add(user)
         user.user_data = user_data
-        db.session.flush()
+        db.session.commit()
         print(user)
     except Exception as ex:
         print(ex)
 
 @app.cli.command("get_users")
 def get_users():
-    users = UserData.query.all()
+    users = UsersModel.query.all()
     print(users)
 
 @app.before_first_request
