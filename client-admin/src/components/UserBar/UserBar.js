@@ -12,12 +12,15 @@ export const UserBar = () => {
     const [userName, setUserName] = useState({ first: "", last: "" });
 
     useEffect(() => {
-        userService
-            .getUser(user.user_id)
-            .then((user) => {
-                setUserName({ first: JSON.parse(user).user_data.f_name, last: JSON.parse(user).user_data.l_name });
-            })
-            .catch((err) => console.log(err));
+        if (user.user_id !== undefined) {
+            userService
+                .getUser(user.user_id)
+                .then((user) => {
+                    console.log(user);
+                    setUserName({ first: JSON.parse(user).user_data.f_name, last: JSON.parse(user).user_data.l_name });
+                })
+                .catch((err) => console.log(err));
+        }
     }, [user]);
 
     return (

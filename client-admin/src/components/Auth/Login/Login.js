@@ -42,7 +42,10 @@ export const Login = () => {
                         setAlert({ color: "red", text: "You don't have permissions. Need to be admin!" });
                     }
                 })
-                .catch((err) => setAlert({ color: "red", text: err.message }));
+                .catch((err) => {
+                    setAlert({ color: "red", text: err.message });
+                    console.log(err);
+                });
         }
     };
 
