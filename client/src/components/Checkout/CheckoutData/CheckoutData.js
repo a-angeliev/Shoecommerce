@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 
 import { CartContext } from "../../../contexts/cartContext";
 import { CheckoutForm } from "../CheckoutForm/CheckoutForm";
-import { Summary } from "../Summary/Summary";
+import { Summary } from "../Summary1/Summary";
 
 import "./CheckoutData.css";
 
