@@ -238,7 +238,11 @@ export const Products = () => {
     return (
         <>
             <section className='catalog-sort'>
-                <h1 className='catalog-sort-title'> {gender.slice(0, 1).toUpperCase() + gender.slice(1)}</h1>
+                {/* <h1 className='catalog-sort-title'> {gender.slice(0, 1).toUpperCase() + gender.slice(1)}</h1> */}
+                <h1 className='catalog-sort-title'>
+                    {" "}
+                    {gender === "man" ? "Men" : gender === "woman" ? "Women" : gender === "kid" ? "Kids" : null}
+                </h1>
 
                 {filteredProductsForDisplay.length !== 0 ? (
                     <div className='catalog-sort-div' id='catalog-sort-div-top'>
