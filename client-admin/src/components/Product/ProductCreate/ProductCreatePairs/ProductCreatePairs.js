@@ -67,7 +67,7 @@ export const ProductCreatePairs = (props) => {
                                     name={`size-${i}`}
                                     type='number'
                                     onChange={(e) => inputHandler(e, i, "size", Number)}
-                                    value={x.size}></input>
+                                    value={x.size !== 0 ? x.size : ""}></input>
                             </div>
 
                             <div className={style["input-div"]}>
@@ -77,7 +77,7 @@ export const ProductCreatePairs = (props) => {
                                     name={`quantity-${i}`}
                                     type='number'
                                     onChange={(e) => inputHandler(e, i, "quantity", Number)}
-                                    value={x.quantity}></input>
+                                    value={x.quantity !== 0 ? x.quantity : ""}></input>
                             </div>
                         </form>
                     </div>
