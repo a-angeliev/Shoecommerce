@@ -11,17 +11,16 @@ import style from "./ProductInfo.module.css";
 
 export const ProductInfo = () => {
     const { products } = useContext(ProductContext);
-
-    const [currentPage, setCurrentPage] = useState(1);
+    const params = new URLSearchParams(window.location.search);
+    const [currentPage, setCurrentPage] = useState(params.get("curPage") ?? 1);
     const [numberOfPages, setNumberOfPages] = useState(1);
-    const [itemPerPage, setItemPerPage] = useState(5);
+    const [itemPerPage, setItemPerPage] = useState(params.get("perPage") ?? 5);
     const [numberOfProducts, setNumberOfProducts] = useState(1);
     const [filter, setFilter] = useState("");
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [orderById, setOrderById] = useState(true);
     const [orderByName, setOrderByName] = useState(true);
     const [orderByPrice, setOrderByPrice] = useState(true);
-
     useEffect(() => {
         if (products !== "") {
             const regexp = new RegExp(filter, "i");
@@ -34,7 +33,7 @@ export const ProductInfo = () => {
     }, [filter]);
 
     useEffect(() => {
-        setCurrentPage(1);
+        // setCurrentPage(1);
         setNumberOfPages(Math.ceil(numberOfProducts / itemPerPage));
     }, [itemPerPage]);
 
