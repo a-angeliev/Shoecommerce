@@ -71,7 +71,7 @@ export const NewArrival = () => {
                 centeredSlides={true}
                 breakpoints={{
                     0: {
-                        slidesPerView: 0,
+                        slidesPerView: 1,
                     },
                     568: {
                         slidesPerView: 2,
