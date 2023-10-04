@@ -397,7 +397,11 @@ export const Products = () => {
                         </div>
                     </div>
 
-                    {filteredProductsForDisplay.slice(0, pageLoaderCtx).map((product) => displayProduct(product))}
+                    {filteredProductsForDisplay.length !== 0 ? (
+                        filteredProductsForDisplay.slice(0, pageLoaderCtx).map((product) => displayProduct(product))
+                    ) : (
+                        <p>There is no products for that filter.</p>
+                    )}
                     {filteredProductsForDisplay.length < 4
                         ? Array.from({ length: 5 }, () => <div className='catalog-items-container'></div>)
                         : null}
