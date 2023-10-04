@@ -30,7 +30,7 @@ export const NavSection = (props) => {
             </div>
             <div className={`${style["nav-section-links"]} ${expandMenu ? style["expanded"] : ""}`}>
                 {links.map((link) => (
-                    <Link className={style.link} to={link[1]}>
+                    <Link key={link[1]} className={style.link} to={link[1]}>
                         {link[0]}
                     </Link>
                 ))}
