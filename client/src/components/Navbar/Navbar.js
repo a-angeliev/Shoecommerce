@@ -151,7 +151,7 @@ export const Navbar = () => {
                             addScrollPosition();
                         }}>
                         {/* Men */}
-                        Man
+                        Men
                     </Link>
                 </li>
                 <li key='Women'>
@@ -161,8 +161,8 @@ export const Navbar = () => {
                             setActiveIcon(false);
                             addScrollPosition();
                         }}>
-                        {/* Women */}
-                        Woman
+                        Women
+                        {/* Woman */}
                     </Link>
                 </li>
                 <li key='Kids'>
@@ -172,8 +172,8 @@ export const Navbar = () => {
                             setActiveIcon(false);
                             addScrollPosition();
                         }}>
-                        {/* Kids */}
-                        Kid
+                        Kids
+                        {/* Kid */}
                     </Link>
                 </li>
             </ul>
