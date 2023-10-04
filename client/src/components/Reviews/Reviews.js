@@ -11,7 +11,10 @@ export const Reviews = () => {
 
             <div className='reviews-container'>
                 <div className='box'>
-                    <img src='/images//photo-1633332755192-727a05c4013d.jfif' alt='' />
+                    <img
+                        src='https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg'
+                        alt='profile picture'
+                    />
                     <p>
                         These shoes are incredibly comfortable and stylish, perfect for both casual and formal
                         occasions.
@@ -21,7 +24,7 @@ export const Reviews = () => {
                 <div className='box'>
                     <img
                         src='https://d34u8crftukxnk.cloudfront.net/slackpress/prod/sites/6/E12KS1G65-W0168RE00G7-133faf432639-512.jpeg'
-                        alt=''
+                        alt='profile picture'
                     />
                     <p>These shoes exceeded my expectations; they are lightweight, breathable, for everyday wear.</p>
                     <h2>Sarah Miller</h2>
@@ -29,7 +32,7 @@ export const Reviews = () => {
                 <div className='box'>
                     <img
                         src='https://img.freepik.com/free-photo/portrait-happy-young-woman-looking-camera_23-2147892777.jpg?w=2000'
-                        alt=''
+                        alt='profile picture'
                     />
                     <p>The customer service was excellent, and the shoes arrived quickly. Highly recommended!</p>
                     <h2>David Peterson</h2>
@@ -37,7 +40,7 @@ export const Reviews = () => {
                 <div className='box'>
                     <img
                         src='https://media.istockphoto.com/id/1338134336/photo/headshot-portrait-african-30s-man-smile-look-at-camera.webp?b=1&s=170667a&w=0&k=20&c=j-oMdWCMLx5rIx-_W33o3q3aW9CiAWEvv9XrJQ3fTMU='
-                        alt=''
+                        alt='profile picture'
                     />
                     <p>I've received so many compliments on these shoes; they're definitely a conversation starter.</p>
                     <h2>Emily Roberts</h2>
@@ -45,13 +48,16 @@ export const Reviews = () => {
                 <div className='box'>
                     <img
                         src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8UhtGp5wLix-_DMObDLqOb8Vzw8Y4C0e0K9IC7SEQKbiZ4LJXm3JI7RdCyU2Fyh4peIM&usqp=CAU'
-                        alt=''
+                        alt='profile picture'
                     />
                     <p>These shoes provide great arch support and cushioning, making them ideal for long walks.</p>
                     <h2>Ava Lopez</h2>
                 </div>
                 <div className='box'>
-                    <img src='https://handsontek.net/images/SharePoint/ProfilePicture/Outlook.PNG' alt='' />
+                    <img
+                        src='https://handsontek.net/images/SharePoint/ProfilePicture/Outlook.PNG'
+                        alt='profile picture'
+                    />
                     <p>The color options for these shoes are fantastic, allowing me to match them with any outfit.</p>
                     <h2>Lily Kennedy</h2>
                 </div>
