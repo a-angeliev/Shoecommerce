@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 import style from "./ProductCreatePairs.module.css";
 
@@ -38,7 +38,7 @@ export const ProductCreatePairs = (props) => {
 
     const newRow = (x, i) => {
         return (
-            <>
+            <Fragment key={i}>
                 <div className={style.row}>
                     <div className={style["add-container"]}>
                         <form className={style.form}>
@@ -82,7 +82,7 @@ export const ProductCreatePairs = (props) => {
                         </form>
                     </div>
                 </div>
-            </>
+            </Fragment>
         );
     };
 
