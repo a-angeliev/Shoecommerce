@@ -27,7 +27,7 @@ export const ProfileOrders = () => {
         <>
             <div className='orders'>
                 {userOrders.length !== 0 ? (
-                    userOrders.map((order) => <OrderInfo order={order}></OrderInfo>)
+                    userOrders.map((order) => <OrderInfo key={order.id} order={order}></OrderInfo>)
                 ) : (
                     <div className='order-message'>
                         <p>You don't have any orders yet</p>

@@ -29,7 +29,7 @@ export const OrderInfo = (props) => {
                 </div>
 
                 {order.order_items.map((item) => (
-                    <OrderItem item={item}></OrderItem>
+                    <OrderItem key={item.id} item={item}></OrderItem>
                 ))}
 
                 <div className='total-price-order'>Total price: {order.total_price}$</div>
@@ -48,7 +48,7 @@ export const OrderInfo = (props) => {
                 </div>
 
                 {order.order_items.map((item) => (
-                    <OrderItem item={item}></OrderItem>
+                    <OrderItem key={item.id} item={item}></OrderItem>
                 ))}
                 <div className='total-price-order'>Total price: {order.total_price}$</div>
             </div>

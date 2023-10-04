@@ -82,7 +82,7 @@ export const ProfileDetails = () => {
     return (
         <>
             <div className='detail-form'>
-                <label for='f_name'>First Name</label>
+                <label htmlFor='f_name'>First Name</label>
                 <input
                     className={"first-name " + validInput.f_name}
                     type='text'
@@ -91,7 +91,7 @@ export const ProfileDetails = () => {
                     onChange={(e) => dataInput(e)}
                     value={userData.user_data.f_name}
                     disabled={editable ? false : true}></input>
-                <label for='l_name'>Last Name</label>
+                <label htmlFor='l_name'>Last Name</label>
                 <input
                     className={"last-name " + validInput.l_name}
                     type='text'
@@ -100,7 +100,7 @@ export const ProfileDetails = () => {
                     onChange={(e) => dataInput(e)}
                     value={userData.user_data.l_name}
                     disabled={editable ? false : true}></input>
-                <label for='phone'>Phone</label>
+                <label htmlFor='phone'>Phone</label>
                 <input
                     className={"phone " + validInput.phone}
                     type='number'
@@ -109,7 +109,7 @@ export const ProfileDetails = () => {
                     onChange={(e) => dataInput(e)}
                     value={userData.user_data.phone}
                     disabled={editable ? false : true}></input>
-                <label for='email'>Email</label>
+                <label htmlFor='email'>Email</label>
                 <input
                     className='email'
                     type='text'
@@ -117,7 +117,7 @@ export const ProfileDetails = () => {
                     placeholder='email'
                     value={userData.email}
                     disabled></input>
-                <label for='created_on'>Created on</label>
+                <label htmlFor='created_on'>Created on</label>
                 <input
                     className='created-on'
                     type='text'

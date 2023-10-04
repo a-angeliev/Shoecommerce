@@ -58,7 +58,7 @@ export const Navbar = () => {
 
     const item = (shoe, index) => {
         return (
-            <div className='box'>
+            <div className='box' key={index}>
                 <img
                     src={shoe[1]["image"]}
                     alt=''
@@ -86,7 +86,7 @@ export const Navbar = () => {
 
     const wishlistItem = (shoe) => {
         return (
-            <div className='box'>
+            <div className='box' key={shoe.id}>
                 <img
                     src={shoe.images[0].img_url}
                     alt=''

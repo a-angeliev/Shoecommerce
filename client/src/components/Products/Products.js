@@ -211,6 +211,7 @@ export const Products = () => {
     const displayProduct = (product) => {
         return (
             <div
+                key={product.id}
                 className='catalog-items-container'
                 onClick={() => {
                     goToShoeDetailPage(product.id);
@@ -259,7 +260,7 @@ export const Products = () => {
                                 <div>
                                     {availableBrands ? <h3 className='brand-title'>Brands</h3> : null}
                                     {availableBrands.map((brand, idx) => (
-                                        <div>
+                                        <div key={idx}>
                                             <input
                                                 className='filter-input'
                                                 checked={brandFilter.includes(brand) ? true : false}
@@ -281,7 +282,7 @@ export const Products = () => {
                                 <div>
                                     {availableCategories ? <h3 className='category-title'>Categories</h3> : null}
                                     {availableCategories.map((category, idx) => (
-                                        <div>
+                                        <div key={idx}>
                                             <input
                                                 className='filter-input'
                                                 checked={categoryFilter.includes(category) ? true : false}
@@ -403,7 +404,11 @@ export const Products = () => {
                         <p>There is no products for that filter.</p>
                     )}
                     {filteredProductsForDisplay.length < 4
-                        ? Array.from({ length: 5 }, () => <div className='catalog-items-container'></div>)
+                        ? Array.from({ length: 5 }, () => (
+                              <div
+                                  key={Math.random().toString(36).slice(2, 10)}
+                                  className='catalog-items-container'></div>
+                          ))
                         : null}
                 </section>
                 {filteredProductsForDisplay.length > pageLoaderCtx ? (

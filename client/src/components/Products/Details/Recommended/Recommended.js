@@ -31,7 +31,7 @@ export const Recommended = (props) => {
 
     const listRecommendedProduct = (product) => {
         return (
-            <li className='main-recommended-item'>
+            <li key={product.id} className='main-recommended-item'>
                 <img src={product.images[0].img_url} alt='shoe picture' />
                 <h4 className='main-shoe-name'>{product.title}</h4>
                 <h5 className='main-shoe-price'>{product.price} USD</h5>

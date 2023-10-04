@@ -26,7 +26,7 @@ export const NewArrival = () => {
 
     const listNewProduct = (product) => {
         return (
-            <SwiperSlide className='swiper-slide box'>
+            <SwiperSlide className='swiper-slide box' key={product.id}>
                 <img src={product.images[0].img_url} alt='' />
                 <div className='content'>
                     <a onClick={() => goToShoeDetailPage(product.id)} className='btn'>
@@ -39,7 +39,7 @@ export const NewArrival = () => {
 
     const dummyShoes = () => {
         return (
-            <SwiperSlide className='swiper-slide box'>
+            <SwiperSlide className='swiper-slide box' key={Math.random().toString(36).slice(2, 20)}>
                 <img src='/images/982c8911d38400285bc5a426034c360c-removebg-preview.png' alt='' />
                 <div className='content'>
                     <a href='/#' className='btn'>
