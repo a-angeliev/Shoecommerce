@@ -73,18 +73,18 @@
     border: 1px solid var(--main-gray-border);
 }
 
-.table>table>tr {
+tr {
     width: 100%;
     background-color: white;
     border: 1px solid var(--main-gray-border);
 }
 
-.table>table>tr>th {
+tr>th {
     text-align: left;
     padding-left: 2rem;
 }
 
-.table>table>tr>td {
+tr>td {
     text-align: left;
     padding-left: 2rem;
 }

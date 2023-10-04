@@ -77,27 +77,39 @@ export const CategoryInfo = () => {
                         setItemPerPage={setItemPerPage}></SearchTable>
                     <div className={style["table-section"]}>
                         <table className={style["category-table"]}>
-                            <tr className={style["tr-title"]}>
-                                <th
-                                    className={`${style["cl-1"]} ${style.pointer}`}
-                                    onClick={() => setOrderById((prev) => !prev)}>
-                                    Id{" "}
-                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
-                                </th>
-                                <th
-                                    className={`${style["cl-2"]} ${style.pointer}`}
-                                    onClick={() => setOrderByTitle((prev) => !prev)}>
-                                    Title{" "}
-                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
-                                </th>
-                                <th className={style["cl-3"]}></th>
-                            </tr>
-
-                            {filteredCategories
-                                .slice(currentPage * itemPerPage - itemPerPage, currentPage * itemPerPage)
-                                .map((category) => (
-                                    <CategoryInfoRow category={category} reset={setReset}></CategoryInfoRow>
-                                ))}
+                            <thead>
+                                <tr className={style["tr-title"]}>
+                                    <th
+                                        className={`${style["cl-1"]} ${style.pointer}`}
+                                        onClick={() => setOrderById((prev) => !prev)}>
+                                        Id{" "}
+                                        <img
+                                            className={style["sort-icon"]}
+                                            src='../images/sort.png'
+                                            alt='sort icon'></img>
+                                    </th>
+                                    <th
+                                        className={`${style["cl-2"]} ${style.pointer}`}
+                                        onClick={() => setOrderByTitle((prev) => !prev)}>
+                                        Title{" "}
+                                        <img
+                                            className={style["sort-icon"]}
+                                            src='../images/sort.png'
+                                            alt='sort icon'></img>
+                                    </th>
+                                    <th className={style["cl-3"]}></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredCategories
+                                    .slice(currentPage * itemPerPage - itemPerPage, currentPage * itemPerPage)
+                                    .map((category) => (
+                                        <CategoryInfoRow
+                                            key={category.id}
+                                            category={category}
+                                            reset={setReset}></CategoryInfoRow>
+                                    ))}
+                            </tbody>
                         </table>
                     </div>
                     <div className={style["pag-section"]}>

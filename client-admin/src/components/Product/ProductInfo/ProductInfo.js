@@ -67,27 +67,40 @@ export const ProductInfo = () => {
                             itemPerPage={itemPerPage}
                             setItemPerPage={setItemPerPage}></SearchTable>
                         <table className={style["product-table"]}>
-                            <tr className={style["tr-title"]}>
-                                <th className={style["cl-1"]} onClick={() => setOrderById((prev) => !prev)}>
-                                    Id{" "}
-                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
-                                </th>
-                                <th className={style["cl-2"]}>Img</th>
-                                <th className={style["cl-3"]} onClick={() => setOrderByName((prev) => !prev)}>
-                                    Name{" "}
-                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
-                                </th>
-                                <th className={style["cl-4"]} onClick={() => setOrderByPrice((prev) => !prev)}>
-                                    Price{" "}
-                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
-                                </th>
-                                <th className={style["cl-5"]}></th>
-                            </tr>
-                            {filteredProducts
-                                .slice(currentPage * itemPerPage - itemPerPage, currentPage * itemPerPage)
-                                .map((product) => (
-                                    <ProductInfoRow product={product}></ProductInfoRow>
-                                ))}
+                            <thead>
+                                <tr className={style["tr-title"]}>
+                                    <th className={style["cl-1"]} onClick={() => setOrderById((prev) => !prev)}>
+                                        Id{" "}
+                                        <img
+                                            className={style["sort-icon"]}
+                                            src='../images/sort.png'
+                                            alt='sort icon'></img>
+                                    </th>
+                                    <th className={style["cl-2"]}>Img</th>
+                                    <th className={style["cl-3"]} onClick={() => setOrderByName((prev) => !prev)}>
+                                        Name{" "}
+                                        <img
+                                            className={style["sort-icon"]}
+                                            src='../images/sort.png'
+                                            alt='sort icon'></img>
+                                    </th>
+                                    <th className={style["cl-4"]} onClick={() => setOrderByPrice((prev) => !prev)}>
+                                        Price{" "}
+                                        <img
+                                            className={style["sort-icon"]}
+                                            src='../images/sort.png'
+                                            alt='sort icon'></img>
+                                    </th>
+                                    <th className={style["cl-5"]}></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredProducts
+                                    .slice(currentPage * itemPerPage - itemPerPage, currentPage * itemPerPage)
+                                    .map((product) => (
+                                        <ProductInfoRow key={product.id} product={product}></ProductInfoRow>
+                                    ))}
+                            </tbody>
                         </table>
                         <Pagination
                             setCurrentPage={setCurrentPage}

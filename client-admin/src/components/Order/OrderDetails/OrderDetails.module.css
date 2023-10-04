@@ -59,7 +59,7 @@
     border: 1px solid var(--main-gray-border);
 }
 
-.table>tr {
+tr {
     height: 3rem;
 }
 

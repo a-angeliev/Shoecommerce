@@ -97,27 +97,32 @@ export const BrandInfo = () => {
                     setItemPerPage={setItemPerPage}></SearchTable>
                 <div className={style.table}>
                     <table>
-                        <tr className={style["tr-title"]}>
-                            <th
-                                className={`${style["cl-1"]} ${style.link}`}
-                                onClick={() => setOrderById((prev) => !prev)}>
-                                Id <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
-                            </th>
-                            <th
-                                className={`${style["cl-2"]} ${style.link}`}
-                                onClick={() => setOrderByName((prev) => !prev)}>
-                                Name <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
-                            </th>
-                            <th className={style["cl-3"]}>Description</th>
-                            <th className={style["cl-4"]}>Logo</th>
-                            <th className={style["cl-5"]}></th>
-                        </tr>
-
-                        {filteredBrands
-                            .slice(currentPage * itemPerPage - itemPerPage, currentPage * itemPerPage)
-                            .map((brand) => (
-                                <BrandInfoRow brand={brand} reset={setReset}></BrandInfoRow>
-                            ))}
+                        <thead>
+                            <tr className={style["tr-title"]}>
+                                <th
+                                    className={`${style["cl-1"]} ${style.link}`}
+                                    onClick={() => setOrderById((prev) => !prev)}>
+                                    Id{" "}
+                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
+                                </th>
+                                <th
+                                    className={`${style["cl-2"]} ${style.link}`}
+                                    onClick={() => setOrderByName((prev) => !prev)}>
+                                    Name{" "}
+                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
+                                </th>
+                                <th className={style["cl-3"]}>Description</th>
+                                <th className={style["cl-4"]}>Logo</th>
+                                <th className={style["cl-5"]}></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredBrands
+                                .slice(currentPage * itemPerPage - itemPerPage, currentPage * itemPerPage)
+                                .map((brand) => (
+                                    <BrandInfoRow key={brand.id} brand={brand} reset={setReset}></BrandInfoRow>
+                                ))}
+                        </tbody>
                     </table>
                 </div>
             </div>

@@ -70,25 +70,35 @@ export const OrderInfo = () => {
                                 setItemPerPage={setItemPerPage}></SearchTable>
                         </div>
                         <table className={style.table}>
-                            <tr className={style["tr-head"]}>
-                                <th className={style["cl-1"]} onClick={() => setOrderById((prev) => !prev)}>
-                                    Id{" "}
-                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
-                                </th>
-                                <th className={style["cl-2"]}>Created on</th>
-                                <th className={style["cl-3"]} onClick={() => setOrderByStatus((prev) => !prev)}>
-                                    Status{" "}
-                                    <img className={style["sort-icon"]} src='../images/sort.png' alt='sort icon'></img>
-                                </th>
-                                <th className={style["cl-4"]}>Shipped on</th>
-                                <th className={style["cl-5"]}>Price</th>
-                                <th className={style["cl-6"]}></th>
-                            </tr>
-                            {filteredOrders
-                                .slice(currentPage * itemPerPage - itemPerPage, currentPage * itemPerPage)
-                                .map((order) => (
-                                    <OrderInfoRow order={order} />
-                                ))}
+                            <thead>
+                                <tr className={style["tr-head"]}>
+                                    <th className={style["cl-1"]} onClick={() => setOrderById((prev) => !prev)}>
+                                        Id{" "}
+                                        <img
+                                            className={style["sort-icon"]}
+                                            src='../images/sort.png'
+                                            alt='sort icon'></img>
+                                    </th>
+                                    <th className={style["cl-2"]}>Created on</th>
+                                    <th className={style["cl-3"]} onClick={() => setOrderByStatus((prev) => !prev)}>
+                                        Status{" "}
+                                        <img
+                                            className={style["sort-icon"]}
+                                            src='../images/sort.png'
+                                            alt='sort icon'></img>
+                                    </th>
+                                    <th className={style["cl-4"]}>Shipped on</th>
+                                    <th className={style["cl-5"]}>Price</th>
+                                    <th className={style["cl-6"]}></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredOrders
+                                    .slice(currentPage * itemPerPage - itemPerPage, currentPage * itemPerPage)
+                                    .map((order) => (
+                                        <OrderInfoRow key={order.id} order={order} />
+                                    ))}
+                            </tbody>
                         </table>
                         <Pagination
                             setCurrentPage={setCurrentPage}

@@ -149,26 +149,32 @@ export const ProductPairs = (props) => {
 
                 <div className={style.table}>
                     <table className={style["pair-table"]}>
-                        <tr className={style["tr-title"]}>
-                            <th className={style["cl-1"]} onClick={() => setOrderById((prev) => !prev)}>
-                                Id <img className={style["sort-icon"]} alt='sort icon' src='../images/sort.png'></img>
-                            </th>
-                            <th className={style["cl-2"]} onClick={() => setOrderByColor((prev) => !prev)}>
-                                Color{" "}
-                                <img className={style["sort-icon"]} alt='sort icon' src='../images/sort.png'></img>
-                            </th>
-                            <th className={style["cl-3"]} onClick={() => setOrderBySize((prev) => !prev)}>
-                                Size <img className={style["sort-icon"]} alt='sort icon' src='../images/sort.png'></img>
-                            </th>
-                            <th className={style["cl-4"]} onClick={() => setOrderByQuantity((prev) => !prev)}>
-                                Quantity{" "}
-                                <img className={style["sort-icon"]} alt='sort icon' src='../images/sort.png'></img>
-                            </th>
-                            <th className={style["cl-4"]}></th>
-                        </tr>
-                        {orderedPairs.map((pair) => (
-                            <ProductPairsRow pair={pair}></ProductPairsRow>
-                        ))}
+                        <thead>
+                            <tr className={style["tr-title"]}>
+                                <th className={style["cl-1"]} onClick={() => setOrderById((prev) => !prev)}>
+                                    Id{" "}
+                                    <img className={style["sort-icon"]} alt='sort icon' src='../images/sort.png'></img>
+                                </th>
+                                <th className={style["cl-2"]} onClick={() => setOrderByColor((prev) => !prev)}>
+                                    Color{" "}
+                                    <img className={style["sort-icon"]} alt='sort icon' src='../images/sort.png'></img>
+                                </th>
+                                <th className={style["cl-3"]} onClick={() => setOrderBySize((prev) => !prev)}>
+                                    Size{" "}
+                                    <img className={style["sort-icon"]} alt='sort icon' src='../images/sort.png'></img>
+                                </th>
+                                <th className={style["cl-4"]} onClick={() => setOrderByQuantity((prev) => !prev)}>
+                                    Quantity{" "}
+                                    <img className={style["sort-icon"]} alt='sort icon' src='../images/sort.png'></img>
+                                </th>
+                                <th className={style["cl-4"]}></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {orderedPairs.map((pair) => (
+                                <ProductPairsRow key={pair.id} pair={pair}></ProductPairsRow>
+                            ))}
+                        </tbody>
                     </table>
                 </div>
             </div>

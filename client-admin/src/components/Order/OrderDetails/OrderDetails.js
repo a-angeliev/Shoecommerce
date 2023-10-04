@@ -56,7 +56,7 @@ export const OrderDetails = (props) => {
 
     const orderRow = (row) => {
         return (
-            <tr>
+            <tr key={row.id}>
                 <td>{row.id}</td>
                 <td>{row.title}</td>
                 <td>{row.pair_color}</td>
@@ -100,22 +100,25 @@ export const OrderDetails = (props) => {
                             <div className={style["order-id"]}>Order Id: 2</div>
                         </div>
                         <table className={style.table}>
-                            <tr>
-                                <th className={style["cl-1"]}>Product Id</th>
-                                <th className={style["cl-2"]}>Name</th>
-                                <th className={style["cl-3"]}>Color</th>
-                                <th className={style["cl-4"]}>Size</th>
-                                <th className={style["cl-5"]}>Price</th>
-                            </tr>
-                            {order.order_items.map((row) => orderRow(row))}
-
-                            <tr className={style["last-row"]}>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>Total price:</td>
-                                <td> {order.total_price}$</td>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th className={style["cl-1"]}>Product Id</th>
+                                    <th className={style["cl-2"]}>Name</th>
+                                    <th className={style["cl-3"]}>Color</th>
+                                    <th className={style["cl-4"]}>Size</th>
+                                    <th className={style["cl-5"]}>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>{order.order_items.map((row) => orderRow(row))}</tbody>
+                            <tfoot>
+                                <tr className={style["last-row"]}>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total price:</td>
+                                    <td> {order.total_price}$</td>
+                                </tr>
+                            </tfoot>
                         </table>
                         <div className={style["address-div"]}>
                             <div className={style["address-cl1"]}>

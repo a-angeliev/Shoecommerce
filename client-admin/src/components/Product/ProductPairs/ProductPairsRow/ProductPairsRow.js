@@ -29,7 +29,7 @@ export const ProductPairsRow = (params) => {
     const onSubmit = () => {
         if (validateInput()) {
             productServices
-                .editProductPair(param.id, params.pair.id, { quantity: input })
+                .editProductPair(param.id, params.pair.id, { quantity: input !== "" ? input : 0 })
                 .then((_) => {
                     setAlert({ color: "green", text: "You successful edit the pair" });
                     setEdit(false);
