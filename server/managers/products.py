@@ -38,6 +38,11 @@ class ProductManager:
 
         product_pair = []
         for obj in product_data["pairs"]:
+            for p in product_pair:
+                if p.size == obj["size"] and p.color == obj["color"]:
+                    raise Conflict(
+                        f"Pair with color: {obj['color']} and {obj['size']} already attached to product with id: {id}"
+                    )
             pair = ProductPair(**obj)
             product_pair.append(pair)
 
