@@ -69,7 +69,11 @@ export const ProductCreateForm = (props) => {
                     <label className={style["title-label"]} htmlFor='title'>
                         Title
                     </label>
-                    <input name='title' onChange={(e) => setTitle(e.target.value)} value={title}></input>
+                    <input
+                        name='title'
+                        className={style["title-input"]}
+                        onChange={(e) => setTitle(e.target.value)}
+                        value={title}></input>
                     <div className={style["input-group"]}>
                         <div className={style["group-div"]}>
                             <label htmlFor='price'>Price:</label>
