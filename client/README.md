@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# Welcome to Shoecommerce
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The project use React and the code is organized in components. The application is e-commerce product for selling shoes. Contains most of the functions of the real one e-commerce application, such as registration, filters, wishlist, order history, cart, checkout, sorting and many more.
 
-## Available Scripts
+# Access the application
 
-In the project directory, you can run:
+The application will be live at:
 
-### `npm start`
+https://shoecommerce-client.onrender.com
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+\*\* Because of the free used hosting plan you may not see the products at the beginning. Please give the server time to wake up.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+For credentials, you can register or use:  
+EMAIL: test@test.com  
+PASSWORD: test123
 
-### `npm test`
+# Key features of the application
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+As a guest you will be able to:
 
-### `npm run build`
+-   Authentication
+    -- Login
+    -- Register
+-   Products
+    -- View the product catalog
+    -- View the product detail information
+-   Cart
+    -- Add/remove products in the cart
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+As a logged user you will be able to do everything above plus:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+-   Profile
+    -- Change/edit user profile information
+-   Orders
+    -- Make orders
+    -- View the profile order history
+    -- Watch the orders status
+-   Wishlist
+    -- Add/remove products in the wishlist
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> The additional functional features are option to filter products in the catalog by price, brand and category, option to sort products in the catalog page by high to low price or low to high price, dynamic load of the products and more.
