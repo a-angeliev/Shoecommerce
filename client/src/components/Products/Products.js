@@ -405,7 +405,7 @@ export const Products = () => {
                     {filteredProductsForDisplay.length !== 0 ? (
                         filteredProductsForDisplay.slice(0, pageLoaderCtx).map((product) => displayProduct(product))
                     ) : (
-                        <p>There is no products for that filter.</p>
+                        <p>There are no products for these filters.</p>
                     )}
                     {filteredProductsForDisplay.length < 4
                         ? Array.from({ length: 5 }, () => (

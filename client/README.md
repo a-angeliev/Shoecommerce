@@ -1,6 +1,6 @@
 # Welcome to Shoecommerce
 
-The project uses React and the code is organized in components. The application is an e-commerce product for selling shoes. Contains most of the functions of a real e-commerce application, such as registration, filters, wishlist, order history, cart, checkout, sorting, and many more.
+This project was built using React, with the code organized into components. The application serves as an e-commerce platform for selling shoes, offering a wide range of functionalities found in a real e-commerce application. These features include registration, product filters, a wishlist, order history, a shopping cart, checkout, sorting, and much more.
 
 # Access the application
 
@@ -8,7 +8,7 @@ The application will be live at:
 
 https://shoecommerce-client.onrender.com
 
-\*\* Because of the usage of free hosting plan you may not see the products at the beginning. Please give the server time to wake up.
+\*\* Because of the usage of free hosting plan you may not see the products from the beginning. Please give the server time to wake up.
 
 For credentials, you can register or use:  
 EMAIL: test@test.com  
@@ -27,7 +27,7 @@ As a guest, you will be able to:
 -   Cart
     -- Add/remove products in the cart
 
-As a logged user you will be able to do everything above plus:
+As a logged user you will be able to do everything above, plus:
 
 -   Profile
     -- Change/edit user profile information

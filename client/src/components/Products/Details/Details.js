@@ -94,25 +94,25 @@ export const Details = () => {
                 wishService
                     .removeWish({ id: param.id })
                     .then((res) => {
-                        setAlert({ color: "green", text: "You successful remove the shoe from the Wishlist!" });
+                        setAlert({ color: "green", text: "You successfully removed the shoes from the wishlist!" });
                         setWishlist((prev) => !prev);
                         removeWishlistCtx(JSON.parse(res).id);
                     })
                     .catch((err) => {
                         console.log(err);
-                        setAlert({ color: "red", text: "There is problem with Add/Remove.Try to reload!" });
+                        setAlert({ color: "red", text: "There is a problem with Add/Remove.Try to reload!" });
                     });
             } else {
                 wishService
                     .addWish({ id: param.id })
                     .then((res) => {
-                        setAlert({ color: "green", text: "You successful add the shoe into the Wishlist!" });
+                        setAlert({ color: "green", text: "You successfully added the shoes into the wishlist!" });
                         setWishlist((prev) => !prev);
                         addWishlistCtx(JSON.parse(res));
                     })
                     .catch((err) => {
                         console.log(err);
-                        setAlert({ color: "red", text: "There is problem with Add/Remove.Try to reload!" });
+                        setAlert({ color: "red", text: "There is a problem with Add/Remove.Try to reload!" });
                     });
             }
         }
