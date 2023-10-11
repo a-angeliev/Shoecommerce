@@ -4,7 +4,7 @@ The admin panel uses React, such as the main client part.With this part the proj
 
 # Access the Admin Panel
 
-Admin panel will be live at:
+Admin panel will be live at: https://shoecommerce-client-admin.onrender.com         
 
 For credentials, please use:  
 ADMIN EMAIL: admin@admin.com  
