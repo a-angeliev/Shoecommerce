@@ -29,7 +29,7 @@ export const CategoryCreate = () => {
             categoryService
                 .createCategory({ title: title })
                 .then((_) => {
-                    setAlert({ color: "green", text: "You successful create Category" });
+                    setAlert({ color: "green", text: "You successfully created a category" });
                     navigate("/category/information");
                 })
                 .catch((err) => setAlert({ color: "red", text: err.message }));

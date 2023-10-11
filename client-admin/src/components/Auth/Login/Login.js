@@ -39,7 +39,7 @@ export const Login = () => {
                     if (JSON.parse(userData).role === "admin") {
                         userLogin(JSON.parse(userData));
                     } else {
-                        setAlert({ color: "red", text: "You don't have permissions. Need to be admin!" });
+                        setAlert({ color: "red", text: "You don't have permissions. Must be admin!" });
                     }
                 })
                 .catch((err) => {

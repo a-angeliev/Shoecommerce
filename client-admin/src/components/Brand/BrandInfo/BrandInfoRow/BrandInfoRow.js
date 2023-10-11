@@ -25,7 +25,7 @@ export const BrandInfoRow = (props) => {
                 props.reset((prev) => !prev);
                 setDeletePopup(false);
                 setActiveDots(false);
-                setAlert({ color: "green", text: "You successful delete the Item!" });
+                setAlert({ color: "green", text: "You successfully deleted the item!" });
             })
             .catch((err) => {
                 setAlert({ color: "red", text: err.message });
@@ -42,8 +42,8 @@ export const BrandInfoRow = (props) => {
                 }}>
                 <div className={style.popup} onClick={(e) => e.stopPropagation()}>
                     <p>
-                        Are you sure you want to <span className={style["delete-color"]}>DELETE</span> brand and all
-                        shoes in this brand?
+                        Are you sure you want to <span className={style["delete-color"]}>DELETE</span> the brand and all
+                        the shoes in this brand?
                     </p>
                     <div className={style["popup-buttons"]}>
                         <button

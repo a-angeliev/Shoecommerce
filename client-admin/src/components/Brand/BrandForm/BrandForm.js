@@ -67,7 +67,7 @@ export const BrandForm = (params) => {
                 brandService
                     .editBrandById(param.id, brandData)
                     .then((_) => {
-                        setAlert({ color: "green", text: "You Successful edit the Brand" });
+                        setAlert({ color: "green", text: "You successfully edited the brand" });
                         navigate("/brand/information");
                     })
                     .catch((err) => {
@@ -77,7 +77,7 @@ export const BrandForm = (params) => {
                 brandService
                     .createBrand(brandData)
                     .then((_) => {
-                        setAlert({ color: "green", text: "You Successful Create the Brand" });
+                        setAlert({ color: "green", text: "You successfully created the brand" });
                         navigate("/brand/information");
                     })
                     .catch((err) => {

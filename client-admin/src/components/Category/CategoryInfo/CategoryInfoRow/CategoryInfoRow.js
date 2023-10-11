@@ -23,7 +23,7 @@ export const CategoryInfoRow = (params) => {
                 params.reset((prev) => !prev);
                 setDeletePopup(false);
                 setActiveDots(false);
-                setAlert({ color: "green", text: "You successful delete the Item!" });
+                setAlert({ color: "green", text: "You successfully deleted the item!" });
             })
             .catch((err) => {
                 setAlert({ color: "red", text: err.message });
@@ -41,7 +41,7 @@ export const CategoryInfoRow = (params) => {
                 <div className={style.popup} onClick={(e) => e.stopPropagation()}>
                     <p>
                         Are you sure you want to <span className={style["delete-color"]}>DELETE</span> this category and
-                        shoes in it?
+                        the shoes in it?
                     </p>
                     <div className={style["popup-buttons"]}>
                         <button

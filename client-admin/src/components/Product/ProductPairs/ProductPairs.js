@@ -63,7 +63,7 @@ export const ProductPairs = (props) => {
 
     const isExist = () => {
         const check = props.pairs.map((pair) => (pair.color === color && pair.size === size ? true : false));
-        if (check.includes(true)) alertWithReturn("That pair already exist");
+        if (check.includes(true)) alertWithReturn("That pair already exists");
         return true;
     };
 
@@ -72,7 +72,7 @@ export const ProductPairs = (props) => {
             productService
                 .addProductPair(param.id, { size: size, color: color, quantity: quantity })
                 .then((_) => {
-                    setAlert({ color: "green", text: "You successful add new pair" });
+                    setAlert({ color: "green", text: "You successfully added new pair" });
                     setAdd(false);
                     props.setReload((prev) => !prev);
                 })

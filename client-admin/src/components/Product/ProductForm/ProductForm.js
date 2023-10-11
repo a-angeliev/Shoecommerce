@@ -68,7 +68,7 @@ export const ProductForm = (params) => {
             productServices
                 .editBaseById(p.id, data)
                 .then((_) => {
-                    setAlert({ color: "green", text: "You successful edit product base information!" });
+                    setAlert({ color: "green", text: "You successfully edited the product base information!" });
                 })
                 .catch((err) => {
                     setAlert({ color: "green", text: err.messages });

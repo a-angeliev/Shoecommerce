@@ -48,7 +48,7 @@ export const OrderDetails = (props) => {
             .then((order) => {
                 setOrder(JSON.parse(order));
                 setStatusInput(JSON.parse(order).is_shipped);
-                setAlert({ color: "green", text: "Change order status successful!" });
+                setAlert({ color: "green", text: "The change of the order status is successful!" });
             })
             .catch((err) => setAlert({ color: "red", text: err }));
         setActiveSelect(false);

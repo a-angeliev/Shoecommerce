@@ -1,10 +1,10 @@
 # Welcome to Shoecommerce Admin Panel
 
-The admin panel uses React, such as the main client part.With this part the project becomes fully functional. The code is organised in components, and the CSS is imported using module syntax.
+The admin panel also utilizes React, similar to the main client part. This integration completes the project, making it fully functional. The code is organized into components, and CSS is imported using module syntax.
 
 # Access the Admin Panel
 
-Admin panel will be live at: https://shoecommerce-client-admin.onrender.com         
+Admin panel will be live at: https://shoecommerce-client-admin.onrender.com
 
 For credentials, please use:  
 ADMIN EMAIL: admin@admin.com  
@@ -37,4 +37,4 @@ As a admin you will be able to:
     -- View list of orders  
     -- Edit the status of an order
 
-> There is many functional features, such as Searching in different tables, choosing the number of items displayed per page, pagination, pagination index, sorting by and etc.
+> There are many more functional features, such as Searching in different tables, choosing the number of items displayed per page, pagination, pagination index, sorting by and etc.

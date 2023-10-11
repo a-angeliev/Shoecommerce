@@ -44,7 +44,7 @@ export const CategoryEdit = () => {
             categoryService
                 .editCategory(param.id, { title: title })
                 .then((_) => {
-                    setAlert({ color: "green", text: "You successful edit the Category!" });
+                    setAlert({ color: "green", text: "You successfully edited the category!" });
                     navigate("/category/information");
                 })
                 .catch((err) => setAlert({ color: "red", text: err.message }));

@@ -31,7 +31,7 @@ export const ProductPairsRow = (params) => {
             productServices
                 .editProductPair(param.id, params.pair.id, { quantity: input !== "" ? input : 0 })
                 .then((_) => {
-                    setAlert({ color: "green", text: "You successful edit the pair" });
+                    setAlert({ color: "green", text: "You successfully edited the pair" });
                     setEdit(false);
                 })
                 .catch((err) => {

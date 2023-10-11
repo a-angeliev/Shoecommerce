@@ -36,10 +36,10 @@ export const ProductCreate = () => {
                 "<"
             )
         ) {
-            setAlert({ color: "red", text: "You have empty fields or wrong value in main shoe information" });
+            setAlert({ color: "red", text: "You have empty fields or wrong value in the shoes' main information" });
             return false;
         } else if (validateLengthArray(Object.values(urlData), 3, "<")) {
-            setAlert({ color: "red", text: "You have empty fields in image urls section" });
+            setAlert({ color: "red", text: "You have empty fields in image's urls section" });
             return false;
         } else if (
             pairData
@@ -50,7 +50,7 @@ export const ProductCreate = () => {
         ) {
             setAlert({
                 color: "red",
-                text: "You have empty fields in pair section or incorrect number of size or quantity. Size must be between 10 and 70. The quantity myst be between 0 and 100.",
+                text: "You have empty fields in the pair section or incorrect number of size or quantity. Size must be between 10 and 70. The quantity must be between 0 and 100.",
             });
             return false;
         }
@@ -68,7 +68,7 @@ export const ProductCreate = () => {
                 .create(productData)
                 .then((product) => {
                     navigate(`/product/${JSON.parse(product).id}`);
-                    setAlert({ color: "green", text: "You create product successful" });
+                    setAlert({ color: "green", text: "You created the product successfully" });
                 })
                 .catch((err) => {
                     setAlert({ color: "red", text: err.message });

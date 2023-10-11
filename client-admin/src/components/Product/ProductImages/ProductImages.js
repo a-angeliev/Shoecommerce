@@ -74,7 +74,7 @@ export const ProductImages = (props) => {
             productServices
                 .editProductImages(param.id, { ids: idForDelete, urls: urlsForAdd })
                 .then((_) => {
-                    setAlert({ color: "green", text: "You successful edit product images" });
+                    setAlert({ color: "green", text: "You successfully edited the product images" });
                     props.setReload((pr) => !pr);
                 })
                 .catch((err) => setAlert({ color: "red", text: err.message }));
