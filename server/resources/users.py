@@ -39,7 +39,7 @@ class User(Resource):
         if user.id == id_:
             schema = UserResponseSchema()
             return schema.dumps(user), 200
-        raise Forbidden("You dont have permission to this resource!")
+        raise Forbidden("You don't have permission to this resource!")
 
     @staticmethod
     @token_required
@@ -50,7 +50,7 @@ class User(Resource):
             user = UserManager.edit(req_data, id_)
             schema = UserResponseSchema()
             return schema.dumps(user), 201
-        raise Forbidden("You dont have permission to this resource!")
+        raise Forbidden("You don't have permission to this resource!")
 
 
 class UserComments(Resource):
@@ -66,7 +66,7 @@ class UserOrders(Resource):
     @token_required
     def get(user, id_):
         if user.id != id_:
-            raise Forbidden("You dont have permission to this resource!")
+            raise Forbidden("You don't have permission to this resource!")
         orders = UserManager.get_orders(id_)
         schema = GetUserOrdersResponseSchema()
         return schema.dumps(orders, many=True)

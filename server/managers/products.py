@@ -96,7 +96,7 @@ class ProductManager:
         check_pair_or_image_product(image, product, image_id["id"], id, "images")
         db_delete_items(*image)
 
-        return f"You delete image with id: {image_id['id']} successfully", 202
+        return f"You deleted image with id: {image_id['id']} successfully", 202
 
     @staticmethod
     def edit_image(product_id, images_data):
@@ -111,7 +111,7 @@ class ProductManager:
 
         if len(images_ids) != len(new_urls):
             raise BadRequest(
-                "You should add same number of new images such as number of deleted one"
+                "You should add the same number of new images as the number of deleted ones."
             )
 
         if not product:
@@ -129,7 +129,7 @@ class ProductManager:
         except:
             raise BadRequest("You cannot do that operation")
 
-        return {"message": "You successful edit images"}
+        return {"message": "You successfully edited the images"}
 
     @staticmethod
     def add_pair(id, pair_data):
@@ -141,7 +141,7 @@ class ProductManager:
         ).first()
         if is_pair:
             raise Conflict(
-                f"Pair with color: {pair_data['color']} and {pair_data['size']} already attached to product with id: {id}"
+                f"Pair with color: {pair_data['color']} and {pair_data['size']} is already attached to product with id: {id}"
             )
         if not product:
             raise NotFound("There is no product with that id")
@@ -160,7 +160,7 @@ class ProductManager:
 
         db_delete_items(pair)
 
-        return f"You delete image with id: {pair_id['id']} successfully", 202
+        return f"You deleted image with id: {pair_id['id']} successfully", 202
 
     @staticmethod
     def edit_pair(product_id, pair_id, pair_data):
@@ -280,4 +280,4 @@ class ProductManager:
         product.is_deleted = True
         db_add_items()
 
-        return "Product is deleted", 202
+        return "The product is deleted", 202

@@ -26,14 +26,14 @@ class BrandManager:
     def get_by_name(brand_name):
         brand = BrandModel.query.filter_by(name=brand_name).first()
         if not brand:
-            raise NotFound("There is not brand with that name")
+            raise NotFound("There is no brand with that name")
         return brand
 
     @staticmethod
     def get_by_id(_id):
         brand = BrandModel.query.filter_by(id=_id).first()
         if not brand:
-            raise NotFound("There is not brand with that ID")
+            raise NotFound("There is no brand with that ID")
         return brand
 
     @staticmethod
@@ -59,7 +59,7 @@ class BrandManager:
     def delete(_id):
         brand = BrandModel.query.filter_by(id=_id).first()
         if not brand:
-            raise NotFound("There is not brand with that id")
+            raise NotFound("There is no brand with that id")
 
         products = brand.products
         pairs = []
@@ -71,4 +71,4 @@ class BrandManager:
                 images.append(img)
         print(pairs)
         db_delete_items([brand, *products, *pairs, *images])
-        return {"massage": "You successfully delete the brand"}
+        return {"massage": "You successfully deleted the brand"}

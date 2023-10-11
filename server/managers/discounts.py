@@ -20,7 +20,7 @@ class DiscountsManager:
             raise NotFound("This discount does not exist.")
 
         db_delete_items(discount)
-        return {"massage": "You successfully delete the discount"}
+        return {"massage": "You successfully deleted the discount"}
 
     @staticmethod
     def is_valid(discount_data):

@@ -21,13 +21,13 @@ class CommentsManager:
             comment = CommentsModel(**data)
             db_add_items(comment)
             return comment
-        raise Conflict("You already have comment at this product")
+        raise Conflict("You have already commented at this product")
 
     @staticmethod
     def get_comment(comment_id):
         comment = CommentsModel.query.filter_by(id=comment_id).first()
         if not comment:
-            raise NotFound("There is not comment with that id.")
+            raise NotFound("There is no comment with that id.")
         return comment
 
     @staticmethod
@@ -49,4 +49,4 @@ class CommentsManager:
             raise Forbidden("You can delete only your comments.")
 
         db_delete_items(comment)
-        return "You delete the comment successfully!"
+        return "You deleted the comment successfully!"

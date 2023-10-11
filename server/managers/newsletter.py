@@ -12,7 +12,7 @@ class NewsletterManager:
             raise BadRequest("You are already subscribed for our newsletter")
         new_row = NewsletterModel(email=data["email"], name=data["name"])
         db_add_items(new_row)
-        return {"message": "You successfully subscribe for our newsletter."}
+        return {"message": "You successfully subscribed for our newsletter."}
 
     @staticmethod
     def unsubscribe(data):
@@ -20,4 +20,4 @@ class NewsletterManager:
         if not row:
             raise NotFound("You are not subscribed for our newsletter.")
         db_delete_items(row)
-        return {"message": "You successfully unsubscribe for our newsletter."}
+        return {"message": "You successfully unsubscribed for our newsletter."}

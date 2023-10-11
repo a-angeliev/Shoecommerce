@@ -27,7 +27,7 @@ class OrdersManager:
                 if x.id == order_item_info["pair_id"] and x.quantity is not 0
             ]
             if not pair:
-                raise NotFound("It not available some of products in your order.")
+                raise NotFound("Some of the products in your order are not available.")
             pair = pair[0]
             pairs.append(pair)
 
@@ -77,7 +77,7 @@ class OrdersManager:
     def edit_order_status(order_id, data):
         order = OrdersModel.query.filter_by(id=order_id).first()
         if not order:
-            raise NotFound("There is not order with that id.")
+            raise NotFound("There is no order with that id.")
 
         order.is_shipped = IsShipped[data["status"]]
         if data["status"] == "shipped":
@@ -91,7 +91,7 @@ class OrdersManager:
     def get_one(order_id):
         order = OrdersModel.query.filter_by(id=order_id).first()
         if not order:
-            raise NotFound("There is not order with that id.")
+            raise NotFound("There is no order with that id.")
         return order
 
     @staticmethod

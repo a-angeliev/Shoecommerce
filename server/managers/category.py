@@ -27,7 +27,7 @@ class CategoryManager:
     def get_by_name(category_title):
         category = CategoryModel.query.filter_by(title=category_title).first()
         if not category:
-            raise NotFound("There is not category with that title")
+            raise NotFound("There is no category with that title")
         return category
 
     @staticmethod
@@ -39,7 +39,7 @@ class CategoryManager:
     def get_by_id(id_):
         category = CategoryModel.query.filter_by(id=id_).first()
         if not category:
-            raise NotFound("There is not category with that id")
+            raise NotFound("There is no category with that id")
         return category
 
     @staticmethod
@@ -58,7 +58,7 @@ class CategoryManager:
     def delete(_id):
         category = CategoryModel.query.filter_by(id=_id).first()
         if not category:
-            raise NotFound("There is not category with that id")
+            raise NotFound("There is no category with that id")
 
         products = category.products
         pairs = []
@@ -70,4 +70,4 @@ class CategoryManager:
                 images.append(img)
         print(pairs)
         db_delete_items([category, *products, *pairs, *images])
-        return {"massage": "You successfully delete the category"}
+        return {"massage": "You successfully deleted the category"}
